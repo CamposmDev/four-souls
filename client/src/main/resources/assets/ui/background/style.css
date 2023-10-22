@@ -1,0 +1,32 @@
+@charset "utf-8";
+
+body {
+    margin: 0px;
+    padding: 0px;
+    text-align: left;
+    font: 18px 'Roboto', Helvetica, sans-serif;
+    color: #FFF;
+    background-color: #000;
+    font-family: 'Roboto', Helvetica, sans-serif;
+    position: relative;
+    background-image: 
+        url(https://foursouls.com/wp-content/uploads/2021/07/FourSoulsBackgroundStarLayer05.png), 
+        url(https://foursouls.com/wp-content/uploads/2021/07/FourSoulsBackgroundStarLayer04.png), 
+        url(https://foursouls.com/wp-content/uploads/2021/07/FourSoulsBackgroundStarLayer03.png), 
+        url(https://foursouls.com/wp-content/uploads/2021/07/FourSoulsBackgroundStarLayer02.png), 
+        url(https://foursouls.com/wp-content/uploads/2021/07/FourSoulsBackgroundStarLayer01.png), 
+        url(https://foursouls.com/wp-content/uploads/2021/07/FourSoulsBackground.png);
+    animation: planetariumBackground 120s linear infinite;
+    background-size: 600px 400px, 600px 400px, 600px 400px, 600px 400px, 600px 400px, 1200px 800px;
+    -webkit-font-smoothing: subpixel-antialiased;
+}
+
+@keyframes planetariumBackground {
+    from {
+        background-position: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+    }
+
+    to {
+        background-position: -7200px 4800px, -6000px 4000px, -4800px 3200px, -3600px 2400px, -2400px 1600px, -1200px 800px;
+    }
+}
