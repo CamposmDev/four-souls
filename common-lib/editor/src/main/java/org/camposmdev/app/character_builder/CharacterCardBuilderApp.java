@@ -1,10 +1,9 @@
-package org.camposmdev.app;
+package org.camposmdev.app.character_builder;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
-import org.camposmdev.Launcher;
-import org.camposmdev.app.model.CharacterCardBuilderAppModel;
+import org.camposmdev.app.character_builder.model.CharacterCardBuilderAppModel;
 
 public class CharacterCardBuilderApp extends Application {
     private static final double VERSION = 1.0;
@@ -16,7 +15,7 @@ public class CharacterCardBuilderApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         CharacterCardBuilderAppModel.getInstance();
-        var src = CharacterCardBuilderApp.class.getClassLoader().getResource("assets/fxml/CharacterBuilderApp.fxml");
+        var src = CharacterCardBuilderApp.class.getResource("/assets/fxml/CharacterBuilderApp.fxml");
         FXMLLoader loader = new FXMLLoader(src);
         stage = loader.load();
         stage.show();

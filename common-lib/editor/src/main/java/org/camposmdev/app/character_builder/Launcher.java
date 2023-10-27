@@ -1,6 +1,4 @@
-package org.camposmdev;
-
-import org.camposmdev.app.CharacterCardBuilderApp;
+package org.camposmdev.app.character_builder;
 
 public class Launcher {
     public static void main(String[] args) {

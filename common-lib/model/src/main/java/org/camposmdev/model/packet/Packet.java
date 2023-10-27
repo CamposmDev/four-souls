@@ -1,4 +1,4 @@
-package com.camposmdev.model.packet;
+package org.camposmdev.model.packet;
 
 import java.io.*;
 

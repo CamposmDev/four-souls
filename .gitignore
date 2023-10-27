@@ -1,4 +1,12 @@
 # Output Files
+out/
 target/
 logs/
 system/
+
+# DAT Files
+character.dat
+
+# 1000+ Resource Files
+client/src/main/resources/assets/textures/cards
+client/src/main/resources/assets/data

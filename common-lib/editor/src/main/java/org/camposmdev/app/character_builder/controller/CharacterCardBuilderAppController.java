@@ -1,4 +1,4 @@
-package org.camposmdev.app.controller;
+package org.camposmdev.app.character_builder.controller;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -6,16 +6,17 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
-import org.camposmdev.Launcher;
-import org.camposmdev.app.CharacterCardBuilderApp;
-import org.camposmdev.app.model.CharacterCardBuilderAppModel;
+import org.camposmdev.app.character_builder.CharacterCardBuilderApp;
+import org.camposmdev.app.character_builder.model.CharacterCardBuilderAppModel;
 import org.camposmdev.model.card.CharacterCard;
+import org.jsoup.Jsoup;
 
+import java.awt.*;
 import java.io.*;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.time.LocalTime;
 
 public class CharacterCardBuilderAppController {
@@ -23,8 +24,8 @@ public class CharacterCardBuilderAppController {
     Stage stage;
     @FXML
     ImageView iv;
-    @FXML
-    WebView wv;
+//    @FXML
+//    WebView wv;
     @FXML
     TextField tfName, tfHP, tfATK;
     @FXML
@@ -53,25 +54,53 @@ public class CharacterCardBuilderAppController {
         }
         CharacterCard card = new CharacterCard(strName, hp, atk);
         card.setEternalCard(null); /* TODO implement eternal card chooser */
-        lblNote.setText('[' + LocalTime.now().toString() + "]: CREATED " + card);
+        lblNote.setText(card.getName() + ": HP=" + card.getLife().getMax() + ", ATK=" + card.getAttack().getMax());
         var isFinished = CharacterCardBuilderAppModel.getInstance().submit(card);
-        if (isFinished) {
-            lblNote.setText("ALL DONE");
-        } else loadMetaCardInfo();
         tfName.clear();
         tfHP.clear();
         tfATK.clear();
+        if (isFinished) {
+            lblNote.setText("ALL DONE");
+        } else loadMetaCardInfo();
     }
 
     public void loadMetaCardInfo() {
         var m = CharacterCardBuilderAppModel.getInstance().peek();
-        wv.getEngine().load(m.getOriginURL());
-        iv.setImage(new Image(m.getImgURL()));
-        if (m.getCard() != null && m.getCard() instanceof CharacterCard cc) {
-            tfName.setText(cc.getName());
-            tfHP.setText(String.valueOf(cc.getLife().getMax()));
-            tfATK.setText(String.valueOf(cc.getAttack().getMax()));
+        if (m == null) {
+            lblNote.setText("NO MORE CHARACTERS TO EDIT");
+        } else {
+//            wv.getEngine().setJavaScriptEnabled(false);
+//            wv.getEngine().load(m.getOriginURL());
+            iv.setImage(new Image(m.getImgURL()));
+            if (m.getCard() != null && m.getCard() instanceof CharacterCard cc) {
+                tfName.setText(cc.getName());
+                tfHP.setText(String.valueOf(cc.getLife().getMax()));
+                tfATK.setText(String.valueOf(cc.getAttack().getMax()));
+            } else {
+                try {
+                    var doc = Jsoup.connect(m.getOriginURL()).get();
+                    var cardpage = doc.getElementsByClass("cardpage");
+                    var name = cardpage.get(0).getElementsByTag("h1").get(0).text();
+                    tfName.setText(name);
+                    var statTable = doc.getElementById("StatTable");
+                    var valueTags = statTable.getElementsByClass("value");
+                    var strHP = valueTags.get(0).text().replaceAll(":", "").trim();
+                    var strATK = valueTags.get(1).text().replaceAll(":", "").trim();
+                    tfHP.setText(strHP);
+                    tfATK.setText(strATK);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
         }
+    }
+
+    public void previous() {
+        if (CharacterCardBuilderAppModel.getInstance().previous())
+            loadMetaCardInfo();
+        else
+            lblNote.setText("No characters come before this");
+
     }
 
     public void skip() {

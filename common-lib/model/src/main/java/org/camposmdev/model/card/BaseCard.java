@@ -1,18 +1,39 @@
 package org.camposmdev.model.card;
 
-public class Card {
-    private CardType type;
-    private String name;
-    private String desc;
 
-    public Card(CardType type, String name, String desc) {
-        this.type = type;
+import java.io.Serializable;
+import java.util.UUID;
+
+public abstract class BaseCard implements Serializable {
+    private UUID id;
+    protected String name;
+
+    public BaseCard(String name) {
+        this.id = UUID.randomUUID();
         this.name = name;
-        this.desc = desc;
+    }
+
+    public BaseCard() {
+        this.id = UUID.randomUUID();
+    }
+
+    public String getId() {
+        return this.id.toString();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
     public String toString() {
-        return type + "::" + name + "::" + desc;
+        return "BaseCard{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

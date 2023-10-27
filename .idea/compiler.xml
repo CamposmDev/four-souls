@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
+    <excludeFromCompile>
+      <directory url="file://$PROJECT_DIR$/common-lib/editor/src/main/resources/archetype-resources" includeSubdirectories="true" />
+    </excludeFromCompile>
     <annotationProcessing>
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -8,6 +11,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="server" />
         <module name="client" />
+        <module name="editor" />
         <module name="model" />
         <module name="res-soup" />
       </profile>

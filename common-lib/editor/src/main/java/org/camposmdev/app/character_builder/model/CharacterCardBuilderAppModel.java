@@ -1,15 +1,11 @@
-package org.camposmdev.app.model;
+package org.camposmdev.app.character_builder.model;
 
-import org.camposmdev.model.card.BaseCard;
 import org.camposmdev.model.card.CharacterCard;
-import org.camposmdev.model.card.builder.CharacterCardBuilder;
 import org.camposmdev.model.card.meta.MetaCard;
 
 import java.io.*;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.LinkedList;
-import java.util.List;
 
 public class CharacterCardBuilderAppModel {
     private static CharacterCardBuilderAppModel singleton;
@@ -33,8 +29,14 @@ public class CharacterCardBuilderAppModel {
             }
     }
 
+    public boolean previous() {
+        if (ind <= 0) return false;
+        metaCards.get(--ind);
+        return true;
+    }
+
     public MetaCard peek() {
-        return metaCards.get(ind);
+        return (metaCards.isEmpty()) ? null : metaCards.get(ind);
     }
 
     public boolean submit(CharacterCard card) {
@@ -53,8 +55,6 @@ public class CharacterCardBuilderAppModel {
             oos.close();
             System.out.println("Saved object");
             this.metaCards.forEach(System.out::println);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

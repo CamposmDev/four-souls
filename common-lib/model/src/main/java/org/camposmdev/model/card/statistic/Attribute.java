@@ -1,6 +1,8 @@
-package org.camposmdev.model.card.statistics;
+package org.camposmdev.model.card.statistic;
 
-public class Attribute {
+import java.io.Serializable;
+
+public class Attribute implements Serializable {
     private int max;
     private int current;
 
@@ -27,7 +29,7 @@ public class Attribute {
 
     @Override
     public String toString() {
-        return "Attribute{" +
+        return "{" +
                 "max=" + max +
                 ", current=" + current +
                 '}';

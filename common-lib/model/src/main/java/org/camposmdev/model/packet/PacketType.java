@@ -1,4 +1,4 @@
-package com.camposmdev.model.packet;
+package org.camposmdev.model.packet;
 
 public enum PacketType {
     LOGIN, PLAYERS, ACK, NACK

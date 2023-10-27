@@ -1,10 +1,10 @@
-package com.camposmdev.server.net;
+package org.camposmdev.server.net;
 
-import com.camposmdev.model.packet.Packet;
-import com.camposmdev.server.model.Client;
-import com.camposmdev.server.model.ClientRegistry;
-import com.camposmdev.server.model.Player;
-import com.camposmdev.server.model.PlayerRegistry;
+import org.camposmdev.model.packet.Packet;
+import org.camposmdev.server.model.Client;
+import org.camposmdev.server.model.ClientRegistry;
+import org.camposmdev.server.model.Player;
+import org.camposmdev.server.model.PlayerRegistry;
 
 import java.io.*;
 import java.net.Socket;

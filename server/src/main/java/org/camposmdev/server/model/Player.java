@@ -1,4 +1,4 @@
-package com.camposmdev.server.model;
+package org.camposmdev.server.model;
 
 public class Player implements Comparable<Player> {
     private String name;

@@ -1,6 +1,6 @@
-package com.camposmdev.server;
+package org.camposmdev.server;
 
-import com.camposmdev.server.net.ClientRunnable;
+import org.camposmdev.server.net.ClientRunnable;
 
 import java.io.IOException;
 import java.net.ServerSocket;

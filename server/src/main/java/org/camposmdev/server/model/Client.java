@@ -1,11 +1,10 @@
-package com.camposmdev.server.model;
+package org.camposmdev.server.model;
 
-import com.camposmdev.model.packet.Packet;
-import com.camposmdev.model.packet.PacketType;
+import org.camposmdev.model.packet.Packet;
+import org.camposmdev.model.packet.PacketType;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 

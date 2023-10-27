@@ -1,4 +1,4 @@
-package com.camposmdev.server.model;
+package org.camposmdev.server.model;
 
 import java.util.Collections;
 import java.util.LinkedList;
