@@ -1,0 +1,33 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="editor">
+    <output-path>$PROJECT_DIR$/out/artifacts/editor</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="org.camposmdev.app.character_builder.CharacterCardBuilderApp" />
+        <option name="description" value="" />
+        <option name="height" value="" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="title" value="" />
+        <option name="vendor" value="" />
+        <option name="version" value="" />
+        <option name="width" value="" />
+      </options>
+    </properties>
+    <root id="archive" name="editor:jar.jar">
+      <element id="module-output" name="editor" />
+      <element id="module-output" name="model" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/11.0.2/javafx-graphics-11.0.2-win.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-base/11.0.2/javafx-base-11.0.2-win.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-controls/11.0.2/javafx-controls-11.0.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-media/11.0.2/javafx-media-11.0.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-fxml/11.0.2/javafx-fxml-11.0.2-win.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-base/11.0.2/javafx-base-11.0.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-web/11.0.2/javafx-web-11.0.2-win.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/11.0.2/javafx-graphics-11.0.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-media/11.0.2/javafx-media-11.0.2-win.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-web/11.0.2/javafx-web-11.0.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-controls/11.0.2/javafx-controls-11.0.2-win.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-fxml/11.0.2/javafx-fxml-11.0.2.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
