@@ -1,6 +1,6 @@
 package org.camposmdev.app.character_builder.model;
 
-import org.camposmdev.model.card.CharacterCard;
+import org.camposmdev.model.card.character.CharacterCard;
 import org.camposmdev.model.card.meta.MetaCard;
 
 import java.io.*;

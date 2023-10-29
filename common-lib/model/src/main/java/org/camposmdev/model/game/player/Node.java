@@ -1,4 +1,4 @@
-package org.camposmdev.model.player;
+package org.camposmdev.model.game.player;
 
 public class Node {
     protected Player p;

@@ -1,6 +1,6 @@
 package org.camposmdev.model.card.factory;
 
-import org.camposmdev.model.card.CharacterCard;
+import org.camposmdev.model.card.character.CharacterCard;
 import org.camposmdev.model.card.builder.CharacterCardBuilder;
 
 public class CardFactory {
