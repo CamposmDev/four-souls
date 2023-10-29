@@ -1,22 +1,26 @@
 package org.camposmdev.res_soup;
 
 import org.camposmdev.model.card.meta.MetaCard;
+import org.jsoup.Jsoup;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Pattern;
 
 import static org.camposmdev.res_soup.Util.*;
 
-public class Launcher implements FileNames {
+public class Program implements FileNames {
     static final int N_THREADS = (int) (Runtime.getRuntime().availableProcessors() * 0.75d);
 
     static {
         System.out.println("N_THREADS=" + N_THREADS);
     }
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         final var START = System.currentTimeMillis();
         mkdirs();
+        downloadCardBacks(CARDS_DIR);
         downloadCards(CHARACTER_DIR, "character/" , CHARACTERS_URL);
         downloadCards(ETERNAL_DIR, "eternal/", ETERNAL_URLS);
         downloadCards(TREASURE_DIR, "treasure/", TREASURE_URLS);
@@ -26,33 +30,9 @@ public class Launcher implements FileNames {
         downloadCards(BSOUL_DIR, "bsoul/", BSOUL_URL);
         downloadCards(ROOM_DIR, "room/", ROOM_CARDS_URL);
         final var END = System.currentTimeMillis() - START;
-        final var SEC = (END / 1000f);
-        final var MIN = (int) (SEC / 60);
-        System.out.printf("All Done (%d min %.2f sec)\n", MIN, SEC);
-//        for (var x : ETERNAL_URLS) {
-//            var r = new CardFetcherCallable(ETERNAL_DIR + parseURLtoDIR(x), x);
-//            writeObject(DAT_DIR+ parseURLtoDAT("eternal/", x), r.call());
-//        }
-//        for (var x : TREASURE_URLS) {
-//            var r = new CardFetcherCallable(TREASURE_DIR + parseURLtoDIR(x), x);
-//            writeObject(DAT_DIR + parseURLtoDAT("treasure/", x), r.call());
-//        }
-//        for (var x : MONSTER_URLS) {
-//            var r = new CardFetcherCallable(MONSTER_DIR + parseURLtoDIR(x), x);
-//            writeObject(DAT_DIR + parseURLtoDAT("monster/", x), r.call());
-//        }
-//        for (var x : LOOT_URLS) {
-//            var r = new CardFetcherCallable(LOOT_DIR + parseURLtoDIR(x), x);
-//            writeObject(DAT_DIR + parseURLtoDAT("loot/", x), r.call());
-//        }
-//        for (var x : MONEY_URLS) {
-//            var r = new CardFetcherCallable(MONEY_DIR + parseURLtoDIR(x), x);
-//            writeObject(DAT_DIR + parseURLtoDAT("money/", x), r.call());
-//        }
-//        Callable<List<MetaCard>> r2 = new CardFetcherCallable(SOUL_DIR, BONUS_SOULS_URL);
-//        Callable<List<MetaCard>> r3 = new CardFetcherCallable(ROOM_DIR, ROOM_CARDS_URL);
-//        writeObject(DAT_DIR + parseURLtoDAT("bsoul/", BONUS_SOULS_URL), r2.call());
-//        writeObject(DAT_DIR + parseURLtoDAT("room", ROOM_CARDS_URL), r3.call());
+        final var SEC = (END / 1000);
+        final var MIN = (SEC / 60);
+        System.out.printf("Done (%d min %d sec)\n", MIN, SEC);
     }
 
     /**
@@ -68,6 +48,35 @@ public class Launcher implements FileNames {
         for (var x : MONSTER_URLS) mkdir(MONSTER_DIR + parseURLtoDIR(x));
         for (var x : LOOT_URLS) mkdir(LOOT_DIR + parseURLtoDIR(x));
         for (var x : MONEY_URLS) mkdir(MONEY_DIR + parseURLtoDIR(x));
+    }
+
+    /**
+     * @brief Downloads the back of cards of card types available in the tabletop game: Four Souls
+     * @param dir The destination folder where the image file will be saved in
+     */
+    public static void downloadCardBacks(String dir) {
+        /* download card backs */
+        var conn = Jsoup.connect("https://foursouls.com/cards/");
+        try {
+            var doc = conn.get();
+            var divList = doc.getElementsByClass("CardTypeHover");
+            for (var div : divList) {
+                var list = div.getElementsByTag("img");
+                for (var imgTag : list) {
+                    if (!imgTag.attributes().get("src").startsWith("data:image")) {
+                        var src = imgTag.attributes().get("src");
+                        final var REGEX = "-110x150|-150x110";
+                        var pattern = Pattern.compile(REGEX);
+                        src = pattern.matcher(src).replaceAll("");
+                        var imgURL = "https://foursouls.com" + src;
+                        var r = new ImageFetcherRunnable(dir, imgURL);
+                        r.run();
+                    }
+                }
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     /**
@@ -109,15 +118,11 @@ public class Launcher implements FileNames {
         var exe = Executors.newFixedThreadPool(N_THREADS);
         for (var c : cards) {
             var r = new ImageFetcherRunnable(imgdir, c.getImgURL());
-//                r.run();
-//                var t = new Thread(new ImageFetcherRunnable(imgdir, c.getImgURL()));
-//                t.start();
-//                t.join();
             exe.execute(r);
         }
         try {
             exe.shutdown();
-            var rc = exe.awaitTermination(3, TimeUnit.MINUTES);
+            var rc = exe.awaitTermination(5, TimeUnit.MINUTES);
             if (!rc) {
                 System.err.println("DOWNLOADING TOOK TO LONG");
                 exe.shutdownNow();
@@ -125,10 +130,5 @@ public class Launcher implements FileNames {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-//            var rc = exe.awaitTermination(60, TimeUnit.SECONDS);
-//            if (!rc) {
-//                System.err.println("DOWNLOADING " + x + " TOOK TOO LONG");
-//                exe.shutdownNow();
-//            } else exe.shutdown();
     }
 }
