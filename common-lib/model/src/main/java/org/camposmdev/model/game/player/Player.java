@@ -1,5 +1,7 @@
 package org.camposmdev.model.game.player;
 
+import org.camposmdev.model.Dice;
+import org.camposmdev.model.Killable;
 import org.camposmdev.model.card.character.CharacterCard;
 import org.camposmdev.model.card.loot.LootCard;
 import org.camposmdev.model.card.monster.MonsterCard;
@@ -9,7 +11,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 
-public class Player implements Comparable<Player> {
+public class Player implements Killable, Comparable<Player> {
     private UUID id;
     private CharacterCard character;
     private List<LootCard> hand;
@@ -40,7 +42,7 @@ public class Player implements Comparable<Player> {
         /* TODO */
     }
 
-    public void attackMonster(MonsterCard mc) {
+    public void attack() {
         /* TODO */
     }
 
@@ -48,8 +50,9 @@ public class Player implements Comparable<Player> {
         /* TODO */
     }
 
-    public int rollD6() {
-        return (int) (Math.random() * 6) + 1;
+
+    public int roll(int nSides) {
+        return new Dice(nSides).roll().get();
     }
 
     public List<TreasureCard> getTrinkets() {
