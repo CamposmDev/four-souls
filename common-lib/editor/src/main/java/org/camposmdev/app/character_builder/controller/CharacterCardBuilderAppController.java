@@ -6,18 +6,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import org.camposmdev.app.character_builder.CharacterCardBuilderApp;
 import org.camposmdev.app.character_builder.model.CharacterCardBuilderAppModel;
 import org.camposmdev.model.card.CharacterCard;
 import org.jsoup.Jsoup;
 
-import java.awt.*;
 import java.io.*;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.time.LocalTime;
 
 public class CharacterCardBuilderAppController {
     @FXML
@@ -52,9 +47,10 @@ public class CharacterCardBuilderAppController {
             lblNote.setText("FAILED TO CREATE CHARACTER (" + ex + ')');
             return;
         }
-        CharacterCard card = new CharacterCard(strName, hp, atk);
+        var m = CharacterCardBuilderAppModel.getInstance().peek();
+        CharacterCard card = new CharacterCard(strName, "", hp, atk);
         card.setEternalCard(null); /* TODO implement eternal card chooser */
-        lblNote.setText(card.getName() + ": HP=" + card.getLife().getMax() + ", ATK=" + card.getAttack().getMax());
+        lblNote.setText(card.getName() + ": HP=" + card.getHP().getMax() + ", ATK=" + card.getATK().getMax());
         var isFinished = CharacterCardBuilderAppModel.getInstance().submit(card);
         tfName.clear();
         tfHP.clear();
@@ -69,13 +65,11 @@ public class CharacterCardBuilderAppController {
         if (m == null) {
             lblNote.setText("NO MORE CHARACTERS TO EDIT");
         } else {
-//            wv.getEngine().setJavaScriptEnabled(false);
-//            wv.getEngine().load(m.getOriginURL());
             iv.setImage(new Image(m.getImgURL()));
             if (m.getCard() != null && m.getCard() instanceof CharacterCard cc) {
                 tfName.setText(cc.getName());
-                tfHP.setText(String.valueOf(cc.getLife().getMax()));
-                tfATK.setText(String.valueOf(cc.getAttack().getMax()));
+                tfHP.setText(String.valueOf(cc.getHP().getMax()));
+                tfATK.setText(String.valueOf(cc.getATK().getMax()));
             } else {
                 try {
                     var doc = Jsoup.connect(m.getOriginURL()).get();
