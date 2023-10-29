@@ -1,5 +1,5 @@
 .main {
-    -fx-background-image: url("../textures/CharacterCardBack.png");
+    -fx-background-image: url("../textures/cards/CharacterCardBack.png");
     -fx-background-size: cover;
     -fx-font-family: "EdmundMcMillen_v2";
 }

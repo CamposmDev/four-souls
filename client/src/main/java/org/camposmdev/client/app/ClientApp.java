@@ -1,4 +1,4 @@
-package org.camposmdev.client.launcher;
+package org.camposmdev.client.app;
 
 import com.almasb.fxgl.app.CursorInfo;
 import com.almasb.fxgl.app.GameApplication;
@@ -18,7 +18,7 @@ import java.net.URL;
 import static com.almasb.fxgl.dsl.FXGL.*;
 import static com.almasb.fxgl.dsl.FXGLForKtKt.addUINode;
 
-public class Game extends GameApplication {
+public class ClientApp extends GameApplication {
     public static void main(String[] args) {
         launch(args);
     }
@@ -38,7 +38,7 @@ public class Game extends GameApplication {
 
     @Override
     protected void onPreInit() {
-        var music = FXGL.loopBGM("menu.mp3");
+        var music = FXGL.loopBGM("03 The Binding of Isaac.mp3");
         music.getAudio().setVolume(0.1);
         FXGL.getNotificationService().setBackgroundColor(Color.BLACK);
         FXGL.getNotificationService().setTextColor(Color.WHITE);
@@ -47,7 +47,7 @@ public class Game extends GameApplication {
     @Override
     protected void initUI() {
         Platform.runLater(() -> {
-            var name = Game.class.getClassLoader().getResource("./assets/ui/background/index.html");
+            var name = ClientApp.class.getClassLoader().getResource("./assets/ui/background/index.html");
             assert name != null : "Failed to get background/index.html";
             WebView web = new WebView();
             web.setPrefWidth(getSettings().getWidth());
@@ -55,7 +55,7 @@ public class Game extends GameApplication {
             web.getEngine().load(name.toExternalForm());
             web.setDisable(true);
             addUINode(web);
-            URL url = Game.class.getClassLoader().getResource("assets/ui/fxml/Login.fxml");
+            URL url = ClientApp.class.getClassLoader().getResource("assets/ui/fxml/Login.fxml");
             assert url != null : "Failed to get Login.fxml";
             try {
                 AnchorPane root = FXMLLoader.load(url);

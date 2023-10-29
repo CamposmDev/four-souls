@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact name="editor_linux_app">
+    <output-path>$PROJECT_DIR$/out/artifacts/editor_linux_app</output-path>
+    <root id="root">
+      <element id="file-copy" path="$PROJECT_DIR$/character.dat" />
+      <element id="artifact" artifact-name="editor_linux:jar" />
+    </root>
+  </artifact>
+</component>
