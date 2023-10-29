@@ -4,38 +4,45 @@ import org.camposmdev.model.card.CharacterCard;
 import org.camposmdev.model.card.EternalCard;
 
 public class CharacterCardBuilder {
-    private final CharacterCard card;
+    private String name, imgSRC;
+    private int maxHP;
+    private int maxATK;
+    private EternalCard eternalCard;
 
     public CharacterCardBuilder() {
-        this.card = new CharacterCard();
+        this.name = this.imgSRC = "";
+        this.maxHP = 2;
+        this.maxATK = 1;
     }
 
     public CharacterCardBuilder name(String name) {
-        this.card.setName(name);
+        this.name = name;
         return this;
     }
 
     public CharacterCardBuilder imgSRC(String imgSRC) {
-        this.card.setImgSRC(imgSRC);
+        this.imgSRC = imgSRC;
         return this;
     }
 
     public CharacterCardBuilder hp(int max) {
-        this.card.getHP().setMax(max);
+        this.maxHP = max;
         return this;
     }
 
     public CharacterCardBuilder atk(int max) {
-        this.card.getATK().setMax(max);
+        this.maxATK = max;
         return this;
     }
 
-    public CharacterCardBuilder eternalCard(EternalCard card) {
-        this.card.setEternalCard(card);
+    public CharacterCardBuilder eternal(EternalCard card) {
+        this.eternalCard = card;
         return this;
     }
 
     public CharacterCard build() {
-        return new CharacterCard(card);
+        var x = new CharacterCard(name, imgSRC, maxHP, maxATK);
+        x.setEternalCard(eternalCard);
+        return x;
     }
 }
