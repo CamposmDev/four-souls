@@ -10,22 +10,27 @@ public class CharacterCardBuilder {
         this.card = new CharacterCard();
     }
 
-    public CharacterCardBuilder setName(String name) {
+    public CharacterCardBuilder name(String name) {
         this.card.setName(name);
         return this;
     }
 
-    public CharacterCardBuilder setMaxHitPoints(int max) {
-        this.card.getLife().setMax(max);
+    public CharacterCardBuilder imgSRC(String imgSRC) {
+        this.card.setImgSRC(imgSRC);
         return this;
     }
 
-    public CharacterCardBuilder setMaxAttackPoints(int max) {
-        this.card.getAttack().setMax(max);
+    public CharacterCardBuilder hp(int max) {
+        this.card.getHP().setMax(max);
         return this;
     }
 
-    public CharacterCardBuilder setEternalCard(EternalCard card) {
+    public CharacterCardBuilder atk(int max) {
+        this.card.getATK().setMax(max);
+        return this;
+    }
+
+    public CharacterCardBuilder eternalCard(EternalCard card) {
         this.card.setEternalCard(card);
         return this;
     }
