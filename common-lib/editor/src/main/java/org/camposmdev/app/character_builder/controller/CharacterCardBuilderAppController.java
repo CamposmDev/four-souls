@@ -9,7 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import org.camposmdev.app.character_builder.CharacterCardBuilderApp;
 import org.camposmdev.app.character_builder.model.CharacterCardBuilderAppModel;
-import org.camposmdev.model.card.CharacterCard;
+import org.camposmdev.model.card.character.CharacterCard;
 import org.jsoup.Jsoup;
 
 import java.io.*;

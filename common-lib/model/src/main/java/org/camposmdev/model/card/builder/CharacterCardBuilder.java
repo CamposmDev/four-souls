@@ -1,7 +1,7 @@
 package org.camposmdev.model.card.builder;
 
-import org.camposmdev.model.card.CharacterCard;
-import org.camposmdev.model.card.EternalCard;
+import org.camposmdev.model.card.character.CharacterCard;
+import org.camposmdev.model.card.eternal.EternalCard;
 
 public class CharacterCardBuilder {
     private String name, imgSRC;

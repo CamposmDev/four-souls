@@ -5,4 +5,6 @@ module model {
     exports org.camposmdev.model.card.meta;
     exports org.camposmdev.model.card.statistic;
     exports org.camposmdev.model.card.builder;
+    exports org.camposmdev.model.card.character;
+    exports org.camposmdev.model.card.eternal;
 }
