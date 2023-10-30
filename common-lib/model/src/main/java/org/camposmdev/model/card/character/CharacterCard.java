@@ -1,13 +1,13 @@
 package org.camposmdev.model.card.character;
 
+import org.camposmdev.model.Killable;
 import org.camposmdev.model.card.BaseCard;
 import org.camposmdev.model.card.eternal.EternalCard;
 import org.camposmdev.model.card.statistic.Attribute;
 
-public class CharacterCard extends BaseCard {
-    protected String imgSRC;
-    protected final Attribute HP;
-    protected final Attribute ATK;
+public class CharacterCard extends BaseCard implements Killable {
+    protected final Attribute hp;
+    protected final Attribute atk;
     protected EternalCard eternalCard;
 
     public CharacterCard() {
@@ -16,38 +16,24 @@ public class CharacterCard extends BaseCard {
 
     public CharacterCard(String name, String imgSRC) {
         super(name);
-        this.imgSRC = imgSRC;
-        this.HP = new Attribute(2);
-        this.ATK = new Attribute(1);
+        this.hp = new Attribute(2);
+        this.atk = new Attribute(1);
     }
 
-    public CharacterCard(String name, String imgSRC, int maxHP, int maxATK) {
+    public CharacterCard(String name, int maxHP, int maxATK) {
         super(name);
-        this.imgSRC = imgSRC;
-        this.HP = new Attribute(maxHP);
-        this.ATK = new Attribute(maxATK);
+        this.hp = new Attribute(maxHP);
+        this.atk = new Attribute(maxATK);
     }
 
     public CharacterCard(CharacterCard card) {
-        this(card.name, card.imgSRC, card.HP.getMax(), card.ATK.getMax());
+        this(card.name, card.hp.getMax(), card.atk.getMax());
         if (card.eternalCard == null) this.eternalCard = null;
         else this.eternalCard = card.eternalCard;
     }
 
-    public String getImgSRC() {
-        return this.imgSRC;
-    }
-
-    public void setImgSRC(String imgSRC) {
-        this.imgSRC = imgSRC;
-    }
-
     public Attribute getHP() {
-        return this.HP;
-    }
-
-    public Attribute getATK() {
-        return this.ATK;
+        return this.hp;
     }
 
     public EternalCard getEternalCard() {
@@ -59,10 +45,30 @@ public class CharacterCard extends BaseCard {
     }
 
     @Override
+    public Attribute getATK() {
+        return atk;
+    }
+
+    @Override
+    public void damage(Killable entity) {
+        getHP().setCurrent(getHP().getCurrent() - entity.getATK().getCurrent());
+    }
+
+    @Override
+    public void attack(Killable entity) {
+        entity.damage(this);
+    }
+
+    @Override
+    public boolean isDead() {
+        return getHP().getCurrent() <= 0;
+    }
+
+    @Override
     public String toString() {
         return "CharacterCard{" +
-                "life=" + HP +
-                ", attack=" + ATK +
+                "life=" + hp +
+                ", attack=" + atk +
                 ", eternalCard=" + eternalCard +
                 ", name='" + name + '\'' +
                 '}';

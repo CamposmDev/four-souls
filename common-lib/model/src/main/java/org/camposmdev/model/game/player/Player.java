@@ -4,14 +4,14 @@ import org.camposmdev.model.Dice;
 import org.camposmdev.model.Killable;
 import org.camposmdev.model.card.character.CharacterCard;
 import org.camposmdev.model.card.loot.LootCard;
-import org.camposmdev.model.card.monster.MonsterCard;
 import org.camposmdev.model.card.treasure.TreasureCard;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 
-public class Player implements Killable, Comparable<Player> {
+public class Player implements Comparable<Player> {
+    private static final int INITIAL_MONEY = 3;
     private UUID id;
     private CharacterCard character;
     private List<LootCard> hand;
@@ -23,7 +23,7 @@ public class Player implements Killable, Comparable<Player> {
         this.character = character;
         this.hand = new LinkedList<>();
         this.trinkets = new LinkedList<>();
-        this.money = 0;
+        this.money = INITIAL_MONEY;
     }
 
     public UUID getId() {
@@ -42,17 +42,12 @@ public class Player implements Killable, Comparable<Player> {
         /* TODO */
     }
 
-    public void attack() {
-        /* TODO */
-    }
-
     public void playTreasureCard(TreasureCard tc) {
         /* TODO */
     }
 
-
     public int roll(int nSides) {
-        return new Dice(nSides).roll().get();
+        return Dice.create(nSides).roll().get();
     }
 
     public List<TreasureCard> getTrinkets() {

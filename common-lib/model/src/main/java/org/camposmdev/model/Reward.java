@@ -8,8 +8,6 @@ public class Reward {
     private int treasure;
     private int cents;
 
-    private Reward() { }
-
     public int loot() {
         return loot;
     }

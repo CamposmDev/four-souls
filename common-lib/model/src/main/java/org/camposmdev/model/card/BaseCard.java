@@ -1,10 +1,9 @@
 package org.camposmdev.model.card;
 
-
 import java.io.Serializable;
 import java.util.UUID;
 
-public abstract class BaseCard implements Serializable {
+public abstract class BaseCard implements Serializable, Comparable<BaseCard> {
     private UUID id;
     protected String name;
 
@@ -27,6 +26,11 @@ public abstract class BaseCard implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public int compareTo(BaseCard card) {
+        return id.compareTo(card.id);
     }
 
     @Override

@@ -48,7 +48,7 @@ public class CharacterCardBuilderAppController {
             return;
         }
         var m = CharacterCardBuilderAppModel.getInstance().peek();
-        CharacterCard card = new CharacterCard(strName, "", hp, atk);
+        CharacterCard card = new CharacterCard(strName, hp, atk);
         card.setEternalCard(null); /* TODO implement eternal card chooser */
         lblNote.setText(card.getName() + ": HP=" + card.getHP().getMax() + ", ATK=" + card.getATK().getMax());
         var isFinished = CharacterCardBuilderAppModel.getInstance().submit(card);

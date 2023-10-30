@@ -1,6 +1,9 @@
 package org.camposmdev.model;
 
 public class Dice {
+    public static Dice create(int nSides) {
+        return new Dice(nSides);
+    }
     private int nSides;
     private int value;
 
