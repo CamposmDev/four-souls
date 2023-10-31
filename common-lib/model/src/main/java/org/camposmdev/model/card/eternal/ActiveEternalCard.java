@@ -1,9 +1,7 @@
 package org.camposmdev.model.card.eternal;
 
 
-import org.camposmdev.model.card.PlayableCard;
-
-public class ActiveEternalCard extends EternalCard implements PlayableCard {
+public class ActiveEternalCard extends EternalCard {
     /* Tells the program whether the card has been played or not */
     private boolean isActive;
 

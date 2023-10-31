@@ -7,6 +7,7 @@ public class Reward {
     private int loot;
     private int treasure;
     private int cents;
+    private int souls;
 
     public int loot() {
         return loot;
@@ -18,6 +19,10 @@ public class Reward {
 
     public int cents() {
         return cents;
+    }
+
+    public int souls() {
+        return souls;
     }
 
     public static class RewardBuilder {
@@ -36,6 +41,10 @@ public class Reward {
 
         public void cents(int n) {
             r.cents = n;
+        }
+
+        public void souls(int n) {
+            r.souls = n;
         }
 
         public Reward build() {

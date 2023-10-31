@@ -1,7 +1,6 @@
 package org.camposmdev.model.game.player;
 
 import org.camposmdev.model.Dice;
-import org.camposmdev.model.Killable;
 import org.camposmdev.model.card.character.CharacterCard;
 import org.camposmdev.model.card.loot.LootCard;
 import org.camposmdev.model.card.treasure.TreasureCard;
@@ -47,7 +46,7 @@ public class Player implements Comparable<Player> {
     }
 
     public int roll(int nSides) {
-        return Dice.create(nSides).roll().get();
+        return Dice.init(nSides).roll().get();
     }
 
     public List<TreasureCard> getTrinkets() {
