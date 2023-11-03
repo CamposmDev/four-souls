@@ -32,11 +32,15 @@ public class Client {
         out.flush();
     }
 
-    public void sendNACKPacket() throws IOException {
+    public void sendNACKPacket() {
         Packet.sendNACKPacket(out);
     }
 
-    public void sendACKPacket() throws IOException {
+    public void sendNACKPacket(String msg) {
+        Packet.sendNACKPacket(out, msg);
+    }
+
+    public void sendACKPacket() {
         Packet.sendACKPacket(out);
     }
 
@@ -50,5 +54,12 @@ public class Client {
 
     public boolean isLoggedIn() {
         return player != null;
+    }
+
+    public void disconnect() throws IOException {
+        out.close();
+        in.close();
+        socket.close();
+        throw new IOException();
     }
 }

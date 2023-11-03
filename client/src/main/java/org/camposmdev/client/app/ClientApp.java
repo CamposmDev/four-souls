@@ -3,11 +3,13 @@ package org.camposmdev.client.app;
 import com.almasb.fxgl.app.CursorInfo;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
+import com.almasb.fxgl.app.scene.GameView;
 import com.almasb.fxgl.dsl.FXGL;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.web.WebView;
 import javafx.util.Duration;
@@ -25,7 +27,6 @@ public class ClientApp extends GameApplication {
 
     @Override
     protected void initSettings(GameSettings settings) {
-        settings.set3D(true);
         settings.setAppIcon("icons/icon-soul-circle.png");
         settings.setWidth(1600);
         settings.setHeight(900);
@@ -40,7 +41,7 @@ public class ClientApp extends GameApplication {
     protected void onPreInit() {
         var music = FXGL.loopBGM("03 The Binding of Isaac.mp3");
         music.getAudio().setVolume(0.1);
-        FXGL.getNotificationService().setBackgroundColor(Color.BLACK);
+        FXGL.getNotificationService().setBackgroundColor(Color.web("#121212"));
         FXGL.getNotificationService().setTextColor(Color.WHITE);
     }
 
