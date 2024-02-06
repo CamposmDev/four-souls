@@ -1,6 +1,11 @@
 package org.camposmdev.client.controllers;
 
+import com.almasb.fxgl.audio.AudioType;
+import com.almasb.fxgl.audio.Sound;
 import com.almasb.fxgl.dsl.FXGL;
+import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import org.camposmdev.client.net.Client;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
@@ -25,6 +30,9 @@ public class LoginController {
         var password = tfPassword.getText();
         if (Client.getInstance().login(name, password)) {
             /* login success, remove login screen */
+            var board = getAssetLoader().loadTexture("board.jpg");
+            board.setFitWidth(getSettings().getWidth());
+            board.setFitHeight(getSettings().getHeight());
             FXGL.animationBuilder().duration(Duration.millis(500)).translate(root).to(new Point2D(root.getTranslateX(), -root.getHeight()*2)).buildAndPlay();
             FXGL.animationBuilder().onFinished(() -> {
                 removeUINode(root);
@@ -35,11 +43,35 @@ public class LoginController {
                 logo.setScaleY(0.5);
                 addUINode(logo, midX - logo.getWidth()/2d, -120);
                 var lbl1 = initLabel("Singleplayer");
-                addUINode(lbl1, midX - lbl1.getPrefWidth()/2d, midY);
+//                addUINode(lbl1, midX - lbl1.getPrefWidth()/2d, midY);
                 var lbl2 = initLabel("Multiplayer");
-                addUINode(lbl2, midX - lbl1.getPrefWidth()/2d, midY+100);
+//                addUINode(lbl2, midX - lbl1.getPrefWidth()/2d, midY+100);
                 var lbl3 = initLabel("Options");
-                addUINode(lbl3, midX - lbl1.getPrefWidth()/2d, midY+200);
+//                addUINode(lbl3, midX - lbl1.getPrefWidth()/2d, midY+200);
+                var lbl4 = initLabel("Exit");
+                lbl4.setOnMouseClicked(e -> {
+                    getDialogService().showConfirmationBox("Are you sure you want me to die? :(", answer -> {
+                        if (answer) {
+                            final int NUM_OF_DEATHS = 3;
+                            /* fetch a random file in the folder */
+                            int i = (int)(Math.random() * NUM_OF_DEATHS) + 1;
+                            String s = getClass().getClassLoader().getResource("./assets/sounds/death/death" + i + ".wav").toString();
+                            var media = new Media(s);
+                            var mp = new MediaPlayer(media);
+                            mp.play();
+                            mp.setOnEndOfMedia(() -> getGameController().exit());
+                        }
+                    });
+                });
+                VBox box = new VBox(12);
+                box.getChildren().addAll(lbl1, lbl2, lbl3, lbl4);
+                box.setPrefWidth(300);
+                addUINode(box, midX - box.getPrefWidth()/2d, midY);
+                lbl1.setOnMouseClicked(e -> {
+                    getGameScene().clearUINodes();
+                    addUINode(board, 0, 0);
+                });
+
             }).duration(Duration.millis(500)).fadeOut(root).buildAndPlay();
         } else {
 

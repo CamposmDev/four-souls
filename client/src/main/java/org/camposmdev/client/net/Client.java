@@ -15,30 +15,32 @@ public class Client {
         return singleton;
     }
     private Socket socket;
+    private boolean isLoggedIn;
 
     public boolean login(String name, String password) {
         try {
             socket = new Socket("localhost", 3000);
-            String payload = name + ',' + password;
+            String[] payload = new String[] {name, password};
             var oos = new ObjectOutputStream(socket.getOutputStream());
             oos.writeObject(new Packet(PacketType.LOGIN, payload));
             oos.flush();
             var ois = new ObjectInputStream(socket.getInputStream());
             Packet p = (Packet) ois.readObject();
+            System.out.println(p);
             if (p.type.equals(PacketType.ACK)) {
-                System.out.println("logged in");
+                isLoggedIn = true;
             } else {
-                System.out.println("failed to log in");
+                isLoggedIn = false;
                 socket.close();
-                return false;
+                return isLoggedIn;
             }
         } catch (IOException e) {
             System.out.println("failed to connect");
-            return false;
+            isLoggedIn = false;
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
-        return true;
+        return isLoggedIn;
     }
 
     public Packet recvPacket() throws IOException, ClassNotFoundException {
@@ -51,5 +53,9 @@ public class Client {
         var out = new ObjectOutputStream(socket.getOutputStream());
         out.writeObject(p);
         out.flush();
+    }
+
+    public boolean isLoggedIn() {
+        return this.isLoggedIn;
     }
 }

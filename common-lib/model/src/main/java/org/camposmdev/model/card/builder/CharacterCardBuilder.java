@@ -16,7 +16,7 @@ public class CharacterCardBuilder {
     }
 
     public CharacterCardBuilder imgSRC(String imgSRC) {
-        card.setImgSRC(imgSRC);
+//        card.setImgSRC(imgSRC);
         return this;
     }
 

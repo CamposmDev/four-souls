@@ -11,6 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.web.WebView;
 import javafx.util.Duration;
+import org.camposmdev.client.net.Client;
 
 import java.io.IOException;
 import java.net.URL;
@@ -70,6 +71,13 @@ public class ClientApp extends GameApplication {
     @Override
     protected void initInput() {
         FXGL.onKey(KeyCode.W, () -> System.out.println("W key is pressed"));
+    }
+
+    @Override
+    protected void onUpdate(double tpf) {
+        if (Client.getInstance().isLoggedIn()) {
+
+        }
     }
 }
 

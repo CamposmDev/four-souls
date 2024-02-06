@@ -29,7 +29,7 @@ public class ClientRunnable implements Runnable {
                 switch (p.type) {
                     case LOGIN -> {
                         /* get the payload and split the args */
-                        String[] arr = ((String) p.payload).split(",");
+                        String[] arr = ((String[]) p.payload);
                         String name = arr[0];
                         String password = arr[1];
                         /* if the client is logged in, send NACK packet */
@@ -67,7 +67,7 @@ public class ClientRunnable implements Runnable {
                 }
             }
         } catch (IOException e) {
-            System.out.println("Client " + client + "disconnected");
+            System.out.println("Client " + client + " disconnected");
             ClientRegistry.getInstance().remove(client);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);

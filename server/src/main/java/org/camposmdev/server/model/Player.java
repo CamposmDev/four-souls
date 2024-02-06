@@ -33,4 +33,12 @@ public class Player implements Comparable<Player> {
     public int compareTo(Player o) {
         return name.compareTo(o.name);
     }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }

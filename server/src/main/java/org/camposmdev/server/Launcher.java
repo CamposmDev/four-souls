@@ -7,8 +7,9 @@ import java.net.ServerSocket;
 
 public class Launcher {
     public static void main(String[] args) {
-        try (ServerSocket ss = new ServerSocket(3000);) {
-            System.out.println("Server started");
+        final var PORT = 3000;
+        try (ServerSocket ss = new ServerSocket(PORT);) {
+            System.out.println("Server started on port " + PORT);
             while (true) {
                 var socket = ss.accept();
                 ClientRunnable runnable = new ClientRunnable(socket);
