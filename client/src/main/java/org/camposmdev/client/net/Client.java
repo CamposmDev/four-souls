@@ -1,5 +1,6 @@
 package org.camposmdev.client.net;
 
+import com.almasb.fxgl.dsl.FXGL;
 import org.camposmdev.model.packet.Packet;
 import org.camposmdev.model.packet.PacketType;
 
@@ -30,6 +31,9 @@ public class Client {
             if (p.type.equals(PacketType.ACK)) {
                 isLoggedIn = true;
             } else {
+                if (p.payload instanceof String) {
+                    FXGL.getNotificationService().pushNotification((String) p.payload);
+                }
                 isLoggedIn = false;
                 socket.close();
                 return isLoggedIn;

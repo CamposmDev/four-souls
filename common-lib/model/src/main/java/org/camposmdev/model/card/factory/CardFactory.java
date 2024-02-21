@@ -7,7 +7,6 @@ public class CardFactory {
     public CharacterCard createIsaac() {
         return new CharacterCardBuilder()
                 .name("Isaac")
-                .imgSRC("/assets/textures/cards/character/b-issac.png")
                 .hp(2)
                 .atk(1)
                 .build();

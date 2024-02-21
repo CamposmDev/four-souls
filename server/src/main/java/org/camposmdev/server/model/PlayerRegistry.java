@@ -29,7 +29,7 @@ public class PlayerRegistry {
     }
 
     public boolean contains(String name) {
-        return players.contains(new Player(name));
+        return get(name) != null;
     }
 
     @Override

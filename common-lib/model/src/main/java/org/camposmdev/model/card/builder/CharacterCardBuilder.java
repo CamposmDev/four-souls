@@ -15,11 +15,6 @@ public class CharacterCardBuilder {
         return this;
     }
 
-    public CharacterCardBuilder imgSRC(String imgSRC) {
-//        card.setImgSRC(imgSRC);
-        return this;
-    }
-
     public CharacterCardBuilder hp(int max) {
         card.getHP().setMax(max);
         return this;

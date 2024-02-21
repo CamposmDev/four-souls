@@ -21,8 +21,12 @@ public class Packet implements Serializable {
     }
 
     public static void sendNACKPacket(ObjectOutputStream out) {
+        sendNACKPacket(out, null);
+    }
+
+    public static void sendNACKPacket(ObjectOutputStream out, String msg) {
         try {
-            out.writeObject(new Packet(PacketType.NACK, null));
+            out.writeObject(new Packet(PacketType.NACK, msg));
             out.flush();
         } catch (IOException e) {
             e.printStackTrace(System.err);

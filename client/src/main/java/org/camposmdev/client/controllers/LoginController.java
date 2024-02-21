@@ -38,7 +38,7 @@ public class LoginController {
                 removeUINode(root);
                 var midX = getSettings().getWidth() / 2d;
                 var midY = getSettings().getHeight() / 2d;
-                var logo = FXGL.getAssetLoader().loadTexture("logo.png");
+                var logo = getAssetLoader().loadTexture("logo.png");
                 logo.setScaleX(0.5);
                 logo.setScaleY(0.5);
                 addUINode(logo, midX - logo.getWidth()/2d, -120);
@@ -49,20 +49,21 @@ public class LoginController {
                 var lbl3 = initLabel("Options");
 //                addUINode(lbl3, midX - lbl1.getPrefWidth()/2d, midY+200);
                 var lbl4 = initLabel("Exit");
-                lbl4.setOnMouseClicked(e -> {
-                    getDialogService().showConfirmationBox("Are you sure you want me to die? :(", answer -> {
-                        if (answer) {
-                            final int NUM_OF_DEATHS = 3;
-                            /* fetch a random file in the folder */
-                            int i = (int)(Math.random() * NUM_OF_DEATHS) + 1;
-                            String s = getClass().getClassLoader().getResource("./assets/sounds/death/death" + i + ".wav").toString();
-                            var media = new Media(s);
+                lbl4.setOnMouseClicked(e -> getDialogService().showConfirmationBox("Are you sure you want me to die? :(", answer -> {
+                    if (answer) {
+                        final int NUM_OF_DEATHS = 3;
+                        /* fetch a random file in the folder */
+                        int i = (int)(Math.random() * NUM_OF_DEATHS) + 1;
+                        var url = getClass().getClassLoader().getResource("./assets/sounds/death/death" + i + ".wav");
+                        if (url != null) {
+                            var str = url.toString();
+                            var media = new Media(str);
                             var mp = new MediaPlayer(media);
                             mp.play();
                             mp.setOnEndOfMedia(() -> getGameController().exit());
                         }
-                    });
-                });
+                    }
+                }));
                 VBox box = new VBox(12);
                 box.getChildren().addAll(lbl1, lbl2, lbl3, lbl4);
                 box.setPrefWidth(300);
