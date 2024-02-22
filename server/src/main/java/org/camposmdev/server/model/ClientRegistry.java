@@ -1,12 +1,11 @@
 package org.camposmdev.server.model;
 
-import java.io.Serializable;
+import io.vertx.core.json.JsonObject;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class ClientRegistry implements Serializable {
+public class ClientRegistry {
     private static ClientRegistry cr;
     private static final int SIZE = 4;
     private volatile List<Client> clients;
@@ -32,10 +31,24 @@ public class ClientRegistry implements Serializable {
         return clients.remove(x);
     }
 
+    public int size() {
+        return clients.size();
+    }
+
     public boolean isPlayerTaken(String name) {
         return clients.stream()
                 .filter(x -> x.getPlayer() != null && x.getPlayer().getName().equals(name))
-                .collect(Collectors.toList()).size() >= 1;
+                .toList().size() >= 1;
+    }
+
+    /**
+     * Sends a message to global chat
+     * @param msg Message to be sent to all online users
+     */
+    public void notifyAll(JsonObject msg) {
+        for (Client c : clients) {
+            c.getWS().writeTextMessage(msg.toString());
+        }
     }
 
     @Override

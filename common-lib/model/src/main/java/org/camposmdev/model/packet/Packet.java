@@ -2,6 +2,7 @@ package org.camposmdev.model.packet;
 
 import java.io.*;
 
+@Deprecated
 public class Packet implements Serializable {
     public PacketType type;
     public Object payload;

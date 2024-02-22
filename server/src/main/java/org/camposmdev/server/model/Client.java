@@ -1,5 +1,9 @@
 package org.camposmdev.server.model;
 
+import io.vertx.core.http.ServerWebSocket;
+import io.vertx.core.json.DecodeException;
+import io.vertx.core.json.JsonObject;
+import org.camposmdev.model.MessageType;
 import org.camposmdev.model.packet.Packet;
 import org.camposmdev.model.packet.PacketType;
 
@@ -9,39 +13,53 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 public class Client {
-    private Socket socket;
-    private ObjectInputStream in;
-    private ObjectOutputStream out;
+    private ServerWebSocket ws;
     private Player player;
 
 
-    public Client(Socket socket) throws IOException {
-        this.socket = socket;
-        this.in = new ObjectInputStream(socket.getInputStream());
-        this.out = new ObjectOutputStream(socket.getOutputStream());
+    public Client(ServerWebSocket ws) {
+        this.ws = ws;
         this.player = null;
+        this.ws.accept();
+        this.ws.textMessageHandler(this::handleTextMessage);
+        this.ws.closeHandler(this::closeHandler);
+        ClientRegistry.getInstance().add(this);
     }
 
-    public Packet recvPacket() throws IOException, ClassNotFoundException {
-        return (Packet) in.readObject();
+    private void handleTextMessage(String msg) {
+        try {
+            var obj = new JsonObject(msg);
+            if (obj.containsKey(MessageType.GCHAT.name())) {
+                ClientRegistry.getInstance().notifyAll(obj);
+            }
+        } catch (DecodeException ex) {
+            /* Failed to parse JSON */
+            ws.writeTextMessage(JsonObject.of("message", "Invalid JSON").toString());
+        }
     }
 
-    public void sendPacket(PacketType type, Object payload) throws IOException {
-        Packet packet = new Packet(type, payload);
-        out.writeObject(packet);
-        out.flush();
+    private void closeHandler(Void x) {
+        ClientRegistry.getInstance().remove(this);
     }
 
-    public void sendNACKPacket() {
-        Packet.sendNACKPacket(out);
-    }
+//    public void sendPacket(PacketType type, Object payload) throws IOException {
+//        ws.writeTextMessage(JsonObject.of(type.name(), JsonObject.mapFrom(payload)).toString());
+//    }
 
-    public void sendNACKPacket(String msg) {
-        Packet.sendNACKPacket(out, msg);
-    }
+//    public void sendNACKPacket() {
+//        Packet.sendNACKPacket(out);
+//    }
+//
+//    public void sendNACKPacket(String msg) {
+//        Packet.sendNACKPacket(out, msg);
+//    }
+//
+//    public void sendACKPacket() {
+//        Packet.sendACKPacket(out);
+//    }
 
-    public void sendACKPacket() {
-        Packet.sendACKPacket(out);
+    public ServerWebSocket getWS() {
+        return ws;
     }
 
     public Player getPlayer() {
@@ -57,9 +75,11 @@ public class Client {
     }
 
     public void disconnect() throws IOException {
-        out.close();
-        in.close();
-        socket.close();
-        throw new IOException();
+        ws.close();
+    }
+
+    @Override
+    public String toString() {
+        return ws.remoteAddress().toString();
     }
 }
