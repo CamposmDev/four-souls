@@ -1,4 +1,4 @@
-package org.camposmdev.client.net;
+package org.camposmdev.client.api;
 
 import com.almasb.fxgl.dsl.FXGL;
 import org.camposmdev.model.packet.Packet;
@@ -9,6 +9,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+@Deprecated
 public class Client {
     public static Client singleton;
     public static Client getInstance() {

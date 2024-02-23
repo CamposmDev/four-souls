@@ -32,7 +32,7 @@ public class UserRouter {
             return;
         }
         if (password.isBlank()) {
-            c.response().setStatusCode(400).send(JsonObject.of("message", "Password can't be empty").toString());
+            c.response().setStatusCode(400).send(JsonObject.of("message", "Invalid Password").toString());
             return;
         }
         final var PWD_LEN = 7;
@@ -52,6 +52,8 @@ public class UserRouter {
                         .setStatusCode(200)
                         .addCookie(Cookie.cookie("token", token))
                         .send(JsonObject.of("message", "Login successful!").toString());
+            } else { /* Password does not match */
+                c.response().setStatusCode(400).send(JsonObject.of("message", "Password does not match").toString());
             }
         } else {
             /* create a new player */

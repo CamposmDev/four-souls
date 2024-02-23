@@ -1,22 +1,20 @@
 package org.camposmdev.client.controllers;
 
-import com.almasb.fxgl.audio.AudioType;
-import com.almasb.fxgl.audio.Sound;
 import com.almasb.fxgl.dsl.FXGL;
-import javafx.scene.layout.VBox;
+import javafx.application.Platform;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import org.camposmdev.client.net.Client;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
+import org.camposmdev.client.api.FSClient;
+import org.camposmdev.client.ui.FXManager;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 
@@ -28,8 +26,9 @@ public class LoginController {
     public void login() {
         var name = tfName.getText();
         var password = tfPassword.getText();
-        if (Client.getInstance().login(name, password)) {
-            /* login success, remove login screen */
+        FSClient.getInstance().login(name, password).onSuccess(msg -> Platform.runLater(() -> {
+            FXGL.getNotificationService().pushNotification(msg);
+            /* login good, remove login screen */
             var board = getAssetLoader().loadTexture("board.jpg");
             board.setFitWidth(getSettings().getWidth());
             board.setFitHeight(getSettings().getHeight());
@@ -38,16 +37,35 @@ public class LoginController {
                 removeUINode(root);
                 var midX = getSettings().getWidth() / 2d;
                 var midY = getSettings().getHeight() / 2d;
+//                VBox vbox = new VBox();
+//                String[] arr = new String[] {"hello there", "hi", "ejrogejrig", "ejriogjeorg", "erjgoierjgo"};
+//                for (int i = 0; i < 5; i++) {
+//                    for (var s : arr) {
+//                        var txt = new Text("Camposm: " + s);
+//                        txt.setWrappingWidth(300);
+//                        txt.setFill(Color.WHITE);
+//                        vbox.getChildren().add(txt);
+//                    }
+//                }
+//
+//                var x = FXGL.getAssetLoader().loadCSS("controls.css");
+//                ScrollPane scrollPane = new ScrollPane();
+//                scrollPane.getStylesheets().add(x.getExternalForm());
+//                scrollPane.getStyleClass().add("global-chat");
+//                scrollPane.setPrefWidth(300);
+//                scrollPane.setPrefHeight(300);
+//                scrollPane.setContent(vbox);
+                var chatPane = (VBox) FXManager.loadUI("GlobalChat.fxml");
+                assert chatPane != null;
+                addUINode(chatPane, getSettings().getWidth() - chatPane.getPrefWidth() - 4, getSettings().getHeight() - chatPane.getPrefHeight()-4);
+
                 var logo = getAssetLoader().loadTexture("logo.png");
                 logo.setScaleX(0.5);
                 logo.setScaleY(0.5);
                 addUINode(logo, midX - logo.getWidth()/2d, -120);
                 var lbl1 = initLabel("Singleplayer");
-//                addUINode(lbl1, midX - lbl1.getPrefWidth()/2d, midY);
                 var lbl2 = initLabel("Multiplayer");
-//                addUINode(lbl2, midX - lbl1.getPrefWidth()/2d, midY+100);
                 var lbl3 = initLabel("Options");
-//                addUINode(lbl3, midX - lbl1.getPrefWidth()/2d, midY+200);
                 var lbl4 = initLabel("Exit");
                 lbl4.setOnMouseClicked(e -> getDialogService().showConfirmationBox("Are you sure you want me to die? :(", answer -> {
                     if (answer) {
@@ -60,7 +78,10 @@ public class LoginController {
                             var media = new Media(str);
                             var mp = new MediaPlayer(media);
                             mp.play();
-                            mp.setOnEndOfMedia(() -> getGameController().exit());
+                            mp.setOnEndOfMedia(() -> {
+                                getGameController().exit();
+                                FSClient.getInstance().close();
+                            });
                         }
                     }
                 }));
@@ -74,9 +95,7 @@ public class LoginController {
                 });
 
             }).duration(Duration.millis(500)).fadeOut(root).buildAndPlay();
-        } else {
-
-        }
+        })).onFailure(e -> Platform.runLater(() -> FXGL.getNotificationService().pushNotification(e.getMessage())));
     }
 
     public Label initLabel(String text) {

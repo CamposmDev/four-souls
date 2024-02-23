@@ -108,6 +108,6 @@ public class CharacterCardBuilderAppController {
     }
 
     public void chooseEternal() {
-        /* TODO */
+        /* TODO  */
     }
 }

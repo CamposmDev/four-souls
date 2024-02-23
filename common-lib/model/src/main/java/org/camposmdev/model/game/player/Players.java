@@ -1,7 +1,7 @@
 package org.camposmdev.model.game.player;
 
 public class Players {
-    protected Node head;
+    Node head;
     protected Node curr;
     protected int size;
 

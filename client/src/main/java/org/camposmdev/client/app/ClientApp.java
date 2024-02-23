@@ -1,20 +1,21 @@
 package org.camposmdev.client.app;
 
+import com.almasb.fxgl.app.ApplicationMode;
 import com.almasb.fxgl.app.CursorInfo;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
-import com.almasb.fxgl.app.scene.GameView;
-import com.almasb.fxgl.core.asset.AssetType;
 import com.almasb.fxgl.dsl.FXGL;
+import com.almasb.fxgl.dsl.FXGLForKtKt;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.web.WebView;
 import javafx.util.Duration;
-import org.camposmdev.client.net.Client;
+import org.camposmdev.client.api.Client;
+import org.camposmdev.client.api.FSClient;
+import org.camposmdev.client.ui.FXManager;
 
 import java.io.IOException;
 import java.net.URL;
@@ -37,6 +38,7 @@ public class ClientApp extends GameApplication {
         settings.setDefaultCursor(new CursorInfo("cursor.png", 0, 0));
         settings.setFullScreenAllowed(true);
         settings.setFontGame("EdmundMcMillen_v2.ttf");
+        settings.setApplicationMode(ApplicationMode.DEBUG);
     }
 
     @Override
@@ -49,24 +51,18 @@ public class ClientApp extends GameApplication {
 
     @Override
     protected void initUI() {
+        getPrimaryStage().setOnCloseRequest(e -> FSClient.getInstance().close());
         Platform.runLater(() -> {
             var resource = ClientApp.class.getClassLoader().getResource("./assets/ui/background/index.html");
             assert resource != null : "Failed to load resource";
-            WebView web = new WebView();
-            web.setPrefWidth(getSettings().getWidth());
-            web.setPrefHeight(getSettings().getHeight());
-            web.getEngine().load(resource.toExternalForm());
-            web.setDisable(true);
-            addUINode(web);
-            URL url = ClientApp.class.getClassLoader().getResource("assets/ui/fxml/Login.fxml");
-            assert url != null : "Failed to get Login.fxml";
-            try {
-                AnchorPane root = FXMLLoader.load(url);
-                addUINode(root, (getSettings().getWidth()/2d - root.getPrefWidth()/2d), (getSettings().getHeight()/2d - root.getPrefHeight()/2d));
-                animationBuilder().delay(Duration.millis(1500)).fadeIn(root).buildAndPlay();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            var wv = FXManager.loadBackground();
+            wv.setPrefWidth(getSettings().getWidth());
+            wv.setPrefHeight(getSettings().getHeight());
+            addUINode(wv);
+            AnchorPane root = FXManager.loadUI("Login.fxml");
+            assert root != null;
+            addUINode(root, (getSettings().getWidth()/2d - root.getPrefWidth()/2d), (getSettings().getHeight()/2d - root.getPrefHeight()/2d));
+            animationBuilder().delay(Duration.millis(1500)).fadeIn(root).buildAndPlay();
         });
     }
 
