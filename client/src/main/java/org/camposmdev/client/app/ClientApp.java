@@ -5,20 +5,14 @@ import com.almasb.fxgl.app.CursorInfo;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.dsl.FXGL;
-import com.almasb.fxgl.dsl.FXGLForKtKt;
 import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import javafx.scene.web.WebView;
 import javafx.util.Duration;
 import org.camposmdev.client.api.Client;
 import org.camposmdev.client.api.FSClient;
 import org.camposmdev.client.ui.FXManager;
-
-import java.io.IOException;
-import java.net.URL;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
 import static com.almasb.fxgl.dsl.FXGLForKtKt.addUINode;
@@ -38,7 +32,7 @@ public class ClientApp extends GameApplication {
         settings.setDefaultCursor(new CursorInfo("cursor.png", 0, 0));
         settings.setFullScreenAllowed(true);
         settings.setFontGame("EdmundMcMillen_v2.ttf");
-        settings.setApplicationMode(ApplicationMode.DEBUG);
+        settings.setApplicationMode(ApplicationMode.DEVELOPER);
     }
 
     @Override

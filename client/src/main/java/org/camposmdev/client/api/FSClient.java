@@ -1,17 +1,16 @@
 package org.camposmdev.client.api;
 
-import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Future;
 import io.vertx.core.Promise;
 import io.vertx.core.Vertx;
-import io.vertx.core.eventbus.EventBus;
+import io.vertx.core.eventbus.MessageConsumer;
 import io.vertx.core.http.*;
 import io.vertx.core.json.DecodeException;
 import io.vertx.core.json.JsonObject;
 import org.camposmdev.model.MessageType;
 
 
-public class FSClient extends AbstractVerticle {
+public class FSClient {
     private static final String HOST = "localhost";
     private static final int PORT = 4000;
     private static final String WS_ROUTE = "/";
@@ -22,23 +21,31 @@ public class FSClient extends AbstractVerticle {
             theClient = new FSClient();
         return theClient;
     }
-//    private final Vertx vertx;
+    private final Vertx vertx;
+    private JsonObject cred;
     private final HttpClient client;
     private ClientWebSocket ws;
-    private String tokenCookie;
+    private String authToken;
 
     private FSClient() {
-//        this.vertx = Vertx.vertx();
+        this.vertx = Vertx.vertx();
         var options = new HttpClientOptions().setDefaultHost(HOST).setDefaultPort(PORT);
         this.client = vertx.createHttpClient(options);
     }
 
-    public EventBus bus() {
-        return vertx.eventBus();
+    public MessageConsumer<Object> subscribeTo(String s) {
+        return vertx.eventBus().consumer(s);
+    }
+
+    public void notifySubscribers(String s, Object payload) {
+        vertx.eventBus().publish(s, payload);
     }
 
     private void initWS() {
-        var options = new WebSocketConnectOptions().setHost(HOST).setPort(PORT).setURI(WS_ROUTE);
+        var options = new WebSocketConnectOptions()
+                .setHost(HOST).setPort(PORT)
+                .setURI(WS_ROUTE)
+                .addHeader(HttpHeaders.COOKIE, authToken);
         var wsc = vertx.createWebSocketClient();
         ws = wsc.webSocket();
         ws.textMessageHandler(this::handleTextMessage)
@@ -47,16 +54,15 @@ public class FSClient extends AbstractVerticle {
                 .onFailure(e -> System.out.println("Failed to connect WS"));
     }
 
-    public void handleTextMessage(String msg) {
+    private void handleTextMessage(String msg) {
         try {
-            System.out.println(msg);
             var obj = new JsonObject(msg);
-            if (obj.containsKey(MessageType.GCHAT.name())) {
+            if (obj.containsKey(MessageType.G_CHAT.name())) {
                 /* notify global chat controller */
-                var username = obj.getJsonObject(MessageType.GCHAT.name()).getString("username");
-                var message = obj.getJsonObject(MessageType.GCHAT.name()).getString("message");
+                var username = obj.getJsonObject(MessageType.G_CHAT.name()).getString("username");
+                var message = obj.getJsonObject(MessageType.G_CHAT.name()).getString("message");
                 var payload = username + ": " + message;
-                vertx.eventBus().publish(MessageType.GCHAT.name(), payload);
+                this.notifySubscribers(MessageType.G_CHAT.name(), payload);
             }
         } catch (DecodeException ex) {
             ex.printStackTrace();
@@ -64,8 +70,8 @@ public class FSClient extends AbstractVerticle {
     }
 
     public void sendGlobalMessage(String s) {
-        var payload = JsonObject.of("username", "Camposm").put("message", s);
-        var obj = JsonObject.of(MessageType.GCHAT.name(), payload);
+        var payload = JsonObject.of("username", cred.getString("username")).put("message", s);
+        var obj = JsonObject.of(MessageType.G_CHAT.name(), payload);
         ws.writeTextMessage(obj.toString());
     }
 
@@ -80,10 +86,11 @@ public class FSClient extends AbstractVerticle {
                         var obj = handler.toJsonObject();
                         if (code == 200) {
                             /* save our cookie token */
-                            tokenCookie = ar.result().cookies().get(0);
+                            authToken = ar.result().cookies().get(0);
+                            promise.complete(obj.toString());
+                            cred = obj;
                             /* connect to websocket server */
                             initWS();
-                            promise.complete(obj.getString("message"));
                         } else {
                             promise.fail(obj.getString("message"));
                         }
@@ -97,7 +104,7 @@ public class FSClient extends AbstractVerticle {
     public Future<Integer> getOnlineUsers() {
         Promise<Integer> promise = Promise.promise();
         client.request(HttpMethod.GET, "/api/user").onSuccess(req -> {
-            req.headers().add("Cookie", tokenCookie);
+            req.headers().add("Cookie", authToken);
             req.send().onSuccess(res -> {
                 res.body().onSuccess(ar -> {
                     if (res.statusCode() == 200) {
@@ -112,8 +119,8 @@ public class FSClient extends AbstractVerticle {
     }
 
     public void close() {
-        client.close();
+        if (client != null) client.close();
         if (ws != null) ws.close();
-        vertx.close();
+        if (vertx != null) vertx.close();
     }
 }

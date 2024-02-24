@@ -1,10 +1,14 @@
 package org.camposmdev.server.model;
 
+import java.util.UUID;
+
 public class Player implements Comparable<Player> {
+    private UUID id;
     private String name;
     private String password;
 
     public Player(String name, String password) {
+        this.id = UUID.randomUUID();
         this.name = name;
         this.password = password;
     }
@@ -27,7 +31,7 @@ public class Player implements Comparable<Player> {
 
     @Override
     public int compareTo(Player o) {
-        return name.compareTo(o.name);
+        return id.compareTo(o.id);
     }
 
     @Override
@@ -36,5 +40,9 @@ public class Player implements Comparable<Player> {
                 "name='" + name + '\'' +
                 ", password='" + password + '\'' +
                 '}';
+    }
+
+    public String getId() {
+        return id.toString();
     }
 }

@@ -4,7 +4,7 @@
     -fx-font-family: "EdmundMcMillen_v2";
     -fx-hbar-policy: never;
     -fx-vbar-policy: never;
-    -fx-font-size: 14pt;
+    -fx-font-size: 13pt;
 }
 
 .chat-message {
@@ -13,7 +13,7 @@
 
 .chat-field {
     -fx-font-family: "EdmundMcMillen_v2";
-    -fx-font-size: 14pt;
+    -fx-font-size: 13pt;
     -fx-background-color: rgba(0, 0, 0, 0.2);
     -fx-background-radius: 4;
     -fx-border-radius: 4;

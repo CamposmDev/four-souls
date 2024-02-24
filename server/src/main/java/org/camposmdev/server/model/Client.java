@@ -4,16 +4,11 @@ import io.vertx.core.http.ServerWebSocket;
 import io.vertx.core.json.DecodeException;
 import io.vertx.core.json.JsonObject;
 import org.camposmdev.model.MessageType;
-import org.camposmdev.model.packet.Packet;
-import org.camposmdev.model.packet.PacketType;
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.net.Socket;
 
 public class Client {
-    private ServerWebSocket ws;
+    private final ServerWebSocket ws;
     private Player player;
 
 
@@ -29,7 +24,7 @@ public class Client {
     private void handleTextMessage(String msg) {
         try {
             var obj = new JsonObject(msg);
-            if (obj.containsKey(MessageType.GCHAT.name())) {
+            if (obj.containsKey(MessageType.G_CHAT.name())) {
                 ClientRegistry.getInstance().notifyAll(obj);
             }
         } catch (DecodeException ex) {
@@ -74,7 +69,7 @@ public class Client {
         return player != null;
     }
 
-    public void disconnect() throws IOException {
+    public void disconnect() {
         ws.close();
     }
 
