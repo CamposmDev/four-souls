@@ -2,7 +2,6 @@ package org.camposmdev.client.ui.controllers.menu;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import org.camposmdev.client.net.API;
 import org.camposmdev.client.ui.FXUtil;
@@ -31,12 +30,15 @@ public class MainMenuController extends FXController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Runnable callback = () -> setHidden(false);
+        Runnable cancelCallback = () -> setHideMainMenu(false);
         singleplayerMenuController.setCallback(() -> {
 
         });
         multiplayerMenuController.setHostGameCallback(() -> {
-            logoPane.setVisible(false);
+            /*
+            * TODO - Update UI to display game lobby
+            * */
+            setHideAll(true);
             var ui = FXUtil.loadUI("Nightmare.fxml");
             assert ui != null;
             var background = (StackPane) ui.getRoot();
@@ -93,8 +95,8 @@ public class MainMenuController extends FXController implements Initializable {
 //            });
             root.getChildren().addAll(background, test);
         });
-        multiplayerMenuController.setCancelCallback(callback);
-        optionsMenuController.setBackCallback(callback);
+        multiplayerMenuController.setCancelCallback(cancelCallback);
+        optionsMenuController.setBackCallback(cancelCallback);
     }
 
     public void handleSP() {
@@ -106,17 +108,17 @@ public class MainMenuController extends FXController implements Initializable {
          *  Give an option to see their eternal card
          *  Once chosen display the board
          */
-        setHidden(true);
+        setHideAll(true);
         singleplayerMenuController.setHidden(false);
     }
 
     public void handleMP() {
-        setHidden(true);
+        setHideMainMenu(true);
         multiplayerMenuController.setHidden(false);
     }
 
     public void handleOptions() {
-        setHidden(true);
+        setHideMainMenu(true);
         optionsMenuController.setHidden(false);
     }
 
@@ -131,8 +133,13 @@ public class MainMenuController extends FXController implements Initializable {
         });
     }
 
-    public void setHidden(boolean flag) {
+    public void setHideMainMenu(boolean flag) {
         menuBox.setVisible(!flag);
         menuBox.setDisable(flag);
+    }
+
+    public void setHideAll(boolean flag) {
+        logoPane.setVisible(!flag);
+        setHideMainMenu(flag);
     }
 }

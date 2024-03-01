@@ -78,7 +78,6 @@ public class FSWebClient {
             req.send(payload.toString()).onSuccess(res -> res.body().onSuccess(data -> {
                var obj = data.toJsonObject();
                if (res.statusCode() == 200) {
-                   /* TODO - Update the UI after joining game */
                    promise.complete(obj);
                }
             })).onFailure(e -> promise.fail("Failed to connect to server"));
@@ -93,7 +92,6 @@ public class FSWebClient {
             req.headers().add(HttpHeaders.COOKIE, API.get().getAuthCookie());
             req.send(payload.toString()).onSuccess(res -> {
                 if (res.statusCode() == 200) {
-                    /* TODO - Update the UI after leaving game */
                     promise.complete();
                 } else promise.fail("Failed to leave game");
             }).onFailure(e -> promise.fail("Failed to connect to server"));
