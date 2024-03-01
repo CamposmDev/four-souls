@@ -42,7 +42,7 @@ public class AnimationBuilder {
     }
 
     public static class TranslateAnimationBuilder {
-        private TranslateTransition translateTransition;
+        private final TranslateTransition translateTransition;
 
         public TranslateAnimationBuilder(Node node) {
             translateTransition = new TranslateTransition();
