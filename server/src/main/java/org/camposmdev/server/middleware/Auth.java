@@ -18,12 +18,12 @@ public class Auth {
 
     private static final Auth auth = new Auth();
 
-    public static Auth getInstance() {
+    public static Auth get() {
         return auth;
     }
 
     public static String generateToken(JsonObject jsonObject) {
-        return getInstance().provider.generateToken(jsonObject);
+        return get().provider.generateToken(jsonObject);
     }
 
     public static Handler<RoutingContext> verifyToken = c -> {
@@ -32,7 +32,7 @@ public class Auth {
             c.response().setStatusCode(401).send(JsonObject.of("message", "Missing JWT token").toString());
             return;
         }
-        getInstance().provider.authenticate(new TokenCredentials(cookie.getValue())).onSuccess(x -> c.next())
+        get().provider.authenticate(new TokenCredentials(cookie.getValue())).onSuccess(x -> c.next())
                 .onFailure(x -> c.response().setStatusCode(401)
                         .send(JsonObject.of("message", "Unauthorized").toString()));
     };

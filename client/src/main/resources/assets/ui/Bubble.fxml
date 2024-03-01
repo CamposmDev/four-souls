@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.StackPane?>
+<?import java.lang.Double?>
+<?import javafx.scene.canvas.Canvas?>
+
+<StackPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"  xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1"
+           prefWidth="${CANVAS_WIDTH}" prefHeight="${CANVAS_HEIGHT}"
+           fx:controller="org.camposmdev.client.ui.controllers.sprite.BubbleController"
+>
+    <fx:define>
+        <Double fx:id="CANVAS_WIDTH" fx:value="288"/>
+        <Double fx:id="CANVAS_HEIGHT" fx:value="272"/>
+    </fx:define>
+
+    <Canvas fx:id="canvas1" width="${CANVAS_WIDTH}" height="${CANVAS_HEIGHT}"/>
+    <Canvas fx:id="canvas2" width="${CANVAS_WIDTH}" height="${CANVAS_HEIGHT}"/>
+    <Canvas fx:id="canvas3" width="${CANVAS_WIDTH}" height="${CANVAS_HEIGHT}"/>
+</StackPane>

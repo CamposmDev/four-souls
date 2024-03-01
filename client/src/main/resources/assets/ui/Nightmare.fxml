@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.layout.StackPane?>
+
+<?import java.lang.Double?>
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+
+<StackPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1"
+           prefWidth="${CANVAS_WIDTH}" prefHeight="${CANVAS_HEIGHT}"
+           fx:controller="org.camposmdev.client.ui.controllers.sprite.NightmareController"
+>
+   <fx:define>
+      <Double fx:id="CANVAS_WIDTH" fx:value="172"/>
+      <Double fx:id="CANVAS_HEIGHT" fx:value="465"/>
+      <Double fx:id="LIGHT_OFFSET_Y" fx:value="8"/>
+      <Double fx:id="BOY_OFFSET_Y" fx:value="10"/>
+      <FXCollections fx:id="outliars" fx:factory="observableArrayList">
+         <String fx:value="blue_baby"/>
+         <String fx:value="the_soiled"/>
+         <String fx:value="the_revenant"/>
+         <String fx:value="the_keeper"/>
+         <String fx:value="the_miser"/>
+         <String fx:value="the_forgotten"/>
+         <String fx:value="the_fettered"/>
+      </FXCollections>
+   </fx:define>
+   <children>
+      <Canvas fx:id="canvas1" width="${CANVAS_WIDTH}" height="${CANVAS_HEIGHT}" />
+      <Canvas fx:id="canvas2" width="${CANVAS_WIDTH}" height="${CANVAS_HEIGHT}" />
+      <Canvas fx:id="canvas3" width="${CANVAS_WIDTH}" height="${CANVAS_HEIGHT}" />
+   </children>
+</StackPane>

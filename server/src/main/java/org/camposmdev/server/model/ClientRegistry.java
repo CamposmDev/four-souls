@@ -8,9 +8,9 @@ import java.util.List;
 public class ClientRegistry {
     private static ClientRegistry cr;
     private static final int SIZE = 4;
-    private volatile List<Client> clients;
+    private final List<ClientHandler> clients;
 
-    public static ClientRegistry getInstance() {
+    public static ClientRegistry get() {
         if (cr == null)
             cr = new ClientRegistry();
         return cr;
@@ -20,33 +20,33 @@ public class ClientRegistry {
         this.clients = Collections.synchronizedList(new LinkedList<>());
     }
 
-    public boolean add(Client x) {
-        if (clients.size() >= SIZE) return false;
+    public void add(ClientHandler x) {
+        if (clients.size() >= SIZE) return;
         System.out.println("Registered client " + x);
-        return clients.add(x);
+        clients.add(x);
     }
 
-    public boolean remove(Client x) {
+    public void remove(ClientHandler x) {
         System.out.println("Removed client " + x);
-        return clients.remove(x);
+        clients.remove(x);
     }
 
     public int size() {
         return clients.size();
     }
 
-    public boolean isPlayerTaken(String name) {
-        return clients.stream()
-                .filter(x -> x.getPlayer() != null && x.getPlayer().getName().equals(name))
-                .toList().size() >= 1;
-    }
+//    public boolean isPlayerTaken(String name) {
+//        return clients.stream()
+//                .filter(x -> x.getPlayer() != null && x.getPlayer().getName().equals(name))
+//                .toList().size() >= 1;
+//    }
 
     /**
      * Sends a message to global chat
      * @param msg Message to be sent to all online users
      */
     public void notifyAll(JsonObject msg) {
-        for (Client c : clients) {
+        for (ClientHandler c : clients) {
             c.getWS().writeTextMessage(msg.toString());
         }
     }

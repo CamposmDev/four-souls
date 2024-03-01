@@ -1,0 +1,430 @@
+{
+  "bubbles": {
+    "big": {
+      "x": 23,
+      "y": 25,
+      "width": 288,
+      "height": 136
+    },
+    "medium": {
+      "x": 339,
+      "y": 29,
+      "width": 37,
+      "height": 35
+    },
+    "small": {
+      "x": 332,
+      "y": 84,
+      "width": 22,
+      "height": 20
+    }
+  },
+  "icons": {
+    "boss": {
+      "x": 99,
+      "y": 195,
+      "width": 22,
+      "height": 21
+    },
+    "isaac": {
+      "x": 68,
+      "y": 196,
+      "width": 20,
+      "height": 18
+    },
+    "greed": {
+      "x": 132,
+      "y": 388,
+      "width": 20,
+      "height": 22
+    },
+    "clock": {
+      "x": 39,
+      "y": 332,
+      "width": 15,
+      "height": 18
+    }
+  },
+  "isaacs": {
+    "appollyon": {
+      "x": 26,
+      "y": 2124,
+      "width": 105,
+      "height": 84
+    },
+    "the_empty": {
+      "x": 170,
+      "y": 2124,
+      "width": 110,
+      "height": 86
+    },
+    "azazel": {
+      "x": 314,
+      "y": 2114,
+      "width": 112,
+      "height": 98
+    },
+    "the_benighted": {
+      "x": 458,
+      "y": 2126,
+      "width": 112,
+      "height": 86
+    },
+    "bethany": {
+      "x": 602,
+      "y": 2118,
+      "width": 112,
+      "height": 94
+    },
+    "the_zealot": {
+      "x": 746,
+      "y": 2115,
+      "width": 112,
+      "height": 97
+    },
+    "blue_baby": {
+      "x": 891,
+      "y": 2140,
+      "width": 105,
+      "height": 72
+    },
+    "the_soiled": {
+      "x": 1035,
+      "y": 2113,
+      "width": 105,
+      "height": 97
+    },
+    "cain": {
+      "x": 1178,
+      "y": 2139,
+      "width": 99,
+      "height": 71
+    },
+    "the_hoarder": {
+      "x": 1322,
+      "y": 2139,
+      "width": 99,
+      "height": 71
+    },
+    "eden": {
+      "x": 26,
+      "y": 2283,
+      "width": 99,
+      "height": 71
+    },
+    "the_capricious": {
+      "x": 170,
+      "y": 2295,
+      "width": 99,
+      "height": 59
+    },
+    "eve": {
+      "x": 314,
+      "y": 2277,
+      "width": 111,
+      "height": 77
+    },
+    "the_curdled": {
+      "x": 458,
+      "y": 2271,
+      "width": 109,
+      "height": 85
+    },
+    "isaac": {
+      "x": 602,
+      "y": 2283,
+      "width": 99,
+      "height": 71
+    },
+    "the_broken": {
+      "x": 746,
+      "y": 2283,
+      "width": 99,
+      "height": 71
+    },
+    "jacob_and_esau": {
+      "x": 890,
+      "y": 2256,
+      "width": 112,
+      "height": 98
+    },
+    "the_deserter": {
+      "x": 1034,
+      "y": 2277,
+      "width": 111,
+      "height": 77
+    },
+    "the_revenant": {
+      "x": 1194,
+      "y": 2229,
+      "width": 79,
+      "height": 125
+    },
+    "judas": {
+      "x": 1322,
+      "y": 2273,
+      "width": 111,
+      "height": 81
+    },
+    "dark_judas": {
+      "x": 26,
+      "y": 2427,
+      "width": 99,
+      "height": 69
+    },
+    "the_deceiver": {
+      "x": 170,
+      "y": 2417,
+      "width": 111,
+      "height": 79
+    },
+    "the_keeper": {
+      "x": 333,
+      "y": 2408,
+      "width": 70,
+      "height": 90
+    },
+    "the_miser": {
+      "x": 477,
+      "y": 2408,
+      "width": 70,
+      "height": 90
+    },
+    "lazarus_1": {
+      "x": 602,
+      "y": 2419,
+      "width": 104,
+      "height": 79
+    },
+    "lazarus_2": {
+      "x": 746,
+      "y": 2419,
+      "width": 104,
+      "height": 79
+    },
+    "the_enigma_1": {
+      "x": 890,
+      "y": 2417,
+      "width": 106,
+      "height": 83
+    },
+    "the_enigma_2": {
+      "x": 1034,
+      "y": 2417,
+      "width": 106,
+      "height": 83
+    },
+    "lilith": {
+      "x": 1178,
+      "y": 2421,
+      "width": 108,
+      "height": 79
+    },
+    "the_harlot": {
+      "x": 1319,
+      "y": 2413,
+      "width": 113,
+      "height": 87
+    },
+    "maggy": {
+      "x": 26,
+      "y": 2557,
+      "width": 110,
+      "height": 85
+    },
+    "the_dauntless": {
+      "x": 170,
+      "y": 2553,
+      "width": 111,
+      "height": 89
+    },
+    "samson": {
+      "x": 314,
+      "y": 2559,
+      "width": 106,
+      "height": 85
+    },
+    "the_savage": {
+      "x": 458,
+      "y": 2571,
+      "width": 105,
+      "height": 71
+    },
+    "the_forgotten": {
+      "x": 603,
+      "y": 2569,
+      "width": 112,
+      "height": 75
+    },
+    "the_fettered": {
+      "x": 747,
+      "y": 2569,
+      "width": 112,
+      "height": 75
+    },
+    "the_lost": {
+      "x": 908,
+      "y": 2549,
+      "width": 70,
+      "height": 94
+    },
+    "the_baleful": {
+      "x": 1052,
+      "y": 2548,
+      "width": 70,
+      "height": 95
+    }
+  },
+  "light": {
+    "x": 537,
+    "y": 28,
+    "width": 166,
+    "height": 465
+  },
+  "floors": [
+    {
+      "x": 5,
+      "y": 2659,
+      "width": 172,
+      "height": 46
+    },
+    {
+      "x": 180,
+      "y": 2660,
+      "width": 166,
+      "height": 43
+    },
+    {
+      "x": 352,
+      "y": 2660,
+      "width": 166,
+      "height": 43
+    },
+    {
+      "x": 524,
+      "y": 2660,
+      "width": 166,
+      "height": 43
+    },
+    {
+      "x": 696,
+      "y": 2660,
+      "width": 166,
+      "height": 43
+    },
+    {
+      "x": 8,
+      "y": 2706,
+      "width": 166,
+      "height": 43
+    },
+    {
+      "x": 180,
+      "y": 2706,
+      "width": 166,
+      "height": 43
+    },
+    {
+      "x": 352,
+      "y": 2706,
+      "width": 166,
+      "height": 43
+    },
+    {
+      "x": 524,
+      "y": 2706,
+      "width": 166,
+      "height": 43
+    },
+    {
+      "x": 696,
+      "y": 2706,
+      "width": 166,
+      "height": 43
+    },
+    {
+      "x": 8,
+      "y": 2752,
+      "width": 166,
+      "height": 43
+    },
+    {
+      "x": 180,
+      "y": 2752,
+      "width": 166,
+      "height": 43
+    },
+    {
+      "x": 524,
+      "y": 2752,
+      "width": 166,
+      "height": 43
+    },
+    {
+      "x": 696,
+      "y": 2752,
+      "width": 166,
+      "height": 43
+    },
+    {
+      "x": 8,
+      "y": 2798,
+      "width": 166,
+      "height": 43
+    },
+    {
+      "x": 180,
+      "y": 2798,
+      "width": 166,
+      "height": 43
+    },
+    {
+      "x": 352,
+      "y": 2798,
+      "width": 166,
+      "height": 43
+    },
+    {
+      "x": 524,
+      "y": 2798,
+      "width": 166,
+      "height": 43
+    },
+    {
+      "x": 698,
+      "y": 2798,
+      "width": 163,
+      "height": 44
+    },
+    {
+      "x": 10,
+      "y": 2844,
+      "width": 163,
+      "height": 44
+    },
+    {
+      "x": 182,
+      "y": 2844,
+      "width": 163,
+      "height": 44
+    },
+    {
+      "x": 354,
+      "y": 2844,
+      "width": 163,
+      "height": 44
+    },
+    {
+      "x": 526,
+      "y": 2844,
+      "width": 163,
+      "height": 44
+    },
+    {
+      "x": 696,
+      "y": 2844,
+      "width": 166,
+      "height": 43
+    }
+  ]
+}

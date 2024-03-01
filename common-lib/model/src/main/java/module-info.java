@@ -1,5 +1,4 @@
 module model {
-    requires kotlin.stdlib;
     exports org.camposmdev.model;
     exports org.camposmdev.model.packet;
     exports org.camposmdev.model.card;

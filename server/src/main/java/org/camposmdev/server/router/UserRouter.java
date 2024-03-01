@@ -13,26 +13,24 @@ import org.camposmdev.server.model.PlayerRegistry;
 public class UserRouter {
     private final Router router;
 
-    public UserRouter(Vertx vertx) {
+    public static Router init(Vertx vertx) {
+        return new UserRouter(vertx).router;
+    }
+
+    private UserRouter(Vertx vertx) {
         router = Router.router(vertx);
         router.post("/user/login").handler(this::login);
         router.get("/user").handler(Auth.verifyToken).handler(this::getOnlineUsers);
     }
 
-    public Router get() {
-        return router;
-    }
-
-
-
     private void login(RoutingContext c) {
-        var payload = c.body().asJsonObject();
-        if (payload == null) {
+        var obj = c.body().asJsonObject();
+        if (obj == null) {
             c.response().setStatusCode(400).send(JsonObject.of("message", "Missing body").toString());
             return;
         }
-        var username = payload.getString("username");
-        var password = payload.getString("password");
+        var username = obj.getString("username");
+        var password = obj.getString("password");
         if (username == null) {
             c.response().setStatusCode(400).send(JsonObject.of("message", "Missing username field").toString());
             return;
@@ -55,31 +53,32 @@ public class UserRouter {
             c.response().setStatusCode(400).send(JsonObject.of("message", "Password must at least " + PWD_LEN + " characters").toString());
             return;
         }
-        if (ClientRegistry.getInstance().isPlayerTaken(username)) {
-            c.response().setStatusCode(400).send(JsonObject.of("message", String.format("'%s' is already taken", username)).toString());
-            return;
-        }
-        if (PlayerRegistry.getInstance().contains(username)) {
+//        if (ClientRegistry.getInstance().isPlayerTaken(username)) {
+//            c.response().setStatusCode(400).send(JsonObject.of("message", String.format("'%s' is already taken", username)).toString());
+//            return;
+//        }
+        /* check if a player with username already exists */
+        if (PlayerRegistry.get().containsUsername(username)) {
             /* check if the password matches */
-            if (PlayerRegistry.getInstance().get(username).getPassword().equals(password)) {
-                var p = PlayerRegistry.getInstance().get(username);
+            if (PlayerRegistry.get().getByUsername(username).getPassword().equals(password)) {
+                var p = PlayerRegistry.get().getByUsername(username);
                 var token = Auth.generateToken(JsonObject.of("userId", p.getId()));
                 c.response()
                         .setStatusCode(200)
                         .addCookie(Cookie.cookie("token", token))
-                        .send(JsonObject.of("userId", p.getId()).put("username", p.getName()).toString());
+                        .send(JsonObject.of("userId", p.getId()).put("username", p.getUsername()).toString());
             } else { /* Password does not match */
                 c.response().setStatusCode(400).send(JsonObject.of("message", "Password does not match").toString());
             }
         } else {
-            /* create a new player */
+            /* otherwise create a new player */
             Player p = new Player(username, password);
-            PlayerRegistry.getInstance().add(p);
+            PlayerRegistry.get().add(p);
             var token = Auth.generateToken(JsonObject.of("userId", p.getId()));
             c.response()
                     .setStatusCode(200)
-                    .addCookie(Cookie.cookie("token", token))
-                    .send(JsonObject.of("userId", p.getId()).put("username", p.getName()).toString());
+                    .addCookie(Cookie.cookie("token", token).setPath("/"))
+                    .send(JsonObject.of("userId", p.getId()).put("username", p.getUsername()).toString());
 
         }
     }
@@ -87,6 +86,6 @@ public class UserRouter {
     private void getOnlineUsers(RoutingContext c) {
         c.response()
                 .setStatusCode(200)
-                .send(JsonObject.of("online", ClientRegistry.getInstance().size()).toString());
+                .send(JsonObject.of("online", ClientRegistry.get().size()).toString());
     }
 }

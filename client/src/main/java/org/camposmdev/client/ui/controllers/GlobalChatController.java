@@ -1,4 +1,4 @@
-package org.camposmdev.client.controllers;
+package org.camposmdev.client.ui.controllers;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import org.camposmdev.client.api.FSClient;
+import org.camposmdev.client.net.API;
 import org.camposmdev.model.MessageType;
 
 public class GlobalChatController {
@@ -18,7 +18,7 @@ public class GlobalChatController {
     VBox chatBox;
 
     public void initialize() {
-        FSClient.getInstance().subscribeTo(MessageType.G_CHAT.name()).handler(msg -> Platform.runLater(() -> updateUI((String) msg.body())));
+        API.get().subscribeTo(MessageType.G_CHAT.name()).handler(msg -> Platform.runLater(() -> updateUI((String) msg.body())));
         Platform.runLater(() -> chatBox.heightProperty().addListener((ov, t1, t2) -> scrollPane.setVvalue(1.0)));
     }
 
@@ -34,6 +34,6 @@ public class GlobalChatController {
         var msg = tf.getText();
         if (msg.isBlank()) return;
         tf.clear();
-        FSClient.getInstance().sendGlobalMessage(msg);
+        API.get().sendGlobalMessage(msg);
     }
 }

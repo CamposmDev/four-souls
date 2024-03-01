@@ -3,22 +3,22 @@ package org.camposmdev.server.model;
 import java.util.UUID;
 
 public class Player implements Comparable<Player> {
-    private UUID id;
-    private String name;
+    private final UUID id;
+    private String username;
     private String password;
 
     public Player(String name, String password) {
         this.id = UUID.randomUUID();
-        this.name = name;
+        this.username = name;
         this.password = password;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -37,8 +37,8 @@ public class Player implements Comparable<Player> {
     @Override
     public String toString() {
         return "Player{" +
-                "name='" + name + '\'' +
-                ", password='" + password + '\'' +
+                "name='" + username + '\'' +
+//                ", password='" + password + '\'' +
                 '}';
     }
 

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="root" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@css/main-menu.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.camposmdev.client.ui.controllers.menu.MainMenuController">
+   <children>
+      <StackPane fx:id="logoPane" layoutX="550.0" layoutY="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
+         <children>
+            <ImageView fitHeight="600.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../textures/logo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
+      <VBox fx:id="menuBox" alignment="CENTER" layoutY="540.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="30.0" AnchorPane.bottomAnchor="308.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Text onMouseClicked="#handleSP" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="menu-item" text="Singleplayer" />
+            <Text onMouseClicked="#handleMP" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="menu-item" text="Multiplayer" />
+            <Text onMouseClicked="#handleOptions" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="menu-item" text="Options" />
+            <Text onMouseClicked="#handleExit" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="menu-item" text="Exit" />
+         </children>
+      </VBox>
+      <fx:include fx:id="singleplayerMenu" source="SingleplayerMenu.fxml" visible="false" AnchorPane.bottomAnchor="380" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"/>
+      <fx:include fx:id="multiplayerMenu" disable="true" source="MultiplayerMenu.fxml" visible="false" AnchorPane.bottomAnchor="375.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <fx:include fx:id="optionsMenu" disable="true" source="OptionsMenu.fxml" visible="false" AnchorPane.bottomAnchor="220.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+   </children>
+</AnchorPane>

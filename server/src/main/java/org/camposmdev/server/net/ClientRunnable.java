@@ -1,17 +1,10 @@
 package org.camposmdev.server.net;
 
-import org.camposmdev.model.packet.Packet;
-import org.camposmdev.server.model.Client;
-import org.camposmdev.server.model.ClientRegistry;
-import org.camposmdev.server.model.Player;
-import org.camposmdev.server.model.PlayerRegistry;
-
-import java.io.*;
-import java.net.Socket;
+import org.camposmdev.server.model.ClientHandler;
 
 @Deprecated
 public class ClientRunnable implements Runnable {
-    private Client client;
+    private ClientHandler client;
 
 //    public ClientRunnable(Socket socket) {
 //        try {
