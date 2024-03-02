@@ -13,7 +13,7 @@
         <Double fx:id="CANVAS_HEIGHT" fx:value="272"/>
     </fx:define>
 
-    <Canvas fx:id="canvas1" width="${CANVAS_WIDTH}" height="${CANVAS_HEIGHT}"/>
-    <Canvas fx:id="canvas2" width="${CANVAS_WIDTH}" height="${CANVAS_HEIGHT}"/>
-    <Canvas fx:id="canvas3" width="${CANVAS_WIDTH}" height="${CANVAS_HEIGHT}"/>
+    <Canvas fx:id="canvas1" opacity="0.0" width="${CANVAS_WIDTH}" height="${CANVAS_HEIGHT}"/>
+    <Canvas fx:id="canvas2" opacity="0.0" width="${CANVAS_WIDTH}" height="${CANVAS_HEIGHT}"/>
+    <Canvas fx:id="canvas3" opacity="0.0" width="${CANVAS_WIDTH}" height="${CANVAS_HEIGHT}"/>
 </StackPane>

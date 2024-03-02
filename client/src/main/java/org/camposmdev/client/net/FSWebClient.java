@@ -7,7 +7,7 @@ import io.vertx.core.http.*;
 import io.vertx.core.json.JsonObject;
 import org.camposmdev.client.model.UserAccount;
 
-public class FSWebClient {
+class FSWebClient {
     private final HttpClient client;
 
     protected FSWebClient(Vertx vertx, final String HOST, final int PORT) {

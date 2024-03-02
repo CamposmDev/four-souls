@@ -11,6 +11,7 @@ import javafx.scene.text.Text;
 import org.camposmdev.client.net.API;
 import org.camposmdev.model.MessageType;
 
+@Deprecated
 public class GlobalChatController {
     @FXML
     ScrollPane scrollPane;

@@ -1,16 +1,14 @@
 package org.camposmdev.client.ui.controllers.sprite;
 
 import com.almasb.fxgl.texture.Texture;
-import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.StackPane;
-import javafx.util.Duration;
 import org.camposmdev.client.model.json.NightmareSpriteAtlas;
+import org.camposmdev.client.ui.FXUtil;
 import org.camposmdev.client.ui.controllers.FXController;
 
 import java.net.URL;
@@ -22,6 +20,8 @@ public class BubbleController extends FXController implements Initializable {
     @FXML StackPane root;
     @FXML Double CANVAS_WIDTH, CANVAS_HEIGHT;
     @FXML Canvas canvas1, canvas2, canvas3;
+
+    private EventHandler<ActionEvent> onFinished;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         var spritesheet = getAssetLoader().loadTexture("spritesheets/nightmare.png");
@@ -32,10 +32,7 @@ public class BubbleController extends FXController implements Initializable {
         var medium = spritesheet.subTexture(bubbles.get("medium").toR2D());
         var small = spritesheet.subTexture(bubbles.get("small").toR2D());
         render(big, medium, small);
-        canvas1.setOpacity(0);
-        canvas2.setOpacity(0);
-        canvas3.setOpacity(0);
-        animate(canvas3, e1 -> animate(canvas2, e2 -> animate(canvas1, null)));
+        FXUtil.SquashStretch(canvas3, e1 -> FXUtil.SquashStretch(canvas2, e2 -> FXUtil.SquashStretch(canvas1, onFinished)));
     }
 
     private void render(Texture big, Texture medium, Texture small) {
@@ -57,26 +54,7 @@ public class BubbleController extends FXController implements Initializable {
         ctx3.drawImage(small.getImage(), x3, y3);
     }
 
-    private void animate(Node node, EventHandler<ActionEvent> handler) {
-        Timeline timeline = new Timeline(
-                new KeyFrame(Duration.seconds(0),
-                        new KeyValue(node.opacityProperty(), 0, Interpolator.LINEAR),
-                        new KeyValue(node.scaleXProperty(), 0.1, Interpolator.LINEAR),
-                        new KeyValue(node.scaleYProperty(), 0.1, Interpolator.LINEAR)), // Fade-in from 0 opacity and small size
-                new KeyFrame(Duration.seconds(1),
-                        new KeyValue(node.opacityProperty(), 1, Interpolator.LINEAR),
-                        new KeyValue(node.scaleXProperty(), 1.0, Interpolator.LINEAR),
-                        new KeyValue(node.scaleYProperty(), 1.0, Interpolator.LINEAR)), // Fade to full opacity and original size
-                new KeyFrame(Duration.seconds(1.01), new KeyValue(node.scaleXProperty(), 1.2, Interpolator.EASE_BOTH)),
-                new KeyFrame(Duration.seconds(1.03), new KeyValue(node.scaleXProperty(), 0.8, Interpolator.EASE_BOTH)),
-                new KeyFrame(Duration.seconds(1.05), new KeyValue(node.scaleXProperty(), 1.1, Interpolator.EASE_BOTH)),
-                new KeyFrame(Duration.seconds(1.07), new KeyValue(node.scaleXProperty(), 0.9, Interpolator.EASE_BOTH)),
-                new KeyFrame(Duration.seconds(1.1), new KeyValue(node.scaleXProperty(), 1.0, Interpolator.EASE_BOTH))
-        );
-        timeline.setRate(3);
-        timeline.setAutoReverse(false);
-        timeline.setCycleCount(1);
-        timeline.setOnFinished(handler);
-        timeline.play();
+    public void setOnFinished(EventHandler<ActionEvent> event) {
+        this.onFinished = event;
     }
 }

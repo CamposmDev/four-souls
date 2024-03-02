@@ -1,0 +1,89 @@
+.text-area {
+    -fx-background-insets: 0;
+    -fx-background-color: #ebebeb;
+    -fx-inner-background: #ebebeb;
+    -fx-border-color: #ebebeb;
+    -fx-control-inner-background: #ebebeb;
+    -fx-inner-border: #ebebeb;
+    -fx-inner-border-width: 0px;
+    -fx-focus-color: #ebebeb;
+    -fx-faint-focus: #ebebeb;
+    -fx-text-box-border: #ebebeb;
+    -fx-text-fill: black;
+    -fx-font-family: "EdmundMcMillen_v2";
+    -fx-font-size: 18px;
+    /*-fx-highlight-fill: transparent;
+    -fx-highlight-text-fill: black;*/
+}
+
+.text-area:focused {
+    /* style for when the text area is focused on */
+    -fx-background-color: #ebebeb; /* Set the background color to the desired color */
+/*
+    -fx-highlight-fill: red;
+*/
+    -fx-inner-border: transparent; /* Remove inner border */
+    -fx-border-color: #ebebeb;
+    -fx-inner-background: transparent;
+}
+
+.text-area:disabled {
+    -fx-text-fill: black;
+    -fx-opacity: 1;
+}
+
+.text-area .scroll-bar:vertical {
+    -fx-background-color: #ebebeb; /* Background color */
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-border-color: transparent; /* Border color */
+    -fx-padding: 0; /* No padding */
+    -fx-pref-width: 8px; /* Set the preferred width */
+}
+
+.text-area .scroll-bar:vertical .thumb {
+    -fx-background-color: #c0c0c0; /* Thumb color */
+    -fx-background-radius: 5px; /* Thumb radius */
+}
+
+.text-area .scroll-bar:vertical .increment-button,
+.text-area .scroll-bar:vertical .decrement-button {
+    -fx-background-color: transparent; /* Button background color */
+    -fx-opacity: 0;
+    -fx-padding: 0;
+    -fx-pref-width: 0px;
+}
+
+.text-area .scroll-bar:vertical .track {
+    -fx-background-color: transparent; /* Track color */
+}
+
+.text-field {
+    /*-fx-background-color: transparent;
+    -fx-inner-background: transparent;
+    -fx-border-color: transparent;*/
+/*
+    -fx-control-inner-background: red;
+*/
+
+    /*-fx-inner-border: transparent;
+    -fx-inner-border-width: 0px;
+    -fx-focus-color: transparent;
+    -fx-faint-focus: transparent;
+    -fx-text-fill: black;*/
+    -fx-font-family: "EdmundMcMillen_v2";
+    -fx-font-size: 18px;
+/*-fx-highlight-fill: transparent;
+    -fx-highlight-text-fill: black;*/
+
+}
+
+.text-field:focused {
+/* style for when the text field is focused on *//*
+
+    -fx-background-color: transparent; */
+/* Set the background color to the desired color *//*
+
+    -fx-inner-border: transparent; */
+/* Remove inner border */
+}

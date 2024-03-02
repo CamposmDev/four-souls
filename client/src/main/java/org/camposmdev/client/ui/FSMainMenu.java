@@ -5,7 +5,6 @@ import com.almasb.fxgl.app.scene.MenuType;
 import com.almasb.fxgl.dsl.FXGL;
 import javafx.application.Platform;
 import javafx.scene.layout.StackPane;
-import javafx.scene.web.WebView;
 import org.camposmdev.client.ui.controllers.LoginController;
 import org.camposmdev.client.net.API;
 
@@ -17,10 +16,12 @@ public class FSMainMenu extends FXGLMenu {
             var loginUI = FXUtil.loadUI("Login.fxml");
             assert loginUI != null;
             ((LoginController) loginUI.getController()).setParent(getContentRoot());
-            WebView background = FXUtil.loadBG();
-            background.setPrefWidth(getAppWidth());
-            background.setPrefHeight(getAppHeight());
-            var root = new StackPane(background, loginUI.getRoot());
+            var space = FXUtil.loadSpace();
+            space.setPrefWidth(getAppWidth());
+            space.setPrefHeight(getAppHeight());
+            var root = new StackPane();
+            root.getChildren().add(space);
+            root.getChildren().add(loginUI.getRoot());
             getContentRoot().getChildren().addAll(root);
         });
     }

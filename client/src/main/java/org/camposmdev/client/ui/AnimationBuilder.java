@@ -1,11 +1,11 @@
 package org.camposmdev.client.ui;
 
-import javafx.animation.FadeTransition;
-import javafx.animation.TranslateTransition;
+import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.util.Duration;
 
 public class AnimationBuilder {
@@ -17,11 +17,16 @@ public class AnimationBuilder {
         return new TranslateAnimationBuilder(node);
     }
 
+    public FadeInAnimationBuilder fadeIn(Node node) {
+        return new FadeInAnimationBuilder(node);
+    }
+
     public static class FadeOutAnimationBuilder {
         private final FadeTransition fadeTransition;
 
         public FadeOutAnimationBuilder(Node node) {
             fadeTransition = new FadeTransition();
+            node.setOpacity(1d);
             fadeTransition.setNode(node);
             fadeTransition.setToValue(0);
         }
@@ -32,6 +37,31 @@ public class AnimationBuilder {
         }
 
         public FadeOutAnimationBuilder duration(Duration duration) {
+            fadeTransition.setDuration(duration);
+            return this;
+        }
+
+        public FadeTransition build() {
+            return fadeTransition;
+        }
+    }
+
+    public static class FadeInAnimationBuilder {
+        private final FadeTransition fadeTransition;
+
+        public FadeInAnimationBuilder(Node node) {
+            fadeTransition = new FadeTransition();
+            node.setOpacity(0d);
+            fadeTransition.setNode(node);
+            fadeTransition.setToValue(1d);
+        }
+
+        public FadeInAnimationBuilder onFinished(EventHandler<ActionEvent> e) {
+            fadeTransition.setOnFinished(e);
+            return this;
+        }
+
+        public FadeInAnimationBuilder duration(Duration duration) {
             fadeTransition.setDuration(duration);
             return this;
         }

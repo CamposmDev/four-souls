@@ -25,9 +25,6 @@ public class MainMenuController extends FXController implements Initializable {
     @FXML
     OptionsMenuController optionsMenuController;
 
-//    double orgSceneX, orgSceneY;
-//    double orgTranslateX, orgTranslateY;
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Runnable cancelCallback = () -> setHideMainMenu(false);
@@ -39,61 +36,9 @@ public class MainMenuController extends FXController implements Initializable {
             * TODO - Update UI to display game lobby
             * */
             setHideAll(true);
-            var ui = FXUtil.loadUI("Nightmare.fxml");
+            var ui = FXUtil.loadFXML("Lobby.fxml");
             assert ui != null;
-            var background = (StackPane) ui.getRoot();
-            background.setScaleX(3);
-            background.setScaleY(3);
-            background.setTranslateX(root.getWidth()/2d - background.getPrefWidth()/2d);
-            var test = (StackPane) FXUtil.loadFXML("Bubble.fxml");
-            assert test != null;
-            test.setScaleX(3);
-            test.setScaleY(3);
-            test.setTranslateX(root.getWidth()/2d - test.getPrefWidth()/2);
-            test.setTranslateY(root.getHeight()/2d - test.getPrefHeight()/2d);
-
-//            var css = getAssetLoader().loadCSS("global-chat.css");
-//            System.out.println(css);
-//            System.out.println(css.getExternalForm());
-//            System.out.println(css.component1());
-//            TextArea textArea = new TextArea("""
-//                    The lazy brown
-//                    fox jumps over the
-//                    long fence
-//                    """);
-//
-//            textArea.setFocusTraversable(false);
-////            textArea.getStylesheets().add(css.getExternalForm());
-////            textArea.setStyle("""
-//
-////                    """);
-//            textArea.setContextMenu(null);
-//            textArea.setEditable(false);
-//            textArea.setTranslateX(test.getTranslateX());
-//            textArea.setTranslateY(test.getTranslateY()-300);
-//            textArea.setOnMousePressed((MouseEvent event) -> {
-//                orgSceneX = event.getSceneX();
-//                orgSceneY = event.getSceneY();
-//                orgTranslateX = textArea.getTranslateX();
-//                orgTranslateY = textArea.getTranslateY();
-//            });
-//
-//            textArea.setOnMouseDragged((MouseEvent event) -> {
-//                double offsetX = event.getSceneX() - orgSceneX;
-//                double offsetY = event.getSceneY() - orgSceneY;
-//                double newTranslateX = orgTranslateX + offsetX;
-//                double newTranslateY = orgTranslateY + offsetY;
-//
-//                textArea.setTranslateX(newTranslateX);
-//                textArea.setTranslateY(newTranslateY);
-//            });
-//            var dummy1 = new Pane();
-//            var dummy2 = new StackPane(textArea, dummy1);
-//            textArea.addEventFilter(javafx.scene.input.MouseEvent.MOUSE_PRESSED, event -> {
-//                dummy1.requestFocus(); // Request focus to keep the TextArea focusable
-//                event.consume(); // Consume the event to prevent focus change
-//            });
-            root.getChildren().addAll(background, test);
+            root.getChildren().addAll(ui);
         });
         multiplayerMenuController.setCancelCallback(cancelCallback);
         optionsMenuController.setBackCallback(cancelCallback);
@@ -125,7 +70,7 @@ public class MainMenuController extends FXController implements Initializable {
     public void handleExit() {
         getDialogService().showConfirmationBox("Are you sure you want me to die? :(", kill -> {
             if (kill) {
-                FXUtil.playDeathSound(() -> {
+                FXUtil.playDeathSFX(() -> {
                     getGameController().exit();
                     API.get().close();
                 });

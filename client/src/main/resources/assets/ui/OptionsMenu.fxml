@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox fx:id="root" alignment="CENTER" spacing="200.0" stylesheets="@css/main-menu.css"
+<VBox fx:id="root" alignment="CENTER" spacing="200.0" stylesheets="@css/menu.css"
       xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="org.camposmdev.client.ui.controllers.menu.OptionsMenuController">
     <GridPane hgap="20.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"

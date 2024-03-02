@@ -2,11 +2,19 @@ package org.camposmdev.client.ui;
 
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.ui.UI;
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.web.WebView;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
@@ -38,7 +46,7 @@ public class FXUtil {
      * @return A type of node, otherwise null
      * @param <T> Expected to be a type of Node
      */
-    public static <T> T loadFXML(String src) {
+    public static <T extends Parent> T loadFXML(String src) {
         try {
             URL url = FXUtil.class.getClassLoader().getResource(FX_DIR + src);
             assert url != null : "Failed to load " + src;
@@ -49,16 +57,29 @@ public class FXUtil {
         return null;
     }
 
-    public static WebView loadBG() {
-        var res = FXUtil.class.getClassLoader().getResource("./assets/ui/background/index.html");
-        assert res != null : "Failed to load background";
+    private static final String WEB_DIR = "assets/ui/web/";
+
+    public static WebView loadSpace() {
+        var res = FXUtil.class.getClassLoader().getResource(WEB_DIR  + "space/index.html");
+        assert res != null : "Failed to load space";
         var wv = new WebView();
         wv.getEngine().load(res.toExternalForm());
-        wv.setDisable(true);
+        wv.getEngine().setJavaScriptEnabled(true);
+        wv.setDisable(false);
         return wv;
     }
 
-    public static void playSound(String src, Runnable onEnd) {
+    public static WebView loadBooklet() {
+        var res = FXUtil.class.getClassLoader().getResource(WEB_DIR  + "booklet/index.html");
+        assert res != null : "Failed to load booklet";
+        var wv = new WebView();
+        wv.getEngine().load(res.toExternalForm());
+        wv.getEngine().setJavaScriptEnabled(true);
+        wv.setDisable(false);
+        return wv;
+    }
+
+    public static void playSFX(String src, Runnable onEnd) {
         var url = FXUtil.class.getClassLoader().getResource("./assets/sounds/" + src);
         assert url != null : "Failed to load " + src;
         var mp = new MediaPlayer(new Media(url.toString()));
@@ -67,19 +88,42 @@ public class FXUtil {
         mp.play();
     }
 
-    public static void playSound(String src) {
-        playSound(src, null);
+    public static void playSFX(String src) {
+        playSFX(src, null);
     }
 
-    public static void playDeathSound(Runnable onEnd) {
+    public static void playDeathSFX(Runnable onEnd) {
         final var NUM_OF_FILES = 3;
         /* fetch a random file in the folder */
         var i = (int)(Math.random() * NUM_OF_FILES) + 1;
         var src = "death/death" + i + ".wav";
-        playSound(src, onEnd);
+        playSFX(src, onEnd);
     }
 
     public static AnimationBuilder animation() {
         return new AnimationBuilder();
+    }
+
+    public static void SquashStretch(Node node, EventHandler<ActionEvent> handler) {
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.seconds(0),
+                        new KeyValue(node.opacityProperty(), 0, Interpolator.LINEAR),
+                        new KeyValue(node.scaleXProperty(), 0.1, Interpolator.LINEAR),
+                        new KeyValue(node.scaleYProperty(), 0.1, Interpolator.LINEAR)), // Fade-in from 0 opacity and small size
+                new KeyFrame(Duration.seconds(1),
+                        new KeyValue(node.opacityProperty(), 1, Interpolator.LINEAR),
+                        new KeyValue(node.scaleXProperty(), 1.0, Interpolator.LINEAR),
+                        new KeyValue(node.scaleYProperty(), 1.0, Interpolator.LINEAR)), // Fade to full opacity and original size
+                new KeyFrame(Duration.seconds(1.01), new KeyValue(node.scaleXProperty(), 1.2, Interpolator.EASE_BOTH)),
+                new KeyFrame(Duration.seconds(1.03), new KeyValue(node.scaleXProperty(), 0.8, Interpolator.EASE_BOTH)),
+                new KeyFrame(Duration.seconds(1.05), new KeyValue(node.scaleXProperty(), 1.1, Interpolator.EASE_BOTH)),
+                new KeyFrame(Duration.seconds(1.07), new KeyValue(node.scaleXProperty(), 0.9, Interpolator.EASE_BOTH)),
+                new KeyFrame(Duration.seconds(1.1), new KeyValue(node.scaleXProperty(), 1.0, Interpolator.EASE_BOTH))
+        );
+        timeline.setRate(3);
+        timeline.setAutoReverse(false);
+        timeline.setCycleCount(1);
+        timeline.setOnFinished(handler);
+        timeline.play();
     }
 }

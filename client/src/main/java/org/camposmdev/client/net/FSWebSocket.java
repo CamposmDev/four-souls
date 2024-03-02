@@ -10,7 +10,7 @@ import io.vertx.core.json.JsonObject;
 import org.camposmdev.client.model.UserAccount;
 import org.camposmdev.model.MessageType;
 
-public class FSWebSocket {
+class FSWebSocket {
     private static final String WS_ROUTE = "/ws";
     private final Vertx vertx;
     private final ClientWebSocket ws;

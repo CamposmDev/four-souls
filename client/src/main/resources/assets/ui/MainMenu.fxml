@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="root" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@css/main-menu.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.camposmdev.client.ui.controllers.menu.MainMenuController">
+<AnchorPane fx:id="root" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@css/menu.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.camposmdev.client.ui.controllers.menu.MainMenuController">
    <children>
       <StackPane fx:id="logoPane" layoutX="550.0" layoutY="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
          <children>

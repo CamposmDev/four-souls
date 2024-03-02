@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Slider;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import org.camposmdev.client.ui.FXUtil;
 import org.camposmdev.client.ui.controllers.FXController;
@@ -41,7 +40,7 @@ public class OptionsMenuController extends FXController implements Initializable
     }
 
     public void handleSfxSliderMouseReleased() {
-        FXUtil.playDeathSound(null);
+        FXUtil.playDeathSFX(null);
     }
 
     public void handleBack() {
