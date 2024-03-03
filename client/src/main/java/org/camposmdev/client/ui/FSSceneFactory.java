@@ -1,10 +1,6 @@
 package org.camposmdev.client.ui;
 
-import com.almasb.fxgl.app.scene.FXGLMenu;
-import com.almasb.fxgl.app.scene.IntroScene;
-import com.almasb.fxgl.app.scene.LoadingScene;
-import com.almasb.fxgl.app.scene.MenuType;
-import com.almasb.fxgl.app.scene.SceneFactory;
+import com.almasb.fxgl.app.scene.*;
 import org.jetbrains.annotations.NotNull;
 
 public class FSSceneFactory extends SceneFactory {
@@ -24,8 +20,7 @@ public class FSSceneFactory extends SceneFactory {
     @NotNull
     @Override
     public IntroScene newIntro() {
-        /* TODO - Implement intro scene*/
-        return super.newIntro();
+        return new FSIntroScene();
     }
 
     @NotNull
@@ -37,7 +32,7 @@ public class FSSceneFactory extends SceneFactory {
 
     @NotNull
     @Override
-    public com.almasb.fxgl.app.scene.StartupScene newStartup(int width, int height) {
+    public StartupScene newStartup(int width, int height) {
         return new FSStartupScene(width, height);
     }
 }

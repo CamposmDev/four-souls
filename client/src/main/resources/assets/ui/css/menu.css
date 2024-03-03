@@ -1,4 +1,4 @@
-.menu-item {
+.menu-button {
     -fx-fill: white;
     -fx-alignment: center;
     -fx-font-size: 32px;
@@ -6,7 +6,20 @@
     -fx-pref-width: 300px;
 }
 
-.menu-item:hover {
+.menu-button:hover {
+    -fx-scale-x: 1.25;
+    -fx-scale-y: 1.25;
+}
+
+.menu-button-xs {
+    -fx-fill: white;
+    -fx-alignment: center;
+    -fx-font-size: 20px;
+    -fx-font-family: "EdmundMcMillen_v2";
+    -fx-pref-width: 300px;
+}
+
+.menu-button-xs:hover {
     -fx-scale-x: 1.25;
     -fx-scale-y: 1.25;
 }

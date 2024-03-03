@@ -1,4 +1,5 @@
 module model {
+    requires io.vertx.core;
     exports org.camposmdev.model;
     exports org.camposmdev.model.packet;
     exports org.camposmdev.model.card;

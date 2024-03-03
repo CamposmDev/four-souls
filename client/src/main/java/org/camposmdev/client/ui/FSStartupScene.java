@@ -1,5 +1,6 @@
 package org.camposmdev.client.ui;
 
+import javafx.scene.Cursor;
 import javafx.scene.layout.StackPane;
 
 public class FSStartupScene extends com.almasb.fxgl.app.scene.StartupScene {
@@ -10,6 +11,7 @@ public class FSStartupScene extends com.almasb.fxgl.app.scene.StartupScene {
         assert bg != null;
         bg.setPrefWidth(appWidth);
         bg.setPrefHeight(appHeight);
+        bg.setCursor(Cursor.NONE);
         getContentRoot().getChildren().add(bg);
     }
 }

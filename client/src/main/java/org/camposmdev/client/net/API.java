@@ -3,7 +3,7 @@ package org.camposmdev.client.net;
 import io.vertx.core.Future;
 import io.vertx.core.Vertx;
 import io.vertx.core.eventbus.MessageConsumer;
-import io.vertx.core.json.JsonObject;
+import org.camposmdev.model.BusEvent;
 
 
 public class API {
@@ -35,12 +35,16 @@ public class API {
         return wc.getOnlineUserCount();
     }
 
-    public Future<String> hostGame() {
-        return wc.hostGame();
+    public void hostGame() {
+        ws.hostGame();
     }
 
-    public Future<JsonObject> joinGame(String gameId) {
-        return wc.joinGame(gameId);
+    public void joinLobby(String gameId) {
+        ws.joinLobby(gameId);
+    }
+
+    public void leaveLobby(String gameId) {
+        ws.leaveLobby(gameId);
     }
 
     public void close() {
@@ -49,12 +53,16 @@ public class API {
         if (vertx != null) vertx.close();
     }
 
-    public MessageConsumer<Object> subscribeTo(String s) {
-        return ws.subscribeTo(s);
+    public MessageConsumer<Object> subscribeTo(BusEvent event) {
+        return ws.subscribeTo(event);
     }
 
     public void sendGlobalMessage(String s) {
         ws.sendGlobalMessage(s);
+    }
+
+    public void sendLobbyMessage(String message) {
+        ws.sendLobbyMessage(message);
     }
 
     public String getAuthCookie() {
@@ -68,4 +76,5 @@ public class API {
     public void initWS() {
         this.ws = new FSWebSocket(vertx, HOST, PORT);
     }
+
 }

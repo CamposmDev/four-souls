@@ -34,5 +34,5 @@
         <Slider fx:id="musicSlider" max="1.0" styleClass="menu-control" GridPane.columnIndex="1"
                 GridPane.rowIndex="2"/>
     </GridPane>
-    <Text onMouseClicked="#handleBack" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="menu-item" text="Back"/>
+    <Text onMouseClicked="#handleBack" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="menu-button" text="Back"/>
 </VBox>

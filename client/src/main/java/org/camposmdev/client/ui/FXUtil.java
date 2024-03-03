@@ -15,6 +15,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.web.WebView;
 import javafx.util.Duration;
+import org.camposmdev.client.ui.controllers.FXController;
 
 import java.io.IOException;
 import java.net.URL;
@@ -30,9 +31,10 @@ public class FXUtil {
     public static UI loadUI(String src) {
         try {
             URL url = FXUtil.class.getClassLoader().getResource(FX_DIR + src);
-            assert url != null : "Failed to load " + src;
             var fxml = new FXMLLoader(url);
             var node = (Parent) fxml.load();
+            /* Call it's init method */
+            ((FXController) fxml.getController()).init();
             return new UI(node, fxml.getController());
         } catch (IOException e) {
             e.printStackTrace();
@@ -65,7 +67,7 @@ public class FXUtil {
         var wv = new WebView();
         wv.getEngine().load(res.toExternalForm());
         wv.getEngine().setJavaScriptEnabled(true);
-        wv.setDisable(false);
+        wv.setDisable(true);
         return wv;
     }
 

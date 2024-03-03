@@ -1,5 +1,8 @@
 package org.camposmdev.server.model;
 
+import io.vertx.core.json.JsonArray;
+import io.vertx.core.json.JsonObject;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
@@ -37,6 +40,21 @@ public class Game {
 
     public List<Player> players() {
         return players;
+    }
+
+    public JsonObject toJSON() {
+        var arr = new JsonArray();
+        for (var x : players) {
+            arr.add(JsonObject.of(
+                    "userId", x.getId(),
+                    "username", x.getUsername()
+            ));
+        }
+        return JsonObject.of(
+                "gameId", getId(),
+                "hostId", hostId,
+                "players", arr
+        );
     }
 
     @Override

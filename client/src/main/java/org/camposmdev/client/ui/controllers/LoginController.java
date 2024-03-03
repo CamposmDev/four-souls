@@ -30,7 +30,7 @@ public class LoginController extends FXController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         /* if in developer mode, automatically login */
-        if (getSettings().getApplicationMode().equals(ApplicationMode.DEVELOPER)) {
+        if (getSettings().getApplicationMode().equals(ApplicationMode.DEBUG)) {
             tfName.setText("Camposm");
             tfPassword.setText("password");
         }

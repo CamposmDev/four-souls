@@ -3,6 +3,7 @@ package org.camposmdev.client.ui.controllers.sprite;
 import com.almasb.fxgl.app.ApplicationMode;
 import com.almasb.fxgl.texture.Texture;
 import javafx.animation.Interpolator;
+import javafx.animation.ScaleTransition;
 import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;
 import javafx.collections.ObservableList;
@@ -77,6 +78,10 @@ public class NightmareController extends FXController implements Initializable {
         renderLight(spritesheet, data);
         if (getSettings().getApplicationMode() == ApplicationMode.DEVELOPER)
             debug(spritesheet, data);
+        canvas3.setScaleX(0.1);
+        var anim = new ScaleTransition(Duration.millis(500), canvas3);
+        anim.setToX(1d);
+        anim.playFromStart();
     }
 
     private void renderFloor(Texture spritesheet, NightmareSpriteAtlas data, int index) {

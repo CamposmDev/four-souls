@@ -9,9 +9,10 @@
 <?import javafx.scene.layout.RowConstraints?>
 
 <AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="656.0" prefWidth="481.0" style="-fx-border-radius: 15;" styleClass="main"
+            prefHeight="656.0" prefWidth="481.0" styleClass="main"
             stylesheets="@css/login.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="org.camposmdev.client.ui.controllers.LoginController">
+            fx:controller="org.camposmdev.client.ui.controllers.LoginController"
+>
     <GridPane vgap="16.0" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>

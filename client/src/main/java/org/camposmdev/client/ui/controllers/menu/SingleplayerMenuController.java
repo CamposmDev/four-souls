@@ -8,13 +8,13 @@ public class SingleplayerMenuController extends FXController {
     @FXML
     AnchorPane root;
 
-    private Runnable callback;
+    private Runnable cancelCallback;
 
-    public void setCallback(Runnable callback) {
-        this.callback = callback;
+    public void setCancelCallback(Runnable cancelCallback) {
+        this.cancelCallback = cancelCallback;
     }
 
-    public void setHidden(boolean flag) {
+    public void hide(boolean flag) {
         root.setVisible(!flag);
         root.setDisable(flag);
     }

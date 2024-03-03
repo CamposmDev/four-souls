@@ -1,11 +1,18 @@
 package org.camposmdev.client.ui.controllers.menu;
 
+import com.almasb.fxgl.ui.UI;
+import io.vertx.core.json.JsonObject;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.*;
+import org.camposmdev.client.model.ErrorRunnable;
+import org.camposmdev.client.model.Log;
+import org.camposmdev.client.model.UserContext;
 import org.camposmdev.client.net.API;
 import org.camposmdev.client.ui.FXUtil;
 import org.camposmdev.client.ui.controllers.FXController;
+import org.camposmdev.model.BusEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -25,23 +32,41 @@ public class MainMenuController extends FXController implements Initializable {
     @FXML
     OptionsMenuController optionsMenuController;
 
+    private UI lobby;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Runnable cancelCallback = () -> setHideMainMenu(false);
-        singleplayerMenuController.setCallback(() -> {
-
-        });
-        multiplayerMenuController.setHostGameCallback(() -> {
-            /*
-            * TODO - Update UI to display game lobby
-            * */
-            setHideAll(true);
-            var ui = FXUtil.loadFXML("Lobby.fxml");
-            assert ui != null;
-            root.getChildren().addAll(ui);
-        });
+        Runnable cancelCallback = () -> hideAll(false);
+        Runnable showLobby = () -> {
+            /* user hosts or joins game */
+            multiplayerMenuController.hide(true);
+            hideAll(true);
+            this.lobby = FXUtil.loadUI("Lobby.fxml");
+            root.getChildren().add(lobby.getRoot());
+        };
+        Runnable removeLobby = () -> {
+            /* user leaves lobby */
+            multiplayerMenuController.hide(false);
+            root.getChildren().remove(lobby.getRoot());
+            this.lobby = null;
+            hideLogo(false);
+            UserContext.get().setCurrentLobby(null);
+        };
+        singleplayerMenuController.setCancelCallback(cancelCallback);
         multiplayerMenuController.setCancelCallback(cancelCallback);
         optionsMenuController.setBackCallback(cancelCallback);
+        API.get().subscribeTo(BusEvent.SHOW_LOBBY).handler(msg -> {
+            UserContext.get().setCurrentLobby((JsonObject) msg.body());
+            Platform.runLater(showLobby);
+        });
+        Log.debug("Subscribed to " + BusEvent.SHOW_LOBBY);
+        API.get().subscribeTo(BusEvent.REMOVE_LOBBY).handler(msg -> {
+            var obj = (JsonObject) msg.body();
+            if (obj.containsKey("message"))
+                Platform.runLater(new ErrorRunnable(obj.getString("message")));
+            Platform.runLater(removeLobby);
+        });
+        Log.debug("Subscribed to " + BusEvent.REMOVE_LOBBY);
     }
 
     public void handleSP() {
@@ -53,18 +78,18 @@ public class MainMenuController extends FXController implements Initializable {
          *  Give an option to see their eternal card
          *  Once chosen display the board
          */
-        setHideAll(true);
-        singleplayerMenuController.setHidden(false);
+        hideAll(true);
+        singleplayerMenuController.hide(false);
     }
 
     public void handleMP() {
-        setHideMainMenu(true);
-        multiplayerMenuController.setHidden(false);
+        hideMainMenu(true);
+        multiplayerMenuController.hide(false);
     }
 
     public void handleOptions() {
-        setHideMainMenu(true);
-        optionsMenuController.setHidden(false);
+        hideMainMenu(true);
+        optionsMenuController.hide(false);
     }
 
     public void handleExit() {
@@ -78,13 +103,17 @@ public class MainMenuController extends FXController implements Initializable {
         });
     }
 
-    public void setHideMainMenu(boolean flag) {
+    public void hideMainMenu(boolean flag) {
         menuBox.setVisible(!flag);
         menuBox.setDisable(flag);
     }
 
-    public void setHideAll(boolean flag) {
+    public void hideLogo(boolean flag) {
         logoPane.setVisible(!flag);
-        setHideMainMenu(flag);
+    }
+
+    public void hideAll(boolean flag) {
+        hideLogo(flag);
+        hideMainMenu(flag);
     }
 }

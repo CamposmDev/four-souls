@@ -45,12 +45,12 @@ public class OptionsMenuController extends FXController implements Initializable
 
     public void handleBack() {
         /* hide the option menu */
-        setHidden(true);
+        hide(true);
         /* show main menu */
         backCallback.run();
     }
 
-    public void setHidden(boolean flag) {
+    public void hide(boolean flag) {
         root.setVisible(!flag);
         root.setDisable(flag);
     }

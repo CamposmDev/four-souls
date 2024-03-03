@@ -1,5 +1,7 @@
 package org.camposmdev.server.model;
 
+import io.vertx.core.json.JsonObject;
+
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -28,13 +30,24 @@ public class GameRegistry {
         games.remove(x);
     }
 
-    public Game get(String gameId) {
+    public Game getById(String gameId) {
         return games.stream()
                 .filter(x -> x.getId().equals(gameId))
                 .findFirst().orElse(null);
     }
 
+    /**
+     * Sends a message to lobby chat
+     * @param gameId ID of the Game
+     * @param arg Message to be sent to players in lobby
+     */
+    public void notifyLobby(String gameId, JsonObject arg) {
+        var game = getById(gameId);
+        for (var player : game.players())
+            ClientRegistry.get().sendMessageTo(player.getId(), arg);
+    }
+
     public boolean contains(String gameId) {
-        return get(gameId) != null;
+        return getById(gameId) != null;
     }
 }

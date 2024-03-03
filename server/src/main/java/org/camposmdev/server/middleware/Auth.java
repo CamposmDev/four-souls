@@ -1,7 +1,10 @@
 package org.camposmdev.server.middleware;
 
+import io.vertx.core.Future;
 import io.vertx.core.Handler;
+import io.vertx.core.Promise;
 import io.vertx.core.Vertx;
+import io.vertx.core.http.Cookie;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.auth.authentication.TokenCredentials;
 import io.vertx.ext.auth.jwt.JWTAuth;
@@ -36,4 +39,13 @@ public class Auth {
                 .onFailure(x -> c.response().setStatusCode(401)
                         .send(JsonObject.of("message", "Unauthorized").toString()));
     };
+
+    public static Future<String> parseToken(Cookie token) {
+        Promise<String> promise = Promise.promise();
+        get().provider.authenticate(new TokenCredentials(token.getValue())).onSuccess(x -> {
+            var userId = x.attributes().getJsonObject("accessToken").getString("userId");
+            promise.complete(userId);
+        });
+        return promise.future();
+    }
 }

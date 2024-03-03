@@ -5,7 +5,7 @@ import io.vertx.core.Promise;
 import io.vertx.core.Vertx;
 import io.vertx.core.http.*;
 import io.vertx.core.json.JsonObject;
-import org.camposmdev.client.model.UserAccount;
+import org.camposmdev.client.model.UserContext;
 
 class FSWebClient {
     private final HttpClient client;
@@ -28,7 +28,7 @@ class FSWebClient {
                             var authCookie = res.cookies().get(0);
                             API.get().setAuthCookie(authCookie);
                             promise.complete();
-                            UserAccount.get().setParams(obj);
+                            UserContext.get().setParams(obj);
                             /* connect to websocket server */
                             API.get().initWS();
                         } else {
@@ -54,6 +54,7 @@ class FSWebClient {
         return promise.future();
     }
 
+    @Deprecated
     public Future<String> hostGame() {
         Promise<String> promise = Promise.promise();
         client.request(HttpMethod.GET, "/api/game/host").onSuccess(req -> {
@@ -61,6 +62,7 @@ class FSWebClient {
             req.send().onSuccess(res -> res.body().onSuccess(data -> {
                 var obj = data.toJsonObject();
                 if (res.statusCode() == 200) {
+//                    UserContext.get().setGameId(obj.getString("gameId"));
                     promise.complete(obj.getString("gameId"));
                 } else {
                     promise.fail(obj.getString("message"));
@@ -70,14 +72,16 @@ class FSWebClient {
         return promise.future();
     }
 
+    @Deprecated
     public Future<JsonObject> joinGame(String gameId) {
         Promise<JsonObject> promise = Promise.promise();
-        var payload = JsonObject.of("gameId", gameId).put("userId", UserAccount.get().getId());
+        var payload = JsonObject.of("gameId", gameId).put("userId", UserContext.get().getId());
         client.request(HttpMethod.POST, "/api/game/join").onSuccess(req -> {
             req.headers().add(HttpHeaders.COOKIE, API.get().getAuthCookie());
             req.send(payload.toString()).onSuccess(res -> res.body().onSuccess(data -> {
                var obj = data.toJsonObject();
                if (res.statusCode() == 200) {
+//                   UserContext.get().setGameId(obj.getString("gameId"));
                    promise.complete(obj);
                }
             })).onFailure(e -> promise.fail("Failed to connect to server"));
@@ -85,13 +89,15 @@ class FSWebClient {
         return promise.future();
     }
 
+    @Deprecated
     public Future<Void> leaveGame(String gameId) {
         Promise<Void> promise = Promise.promise();
-        var payload = JsonObject.of("gameId", gameId).put("userId", UserAccount.get().getId());
+        var payload = JsonObject.of("gameId", gameId).put("userId", UserContext.get().getId());
         client.request(HttpMethod.POST, "/api/game/leave").onSuccess(req -> {
             req.headers().add(HttpHeaders.COOKIE, API.get().getAuthCookie());
             req.send(payload.toString()).onSuccess(res -> {
                 if (res.statusCode() == 200) {
+//                    UserContext.get().setGameId(null);
                     promise.complete();
                 } else promise.fail("Failed to leave game");
             }).onFailure(e -> promise.fail("Failed to connect to server"));

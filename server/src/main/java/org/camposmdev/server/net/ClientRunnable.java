@@ -1,10 +1,10 @@
 package org.camposmdev.server.net;
 
-import org.camposmdev.server.model.ClientHandler;
+import org.camposmdev.server.model.WSAgent;
 
 @Deprecated
 public class ClientRunnable implements Runnable {
-    private ClientHandler client;
+    private WSAgent client;
 
 //    public ClientRunnable(Socket socket) {
 //        try {

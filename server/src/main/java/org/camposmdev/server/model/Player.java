@@ -31,7 +31,7 @@ public class Player implements Comparable<Player> {
 
     @Override
     public int compareTo(Player o) {
-        return id.compareTo(o.id);
+        return getId().compareTo(o.getId());
     }
 
     @Override

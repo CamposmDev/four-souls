@@ -9,7 +9,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import org.camposmdev.client.net.API;
-import org.camposmdev.model.MessageType;
+import org.camposmdev.model.BusEvent;
 
 @Deprecated
 public class GlobalChatController {
@@ -19,7 +19,7 @@ public class GlobalChatController {
     VBox chatBox;
 
     public void initialize() {
-        API.get().subscribeTo(MessageType.G_CHAT.name()).handler(msg -> Platform.runLater(() -> updateUI((String) msg.body())));
+        API.get().subscribeTo(BusEvent.GLOBAL_CHAT).handler(msg -> Platform.runLater(() -> updateUI((String) msg.body())));
         Platform.runLater(() -> chatBox.heightProperty().addListener((ov, t1, t2) -> scrollPane.setVvalue(1.0)));
     }
 
