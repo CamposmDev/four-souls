@@ -2,7 +2,7 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <excludeFromCompile>
-      <directory url="file://$PROJECT_DIR$/common-lib/editor/src/main/resources/archetype-resources" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/core-lib/editor/src/main/resources/archetype-resources" includeSubdirectories="true" />
     </excludeFromCompile>
     <annotationProcessing>
       <profile name="Maven default annotation processors profile" enabled="true">
@@ -18,7 +18,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="client-" target="17" />
-      <module name="core-lib" target="1.5" />
+      <module name="common-lib" target="17" />
       <module name="res-raiders" target="17" />
     </bytecodeTargetLevel>
   </component>

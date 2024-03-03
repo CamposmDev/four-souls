@@ -15,9 +15,9 @@
     <modules>
         <module>client</module>
         <module>server</module>
-        <module>common-lib</module>
-        <module>common-lib/model</module>
-        <module>common-lib/editor</module>
+        <module>core-lib</module>
+        <module>core-lib/model</module>
+        <module>core-lib/editor</module>
     </modules>
     
 </project>
