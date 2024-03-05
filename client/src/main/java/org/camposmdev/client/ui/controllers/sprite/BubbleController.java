@@ -27,7 +27,7 @@ public class BubbleController extends FXController implements Initializable {
         var spritesheet = getAssetLoader().loadTexture("spritesheets/nightmare.png");
         var result = getAssetLoader().loadJSON("json/spritesheets/nightmare.json", NightmareSpriteAtlas.class);
         assert result.isPresent() : "Failed to parse JSON";
-        var bubbles = result.get().getBubbles();
+        var bubbles = result.get().bubbles();
         var big = spritesheet.subTexture(bubbles.get("big").toR2D());
         var medium = spritesheet.subTexture(bubbles.get("medium").toR2D());
         var small = spritesheet.subTexture(bubbles.get("small").toR2D());

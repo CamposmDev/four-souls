@@ -21,7 +21,9 @@ import java.io.IOException;
 import java.net.URL;
 
 public class FXUtil {
-    private static final String FX_DIR = "./assets/ui/";
+    private static final String UI_DIR = "assets/ui/";
+    private static final String WEB_DIR = "assets/ui/web/";
+    private static final String SFX_DIR = "assets/sounds/";
 
     /**
      * Loads the FXML file and returns the view and controller
@@ -30,7 +32,7 @@ public class FXUtil {
      */
     public static UI loadUI(String src) {
         try {
-            URL url = FXUtil.class.getClassLoader().getResource(FX_DIR + src);
+            URL url = FXUtil.class.getClassLoader().getResource(UI_DIR + src);
             var fxml = new FXMLLoader(url);
             var node = (Parent) fxml.load();
             /* Call it's init method */
@@ -50,16 +52,17 @@ public class FXUtil {
      */
     public static <T extends Parent> T loadFXML(String src) {
         try {
-            URL url = FXUtil.class.getClassLoader().getResource(FX_DIR + src);
+            URL url = FXUtil.class.getClassLoader().getResource(UI_DIR + src);
             assert url != null : "Failed to load " + src;
-            return FXMLLoader.load(url);
+            System.out.println(url);
+            var fxml = new FXMLLoader();
+            fxml.setLocation(url);
+            return fxml.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
         return null;
     }
-
-    private static final String WEB_DIR = "assets/ui/web/";
 
     public static WebView loadSpace() {
         var res = FXUtil.class.getClassLoader().getResource(WEB_DIR  + "space/index.html");
@@ -82,7 +85,7 @@ public class FXUtil {
     }
 
     public static void playSFX(String src, Runnable onEnd) {
-        var url = FXUtil.class.getClassLoader().getResource("./assets/sounds/" + src);
+        var url = FXUtil.class.getClassLoader().getResource(SFX_DIR + src);
         assert url != null : "Failed to load " + src;
         var mp = new MediaPlayer(new Media(url.toString()));
         mp.setVolume(FXGL.getSettings().getGlobalSoundVolume());

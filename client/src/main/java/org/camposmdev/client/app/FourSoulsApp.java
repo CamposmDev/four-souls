@@ -7,6 +7,9 @@ import com.almasb.fxgl.app.GameSettings;
 import javafx.scene.paint.Color;
 import org.camposmdev.client.model.Log;
 import org.camposmdev.client.ui.FSSceneFactory;
+import org.camposmdev.model.Timex;
+import org.camposmdev.model.json.DeckAtlas;
+import org.camposmdev.model.json.ImageDataAtlas;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 
@@ -33,11 +36,11 @@ public class FourSoulsApp extends GameApplication {
         settings.setDefaultCursor(new CursorInfo("cursor.png", 0, 0));
         settings.setFontGame("EdmundMcMillen_v2.ttf");
         settings.setApplicationMode(ApplicationMode.DEBUG);
-        Log.debug("it works??????????????????????");
     }
 
     @Override
     protected void onPreInit() {
+        var timer = new Timex().start();
         getNotificationService().setBackgroundColor(Color.web("#121212"));
         getNotificationService().setTextColor(Color.WHITE);
         getAssetLoader().loadVideo("kickstarter_trailer.mp4");
@@ -48,6 +51,34 @@ public class FourSoulsApp extends GameApplication {
             getSettings().setGlobalMusicVolume(0.0);
             getSettings().setGlobalSoundVolume(0.1);
         }
+        loadDeck();
+        Log.debugf("Finished loading assets (%s)\n", timer.stop());
+    }
+
+    private void loadDeck() {
+        var deck = loadJSON("json/cards/cards.json", DeckAtlas.class);
+        var characters = loadJSON(deck.character(), ImageDataAtlas.class);
+        characters.images().values().forEach(data -> getAssetLoader().loadTexture(data.source2()));
+        deck.eternal().forEach(x -> loadCards(x));
+        deck.treasure().forEach(x -> loadCards(x));
+        deck.monster().forEach(x -> loadCards(x));
+        deck.loot().forEach(x -> loadCards(x));
+        deck.money().forEach(x -> loadCards(x));
+        deck.bsoul().forEach(x -> loadCards(x));
+        deck.room().forEach(x -> loadCards(x));
+    }
+
+    private void loadCards(String src) {
+        var atlas = loadJSON(src, ImageDataAtlas.class);
+        atlas.images().values().forEach(data -> {
+            getAssetLoader().loadTexture(data.source2());
+        });
+    }
+
+    private <T> T loadJSON(String src, Class<T> type) {
+        var result = getAssetLoader().loadJSON(src, type);
+        assert result.isPresent();
+        return result.get();
     }
 }
 

@@ -70,9 +70,9 @@ public class NightmareController extends FXController implements Initializable {
         var result = getAssetLoader().loadJSON("json/spritesheets/nightmare.json", NightmareSpriteAtlas.class);
         assert result.isPresent() : "Failed to parse JSON";
         var data = result.get();
-        var floorIndex = (int)(Math.random()*data.getFloors().length);
+        var floorIndex = (int)(Math.random()*data.floors().length);
         renderFloor(spritesheet, data, floorIndex);
-        var boyList = data.getIsaacs().keySet().toArray();
+        var boyList = data.isaacs().keySet().toArray();
         var boyKey = (String) boyList[(int)(Math.random()*boyList.length)];
         renderBoy(spritesheet, data, boyKey);
         renderLight(spritesheet, data);
@@ -86,7 +86,7 @@ public class NightmareController extends FXController implements Initializable {
 
     private void renderFloor(Texture spritesheet, NightmareSpriteAtlas data, int index) {
         var ctx = canvas1.getGraphicsContext2D();
-        var floors = data.getFloors();
+        var floors = data.floors();
         var box = floors[index];
         var floor = spritesheet.subTexture(box.toR2D());
         ctx.drawImage(floor.getImage(), (CANVAS_WIDTH - floor.getWidth()) / 2d, CANVAS_HEIGHT - floor.getHeight());
@@ -95,7 +95,7 @@ public class NightmareController extends FXController implements Initializable {
     private void renderBoy(Texture spritesheet, NightmareSpriteAtlas data, String whoami) {
         updateWhoAmI(whoami);
         var ctx = canvas2.getGraphicsContext2D();
-        var box = data.getIsaacs().get(whoami);
+        var box = data.isaacs().get(whoami);
         var boy = spritesheet.subTexture(box.toR2D());
         var x = (CANVAS_WIDTH-boy.getWidth())/2d;
         var y = CANVAS_HEIGHT-boy.getHeight();
@@ -104,7 +104,7 @@ public class NightmareController extends FXController implements Initializable {
 
     private void renderLight(Texture spritesheet, NightmareSpriteAtlas data) {
         var ctx = canvas3.getGraphicsContext2D();
-        var light = spritesheet.subTexture(data.getLight().toR2D());
+        var light = spritesheet.subTexture(data.light().toR2D());
         ctx.drawImage(light.getImage(), 0, -LIGHT_OFFSET_Y);
     }
 
@@ -116,14 +116,14 @@ public class NightmareController extends FXController implements Initializable {
             root.setOnScroll(event -> {
                 ctx.clearRect(0,0,CANVAS_WIDTH,CANVAS_HEIGHT);
                 renderFloor(spritesheet, data, i.getAndIncrement());
-                if (i.get() > data.getFloors().length-1)
+                if (i.get() > data.floors().length-1)
                     i.set(0);
             });
         }
         /* switch between isaacs */
         {
             var ctx = canvas2.getGraphicsContext2D();
-            var lst = data.getIsaacs().keySet().toArray();
+            var lst = data.isaacs().keySet().toArray();
             AtomicInteger i = new AtomicInteger(0);
             root.setOnMouseClicked(event -> {
                 ctx.clearRect(0,0,CANVAS_WIDTH,CANVAS_HEIGHT);

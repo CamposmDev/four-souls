@@ -1,43 +1,52 @@
 package org.camposmdev.res_soup;
 
+import org.camposmdev.model.json.ImageData;
+
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
+import java.net.URI;
 
 public class ImageFetcherRunnable implements Runnable {
-    private final String imgdir;
-    private final String imgURL;
+    private String dir_img;
+    private final ImageData ir;
 
-    public ImageFetcherRunnable(String imgdir, String imgURL) {
-        this.imgdir = imgdir;
-        this.imgURL = imgURL;
+    public ImageFetcherRunnable(String dir_img, ImageData ir) {
+        this.dir_img = dir_img;
+        this.ir = ir;
     }
 
     @Override
     public void run() {
-        var name = imgURL.substring(imgURL.lastIndexOf('/') + 1);
-        var des = imgdir + name;
-        var f = new File(des);
+        start(ir.highResImgURL(), ir.highResImgName());
+        start(ir.lowResImgURL(), ir.lowResImgName());
+    }
+
+    private void start(String imgURL, String imgName) {
+        File f = new File(dir_img + imgName);
         if (f.exists()) {
             /* File already exists, so don't download it */
-            System.out.println("Already exists: " + imgURL + " -> '" + (f.getParentFile().getName() + '/' + f.getName()) + '\'');
+            System.out.printf("Already exists: %s -> '%s'\n", imgURL, f);
         } else {
-            /* Download the image and save it */
-            var retries = 0;
-            final var MAX_RETRIES = 15;
-            while (retries < MAX_RETRIES) {
-                try {
-                    var url = new URL(imgURL);
-                    var img = ImageIO.read(url.openStream());
-                    ImageIO.write(img, "png", f);
-                    System.out.println("OK: " + imgURL + " -> '" + (f.getParentFile().getName() + '/' + f.getName()) + '\'');
-                    break;
-                } catch (IOException ex) {
-                    System.err.println("Retrying[" + ++retries + '/' + MAX_RETRIES + "]: " + f.getName());
-                }
-            }
-            if (retries > MAX_RETRIES) System.err.println("FAILED TO GET: " + imgURL);
+            /* download the image and save it */
+            download(f, imgURL);
         }
+    }
+
+    private void download(File file, String imgURL) {
+        var retries = 0;
+        final var MAX_RETRIES = 15;
+        while (retries < MAX_RETRIES) {
+            try {
+                var url = URI.create(imgURL).toURL();
+                var img = ImageIO.read(url.openStream());
+                ImageIO.write(img, "png", file);
+                System.out.printf("Pillaged: %s -> '%s'\n", url, file);
+                break;
+            } catch (IOException ex) {
+                System.err.printf("Retrying[%d/%d]: %s\n", ++retries, MAX_RETRIES, file.getName());
+            }
+        }
+        if (retries > MAX_RETRIES) System.err.println("FAILED TO GET: "+ imgURL);
     }
 }

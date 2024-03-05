@@ -1,6 +1,7 @@
 package org.camposmdev.res_soup;
 
-import org.camposmdev.model.card.meta.ImageOriginInfo;
+import org.camposmdev.model.Timex;
+import org.camposmdev.model.json.ImageData;
 import org.jsoup.Jsoup;
 
 import java.io.IOException;
@@ -18,7 +19,7 @@ public class Program implements Constants {
         System.out.println("Utilizing N_THREADS=" + N_THREADS);
     }
     public static void main(String[] args) {
-        final var START = System.currentTimeMillis();
+        var timer = new Timex().start();
         mkdirs();
         downloadCardBacks(CARDS_DIR);
         downloadCards(CHARACTER_DIR, "character/" , CHARACTERS_URL);
@@ -29,10 +30,8 @@ public class Program implements Constants {
         downloadCards(MONEY_DIR, "money/", MONEY_URLS);
         downloadCards(BSOUL_DIR, "bsoul/", BSOUL_URL);
         downloadCards(ROOM_DIR, "room/", ROOM_CARDS_URL);
-        final var END = System.currentTimeMillis() - START;
-        final var SEC = (END / 1000);
-        final var MIN = (SEC / 60);
-        System.out.printf("Done (%d min %d sec)\n", MIN, SEC);
+        saveTheObject();
+        System.out.printf("Finished Raiding (%s)\n", timer.stop());
     }
 
     /**
@@ -56,7 +55,8 @@ public class Program implements Constants {
      */
     public static void downloadCardBacks(String dir) {
         /* download card backs */
-        var conn = Jsoup.connect("https://foursouls.com/cards/");
+        final var ORIGIN = "https://foursouls.com/cards/";
+        var conn = Jsoup.connect(ORIGIN);
         try {
             var doc = conn.get();
             var divList = doc.getElementsByClass("CardTypeHover");
@@ -67,9 +67,10 @@ public class Program implements Constants {
                         var src = imgTag.attributes().get("src");
                         final var REGEX = "-110x150|-150x110";
                         var pattern = Pattern.compile(REGEX);
-                        src = pattern.matcher(src).replaceAll("");
-                        var imgURL = "https://foursouls.com" + src;
-                        var r = new ImageFetcherRunnable(dir, imgURL);
+                        var lowResURL = ORIGIN.substring(0, ORIGIN.indexOf("/cards/")) + src;
+                        var highResURL = ORIGIN.substring(0, ORIGIN.indexOf("/cards/")) + pattern.matcher(src).replaceAll("");
+                        var record = new ImageData(ORIGIN, highResURL, lowResURL, dir.substring(dir.indexOf("cards/")));
+                        var r = new ImageFetcherRunnable(dir, record);
                         r.run();
                     }
                 }
@@ -82,55 +83,54 @@ public class Program implements Constants {
     /**
      * Downloads info of the cards given from {urls} and stores the fetched images
      * to {imgdir} and data files to {datdir}
-     * @param imgdir Used as the path to save the image files
-     * @param datdir Used as the sub path to save the data files
-     * @param urls Used to extract all the card info
+     * @param abs_dir Used as the path to save the image files
+     * @param dir Used as the sub path to save the data files
+     * @param args Used to extract all the card info
      * @see Constants
      */
-    public static void downloadCards(String imgdir, String datdir, String... urls) {
-        for (var x : urls) {
-            var des = parseURLtoDAT(datdir, x);
-            var fetcher = new CardFetcher(x);
-            var goodList = fetcher.fetchHighQuality();
-            var poorList = fetcher.fetchLowQuality();
-            saveImageOriginInfo(des, goodList);
+    public static void downloadCards(String abs_dir, String dir, String... args) {
+        for (var url : args) {
+            var json_des = parseURLtoJSON(dir, url);
+            var img_dir = buildDIR(abs_dir, url);
+            var miser = new TheMiser(img_dir, url);
             /* time to download those cards... */
-            saveCardImages(buildDIR(imgdir, x), goodList);
-            saveCardImages(buildDIR(imgdir, x), poorList);
+            downloadImages(img_dir, miser.getTheList());
+            saveImageDataToJSON(json_des, miser.getTheList());
         }
     }
+
 
     /**
      * Since directories: character, bsoul, room are the only ones that have no subdirectories.
      * The program has to update the {imgdir} to re-direct the destination path to save the image file to
      * the appropriate subdirectory.
-     * @param imgdir Path to parent directory of the potential image that has to be saved to a subdirectory
+     * @param img_dir Path to parent directory of the potential image that has to be saved to a subdirectory
      * @param url URL to sub-category of the type of card
      * @return Updated path to save the image file, otherwise returns {imgdir}
      */
-    public static String buildDIR(String imgdir, String url) {
-        if (imgdir.equals(CHARACTER_DIR) || imgdir.equals(BSOUL_DIR) || imgdir.equals(ROOM_DIR)) {
-            return imgdir;
+    public static String buildDIR(String img_dir, String url) {
+        if (img_dir.equals(CHARACTER_DIR) || img_dir.equals(BSOUL_DIR) || img_dir.equals(ROOM_DIR)) {
+            return img_dir;
         } else {
-            return (imgdir + parseURLtoDIR(url));
+            return (img_dir + parseURLtoDIR(url));
         }
     }
 
-    public static void saveCardImages(String imgdir, List<ImageOriginInfo> infoList) {
+    public static void downloadImages(String dir_img, List<ImageData> list) {
         var exe = Executors.newFixedThreadPool(N_THREADS);
-        for (var x : infoList) {
-            var r = new ImageFetcherRunnable(imgdir, x.imgURL());
+        for (var x : list) {
+            var r = new ImageFetcherRunnable(dir_img, x);
             exe.execute(r);
         }
         try {
             exe.shutdown();
             var rc = exe.awaitTermination(3, TimeUnit.MINUTES);
             if (!rc) {
-                System.err.println("DOWNLOADING TOOK TOO LONG");
+                System.err.printf("DOWNLOADING IMAGES FOR %s TOOK TOO LONG\n", dir_img);
                 exe.shutdownNow();
             }
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
         }
     }
 }

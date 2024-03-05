@@ -14,7 +14,8 @@ public interface Constants {
     String BSOUL_DIR = CARDS_DIR + "bsoul/";
     String ROOM_DIR = CARDS_DIR + "room/";
 
-    String DAT_DIR = TARGET_DIR + "data/";
+    String DAT_DIR = TARGET_DIR + "data/cards/";
+    String JSON_DIR = TARGET_DIR + "json/cards/";
 
     String[] DIRS = {
             CARDS_DIR,
@@ -26,7 +27,8 @@ public interface Constants {
             MONEY_DIR,
             BSOUL_DIR,
             ROOM_DIR,
-            DAT_DIR
+            JSON_DIR
+//            DAT_DIR
     };
     String CHARACTERS_URL = "https://foursouls.com/card-search/?identical=no&cardstatus=all&card_type=character";
     String[] ETERNAL_URLS = {

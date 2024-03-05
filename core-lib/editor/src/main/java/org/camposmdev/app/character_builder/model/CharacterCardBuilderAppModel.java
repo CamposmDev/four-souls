@@ -1,7 +1,7 @@
 package org.camposmdev.app.character_builder.model;
 
 import org.camposmdev.model.card.character.CharacterCard;
-import org.camposmdev.model.card.meta.ImageOriginInfo;
+import org.camposmdev.model.json.ImageData;
 
 import java.io.*;
 import java.nio.file.Path;
@@ -16,7 +16,7 @@ public class CharacterCardBuilderAppModel {
     }
 
     int ind = 0;
-    LinkedList<ImageOriginInfo> metaCards;
+    LinkedList<ImageData> metaCards;
 
     private static final String SRC = "./character.dat";
 
@@ -35,14 +35,14 @@ public class CharacterCardBuilderAppModel {
         return true;
     }
 
-    public ImageOriginInfo peek() {
+    public ImageData peek() {
         return (metaCards.isEmpty()) ? null : metaCards.get(ind);
     }
 
     public boolean submit(CharacterCard card) {
-        if (ind > metaCards.size()) return true;
-        var m0 = metaCards.get(ind);
-        metaCards.set(ind++, new ImageOriginInfo(m0.getOriginURL(), m0.getImgURL(), card));
+//        if (ind > metaCards.size()) return true;
+//        var m0 = metaCards.get(ind);
+//        metaCards.set(ind++, new ImageRecord(m0.getOriginURL(), m0.getImgURL(), ""));
         return false;
     }
 
@@ -63,7 +63,7 @@ public class CharacterCardBuilderAppModel {
     private boolean loadObject(String src) {
         try {
             var ois = new ObjectInputStream(new FileInputStream(src));
-            this.metaCards = (LinkedList<ImageOriginInfo>) ois.readObject();
+            this.metaCards = (LinkedList<ImageData>) ois.readObject();
             ois.close();
             System.out.println("Loaded object");
             this.metaCards.forEach(System.out::println);
