@@ -1,5 +1,6 @@
 package org.camposmdev.model.json;
 
+import java.util.Iterator;
 import java.util.List;
 
 public record DeckAtlas(
@@ -12,4 +13,5 @@ public record DeckAtlas(
         List<String> bsoul,
         List<String> room
 ) {
+
 }

@@ -19,6 +19,7 @@ public class FSMainMenu extends FXGLMenu {
             var loginUI = FXUtil.loadUI("Login.fxml");
             assert loginUI != null;
             ((LoginController) loginUI.getController()).setParent(getContentRoot());
+
             var space = FXUtil.loadSpace();
             space.setPrefWidth(getAppWidth());
             space.setPrefHeight(getAppHeight());
@@ -30,8 +31,15 @@ public class FSMainMenu extends FXGLMenu {
     }
 
     @Override
-    public void onEnteredFrom(@NotNull Scene prevState) {
-        super.onEnteredFrom(prevState);
+    public void onCreate() {
+        super.onCreate();
+        FXGL.getAudioPlayer().stopAllMusic();
         FXGL.loopBGM("03 The Binding of Isaac.mp3");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        FXGL.getAudioPlayer().stopAllMusic();
     }
 }

@@ -1,6 +1,7 @@
 package org.camposmdev.client.ui;
 
 import com.almasb.fxgl.app.scene.*;
+import org.camposmdev.client.model.Log;
 import org.jetbrains.annotations.NotNull;
 
 public class FSSceneFactory extends SceneFactory {
@@ -13,8 +14,7 @@ public class FSSceneFactory extends SceneFactory {
     @NotNull
     @Override
     public FXGLMenu newGameMenu() {
-        /* TODO - Implement game menu */
-        return super.newGameMenu();
+        return new FSGameMenu(MenuType.GAME_MENU);
     }
 
     @NotNull
@@ -27,6 +27,7 @@ public class FSSceneFactory extends SceneFactory {
     @Override
     public LoadingScene newLoadingScene() {
         /* TODO - Implement loading scene */
+        Log.debug("INITIALIZE NEW LOADING SCREEN");
         return super.newLoadingScene();
     }
 

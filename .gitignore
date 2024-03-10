@@ -7,6 +7,7 @@ system/
 # DAT Files
 character.dat
 
-# Resource Files (Run RSoup to fetch)
+# Resource Files (Run RSoup to acquire them)
 client/src/main/resources/assets/textures/cards
-client/src/main/resources/assets/data
+client/src/main/resources/assets/data/cards
+client/src/main/resources/assets/json/cards

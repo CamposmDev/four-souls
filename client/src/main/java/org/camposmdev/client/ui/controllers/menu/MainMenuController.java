@@ -78,8 +78,9 @@ public class MainMenuController extends FXController implements Initializable {
          *  Give an option to see their eternal card
          *  Once chosen display the board
          */
-        hideAll(true);
-        singleplayerMenuController.hide(false);
+//        hideAll(true);
+//        singleplayerMenuController.hide(false);
+        getGameController().startNewGame();
     }
 
     public void handleMP() {

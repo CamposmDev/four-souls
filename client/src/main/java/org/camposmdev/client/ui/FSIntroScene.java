@@ -46,6 +46,5 @@ public class FSIntroScene extends IntroScene {
     public void onExitingTo(@NotNull Scene nextState) {
         super.onExitingTo(nextState);
         video.getMediaPlayer().stop();
-
     }
 }
