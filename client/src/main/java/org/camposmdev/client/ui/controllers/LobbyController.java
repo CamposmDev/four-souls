@@ -16,7 +16,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-import org.camposmdev.client.model.UserContext;
+import org.camposmdev.client.game.UserContext;
 import org.camposmdev.client.net.API;
 import org.camposmdev.client.ui.FXUtil;
 import org.camposmdev.client.ui.controllers.sprite.BubbleController;

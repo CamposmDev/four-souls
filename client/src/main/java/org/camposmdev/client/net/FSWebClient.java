@@ -5,7 +5,7 @@ import io.vertx.core.Promise;
 import io.vertx.core.Vertx;
 import io.vertx.core.http.*;
 import io.vertx.core.json.JsonObject;
-import org.camposmdev.client.model.UserContext;
+import org.camposmdev.client.game.UserContext;
 
 class FSWebClient {
     private final HttpClient client;

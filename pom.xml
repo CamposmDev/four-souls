@@ -6,18 +6,16 @@
     <groupId>org.camposmdev</groupId>
     <packaging>pom</packaging>
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <artifactId>four-souls-online</artifactId>
     <version>1.0.0</version>
-
     <modules>
         <module>client</module>
         <module>server</module>
-        <module>core-lib</module>
-        <module>core-lib/model</module>
-        <module>core-lib/editor</module>
+        <module>model</module>
+        <module>res-soup</module>
     </modules>
-    
 </project>

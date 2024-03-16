@@ -5,4 +5,12 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/test/java" isTestSource="true" />
     </content>
   </component>
+  <component name="AutoImportedSourceRoots">
+    <option name="directories">
+      <list>
+        <option value="src/main/java" />
+        <option value="target/generated-sources/annotations" />
+      </list>
+    </option>
+  </component>
 </module>

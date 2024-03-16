@@ -1,6 +1,5 @@
 package org.camposmdev.client.ui;
 
-import com.almasb.fxgl.app.scene.FXGLDefaultMenu;
 import com.almasb.fxgl.app.scene.FXGLMenu;
 import com.almasb.fxgl.app.scene.MenuType;
 import com.almasb.fxgl.dsl.FXGL;
@@ -8,7 +7,7 @@ import com.almasb.fxgl.scene.Scene;
 import javafx.geometry.Pos;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import org.camposmdev.client.model.Log;
+import org.camposmdev.client.game.Log;
 import org.jetbrains.annotations.NotNull;
 
 public class FSGameMenu extends FXGLMenu {

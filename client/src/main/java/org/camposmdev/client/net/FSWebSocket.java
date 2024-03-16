@@ -7,7 +7,7 @@ import io.vertx.core.http.HttpHeaders;
 import io.vertx.core.http.WebSocketConnectOptions;
 import io.vertx.core.json.DecodeException;
 import io.vertx.core.json.JsonObject;
-import org.camposmdev.client.model.UserContext;
+import org.camposmdev.client.game.UserContext;
 import org.camposmdev.model.BusEvent;
 import org.camposmdev.model.MType;
 

@@ -11,7 +11,6 @@
         <outputRelativeToContentRoot value="true" />
         <module name="server" />
         <module name="client" />
-        <module name="editor" />
         <module name="model" />
         <module name="res-soup" />
       </profile>
@@ -19,6 +18,8 @@
     <bytecodeTargetLevel>
       <module name="client-" target="17" />
       <module name="common-lib" target="17" />
+      <module name="core-lib" target="17" />
+      <module name="editor" target="17" />
       <module name="res-raiders" target="17" />
     </bytecodeTargetLevel>
   </component>

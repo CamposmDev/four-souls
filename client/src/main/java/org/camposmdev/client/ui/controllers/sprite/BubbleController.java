@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.StackPane;
-import org.camposmdev.client.model.json.NightmareSpriteAtlas;
+import org.camposmdev.client.game.json.NightmareSpriteAtlas;
 import org.camposmdev.client.ui.FXUtil;
 import org.camposmdev.client.ui.controllers.FXController;
 

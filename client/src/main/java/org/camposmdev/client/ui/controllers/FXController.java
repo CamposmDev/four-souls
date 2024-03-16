@@ -1,7 +1,7 @@
 package org.camposmdev.client.ui.controllers;
 
 import com.almasb.fxgl.ui.UIController;
-import org.camposmdev.client.model.Log;
+import org.camposmdev.client.game.Log;
 
 public abstract class FXController implements UIController {
     @Override
