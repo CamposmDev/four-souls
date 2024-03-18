@@ -7,12 +7,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.*;
 import org.camposmdev.client.game.ErrorRunnable;
-import org.camposmdev.client.game.Log;
 import org.camposmdev.client.game.UserContext;
 import org.camposmdev.client.net.API;
-import org.camposmdev.client.ui.FXUtil;
-import org.camposmdev.client.ui.controllers.FXController;
-import org.camposmdev.model.BusEvent;
+import org.camposmdev.util.FXUtil;
+import org.camposmdev.util.FXController;
+import org.camposmdev.model.net.BusEvent;
+import org.camposmdev.util.Log;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -75,7 +75,7 @@ public class MainMenuController extends FXController implements Initializable {
          *  Hide the title screen and then go to character selection
          *  Keep the background, and give the player the option to select their character
          *  Give them two character cards to choose from that is picked randomly from the character pool
-         *  Give an option to see their eternal card
+         *  Give an option to see their eternal base
          *  Once chosen display the board
          */
 //        hideAll(true);

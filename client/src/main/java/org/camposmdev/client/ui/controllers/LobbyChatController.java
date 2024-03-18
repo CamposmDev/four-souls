@@ -7,7 +7,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import org.camposmdev.client.net.API;
-import org.camposmdev.model.BusEvent;
+import org.camposmdev.model.net.BusEvent;
+import org.camposmdev.util.FXController;
 
 import java.net.URL;
 import java.util.ResourceBundle;

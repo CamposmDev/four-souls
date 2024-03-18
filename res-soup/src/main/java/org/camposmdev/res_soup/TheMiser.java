@@ -1,6 +1,6 @@
 package org.camposmdev.res_soup;
 
-import org.camposmdev.model.json.ImageData;
+import org.camposmdev.model.atlas.ImageInfo;
 import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -17,8 +17,8 @@ public class TheMiser {
     private static final int MAX_RETRIES = 10;
     private static final String REGEX = "-308x420|-420x308|-420x300";
 
-    private String img_dir;
-    private List<ImageData> theList;
+    private final String img_dir;
+    private final List<ImageInfo> theList;
 
     public TheMiser(String img_dir, String src) {
         this.img_dir = img_dir.substring(img_dir.indexOf("cards/"));
@@ -26,7 +26,7 @@ public class TheMiser {
         raid(src, true);
     }
 
-    public List<ImageData> getTheList() {
+    public List<ImageInfo> getTheList() {
         return theList;
     }
 
@@ -69,7 +69,7 @@ public class TheMiser {
         for (var div : elements) {
             var a_tags = div.getElementsByTag("a");
             if (a_tags.isEmpty()) return;
-            var originURL = a_tags.get(0).attributes().get("href");
+            var originURL = a_tags.getFirst().attributes().get("href");
             var img_tags = div.getElementsByTag("img");
             if (img_tags.isEmpty()) return;
             for (var img_tag: img_tags) {
@@ -79,7 +79,7 @@ public class TheMiser {
                 var matcher = pattern.matcher(imgURL);
                 if (matcher.find()) {
                     var highResImgURL = matcher.replaceAll("");
-                    var record = new ImageData(originURL, highResImgURL, imgURL, img_dir);
+                    var record = new ImageInfo(originURL, highResImgURL, imgURL, img_dir);
                     theList.add(record);
                 } else if (imgURL.contains("FlipCornerNote.png")) {
                     System.out.println("Skipping: " + imgURL);

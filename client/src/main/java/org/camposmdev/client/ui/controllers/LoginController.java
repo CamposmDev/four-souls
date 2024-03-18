@@ -10,7 +10,8 @@ import javafx.geometry.Point2D;
 
 import javafx.util.Duration;
 import org.camposmdev.client.net.API;
-import org.camposmdev.client.ui.FXUtil;
+import org.camposmdev.util.FXController;
+import org.camposmdev.util.FXUtil;
 
 import java.net.URL;
 import java.util.ResourceBundle;

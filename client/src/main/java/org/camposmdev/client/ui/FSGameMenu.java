@@ -7,7 +7,7 @@ import com.almasb.fxgl.scene.Scene;
 import javafx.geometry.Pos;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import org.camposmdev.client.game.Log;
+import org.camposmdev.util.Log;
 import org.jetbrains.annotations.NotNull;
 
 public class FSGameMenu extends FXGLMenu {

@@ -1,10 +1,9 @@
 package org.camposmdev.client.ui;
 
 import com.almasb.fxgl.app.scene.StartupScene;
-import com.almasb.fxgl.scene.Scene;
 import javafx.scene.Cursor;
 import javafx.scene.layout.StackPane;
-import org.jetbrains.annotations.NotNull;
+import org.camposmdev.util.FXUtil;
 
 public class FSStartupScene extends StartupScene {
 

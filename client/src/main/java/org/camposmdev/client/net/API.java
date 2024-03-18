@@ -3,7 +3,7 @@ package org.camposmdev.client.net;
 import io.vertx.core.Future;
 import io.vertx.core.Vertx;
 import io.vertx.core.eventbus.MessageConsumer;
-import org.camposmdev.model.BusEvent;
+import org.camposmdev.model.net.BusEvent;
 
 
 public class API {

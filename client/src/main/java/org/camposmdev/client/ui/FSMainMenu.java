@@ -3,12 +3,11 @@ package org.camposmdev.client.ui;
 import com.almasb.fxgl.app.scene.FXGLMenu;
 import com.almasb.fxgl.app.scene.MenuType;
 import com.almasb.fxgl.dsl.FXGL;
-import com.almasb.fxgl.scene.Scene;
 import javafx.application.Platform;
 import javafx.scene.layout.StackPane;
 import org.camposmdev.client.ui.controllers.LoginController;
 import org.camposmdev.client.net.API;
-import org.jetbrains.annotations.NotNull;
+import org.camposmdev.util.FXUtil;
 
 
 public class FSMainMenu extends FXGLMenu {

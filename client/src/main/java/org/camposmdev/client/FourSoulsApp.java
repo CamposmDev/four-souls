@@ -23,10 +23,10 @@ import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 import org.camposmdev.client.game.component.D6AnimationComponent;
 import org.camposmdev.client.game.GameFactory;
-import org.camposmdev.client.game.Log;
 import org.camposmdev.model.Timex;
-import org.camposmdev.model.json.DeckAtlas;
-import org.camposmdev.model.json.ImageDataAtlas;
+import org.camposmdev.model.atlas.MasterImageAtlas;
+import org.camposmdev.model.atlas.ImageAtlas;
+import org.camposmdev.util.Log;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -138,7 +138,6 @@ public class FourSoulsApp extends GameApplication {
             var r = rotateOut(lootCardBack);
             r.play();
             r.setOnFinished(e1 -> {
-                System.out.println("finished");
                 getGameWorld().addEntity(beanEntity);
                 var r1 = rotateIn(butterBean);
                 r1.play();
@@ -152,11 +151,11 @@ public class FourSoulsApp extends GameApplication {
         addScaleOnMouseHover(playerEntity, ScaleFrom.BOTTOM_LEFT);
 
         var entity = getGameWorld().spawn("d6");
-        entity.getViewComponent().addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-            entity.getComponent(D6AnimationComponent.class).roll().onSuccess(x -> {
-                System.out.println(x);
-            });
-        });
+        entity.getViewComponent().addEventHandler(MouseEvent.MOUSE_CLICKED, e ->
+                entity.getComponent(D6AnimationComponent.class).roll().onSuccess(x -> {
+                    /* TODO */
+            Log.debugf("Player rolled %d\n", x);
+        }));
         entity.translate(new Point2D(-16, -16));
 //        var entity = new EntityBuilder().view("d6_red.png").buildAndAttach();
 //        entity.setScaleUniform(5);
@@ -165,23 +164,19 @@ public class FourSoulsApp extends GameApplication {
     enum ScaleFrom {
         TOP_LEFT, TOP_CENTER, TOP_RIGHT,
         CENTER_LEFT, CENTER, CENTER_RIGHT,
-        BOTTOM_LEFT, BOTTOM_CENTER, BOTTOM_RIGHT;
+        BOTTOM_LEFT, BOTTOM_CENTER, BOTTOM_RIGHT
     }
 
     private void addScaleOnMouseHover(Entity entity, ScaleFrom type) {
         var lst = entity.getViewComponent().getChildren();
-        if (lst.size() == 0) return;
-        if (!(lst.get(0) instanceof ImageView)) return;
-        var width = ((ImageView) lst.get(0)).getFitWidth();
-        var height = ((ImageView) lst.get(0)).getFitHeight();
+        if (lst.isEmpty()) return;
+        if (!(lst.getFirst() instanceof ImageView)) return;
+        var width = ((ImageView) lst.getFirst()).getFitWidth();
+        var height = ((ImageView) lst.getFirst()).getFitHeight();
         switch (type) {
             case TOP_LEFT -> {
-                entity.getViewComponent().addEventHandler(MouseEvent.MOUSE_ENTERED, e -> {
-                    entity.setScaleUniform(2);
-                });
-                entity.getViewComponent().addEventHandler(MouseEvent.MOUSE_EXITED, e -> {
-                    entity.setScaleUniform(1);
-                });
+                entity.getViewComponent().addEventHandler(MouseEvent.MOUSE_ENTERED, e -> entity.setScaleUniform(2));
+                entity.getViewComponent().addEventHandler(MouseEvent.MOUSE_EXITED, e -> entity.setScaleUniform(1));
             }
             case TOP_CENTER -> {
                 entity.getViewComponent().addEventHandler(MouseEvent.MOUSE_ENTERED, e -> {
@@ -307,8 +302,8 @@ public class FourSoulsApp extends GameApplication {
     }
 
     private void loadDeck() {
-        var deck = loadJSON("json/cards/cards.json", DeckAtlas.class);
-        var characters = loadJSON(deck.character(), ImageDataAtlas.class);
+        var deck = loadJSON("json/cards/cards.json", MasterImageAtlas.class);
+        var characters = loadJSON(deck.character(), ImageAtlas.class);
         characters.images().values().forEach(data -> getAssetLoader().loadTexture(data.source2()));
 //        deck.eternal().forEach(x -> loadCards(x));
 //        deck.treasure().forEach(x -> loadCards(x));
@@ -320,10 +315,9 @@ public class FourSoulsApp extends GameApplication {
     }
 
     private void loadCards(String src) {
-        var atlas = loadJSON(src, ImageDataAtlas.class);
-        atlas.images().values().forEach(data -> {
-            getAssetLoader().loadTexture(data.source2());
-        });
+        var atlas = loadJSON(src, ImageAtlas.class);
+        atlas.images().values().forEach(data ->
+                getAssetLoader().loadTexture(data.source2()));
     }
 
     private <T> T loadJSON(String src, Class<T> type) {

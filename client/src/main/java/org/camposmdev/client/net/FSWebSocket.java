@@ -8,8 +8,8 @@ import io.vertx.core.http.WebSocketConnectOptions;
 import io.vertx.core.json.DecodeException;
 import io.vertx.core.json.JsonObject;
 import org.camposmdev.client.game.UserContext;
-import org.camposmdev.model.BusEvent;
-import org.camposmdev.model.MType;
+import org.camposmdev.model.net.BusEvent;
+import org.camposmdev.model.net.MType;
 
 class FSWebSocket {
     private static final String WS_ROUTE = "/ws";
@@ -43,7 +43,7 @@ class FSWebSocket {
             var obj = new JsonObject(text);
             handleJSON(obj);
         } catch (DecodeException ex) {
-            ex.printStackTrace();
+            System.err.println(ex.getCause());
         }
     }
 

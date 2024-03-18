@@ -13,6 +13,7 @@
         <module name="client" />
         <module name="model" />
         <module name="res-soup" />
+        <module name="util" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

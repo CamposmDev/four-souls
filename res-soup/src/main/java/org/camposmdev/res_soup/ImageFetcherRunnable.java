@@ -1,6 +1,6 @@
 package org.camposmdev.res_soup;
 
-import org.camposmdev.model.json.ImageData;
+import org.camposmdev.model.atlas.ImageInfo;
 
 import javax.imageio.ImageIO;
 import java.io.File;
@@ -8,10 +8,10 @@ import java.io.IOException;
 import java.net.URI;
 
 public class ImageFetcherRunnable implements Runnable {
-    private String dir_img;
-    private final ImageData ir;
+    private final String dir_img;
+    private final ImageInfo ir;
 
-    public ImageFetcherRunnable(String dir_img, ImageData ir) {
+    public ImageFetcherRunnable(String dir_img, ImageInfo ir) {
         this.dir_img = dir_img;
         this.ir = ir;
     }

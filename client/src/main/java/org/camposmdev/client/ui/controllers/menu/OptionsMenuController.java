@@ -6,8 +6,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.VBox;
-import org.camposmdev.client.ui.FXUtil;
-import org.camposmdev.client.ui.controllers.FXController;
+import org.camposmdev.util.FXUtil;
+import org.camposmdev.util.FXController;
 
 import java.net.URL;
 import java.util.ResourceBundle;

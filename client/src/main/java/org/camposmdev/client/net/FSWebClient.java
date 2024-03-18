@@ -25,7 +25,7 @@ class FSWebClient {
                         var obj = data.toJsonObject();
                         if (code == 200) {
                             /* save our cookie token */
-                            var authCookie = res.cookies().get(0);
+                            var authCookie = res.cookies().getFirst();
                             API.get().setAuthCookie(authCookie);
                             promise.complete();
                             UserContext.get().setParams(obj);

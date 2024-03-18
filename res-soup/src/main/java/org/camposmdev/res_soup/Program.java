@@ -1,7 +1,7 @@
 package org.camposmdev.res_soup;
 
 import org.camposmdev.model.Timex;
-import org.camposmdev.model.json.ImageData;
+import org.camposmdev.model.atlas.ImageInfo;
 import org.jsoup.Jsoup;
 
 import java.io.IOException;
@@ -50,11 +50,11 @@ public class Program implements Constants {
     }
 
     /**
-     * Downloads the back of cards of card types available in the tabletop game: Four Souls
+     * Downloads the back of cards of base types available in the tabletop game: Four Souls
      * @param dir The destination folder where the image file will be saved in
      */
     public static void downloadCardBacks(String dir) {
-        /* download card backs */
+        /* download base backs */
         final var ORIGIN = "https://foursouls.com/cards/";
         var conn = Jsoup.connect(ORIGIN);
         try {
@@ -69,7 +69,7 @@ public class Program implements Constants {
                         var pattern = Pattern.compile(REGEX);
                         var lowResURL = ORIGIN.substring(0, ORIGIN.indexOf("/cards/")) + src;
                         var highResURL = ORIGIN.substring(0, ORIGIN.indexOf("/cards/")) + pattern.matcher(src).replaceAll("");
-                        var record = new ImageData(ORIGIN, highResURL, lowResURL, dir.substring(dir.indexOf("cards/")));
+                        var record = new ImageInfo(ORIGIN, highResURL, lowResURL, dir.substring(dir.indexOf("cards/")));
                         var r = new ImageFetcherRunnable(dir, record);
                         r.run();
                     }
@@ -85,7 +85,7 @@ public class Program implements Constants {
      * to {imgdir} and data files to {datdir}
      * @param abs_dir Used as the path to save the image files
      * @param dir Used as the sub path to save the data files
-     * @param args Used to extract all the card info
+     * @param args Used to extract all the base info
      * @see Constants
      */
     public static void downloadCards(String abs_dir, String dir, String... args) {
@@ -105,7 +105,7 @@ public class Program implements Constants {
      * The program has to update the {imgdir} to re-direct the destination path to save the image file to
      * the appropriate subdirectory.
      * @param img_dir Path to parent directory of the potential image that has to be saved to a subdirectory
-     * @param url URL to sub-category of the type of card
+     * @param url URL to sub-category of the type of base
      * @return Updated path to save the image file, otherwise returns {imgdir}
      */
     public static String buildDIR(String img_dir, String url) {
@@ -116,7 +116,7 @@ public class Program implements Constants {
         }
     }
 
-    public static void downloadImages(String dir_img, List<ImageData> list) {
+    public static void downloadImages(String dir_img, List<ImageInfo> list) {
         var exe = Executors.newFixedThreadPool(N_THREADS);
         for (var x : list) {
             var r = new ImageFetcherRunnable(dir_img, x);

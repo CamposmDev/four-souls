@@ -1,3 +1,3 @@
 Manifest-Version: 1.0
-Main-Class: org.camposmdev.client.Launcher
+Main-Class: org.camposmdev.client.FourSoulsApp
 

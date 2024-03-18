@@ -1,4 +1,5 @@
 open module org.camposmdev.client {
+    requires javafx.base;
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
@@ -6,4 +7,5 @@ open module org.camposmdev.client {
     requires io.vertx.core;
     requires org.jetbrains.annotations;
     requires model;
+    requires util;
 }

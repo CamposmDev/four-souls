@@ -1,8 +1,7 @@
 package org.camposmdev.res_soup;
 
-import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
-import org.camposmdev.model.json.ImageData;
+import org.camposmdev.model.atlas.ImageInfo;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -17,7 +16,7 @@ public class Util {
 
     /**
      * Writes {theObject} as a JSON file to JSON_DIR as cards.json
-     * @see JSON_DIR
+     * @see Constants
      */
     public static void saveTheObject() {
         File file = new File(JSON_DIR + "cards.json");
@@ -37,7 +36,7 @@ public class Util {
      * @param des Where to save the JSON
      * @param list Object to parse to JSON
      */
-    public static void saveToJSON(String des, List<ImageData> list) {
+    public static void saveToJSON(String des, List<ImageInfo> list) {
         try {
             File file = new File(des);
             Path path = Paths.get(file.getParent());
@@ -100,7 +99,7 @@ public class Util {
 
     /**
      * @brief Extracts URLs card_type attribute value
-     * @param url
+     * @param url URL to be parsed for its card_type attribute value
      * @return Value of card_type attribute
      */
     public static String parseURL(String url) {

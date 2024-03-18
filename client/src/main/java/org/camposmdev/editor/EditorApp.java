@@ -1,10 +1,14 @@
 package org.camposmdev.editor;
 
+import com.almasb.fxgl.app.ApplicationMode;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.dsl.FXGL;
 import org.camposmdev.editor.model.Model;
-import org.camposmdev.editor.ui.Editor;
+import org.camposmdev.editor.ui.factory.DialogFactory;
+import org.camposmdev.editor.ui.workspace.Workspace;
+
+import java.util.List;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 
@@ -14,11 +18,17 @@ public class EditorApp extends GameApplication {
     }
     @Override
     protected void initSettings(GameSettings settings) {
+        settings.setTitle("Four Souls Editor");
+        settings.setVersion("1.0");
         settings.setWidth(1600);
         settings.setHeight(900);
-        settings.setScaleAffectedOnResize(true);
+        settings.setFullScreenAllowed(true);
         settings.setManualResizeEnabled(true);
-        settings.setTitle("Four Souls Editor");
+        settings.setPreserveResizeRatio(false);
+        settings.setApplicationMode(ApplicationMode.DEVELOPER);
+        settings.setCSSList(List.of());
+        settings.setGameMenuEnabled(false);
+        settings.setMainMenuEnabled(false);
     }
 
     @Override
@@ -28,7 +38,11 @@ public class EditorApp extends GameApplication {
 
     @Override
     protected void initUI() {
-        var editor = new Editor(getAppWidth(), getAppHeight());
-        FXGL.addUINode(editor.getContent());
+        var editor = new Workspace(getAppWidth(), getAppHeight());
+        addUINode(editor.getContent());
+        FXGL.getPrimaryStage().setOnCloseRequest(e -> {
+            DialogFactory.instance().showExitBox();
+            e.consume();
+        });
     }
 }

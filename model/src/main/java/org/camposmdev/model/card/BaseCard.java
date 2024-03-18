@@ -1,43 +1,44 @@
 package org.camposmdev.model.card;
 
-import java.io.Serializable;
-import java.util.UUID;
+import io.vertx.core.json.JsonObject;
 
-public abstract class BaseCard implements Serializable, Comparable<BaseCard> {
-    private UUID id;
-    protected String name;
+public abstract class BaseCard {
+    private String id, image;
 
-    public BaseCard(String name) {
-        this.id = UUID.randomUUID();
-        this.name = name;
+    public BaseCard(String id, String image) {
+        this.id = id;
+        this.image = image;
     }
 
-    public BaseCard() {
-        this.id = UUID.randomUUID();
+    public String id() {
+        return id;
     }
 
-    public String getId() {
-        return this.id.toString();
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String image() {
+        return image;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    @Override
-    public int compareTo(BaseCard card) {
-        return id.compareTo(card.id);
+    public JsonObject toJSON() {
+        return JsonObject.of(
+                "id", id,
+                "image", image
+        );
     }
 
     @Override
     public String toString() {
-        return "BaseCard{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+        return toJSON().encode();
+    }
+
+    public String toPrettyString() {
+        return toJSON().encodePrettily();
     }
 }

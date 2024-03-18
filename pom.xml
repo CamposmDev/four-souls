@@ -17,5 +17,6 @@
         <module>server</module>
         <module>model</module>
         <module>res-soup</module>
+        <module>util</module>
     </modules>
 </project>

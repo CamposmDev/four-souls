@@ -1,6 +1,7 @@
 package org.camposmdev.client.ui.controllers;
 
-import org.camposmdev.client.game.Log;
+import org.camposmdev.util.FXController;
+import org.camposmdev.util.Log;
 
 public class CharacterChooserController extends FXController {
     @Override

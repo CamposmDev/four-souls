@@ -3,7 +3,7 @@ package org.camposmdev.server.model;
 import io.vertx.core.http.ServerWebSocket;
 import io.vertx.core.json.DecodeException;
 import io.vertx.core.json.JsonObject;
-import org.camposmdev.model.MType;
+import org.camposmdev.model.net.MType;
 
 public class WSAgent {
     private final ServerWebSocket ws;

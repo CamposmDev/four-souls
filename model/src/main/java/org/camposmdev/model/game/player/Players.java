@@ -15,7 +15,7 @@ public class Players {
 
     /**
      * Checks if a player turn is in progress
-     * @param p
+     * @param p Checks if given player turn is ready
      * @return true if the Player ids match, otherwise false
      */
     public boolean isPlayerTurn(Player p) {
@@ -90,15 +90,15 @@ public class Players {
 
     @Override
     public String toString() {
-        String s = "[";
+        var sb = new StringBuilder("[");
         var node = head.next;
         while (node != head) {
-            s += node.p.getId().toString();
+            sb.append(node.p.getId());
             node = node.next;
             if (node != head) {
-                s += ", ";
+                sb.append(", ");
             }
         }
-        return s + ']';
+        return sb.append("]").toString();
     }
 }

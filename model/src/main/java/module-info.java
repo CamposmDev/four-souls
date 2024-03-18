@@ -3,10 +3,11 @@ module model {
     requires com.almasb.fxgl.all;
     exports org.camposmdev.model;
     exports org.camposmdev.model.card;
-    exports org.camposmdev.model.card.statistic;
-    exports org.camposmdev.model.card.builder;
-    exports org.camposmdev.model.card.character;
-    exports org.camposmdev.model.card.eternal;
-    exports org.camposmdev.model.json;
-    opens org.camposmdev.model.json to com.fasterxml.jackson.databind;
+    opens org.camposmdev.model.card to com.fasterxml.jackson.databind;
+    exports org.camposmdev.model.atlas;
+    opens org.camposmdev.model.atlas to com.fasterxml.jackson.databind;
+    exports org.camposmdev.model.game;
+    exports org.camposmdev.model.net;
+    exports org.camposmdev.model.card.attribute;
+    opens org.camposmdev.model.card.attribute to com.fasterxml.jackson.databind;
 }

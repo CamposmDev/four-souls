@@ -2,7 +2,7 @@ package org.camposmdev.client.ui.controllers.menu;
 
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
-import org.camposmdev.client.ui.controllers.FXController;
+import org.camposmdev.util.FXController;
 
 public class SingleplayerMenuController extends FXController {
     @FXML

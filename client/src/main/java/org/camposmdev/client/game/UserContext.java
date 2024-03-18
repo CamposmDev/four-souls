@@ -1,7 +1,7 @@
 package org.camposmdev.client.game;
 
 import io.vertx.core.json.JsonObject;
-import org.camposmdev.model.Lobby;
+import org.camposmdev.model.game.Lobby;
 
 import java.util.Arrays;
 import java.util.HashSet;

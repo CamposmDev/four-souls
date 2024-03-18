@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+
+<GridPane alignment="CENTER" hgap="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" vgap="12.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.camposmdev.editor.ui.workspace.eternal.PassiveFormController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Label text="Has Counter" />
+      <Label text="Treasure After Death" GridPane.rowIndex="1" />
+      <Label text="Roll Listeners" GridPane.rowIndex="2" />
+      <Label text="Death Listeners" GridPane.rowIndex="3" />
+      <Label text="Damage Taken Options" GridPane.rowIndex="4" />
+      <Label text="Damage Dealth Roll for Effect" GridPane.rowIndex="5" />
+      <Label text="Kill Listeners" GridPane.rowIndex="6" />
+      <Label text="Counter is Hit Points" GridPane.rowIndex="7" />
+      <Label text="Counter Limit" GridPane.rowIndex="8" />
+      <Label text="Counter Limit Resets To" GridPane.rowIndex="9" />
+      <Label text="Counter Exceeded Reward" GridPane.rowIndex="10" />
+      <Label text="Is Allowed to Attack Again" GridPane.rowIndex="11" />
+      <Label text="is Allowed to Flip Character" GridPane.rowIndex="12" />
+      <Label text="is Allowed to Copy Shop Item" GridPane.columnIndex="2" />
+      <Label text="is Copied Shop Item Forever" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+      <Label text="is Death Penalty Money On" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+      <Label text="is Death Penalty Loot On" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+      <Label text="is Ball of Tumors" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+      <Label text="is Death Penalty Treasure On" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+      <Label text="Peek Loot Deck at Start to Public" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+      <Label text="is Allowed to Play Matching Loot Card" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+      <Label text="is Posession Card" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+      <Label text="is Allowed to Copy Eternal Item at Start" GridPane.columnIndex="2" GridPane.rowIndex="9" />
+      <Label text="Is Ring of Snake Card" GridPane.columnIndex="2" GridPane.rowIndex="13" />
+      <Label text="Is Focus Card" GridPane.columnIndex="2" GridPane.rowIndex="12" />
+      <Label text="Is Hunky Boys Card" GridPane.columnIndex="2" GridPane.rowIndex="11" />
+      <Label text="Is Lollypop Card" GridPane.columnIndex="2" GridPane.rowIndex="10" />
+      <ComboBox fx:id="cbHasCounter" prefWidth="150.0" GridPane.columnIndex="1" />
+      <TextField fx:id="tfTreasureAfterDeath" promptText="[0, 127]" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#modRollListener" text="Modify" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#modDeathListener" text="Modify" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#modDamageTakenOption" text="Modify" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#modDamageRollForEffect" text="Modify" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+      <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#modKillListener" text="Modify" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+       <ComboBox fx:id="cbCounterIsHitPoints" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+       <TextField fx:id="tfCounterLimit" promptText="[0, 127]" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+      <TextField fx:id="tfCounterResetsTo" promptText="[0, 127]" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+      <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#modCounterExceededReward" text="Modify" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+      <ComboBox fx:id="cbIsAllowedToAttackAgain" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+      <ComboBox fx:id="cbIsAllowedToFlipCharacter" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+      <ComboBox fx:id="cbIsAllowedToCopyShopItem" prefWidth="150.0" GridPane.columnIndex="3" />
+      <ComboBox fx:id="cbIsCopiedShopItemForever" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+      <ComboBox fx:id="cbIsDeathPenaltyMoneyOn" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+      <ComboBox fx:id="cbIsDeathPenaltyLootOn" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+      <ComboBox fx:id="cbIsBallOfTumors" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+      <ComboBox fx:id="cbIsDeathPenaltyTreasureOn" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+      <ComboBox fx:id="cbPeekLootDeckAtStartToPublic" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+      <ComboBox fx:id="cbIsAllowedToPlayMatchingLootCard" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+      <ComboBox fx:id="cbIsPossession" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="8" />
+      <ComboBox fx:id="cbIsAllowedToCopyEternalItemAtStart" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="9" />
+      <ComboBox fx:id="cbIsLollypop" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="10" />
+      <ComboBox fx:id="cbIsHunkyBoys" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="11" />
+      <ComboBox fx:id="cbIsFocus" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="12" />
+      <ComboBox fx:id="cbIsRingOfSnake" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="13" />
+   </children>
+</GridPane>

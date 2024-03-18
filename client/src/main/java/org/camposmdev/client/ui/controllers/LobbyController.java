@@ -18,9 +18,10 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 import org.camposmdev.client.game.UserContext;
 import org.camposmdev.client.net.API;
-import org.camposmdev.client.ui.FXUtil;
+import org.camposmdev.util.FXController;
+import org.camposmdev.util.FXUtil;
 import org.camposmdev.client.ui.controllers.sprite.BubbleController;
-import org.camposmdev.model.BusEvent;
+import org.camposmdev.model.net.BusEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;

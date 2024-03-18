@@ -1,7 +1,7 @@
 package org.camposmdev.client.ui;
 
 import com.almasb.fxgl.app.scene.*;
-import org.camposmdev.client.game.Log;
+import org.camposmdev.util.Log;
 import org.jetbrains.annotations.NotNull;
 
 public class FSSceneFactory extends SceneFactory {

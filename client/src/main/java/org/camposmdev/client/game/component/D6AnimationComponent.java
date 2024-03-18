@@ -17,9 +17,9 @@ public class D6AnimationComponent extends Component {
     private static final int FRAMES_PER_ROW = 12;
     private static final int FRAME_WIDTH = 90, FRAME_HEIGHT = 95;
     private int idx;
-    private AnimatedTexture animTexture;
-    private AnimationChannel[] sides;
-    private AnimationChannel animRoll;
+    private final AnimatedTexture animTexture;
+    private final AnimationChannel[] sides;
+    private final AnimationChannel animRoll;
     public D6AnimationComponent() {
         /* load the spritesheet */
         var spritesheet = image("d6_red.png");
