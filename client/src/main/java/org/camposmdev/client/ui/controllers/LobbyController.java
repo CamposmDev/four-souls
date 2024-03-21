@@ -18,10 +18,10 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 import org.camposmdev.client.game.UserContext;
 import org.camposmdev.client.net.API;
-import org.camposmdev.util.FXController;
-import org.camposmdev.util.FXUtil;
 import org.camposmdev.client.ui.controllers.sprite.BubbleController;
 import org.camposmdev.model.net.BusEvent;
+import org.camposmdev.util.FXController;
+import org.camposmdev.util.FXUtil;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -56,7 +56,7 @@ public class LobbyController extends FXController implements Initializable {
 //                    ((LobbyChatController) chat.getController()).annouce(outliar);
             });
         });
-        /* TODO - Remove start game button if the user is NOT the host */
+        /* Remove start game button if the user is NOT the host */
         if (!UserContext.get().isHosting()) {
             textStart.setDisable(true);
             textStart.setVisible(false);

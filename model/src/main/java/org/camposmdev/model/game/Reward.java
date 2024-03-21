@@ -28,10 +28,6 @@ public record Reward(Byte loot, Byte treasure, Byte cents, Byte souls, Byte hitP
         );
     }
 
-    public String toPrettyString() {
-        return toJSON().encodePrettily();
-    }
-
     @Override
     public String toString() {
         return toJSON().encode();

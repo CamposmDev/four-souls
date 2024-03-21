@@ -4,7 +4,9 @@ import com.almasb.fxgl.dsl.FXGL;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.*;
-import javafx.scene.input.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
 import org.camposmdev.editor.model.Model;
 import org.camposmdev.editor.ui.factory.DialogFactory;
 import org.camposmdev.editor.ui.workspace.Workspace;
@@ -32,7 +34,7 @@ public class AppBar {
         var miPreview = new MenuItem("Preview");
         miPreview.setAccelerator(new KeyCodeCombination(KeyCode.P, KeyCodeCombination.SHORTCUT_DOWN));
         miPreview.setOnAction(e -> {
-            var payload = Model.instance().cards().toString();
+            var payload = Model.instance().cards().toJSON();
             DialogFactory.instance().showPreviewBox(payload);
         });
         var miExit = new MenuItem("Exit");

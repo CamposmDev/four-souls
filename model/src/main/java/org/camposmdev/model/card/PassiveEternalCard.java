@@ -48,10 +48,6 @@ public class PassiveEternalCard extends EternalCard {
         super("", "", CardType.PETERNAL);
     }
 
-    public PassiveEternalCard(String id, String image) {
-        super(id, image, CardType.PETERNAL);
-    }
-
     public boolean hasCounter() {
         return hasCounter;
     }

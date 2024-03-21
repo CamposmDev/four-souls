@@ -6,7 +6,6 @@ import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 public class NotificationBar {

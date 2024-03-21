@@ -1,10 +1,8 @@
 package org.camposmdev.editor.ui;
 
-import javafx.collections.FXCollections;
 import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Tooltip;
 import javafx.scene.layout.VBox;
 import org.camposmdev.model.game.Reward;
 

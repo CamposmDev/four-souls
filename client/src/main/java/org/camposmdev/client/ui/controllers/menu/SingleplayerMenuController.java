@@ -14,6 +14,11 @@ public class SingleplayerMenuController extends FXController {
         this.cancelCallback = cancelCallback;
     }
 
+    public void cancel() {
+        cancelCallback.run();
+        hide(true);
+    }
+
     public void hide(boolean flag) {
         root.setVisible(!flag);
         root.setDisable(flag);

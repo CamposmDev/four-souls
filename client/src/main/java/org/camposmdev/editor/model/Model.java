@@ -5,12 +5,14 @@ import io.vertx.core.json.Json;
 import javafx.stage.FileChooser;
 import org.camposmdev.editor.ui.NotificationBar;
 import org.camposmdev.editor.ui.factory.DialogFactory;
+import org.camposmdev.model.atlas.ImageAtlas;
 import org.camposmdev.model.atlas.MasterCardAtlas;
 import org.camposmdev.model.atlas.MasterImageAtlas;
-import org.camposmdev.model.atlas.ImageAtlas;
 import org.camposmdev.util.Log;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 import java.util.TreeMap;
 
@@ -29,12 +31,12 @@ public class Model {
 
     private Model() {
         imageAtlas = initImageAtlas();
-        cardAtlas = new MasterCardAtlas(new TreeMap<>(), new TreeMap<>());
+        cardAtlas = new MasterCardAtlas(new TreeMap<>(), new TreeMap<>(),
+                new TreeMap<>(), new TreeMap<>());
     }
 
     private MasterImageAtlas initImageAtlas() {
-        var deck = loadJSON("json/cards/cards.json", MasterImageAtlas.class);
-//        loadJSON(deck.character(), ImageDataAtlas.class).loadSource2All();
+        //        loadJSON(deck.character(), ImageDataAtlas.class).loadSource2All();
 //        deck.eternal().forEach((x, y) -> loadCards(y));
 //        deck.treasure().forEach((x, y) -> loadCards(y));
 //        deck.monster().forEach((x, y) -> loadCards(y));
@@ -42,7 +44,7 @@ public class Model {
 //        deck.money().forEach((x, y) -> loadCards(y));
 //        loadJSON(deck.bsoul(), ImageDataAtlas.class).loadSource2All();
 //        loadJSON(deck.room(), ImageDataAtlas.class).loadSource2All();
-        return deck;
+        return loadJSON("json/cards/cards.json", MasterImageAtlas.class);
     }
 
     private <T> T loadJSON(String src, Class<T> type) {

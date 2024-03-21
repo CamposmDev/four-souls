@@ -37,8 +37,4 @@ public abstract class BaseCard {
     public String toString() {
         return toJSON().encode();
     }
-
-    public String toPrettyString() {
-        return toJSON().encodePrettily();
-    }
 }

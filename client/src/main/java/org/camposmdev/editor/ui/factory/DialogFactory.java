@@ -1,11 +1,15 @@
 package org.camposmdev.editor.ui.factory;
 
 import com.almasb.fxgl.dsl.FXGL;
+import io.vertx.core.json.JsonObject;
 import javafx.collections.FXCollections;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.*;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.StackPane;
 import org.camposmdev.editor.ui.RewardBox;
 import org.camposmdev.model.card.attribute.*;
 import org.camposmdev.model.game.Reward;
@@ -44,8 +48,7 @@ public class DialogFactory {
         GridPane.setHgrow(ta, Priority.ALWAYS);
 
         GridPane content = new GridPane();
-        content.setMaxWidth(Double.MAX_VALUE);
-        content.add(ta, 0, 0);
+        content.addColumn(0, ta);
 
         new DialogBuilder().setTitle("Error")
                 .setHeaderText(ex.toString())
@@ -55,37 +58,46 @@ public class DialogFactory {
                 .buildAndShow();
     }
 
-    public void showPreviewBox(String payload) {
-        final double ZOOM_FACTOR = 1.1;
-        Function<TextArea, Void> increase = ta -> {
-            double currentFontSize = ta.getFont().getSize();
-            ta.setStyle("-fx-font-size: " + (currentFontSize * ZOOM_FACTOR));
-            return null;
-        };
-        Function<TextArea, Void> decrease = ta -> {
-            double currentFontSize = ta.getFont().getSize();
-            ta.setStyle("-fx-font-size: " + (currentFontSize / ZOOM_FACTOR));
-            return null;
-        };
-        var node = new TextArea(payload);
-        node.setPrefSize(800, 700);
-        node.setEditable(false);
-        node.setStyle("-fx-font-size: 14");
-        node.setOnKeyPressed((KeyEvent event) -> {
-            if (event.isControlDown()) {
-                if (event.getCode() == KeyCode.EQUALS) {
-                    increase.apply(node);
-                } else if (event.getCode() == KeyCode.MINUS) {
-                    decrease.apply(node);
+    public void showPreviewBox(JsonObject payload) {
+        Function<JsonObject, TextArea> preview = (obj) -> {
+            final double ZOOM_FACTOR = 1.1;
+            Function<TextArea, Void> increase = ta -> {
+                double currentFontSize = ta.getFont().getSize();
+                ta.setStyle("-fx-font-size: " + (currentFontSize * ZOOM_FACTOR));
+                return null;
+            };
+            Function<TextArea, Void> decrease = ta -> {
+                double currentFontSize = ta.getFont().getSize();
+                ta.setStyle("-fx-font-size: " + (currentFontSize / ZOOM_FACTOR));
+                return null;
+            };
+            var node = new TextArea(obj.encodePrettily());
+            node.setPrefSize(800, 700);
+            node.setEditable(false);
+            node.setStyle("-fx-font-size: 14");
+            node.setOnKeyPressed((KeyEvent event) -> {
+                if (event.isControlDown()) {
+                    if (event.getCode() == KeyCode.EQUALS) {
+                        increase.apply(node);
+                    } else if (event.getCode() == KeyCode.MINUS) {
+                        decrease.apply(node);
+                    }
                 }
-            }
+            });
+            return node;
+        };
+        var root = new TabPane();
+        root.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
+        payload.forEach(entry -> {
+            var ta = preview.apply((JsonObject) entry.getValue());
+            root.getTabs().add(new Tab(entry.getKey(), ta));
         });
         new DialogBuilder()
                 .setAlertType(Alert.AlertType.INFORMATION)
                 .setTitle("Preview")
                 .setHeaderText("Master Card Atlas")
                 .setDefaultBtn()
-                .setContent(node)
+                .setContent(root)
                 .buildAndShow();
     }
     public void showExitBox() {

@@ -20,11 +20,11 @@ public class EditorApp extends GameApplication {
     protected void initSettings(GameSettings settings) {
         settings.setTitle("Four Souls Editor");
         settings.setVersion("1.0");
-        settings.setWidth(1600);
+        settings.setWidth(1440);
         settings.setHeight(900);
         settings.setFullScreenAllowed(true);
         settings.setManualResizeEnabled(true);
-        settings.setPreserveResizeRatio(false);
+        settings.setPreserveResizeRatio(true);
         settings.setApplicationMode(ApplicationMode.DEVELOPER);
         settings.setCSSList(List.of());
         settings.setGameMenuEnabled(false);

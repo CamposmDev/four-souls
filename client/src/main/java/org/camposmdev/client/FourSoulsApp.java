@@ -1,8 +1,8 @@
 package org.camposmdev.client;
 
-import com.almasb.fxgl.app.*;
 import com.almasb.fxgl.app.ApplicationMode;
 import com.almasb.fxgl.app.CursorInfo;
+import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.app.scene.GameView;
 import com.almasb.fxgl.dsl.EntityBuilder;
@@ -21,11 +21,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
-import org.camposmdev.client.game.component.D6AnimationComponent;
 import org.camposmdev.client.game.GameFactory;
+import org.camposmdev.client.game.component.D6AnimationComponent;
 import org.camposmdev.model.Timex;
-import org.camposmdev.model.atlas.MasterImageAtlas;
 import org.camposmdev.model.atlas.ImageAtlas;
+import org.camposmdev.model.atlas.MasterImageAtlas;
 import org.camposmdev.util.Log;
 
 import java.util.concurrent.atomic.AtomicBoolean;

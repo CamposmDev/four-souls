@@ -1,6 +1,6 @@
 package org.camposmdev.model.card.attribute;
 
-import io.vertx.core.json.Json;
+import com.almasb.fxgl.logging.Logger;
 import io.vertx.core.json.JsonObject;
 import org.camposmdev.model.game.Reward;
 
@@ -16,7 +16,7 @@ public record RollListener(RollType type, byte roll, Reward reward) {
         if (!this.type.equals(type)) return;
         if (roll != result) return;
         /* TODO - apply reward to player who owns this listener  */
-
+        Logger.get(RollListener.class).fatal("NOT YET IMPLEMENTED");
     }
 
     public JsonObject toJSON() {

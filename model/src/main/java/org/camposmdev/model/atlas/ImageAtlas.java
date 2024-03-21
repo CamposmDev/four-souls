@@ -24,11 +24,11 @@ public record ImageAtlas(
         return images.get(key);
     }
 
-    public void loadSource1All() {
-        images.values().forEach(x -> FXGL.image(x.source1()));
-    }
-
-    public void loadSource2All() {
-        images.values().forEach(x -> FXGL.image(x.source2()));
-    }
+//    public void loadSource1All() {
+//        images.values().forEach(x -> FXGL.image(x.source1()));
+//    }
+//
+//    public void loadSource2All() {
+//        images.values().forEach(x -> FXGL.image(x.source2()));
+//    }
 }

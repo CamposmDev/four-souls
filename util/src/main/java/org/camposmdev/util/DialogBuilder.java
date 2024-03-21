@@ -36,11 +36,6 @@ public class DialogBuilder {
         return this;
     }
 
-    public DialogBuilder setHeaderTextInfo() {
-        this.headerText = "Please fill out the following information";
-        return this;
-    }
-
     public DialogBuilder setContentText(String contentText) {
         this.contentText = contentText;
         return this;

@@ -1,5 +1,7 @@
 package org.camposmdev.model.card.attribute;
 
+import com.almasb.fxgl.logging.Logger;
+
 /**
  * When damage is dealt, roll for effect to be applied
  * @param min Minimum roll
@@ -13,6 +15,7 @@ public record DamageDealthRollForEffect(
         /* check if condition is met */
         if (roll >= min && roll <= max) {
             /* apply effect */
+            Logger.get(DamageDealthRollForEffect.class).fatal("NOT YET IMPLEMENTED");
         }
     }
 }

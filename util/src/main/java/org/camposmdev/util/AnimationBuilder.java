@@ -1,11 +1,11 @@
 package org.camposmdev.util;
 
-import javafx.animation.*;
+import javafx.animation.FadeTransition;
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.util.Duration;
 
 public class AnimationBuilder {

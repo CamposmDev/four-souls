@@ -36,7 +36,7 @@ public class D6AnimationComponent extends Component {
         transition = translateUpAndBack(animTexture);
     }
 
-    private TranslateTransition transition;
+    private final TranslateTransition transition;
 
     @Override
     public void onAdded() {

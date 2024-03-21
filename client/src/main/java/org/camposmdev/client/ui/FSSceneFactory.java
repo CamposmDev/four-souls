@@ -27,7 +27,7 @@ public class FSSceneFactory extends SceneFactory {
     @Override
     public LoadingScene newLoadingScene() {
         /* TODO - Implement loading scene */
-        Log.debug("INITIALIZE NEW LOADING SCREEN");
+        Log.fatal("INITIALIZE NEW LOADING SCREEN");
         return super.newLoadingScene();
     }
 

@@ -2,12 +2,11 @@ package org.camposmdev.editor.ui;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.StackPane;
 
 public class CardViewer {
     static final double WIDTH = 154 * 2.75;
     static final double HEIGHT = 210 * 2.75;
-    private final StackPane root;
+
     private final ImageView iv;
 
     public CardViewer() {
@@ -15,7 +14,6 @@ public class CardViewer {
         iv.setFitWidth(WIDTH);
         iv.setFitHeight(HEIGHT);
         iv.setPreserveRatio(true);
-        root = new StackPane(iv);
     }
 
     public Image getImage() {
@@ -29,7 +27,11 @@ public class CardViewer {
         iv.setImage(image);
     }
 
-    public StackPane getContent() {
-        return root;
+    public ImageView getContent() {
+        return iv;
+    }
+
+    public void clear() {
+        iv.setImage(null);
     }
 }

@@ -3,8 +3,9 @@ package org.camposmdev.model.card;
 import io.vertx.core.json.JsonObject;
 
 public class CharacterCard extends BaseCard {
-    private byte hitPoints, damage;
-    private String eternalId;
+    private final byte hitPoints;
+    private final byte damage;
+    private final String eternalId;
 
     public CharacterCard(String id, String image, byte hitPoints, byte damage, String eternalId) {
         super(id, image);

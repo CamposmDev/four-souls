@@ -43,7 +43,7 @@ class FSWebSocket {
             var obj = new JsonObject(text);
             handleJSON(obj);
         } catch (DecodeException ex) {
-            System.err.println(ex.getCause());
+            ex.printStackTrace(System.out);
         }
     }
 

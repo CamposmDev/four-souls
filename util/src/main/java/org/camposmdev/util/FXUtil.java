@@ -38,7 +38,7 @@ public class FXUtil {
             ((FXController) fxml.getController()).init();
             return new UI(node, fxml.getController());
         } catch (IOException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.out);
         }
         return null;
     }
@@ -57,7 +57,7 @@ public class FXUtil {
             fxml.setLocation(url);
             return fxml.load();
         } catch (IOException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.out);
         }
         return null;
     }

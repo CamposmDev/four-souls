@@ -1,7 +1,6 @@
 package org.camposmdev.editor.ui.workspace;
 
 import javafx.collections.FXCollections;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -13,14 +12,13 @@ import org.camposmdev.editor.ui.factory.DialogFactory;
 import org.camposmdev.model.card.CardType;
 import org.camposmdev.model.card.CharacterCard;
 
-public class CharacterEditor implements IEditor {
-    private GridPane root;
-    private CardViewer cv;
-    private TextField tfHealth, tfDamage;
-    private ListView<String> lvEternal;
-    private Button btSubmit;
-
-    private String id, image;
+public class CharacterEditor extends BaseEditor {
+    private final GridPane root;
+    private final CardViewer cv;
+    private final TextField tfHealth;
+    private final TextField tfDamage;
+    private final ListView<String> lvEternal;
+    private final Button btSubmit;
 
     private Image currentImage;
 
@@ -63,15 +61,15 @@ public class CharacterEditor implements IEditor {
         });
         lvEternal.getSelectionModel().selectFirst();
         btSubmit = new Button("Submit");
-        btSubmit.setOnAction(e -> build());
+        btSubmit.setOnAction(e -> commit());
         root = new GridPane(12, 12);
-        root.setAlignment(Pos.CENTER);
+//        root.setAlignment(Pos.CENTER_LEFT);
         root.addColumn(0, new Label("Hit Points"),
                 new Label("Damage"),
                 new Label("Eternal ID"));
         root.addColumn(1, tfHealth, tfDamage, lvEternal);
         root.add(cv.getContent(), 2, 0, 1, 4);
-        root.add(btSubmit, 1, 3);
+        root.add(btSubmit, 0, 3);
     }
 
     private void build() {
@@ -80,7 +78,7 @@ public class CharacterEditor implements IEditor {
             var hitPoints = Byte.parseByte(tfHealth.getText());
             var damage = Byte.parseByte(tfDamage.getText());
             var eternalId = lvEternal.getSelectionModel().getSelectedItem();
-            var card = new CharacterCard(id, image, hitPoints, damage, eternalId);
+            var card = new CharacterCard(super.id(), super.image(), hitPoints, damage, eternalId);
             /* add the character sheet to our card atlas */
             Model.instance().cards().addCharacter(card);
             NotificationBar.instance().push("Created " + card.toJSON().encode());
@@ -90,15 +88,12 @@ public class CharacterEditor implements IEditor {
     }
 
     @Override
-    public void setId(String id) {
-        this.id = id;
-    }
-    @Override
-    public void setImage(String image) {
-        this.image = image;
-    }
-    @Override
     public Node getContent() {
         return root;
+    }
+
+    @Override
+    public void commit() {
+        build();
     }
 }

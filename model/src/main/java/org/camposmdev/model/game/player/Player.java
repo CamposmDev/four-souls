@@ -3,10 +3,9 @@ package org.camposmdev.model.game.player;
 import java.util.UUID;
 
 public class Player implements Comparable<Player> {
-    private static final int INITIAL_MONEY = 3;
     private final UUID id;
 
-    public Player(UUID id) {
+    public Player() {
         this.id = UUID.randomUUID();
     }
 
