@@ -8,8 +8,8 @@ import org.camposmdev.editor.model.Model;
 import org.camposmdev.editor.ui.NotificationBar;
 import org.camposmdev.editor.ui.factory.DialogFactory;
 import org.camposmdev.editor.ui.workspace.BaseEditor;
-import org.camposmdev.model.card.CardType;
-import org.camposmdev.model.card.EternalCard;
+import org.camposmdev.model.card.attribute.CardType;
+import org.camposmdev.model.card.eternal.EternalCard;
 import org.camposmdev.util.FXUtil;
 import org.camposmdev.util.FormController;
 
@@ -43,7 +43,7 @@ public class EternalEditor extends BaseEditor {
             card.setId(super.id());
             card.setImage(super.image());
             Model.instance().cards().addEternal(card);
-            var message = card.toJSON().toString();
+            var message = card.toString();
             NotificationBar.instance().push(message);
         } catch(Exception ex) {
             DialogFactory.instance().showErrorBox(ex);

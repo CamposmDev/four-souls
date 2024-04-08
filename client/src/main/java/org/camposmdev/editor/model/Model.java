@@ -8,6 +8,7 @@ import org.camposmdev.editor.ui.factory.DialogFactory;
 import org.camposmdev.model.atlas.ImageAtlas;
 import org.camposmdev.model.atlas.MasterCardAtlas;
 import org.camposmdev.model.atlas.MasterImageAtlas;
+import org.camposmdev.model.card.attribute.CardType;
 import org.camposmdev.util.Log;
 
 import java.io.FileInputStream;
@@ -127,5 +128,10 @@ public class Model {
         } catch (IOException ex) {
             DialogFactory.instance().showErrorBox(ex);
         }
+    }
+
+    public boolean isComplete(CardType selectedCardType, String s) {
+        /* TODO - Implement this method */
+        return false;
     }
 }

@@ -29,7 +29,7 @@ public class D6AnimationComponent extends Component {
             this.sides[i] = new AnimationChannel(spritesheet, FRAMES_PER_ROW, FRAME_WIDTH, FRAME_HEIGHT,
                     Duration.ONE, i, i);
         }
-        /* initialize roll animation */
+        /* initialize value animation */
         animRoll = new AnimationChannel(spritesheet, FRAMES_PER_ROW, FRAME_WIDTH, FRAME_HEIGHT,
                 Duration.seconds(1), 6, 11);
         animTexture = new AnimatedTexture(sides[0]);

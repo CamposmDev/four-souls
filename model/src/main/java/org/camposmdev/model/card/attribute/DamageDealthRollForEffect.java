@@ -3,9 +3,9 @@ package org.camposmdev.model.card.attribute;
 import com.almasb.fxgl.logging.Logger;
 
 /**
- * When damage is dealt, roll for effect to be applied
- * @param min Minimum roll
- * @param max Maximum roll
+ * When damage is dealt, value for effect to be applied
+ * @param min Minimum value
+ * @param max Maximum value
  */
 public record DamageDealthRollForEffect(
         Byte min, Byte max

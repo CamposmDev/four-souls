@@ -8,4 +8,5 @@ open module org.camposmdev.client {
     requires org.jetbrains.annotations;
     requires model;
     requires util;
+    requires kotlin.stdlib;
 }

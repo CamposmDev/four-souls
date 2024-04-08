@@ -8,7 +8,7 @@ import org.camposmdev.editor.model.Model;
 import org.camposmdev.editor.ui.NotificationBar;
 import org.camposmdev.editor.ui.factory.DialogFactory;
 import org.camposmdev.editor.ui.workspace.BaseEditor;
-import org.camposmdev.model.card.BonusSoulCard;
+import org.camposmdev.model.card.bonus_soul.BonusSoulCard;
 import org.camposmdev.util.FXUtil;
 import org.camposmdev.util.FormController;
 
@@ -17,7 +17,7 @@ public class SoulEditor extends BaseEditor {
     private final UI form;
 
     public SoulEditor() {
-        form = FXUtil.loadUI("SoulForm.fxml");
+        form = FXUtil.loadUI("BonusSoulForm.fxml");
         assert form != null;
         var btSubmit = new Button("Submit");
         btSubmit.setOnAction(e -> commit());
@@ -34,6 +34,7 @@ public class SoulEditor extends BaseEditor {
     public void commit() {
         try {
             var card = (BonusSoulCard) ((FormController<?>) form.getController()).submit();
+            card.setId(id()).setImage(image());
             Model.instance().cards().addSoul(card);
             NotificationBar.instance().push(card.toString());
         } catch (Exception e) {

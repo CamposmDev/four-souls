@@ -1,6 +1,7 @@
-package org.camposmdev.model.card;
+package org.camposmdev.model.card.bonus_soul;
 
 import io.vertx.core.json.JsonObject;
+import org.camposmdev.model.card.BaseCard;
 import org.camposmdev.model.card.attribute.CounterType;
 
 public class BonusSoulCard extends BaseCard {
@@ -13,12 +14,8 @@ public class BonusSoulCard extends BaseCard {
     private boolean isStrawBerry;
 
 
-    public BonusSoulCard(String id, String image) {
-        super(id, image);
-    }
-
     public BonusSoulCard() {
-        super("", "");
+        super();
     }
 
     public Byte loot() {

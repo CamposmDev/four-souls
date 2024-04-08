@@ -50,12 +50,13 @@ public class DialogFactory {
         GridPane content = new GridPane();
         content.addColumn(0, ta);
 
-        new DialogBuilder().setTitle("Error")
+        var alert = new DialogBuilder().setTitle("Error")
                 .setHeaderText(ex.toString())
                 .setContentText(ex.getLocalizedMessage())
-                .setContent(content)
                 .setDefaultBtn()
-                .buildAndShow();
+                .build();
+        alert.getDialogPane().setExpandableContent(content);
+        alert.showAndWait();
     }
 
     public void showPreviewBox(JsonObject payload) {

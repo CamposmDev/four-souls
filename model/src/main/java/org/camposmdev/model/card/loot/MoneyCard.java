@@ -1,16 +1,14 @@
-package org.camposmdev.model.card;
+package org.camposmdev.model.card.loot;
 
 import io.vertx.core.json.JsonObject;
+import org.camposmdev.model.card.attribute.CardType;
 
 public class MoneyCard extends LootCard {
     private Byte value;
-    private boolean rechargeItem, doubleReward, isSticky;
-    public MoneyCard(String id, String image, CardType type, Byte value, boolean rechargeItem, boolean doubleReward, boolean isSticky) {
-        super(id, image, type);
-        this.value = value;
-        this.rechargeItem = rechargeItem;
-        this.doubleReward = doubleReward;
-        this.isSticky = isSticky;
+    private boolean rechargeItem, doubleReward, isSticky, isButt;
+
+    public MoneyCard() {
+        super.setCardType(CardType.MONEY);
     }
 
     public Byte value() {
@@ -46,6 +44,15 @@ public class MoneyCard extends LootCard {
 
     public MoneyCard setSticky(boolean sticky) {
         isSticky = sticky;
+        return this;
+    }
+
+    public boolean isButt() {
+        return isButt;
+    }
+
+    public MoneyCard setButt(boolean butt) {
+        isButt = butt;
         return this;
     }
 

@@ -2,7 +2,7 @@ package org.camposmdev.model.atlas;
 
 import com.almasb.fxgl.dsl.FXGL;
 import javafx.scene.image.Image;
-import org.camposmdev.model.card.CardType;
+import org.camposmdev.model.card.attribute.CardType;
 import java.util.*;
 
 public record MasterImageAtlas(

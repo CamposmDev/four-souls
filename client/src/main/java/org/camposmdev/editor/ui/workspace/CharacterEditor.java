@@ -9,8 +9,8 @@ import org.camposmdev.editor.model.Model;
 import org.camposmdev.editor.ui.CardViewer;
 import org.camposmdev.editor.ui.NotificationBar;
 import org.camposmdev.editor.ui.factory.DialogFactory;
-import org.camposmdev.model.card.CardType;
-import org.camposmdev.model.card.CharacterCard;
+import org.camposmdev.model.card.attribute.CardType;
+import org.camposmdev.model.card.character.CharacterCard;
 
 public class CharacterEditor extends BaseEditor {
     private final GridPane root;
@@ -78,10 +78,12 @@ public class CharacterEditor extends BaseEditor {
             var hitPoints = Byte.parseByte(tfHealth.getText());
             var damage = Byte.parseByte(tfDamage.getText());
             var eternalId = lvEternal.getSelectionModel().getSelectedItem();
-            var card = new CharacterCard(super.id(), super.image(), hitPoints, damage, eternalId);
+            var card = new CharacterCard();
+            card.setId(super.id()).setImage(super.image());
+            card.setHitPoints(hitPoints).setDamage(damage).setEternalId(eternalId);
             /* add the character sheet to our card atlas */
             Model.instance().cards().addCharacter(card);
-            NotificationBar.instance().push("Created " + card.toJSON().encode());
+            NotificationBar.instance().push(card.toString());
         } catch (Exception ex) {
             DialogFactory.instance().showErrorBox(ex);
         }

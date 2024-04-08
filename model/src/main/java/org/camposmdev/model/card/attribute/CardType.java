@@ -1,4 +1,4 @@
-package org.camposmdev.model.card;
+package org.camposmdev.model.card.attribute;
 
 public enum CardType{
     CHARACTER("character"),
@@ -47,7 +47,8 @@ public enum CardType{
     MONEY5C("5c"),
     MONEY10C("10c"),
     BSOUL("bsoul"),
-    ROOM("room");
+    ROOM("room"),
+    EXTRA("extra");
 
     private final String key;
 

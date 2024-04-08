@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import org.camposmdev.editor.ui.factory.DialogFactory;
-import org.camposmdev.model.card.PassiveEternalCard;
+import org.camposmdev.model.card.eternal.PassiveEternalCard;
 import org.camposmdev.model.card.attribute.*;
 import org.camposmdev.model.game.Reward;
 import org.camposmdev.util.FormController;

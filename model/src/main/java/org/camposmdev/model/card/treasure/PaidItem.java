@@ -1,0 +1,30 @@
+package org.camposmdev.model.card.treasure;
+
+public enum PaidItem {
+    ATHAME,
+    BATTERY_BUM,
+    BATTERY_PACK,
+    BUMBO,
+    CAR_BATTERY,
+    CONTRACT_FROM_BELOW,
+    DADS_KEY_V1,
+    DADS_KEY_V2,
+    DONATION_MACHINE,
+    GOLDEN_RAZOR_BLADE,
+    HALLOWED_GROUND,
+    ISAACS_TEARS,
+    KEEPERS_SACK,
+    PAY_TO_PLAY,
+    PORTABLE_SLOT_MACHINE,
+    RED_PROGLOTTID,
+    SACRIFICIAL_DAGGER,
+    SATANIC_BIBLE,
+    SER_JUNKAN,
+    SMELTER,
+    SPEWER,
+    SUCCUSBUS,
+    THE_CROWDFUNDER,
+    THE_JAR,
+    THE_POOP_V1,
+    THE_POOP_V2
+}

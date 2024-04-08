@@ -1,7 +1,11 @@
 package org.camposmdev.model.atlas;
 
 import io.vertx.core.json.JsonObject;
-import org.camposmdev.model.card.*;
+import org.camposmdev.model.card.attribute.CardType;
+import org.camposmdev.model.card.bonus_soul.BonusSoulCard;
+import org.camposmdev.model.card.character.CharacterCard;
+import org.camposmdev.model.card.eternal.EternalCard;
+import org.camposmdev.model.card.loot.LootCard;
 
 import java.util.Map;
 public record MasterCardAtlas(
@@ -29,39 +33,23 @@ public record MasterCardAtlas(
     public JsonObject toJSON() {
         var root = new JsonObject();
         var obj1 = new JsonObject();
-        character.forEach((key, value) ->
-                obj1.put(key, value.toJSON()));
-        root.put(CardType.CHARACTER.name(), obj1);
+        character.forEach((key, value) -> obj1.put(key, value.toJSON()));
+        root.put(CardType.CHARACTER.key(), obj1);
         var obj2 = new JsonObject();
-        eternal.forEach((key, value) -> {
-            if (obj2.containsKey(value.type().name()))
-                obj2.getJsonObject(value.type().name())
-                        .put(key, value.toJSON());
-            else
-                obj2.put(value.type().name(),
-                        JsonObject.of(key, value.toJSON()));
-        });
-        root.put(CardType.ETERNAL.name(), obj2);
+        eternal.forEach((key, value) -> obj2.put(key, value.toJSON()));
+        root.put(CardType.ETERNAL.key(), obj2);
         var obj3 = new JsonObject();
-        root.put(CardType.TREASURE.name(), obj3);
+        root.put(CardType.TREASURE.key(), obj3);
         var obj4 = new JsonObject();
-        root.put(CardType.MONSTER.name(), obj4);
+        root.put(CardType.MONSTER.key(), obj4);
         var obj5 = new JsonObject();
-        loot.forEach((key,value) -> {
-            if (obj3.containsKey(value.type().name()))
-                obj3.getJsonObject(value.type().name()).put(key, value.toJSON());
-            else
-                obj3.put(value.type().name(),
-                    JsonObject.of(key, value.toJSON()));
-        });
-        root.put(CardType.LOOT.name(), obj5);
+        loot.forEach((key,value) -> obj5.put(key, value.toJSON()));
+        root.put(CardType.LOOT.key(), obj5);
         var obj6 = new JsonObject();
-        soul.forEach((key, value) -> {
-            obj6.put(key, value);
-        });
-        root.put(CardType.BSOUL.name(), obj6);
+        soul.forEach((key, value) -> obj6.put(key, value.toJSON()));
+        root.put(CardType.BSOUL.key(), obj6);
         var obj7 = new JsonObject();
-        root.put(CardType.ROOM.name(), obj7);
+        root.put(CardType.ROOM.key(), obj7);
         return root;
     }
 

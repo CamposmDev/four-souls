@@ -3,9 +3,7 @@ package org.camposmdev.editor.ui;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.util.Callback;
@@ -16,7 +14,7 @@ import org.camposmdev.editor.ui.workspace.MoneyEditor;
 import org.camposmdev.editor.ui.workspace.Workspace;
 import org.camposmdev.editor.ui.workspace.eternal.EternalEditor;
 import org.camposmdev.editor.ui.workspace.soul.SoulEditor;
-import org.camposmdev.model.card.CardType;
+import org.camposmdev.model.card.attribute.CardType;
 import org.camposmdev.util.Log;
 
 public class CardPicker {
@@ -57,6 +55,11 @@ public class CardPicker {
                 protected void updateItem(String s, boolean b) {
                     super.updateItem(s, b);
                     setText(s);
+                    /* TODO - Implement check box to notify card has been implemented */
+                    var cb = new CheckBox();
+//                    cb.setDisable(true);
+//                    cb.setSelected(Model.instance().isImplemented(selectedCardType, s));
+//                    setGraphic(cb);
                 }
             };
             cell.hoverProperty().addListener((ov, wasHovered, isHovered) -> {

@@ -14,7 +14,6 @@ public interface Constants {
     String BSOUL_DIR = CARDS_DIR + "bsoul/";
     String ROOM_DIR = CARDS_DIR + "room/";
 
-    String DAT_DIR = TARGET_DIR + "data/cards/";
     String JSON_DIR = TARGET_DIR + "json/cards/";
 
     String[] DIRS = {
@@ -121,6 +120,7 @@ public interface Constants {
     };
     String BSOUL_URL = "https://foursouls.com/card-search/?identical=no&cardstatus=all&card_type=bsoul";
     String ROOM_CARDS_URL = "https://foursouls.com/card-search/?identical=no&cardstatus=all&card_type=room";
+    String EXTRA_CARDS = "https://foursouls.com/card-search/?card_type=outside";
 
     List<String> OUTLIAR_IMGS = List.of("FlipCornerNote.png", "", "", "");
 }

@@ -1,6 +1,7 @@
-package org.camposmdev.model.card;
+package org.camposmdev.model.card.eternal;
 
 import io.vertx.core.json.JsonObject;
+import org.camposmdev.model.card.attribute.CardType;
 import org.camposmdev.model.card.attribute.*;
 import org.camposmdev.model.game.Reward;
 
@@ -45,7 +46,7 @@ public class PassiveEternalCard extends EternalCard {
     private boolean isRingOfSnake;
 
     public PassiveEternalCard() {
-        super("", "", CardType.PETERNAL);
+        super.setCardType(CardType.PETERNAL);
     }
 
     public boolean hasCounter() {
