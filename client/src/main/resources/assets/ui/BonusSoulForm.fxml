@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import org.camposmdev.model.card.attribute.CounterType?>
+<?import java.lang.*?>
+<GridPane hgap="8.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" vgap="8.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="org.camposmdev.editor.ui.workspace.soul.BonusSoulFormController"
+>
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Label text="Loot" />
+      <Label text="Money" GridPane.rowIndex="1" />
+      <Label text="Guppy Items" GridPane.rowIndex="2" />
+      <Label text="Has Counter" GridPane.rowIndex="3" />
+      <Label text="Counter Limit" GridPane.rowIndex="4" />
+      <Label text="Is Envy" GridPane.rowIndex="6" />
+      <Label text="is Sloth" GridPane.rowIndex="7" />
+      <Label text="Is Strawberry" GridPane.rowIndex="8" />
+      <Label text="Counter Type" GridPane.rowIndex="5" />
+      <TextField fx:id="tfLoot" GridPane.columnIndex="1" />
+      <TextField fx:id="tfMoney" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <TextField fx:id="tfGuppyItems" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <ComboBox fx:id="cbHasCounter" value="false" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+          <items>
+              <FXCollections fx:factory="observableArrayList">
+                  <String fx:value="true"/>
+                  <String fx:value="false"/>
+              </FXCollections>
+          </items>
+      </ComboBox>
+      <TextField fx:id="tfCounterLimit" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <ComboBox fx:id="cbCounterType" value="MONSTER_KILLED" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+          <items>
+              <FXCollections fx:factory="observableArrayList">
+                  <String fx:value="MONSTER_KILLED"/>
+                  <String fx:value="ITEM_CONTROLLED"/>
+                  <String fx:value="PLAYER_DIED"/>
+                  <String fx:value="TREASURED_GAINED"/>
+              </FXCollections>
+          </items>
+      </ComboBox>
+      <ComboBox fx:id="cbIsEnvy" value="false" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+          <items>
+              <FXCollections fx:factory="observableArrayList">
+                  <String fx:value="true"/>
+                  <String fx:value="false"/>
+              </FXCollections>
+          </items>
+      </ComboBox>
+      <ComboBox fx:id="cbIsSloth" value="false" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+          <items>
+              <FXCollections fx:factory="observableArrayList">
+                  <String fx:value="true"/>
+                  <String fx:value="false"/>
+              </FXCollections>
+          </items>
+      </ComboBox>
+      <ComboBox fx:id="cbIsStrawberry" value="false" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
+          <items>
+              <FXCollections fx:factory="observableArrayList">
+                  <String fx:value="true"/>
+                  <String fx:value="false"/>
+              </FXCollections>
+          </items>
+      </ComboBox>
+   </children>
+</GridPane>
