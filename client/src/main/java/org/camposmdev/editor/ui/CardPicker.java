@@ -8,12 +8,15 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.util.Callback;
 import org.camposmdev.editor.model.Model;
-import org.camposmdev.editor.ui.workspace.CharacterEditor;
-import org.camposmdev.editor.ui.workspace.IEditor;
-import org.camposmdev.editor.ui.workspace.MoneyEditor;
-import org.camposmdev.editor.ui.workspace.Workspace;
+import org.camposmdev.editor.ui.workspace.*;
+import org.camposmdev.editor.ui.workspace.character.CharacterEditor;
 import org.camposmdev.editor.ui.workspace.eternal.EternalEditor;
-import org.camposmdev.editor.ui.workspace.soul.SoulEditor;
+import org.camposmdev.editor.ui.workspace.extra.ExtraEditor;
+import org.camposmdev.editor.ui.workspace.loot.LootEditor;
+import org.camposmdev.editor.ui.workspace.money.MoneyEditor;
+import org.camposmdev.editor.ui.workspace.room.RoomEditor;
+import org.camposmdev.editor.ui.workspace.bsoul.BonusSoulEditor;
+import org.camposmdev.editor.ui.workspace.treasure.TreasureEditor;
 import org.camposmdev.model.card.attribute.CardType;
 import org.camposmdev.util.Log;
 
@@ -36,13 +39,17 @@ public class CardPicker {
         lv = new ListView<>(theList);
         lv.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         ChangeListener<String> itemSelectedListener = (ov, prevKey, key) -> {
+            /*
+                When an item is selected, fetch its image info and update the editors
+                id, image, and display the image in the card viewer
+            */
             if (key == null) return;
-            if (root.getChildren().isEmpty()) {
+            if (root.getChildren().isEmpty())
                 root.addRow(0, lv, cv.getContent());
-            }
             var data = Model.instance().images().getInfo(selectedCardType, key);
             editor.setId(data.name());
             editor.setImage(data.source2());
+
             currentImage = data.loadSource2();
             cv.setImage(currentImage);
         };
@@ -57,9 +64,9 @@ public class CardPicker {
                     setText(s);
                     /* TODO - Implement check box to notify card has been implemented */
                     var cb = new CheckBox();
-//                    cb.setDisable(true);
+                    cb.setDisable(true);
 //                    cb.setSelected(Model.instance().isImplemented(selectedCardType, s));
-//                    setGraphic(cb);
+                    setGraphic(cb);
                 }
             };
             cell.hoverProperty().addListener((ov, wasHovered, isHovered) -> {
@@ -85,42 +92,36 @@ public class CardPicker {
 
     public void edit(String cardType) {
         cv.clear();
-        var lst = Model.instance().getImageAtlas(cardType);
-        theList.setAll(lst);
         selectedCardType = CardType.parse(cardType);
+        var lst = Model.instance().getImageAtlas(selectedCardType);
+        theList.setAll(lst);
         workspace.clear();
-        if (!theList.isEmpty()) {
+//        if (!theList.isEmpty()) {
             /* display the appropriate workspace */
-            switch (cardType) {
-                case "character" -> editor = new CharacterEditor();
-                case "peternal", "aeternal", "seternal", "oeternal", "paideternal" ->
-                        /* TODO - Implement EternalEditor */
-                        editor = new EternalEditor(cardType);
-                case "ptreasure", "atreasure", "paidtreasure", "otreasure", "streasure" ->
-                        /* TODO - Implement TreasureEditor */
-                        Log.fatal("NOT YET IMPLEMENTED");
-//                        editor = new TreasureEditor(cardType);
-                case "bmonster", "cmonster", "hmonster", "chamonster", "gevent", "bevent", "curse", "boss", "epic" ->
+            switch (selectedCardType) {
+                case CHARACTER -> editor = new CharacterEditor();
+                case PETERNAL, AETERNAL, SETERNAL, OETERNAL, PAIDETERNAL ->
+                        editor = new EternalEditor(selectedCardType);
+                case PTREASURE, ATREASURE, PAIDTREASURE, OTREASURE, STREASURE ->
+                        editor = new TreasureEditor(selectedCardType);
+                case BMONSTER, CMONSTER, HMONSTER, CHAMONSTER, GEVENT, BEVENT, CURSE, BOSS, EPIC ->
                         /* TODO - Implement MonsterEditor */
                         Log.fatal("NOT YET IMPLEMENTED");
 //                        editor = new MonsterEditor(cardType);
-                case "cards", "trinkets", "pills", "runes", "bombs", "butter", "batteries", "keys", "dice", "sheart", "bheart", "sack", "lsoul", "wildcard" ->
-                        /* TODO - Implement LootEditor */
-                        Log.fatal("NOT YET IMPLEMENTED");
-//                        editor = new LootEditor();
-                case "1c", "2c", "3c", "4c", "5c", "10c" ->
-                        editor = new MoneyEditor(cardType);
-                case "bsoul" ->
-                        /* TODO - Implement SoulEditor */
-                       editor = new SoulEditor();
-                case "room" ->
-                        /* TODO - Implement RoomEditor */
-                        Log.fatal("NOT YET IMPLEMENTED");
-//                        editor = new RoomEditor();
+                case CARDS, TRINKETS, PILLS, RUNES, BOMBS, BUTTER, BATTERIES, KEYS, DICE, SHEART, BHEART, SACK, LSOUL, WILDCARD ->
+                        editor = new LootEditor(selectedCardType);
+                case MONEY1C, MONEY2C, MONEY3C, MONEY4C, MONEY5C, MONEY10C ->
+                        editor = new MoneyEditor(selectedCardType);
+                case BSOUL ->
+                       editor = new BonusSoulEditor(selectedCardType);
+                case ROOM ->
+                        editor = new RoomEditor(selectedCardType);
+                case EXTRA ->
+                        editor = new ExtraEditor(selectedCardType);
             }
             workspace.set(editor);
             lv.getSelectionModel().selectFirst();
-        }
+//        }
     }
 
     public GridPane getContent() {

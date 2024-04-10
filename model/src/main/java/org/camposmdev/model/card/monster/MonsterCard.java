@@ -1,6 +1,7 @@
 package org.camposmdev.model.card.monster;
 
-import org.camposmdev.model.game.Reward;
+import org.camposmdev.model.card.attribute.Reward;
+import org.camposmdev.model.card.attribute.monster.*;
 
 public class MonsterCard extends AbstractMonsterCard {
     private byte hitPoints;

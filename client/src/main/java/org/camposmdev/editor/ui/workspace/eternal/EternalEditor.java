@@ -3,6 +3,7 @@ package org.camposmdev.editor.ui.workspace.eternal;
 import com.almasb.fxgl.ui.UI;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import org.camposmdev.editor.model.Model;
 import org.camposmdev.editor.ui.NotificationBar;
@@ -14,26 +15,26 @@ import org.camposmdev.util.FXUtil;
 import org.camposmdev.util.FormController;
 
 public class EternalEditor extends BaseEditor {
-    private final CardType type;
+    private final CardType cardType;
     private final VBox root;
 
     private UI form;
 
-    public EternalEditor(String type) {
-        this.type = CardType.parse(type);
+    public EternalEditor(CardType type) {
+        cardType = type;
         var btSubmit = new Button("Submit");
         btSubmit.setOnAction(e -> commit());
-        /* TODO - Implement eternal sub-editors */
-        switch (this.type) {
-            case PETERNAL -> form = FXUtil.loadUI("PassiveForm.fxml");
-            case AETERNAL -> form = FXUtil.loadUI("ActiveForm.fxml");
-            case PAIDETERNAL -> form = FXUtil.loadUI("PaidForm.fxml");
-            case OETERNAL -> form = FXUtil.loadUI("OneTimeUseForm.fxml");
-            case SETERNAL -> form = FXUtil.loadUI("SoulForm.fxml");
+        switch (cardType) {
+            case PETERNAL -> form = FXUtil.loadUI("workspace/eternal/PassiveEternalForm.fxml");
+            case AETERNAL -> form = FXUtil.loadUI("workspace/eternal/ActiveEternalForm.fxml");
+            case PAIDETERNAL -> form = FXUtil.loadUI("workspace/eternal/PaidEternalForm.fxml");
+            case SETERNAL -> form = FXUtil.loadUI("workspace/eternal/SoulEternalForm.fxml");
         }
-        assert form != null;
-        root = new VBox(8, form.getRoot(), btSubmit);
-//        root.setAlignment(Pos.CENTER_LEFT);
+        if (form != null) {
+            root = new VBox(4, form.getRoot(), btSubmit);
+        } else {
+            root = new VBox(4, new Label("Move on to the next card type"));
+        }
     }
 
     private void build() {
@@ -42,7 +43,7 @@ public class EternalEditor extends BaseEditor {
             var card = (EternalCard) ((FormController<?>) form.getController()).submit();
             card.setId(super.id());
             card.setImage(super.image());
-            Model.instance().cards().addEternal(card);
+            Model.instance().cards().add(card);
             var message = card.toString();
             NotificationBar.instance().push(message);
         } catch(Exception ex) {

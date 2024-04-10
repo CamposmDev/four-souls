@@ -3,7 +3,7 @@ package org.camposmdev.model.card.eternal;
 import io.vertx.core.json.JsonObject;
 import org.camposmdev.model.card.attribute.CardType;
 import org.camposmdev.model.card.attribute.*;
-import org.camposmdev.model.game.Reward;
+import org.camposmdev.model.card.attribute.Reward;
 
 import java.util.List;
 

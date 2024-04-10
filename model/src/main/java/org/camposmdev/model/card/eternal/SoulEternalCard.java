@@ -1,11 +1,11 @@
 package org.camposmdev.model.card.eternal;
 
 import org.camposmdev.model.card.attribute.CardType;
-import org.camposmdev.model.card.attribute.CardVersionType;
+import org.camposmdev.model.card.attribute.CardVersion;
 
 public class SoulEternalCard extends EternalCard {
     private boolean isTheBone;
-    private CardVersionType theBone;
+    private CardVersion theBone;
 
     public SoulEternalCard() {
         super.setCardType(CardType.SETERNAL);
@@ -20,11 +20,11 @@ public class SoulEternalCard extends EternalCard {
         return this;
     }
 
-    public CardVersionType theBone() {
+    public CardVersion theBone() {
         return theBone;
     }
 
-    public SoulEternalCard setTheBone(CardVersionType theBone) {
+    public SoulEternalCard setTheBone(CardVersion theBone) {
         this.theBone = theBone;
         return this;
     }

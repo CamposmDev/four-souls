@@ -1,12 +1,14 @@
 package org.camposmdev.model.card.loot;
 
 import org.camposmdev.model.card.attribute.CardType;
+import org.camposmdev.model.card.attribute.CardVersion;
+import org.camposmdev.model.card.attribute.loot.PillEvent;
 
 public class PillCard extends LootCard {
     private PillEvent[] events;
     private byte repeat;
     private boolean share;
-    private byte version;
+    private CardVersion version;
 
     public PillCard() {
         super.setCardType(CardType.PILLS);
@@ -39,11 +41,11 @@ public class PillCard extends LootCard {
         return this;
     }
 
-    public byte version() {
+    public CardVersion version() {
         return version;
     }
 
-    public PillCard setVersion(byte version) {
+    public PillCard setVersion(CardVersion version) {
         this.version = version;
         return this;
     }

@@ -1,6 +1,7 @@
 package org.camposmdev.model.card.loot;
 
 import org.camposmdev.model.card.attribute.CardType;
+import org.camposmdev.model.card.attribute.loot.TrinketType;
 
 public class TrinketCard extends LootCard {
     private TrinketType type;

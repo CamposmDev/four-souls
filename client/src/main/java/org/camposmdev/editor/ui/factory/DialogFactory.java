@@ -1,23 +1,29 @@
 package org.camposmdev.editor.ui.factory;
 
 import com.almasb.fxgl.dsl.FXGL;
+import com.almasb.fxgl.ui.UI;
 import io.vertx.core.json.JsonObject;
-import javafx.collections.FXCollections;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
+import org.camposmdev.editor.ui.AttributeModifierBox;
+import org.camposmdev.editor.ui.LootOptionEventBox;
 import org.camposmdev.editor.ui.RewardBox;
+import org.camposmdev.editor.ui.RollEventBox;
+import org.camposmdev.editor.ui.workspace.loot.PillEventFormController;
+import org.camposmdev.editor.ui.workspace.loot.RuneEventFormController;
 import org.camposmdev.model.card.attribute.*;
-import org.camposmdev.model.game.Reward;
+import org.camposmdev.model.card.attribute.Reward;
+import org.camposmdev.model.card.attribute.loot.LootOptionEvent;
+import org.camposmdev.model.card.attribute.loot.PillEvent;
+import org.camposmdev.model.card.attribute.loot.RuneEvent;
 import org.camposmdev.util.DialogBuilder;
 import org.camposmdev.util.FXUtil;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
@@ -116,18 +122,45 @@ public class DialogFactory {
     }
 
     public void showRollListenerModifierBox(List<RollListener> lst) {
-        var rewardBox = new RewardBox();
         var cbRollType = new ComboBox<RollType>();
         cbRollType.setPrefWidth(150);
         cbRollType.setValue(RollType.ANY);
-        cbRollType.setItems(FXCollections.observableArrayList(RollType.values()));
+        cbRollType.getItems().addAll(RollType.values());
         var tfRoll = new TextField();
         tfRoll.setPromptText("[1,6]");
+        var rewardBox = new RewardBox();
+        var tfLoseCents = new TextField("0");
+        var tfDiscardLoot = new TextField("0");
+        var tfBuffMonsterATK = new TextField("0");
+        var tfHealMonsters = new TextField("0");
+        var tfDamage = new TextField("0");
+        var cbDamageTo = new ComboBox<EntityTarget>();
+        cbDamageTo.getItems().addAll(EntityTarget.values());
+        var checkBoxCancelEverything = new CheckBox();
+        var tfHeal = new TextField("0");
+        var tfGainCents = new TextField("0");
+        var checkBoxRechargeItem = new CheckBox();
+        var cbPeekDeck = new ComboBox<DeckType>();
+        cbPeekDeck.getItems().addAll(DeckType.values());
+        var tfPeekDeckAmount = new TextField("0");
+        var tfModMonsterRoll = new TextField("0");
+        var checkBoxIsSatanAlt = new CheckBox();
+        var tfModRoll = new TextField("0");
         var gridPane = new GridPane(8,12);
-         var btSubmit = new Button("Submit");
+        var btSubmit = new Button("Submit");
         gridPane.addColumn(0, new Label("RollType"),
-                new Label("Roll Value"), new Label("Reward"));
-        gridPane.addColumn(1, cbRollType, tfRoll, rewardBox.getContent());
+                new Label("Roll Value"), new Label("Reward"), new Label("Lose Cents"),
+                new Label("Discard Loot"), new Label("Buff All Monsters Attack"), new Label("Heal All Monsters"),
+                new Label("Damage"), new Label("Damage To"), new Label("Cancel Everything"),
+                new Label("Heal"), new Label("Gain Cents"), new Label("Recharge Item"),
+                new Label("Peek Deck"), new Label("Peek Deck Amount"), new Label("Mod Monster Roll"),
+                new Label("Is Satan Alt"), new Label("Mod Roll"));
+        gridPane.addColumn(1, cbRollType, tfRoll, rewardBox.getContent(), tfLoseCents,
+                tfDiscardLoot, tfBuffMonsterATK, tfHealMonsters,
+                tfDamage, cbDamageTo, checkBoxCancelEverything,
+                tfHeal, tfGainCents, checkBoxRechargeItem,
+                cbPeekDeck, tfPeekDeckAmount, tfModMonsterRoll,
+                checkBoxIsSatanAlt, tfModRoll);
         gridPane.add(new StackPane(btSubmit), 0, 3, 2, 1);
         var lv = new ListView<RollListener>();
         lv.getItems().addAll(lst);
@@ -145,7 +178,26 @@ public class DialogFactory {
                 var type = cbRollType.getValue();
                 var roll = Byte.parseByte(tfRoll.getText());
                 var reward = rewardBox.build();
-                var listener = new RollListener(type, roll, reward);
+                byte byteLoseCents = Byte.parseByte(tfLoseCents.getText());
+                byte byteDiscardLoot = Byte.parseByte(tfDiscardLoot.getText());
+                byte byteBuffMonsterATK = Byte.parseByte(tfBuffMonsterATK.getText());
+                byte byteHealMonsters = Byte.parseByte(tfHealMonsters.getText());
+                byte byteDamage = Byte.parseByte(tfDamage.getText());
+                byte byteHeal = Byte.parseByte(tfHeal.getText());
+                byte byteGainCents = Byte.parseByte(tfGainCents.getText());
+                byte bytePeekDeckAmount = Byte.parseByte(tfPeekDeckAmount.getText());
+                byte byteModMonsterRoll = Byte.parseByte(tfModMonsterRoll.getText());
+                byte byteModRoll = Byte.parseByte(tfModRoll.getText());
+                /* get checkbox values */
+                boolean cancelEverything = checkBoxCancelEverything.isSelected();
+                boolean rechargeItem = checkBoxRechargeItem.isSelected();
+                boolean isSatanAlt = checkBoxIsSatanAlt.isSelected();
+                /* get combo box values */
+                EntityTarget damageTo = cbDamageTo.getValue();
+                DeckType selectedPeekDeck = cbPeekDeck.getValue();
+                var listener = new RollListener(type, roll, reward, byteLoseCents, byteDiscardLoot, byteBuffMonsterATK,
+                        byteHealMonsters, byteDamage, damageTo, cancelEverything, byteHeal, byteGainCents, rechargeItem,
+                        selectedPeekDeck, bytePeekDeckAmount, byteModMonsterRoll, isSatanAlt, byteModRoll);
                 lv.getItems().add(listener);
             } catch (Exception ex) {
                 DialogFactory.instance().showErrorBox(ex);
@@ -274,7 +326,7 @@ public class DialogFactory {
     public void showKillListenerModifierBox(List<KillListener> lst) {
         var rewardBox = new RewardBox();
         var btSubmit = new Button("Submit");
-        var gridPane = new GridPane(8, 12);
+        var gridPane = new GridPane(4, 4);
         gridPane.addColumn(0, new Label("Reward"));
         gridPane.addColumn(1, rewardBox.getContent());
         gridPane.add(new StackPane(btSubmit), 0, 1, 2, 1);
@@ -297,7 +349,7 @@ public class DialogFactory {
                 var listener = new KillListener(reward);
                 lv.getItems().add(listener);
             } catch (Exception ex) {
-                DialogFactory.instance().showErrorBox(ex);
+                this.showErrorBox(ex);
             }
         });
 
@@ -316,21 +368,112 @@ public class DialogFactory {
     }
 
     public Optional<Reward> showRewardModifierBox(Reward reward) {
-        var rewardBox = new RewardBox();
+        var box = new RewardBox();
         if (reward != null)
-            rewardBox.load(reward);
+            box.load(reward);
         return new DialogBuilder().setTitle("Reward Modifier")
                 .setDefaultBtn()
-                .setContent(rewardBox.getContent())
+                .setContent(box.getContent())
                 .buildAndShow().map(x -> {
             Reward obj = null;
             if (!x.getButtonData().isDefaultButton()) return null;
             try {
-                obj = rewardBox.build();
-            } catch (Exception e) {
-                DialogFactory.instance().showErrorBox(e);
+                obj = box.build();
+            } catch (Exception ex) {
+                this.showErrorBox(ex);
             }
             return obj;
         });
+    }
+
+    public void showRollEventModifierBox(List<RollEvent> lst) {
+        var box = new RollEventBox();
+        box.load(lst);
+        new DialogBuilder().setTitle("Roll Event Modifier")
+                .setHeaderText("Roll for an event.")
+                .setContent(box.getContent())
+                .setDefaultBtn()
+                .buildAndShow().ifPresent(e -> {
+                    if (e.getButtonData().isDefaultButton()) {
+                        lst.clear();
+                        lst.addAll(box.build());
+                    }
+                });
+    }
+
+    public void showLootOptionEventModifierBox(List<LootOptionEvent> lst) {
+        var box = new LootOptionEventBox();
+        box.load(lst);
+        new DialogBuilder().setTitle("Loot Option Event")
+                .setHeaderText("You played a loot card, choose one.")
+                .setContent(box.getContent())
+                .setDefaultBtn()
+                .buildAndShow().ifPresent(e -> {
+                    if (e.getButtonData().isDefaultButton()) {
+                        lst.clear();
+                        lst.addAll(box.build());
+                    }
+                });
+    }
+
+    public void showAttributeModifierBox(AttributeModifier modifier) {
+        var box = new AttributeModifierBox();
+        if (modifier != null) box.load(modifier);
+        new DialogBuilder().setTitle("Attribute Modifier")
+                .setHeaderText("Modifies an attribute when a threshold is reached.")
+                .setContent(box.getContent())
+                .setDefaultBtn()
+                .buildAndShow().map(x -> {
+                   AttributeModifier obj = null;
+                   if (!x.getButtonData().isDefaultButton()) return null;
+                   try {
+                       obj = box.build();
+                   } catch (Exception ex) {
+                       this.showErrorBox(ex);
+                   }
+                   return obj;
+                });
+    }
+
+    public void showPillEventModifierBox(List<PillEvent> lst) {
+        UI form = FXUtil.loadUI("workspace/loot/PillEventForm.fxml");
+        assert form != null;
+        ((PillEventFormController) form.getController()).load(lst.toArray(new PillEvent[]{}));
+        new DialogBuilder().setTitle("Pill Event")
+                .setHeaderText("You played a pill card. Choose one.")
+                .setContent(form.getRoot())
+                .setDefaultBtn()
+                .buildAndShow().ifPresent(e -> {
+                    if (e.getButtonData().isDefaultButton()) {
+                        lst.clear();
+                        try {
+                            var arr = ((PillEventFormController) form.getController()).submit();
+                            lst.addAll(Arrays.asList(arr));
+                        } catch (Exception ex) {
+                            throw new RuntimeException(ex);
+                        }
+                    }
+                });
+    }
+
+    public void showRuneEventModifierBox(List<RuneEvent> lst) {
+        UI form = FXUtil.loadUI("workspace/loot/RuneEventForm.fxml");
+        assert form != null;
+        ((RuneEventFormController) form.getController()).load(lst.toArray(new RuneEvent[]{}));
+        new DialogBuilder().setTitle("Rune Event")
+                .setHeaderText("You played a rune card.")
+                .setContent(form.getRoot())
+                .setDefaultBtn()
+                .buildAndShow().ifPresent(e -> {
+                    if (e.getButtonData().isDefaultButton()) {
+                        lst.clear();
+                        try {
+                            var arr = ((RuneEventFormController) form.getController()).submit();
+                            lst.addAll(Arrays.asList(arr));
+                        } catch (Exception ex) {
+                            throw new RuntimeException(ex);
+                        }
+                    }
+                });
     }
 }

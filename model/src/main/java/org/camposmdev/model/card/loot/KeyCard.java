@@ -1,10 +1,11 @@
 package org.camposmdev.model.card.loot;
 
 import org.camposmdev.model.card.attribute.CardType;
+import org.camposmdev.model.card.attribute.loot.LootOptionEvent;
 
 public class KeyCard extends LootCard {
     private boolean goldKey;
-    private OptionEvent[] options;
+    private LootOptionEvent[] options;
 
     public KeyCard() {
         super.setCardType(CardType.KEYS);
@@ -19,11 +20,11 @@ public class KeyCard extends LootCard {
         return this;
     }
 
-    public OptionEvent[] options() {
+    public LootOptionEvent[] options() {
         return options;
     }
 
-    public KeyCard setOptions(OptionEvent[] options) {
+    public KeyCard setOptions(LootOptionEvent[] options) {
         this.options = options;
         return this;
     }

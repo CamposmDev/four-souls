@@ -2,8 +2,9 @@ package org.camposmdev.model.card.treasure;
 
 import org.camposmdev.model.card.BaseCard;
 import org.camposmdev.model.card.attribute.CardType;
+import org.camposmdev.model.card.attribute.treasure.ActiveItem;
 
-public class ActiveTreasureCard extends BaseCard {
+public class ActiveTreasureCard extends TreasureCard {
     private ActiveItem item;
 
     public ActiveTreasureCard() {

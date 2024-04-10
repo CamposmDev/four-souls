@@ -6,7 +6,7 @@
 <?import org.camposmdev.model.card.attribute.CounterType?>
 <?import java.lang.*?>
 <GridPane hgap="8.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" vgap="8.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-          fx:controller="org.camposmdev.editor.ui.workspace.soul.BonusSoulFormController"
+          fx:controller="org.camposmdev.editor.ui.workspace.bsoul.BonusSoulFormController"
 >
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />

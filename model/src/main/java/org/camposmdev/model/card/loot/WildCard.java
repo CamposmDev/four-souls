@@ -1,10 +1,7 @@
 package org.camposmdev.model.card.loot;
 
-import org.camposmdev.model.card.attribute.CardType;
-import org.camposmdev.model.card.attribute.DeckType;
-import org.camposmdev.model.card.attribute.EntityTarget;
-import org.camposmdev.model.card.attribute.RollEvent;
-import org.camposmdev.model.game.Reward;
+import org.camposmdev.model.card.attribute.*;
+import org.camposmdev.model.card.attribute.loot.LootOptionEvent;
 
 public class WildCard extends LootCard {
     protected boolean theFool;
@@ -26,16 +23,16 @@ public class WildCard extends LootCard {
     protected EntityTarget kill;
     protected Reward reward;
     protected EntityTarget rewardTo;
-    protected OptionEvent[] options;
+    protected LootOptionEvent[] options;
     protected boolean devilDealStealItem;
     protected boolean theSun;
     protected boolean judgement;
     protected boolean theWorld;
     protected boolean creditCard;
-    protected byte holyVersion;
+    protected CardVersion holyVersion;
     protected boolean twoOfDiamonds;
     protected boolean joker;
-    protected byte copyActiveItemVersion;
+    protected CardVersion copyActiveItemVersion;
     protected boolean disableOtherPlayers;
     protected boolean aceOfDiamonds;
     protected boolean emergencyContact;
@@ -229,11 +226,11 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public OptionEvent[] options() {
+    public LootOptionEvent[] options() {
         return options;
     }
 
-    public WildCard setOptions(OptionEvent[] options) {
+    public WildCard setOptions(LootOptionEvent[] options) {
         this.options = options;
         return this;
     }
@@ -283,11 +280,11 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public byte holyVersion() {
+    public CardVersion holyVersion() {
         return holyVersion;
     }
 
-    public WildCard setHolyVersion(byte holyVersion) {
+    public WildCard setHolyVersion(CardVersion holyVersion) {
         this.holyVersion = holyVersion;
         return this;
     }
@@ -310,11 +307,11 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public byte copyActiveItemVersion() {
+    public CardVersion copyActiveItemVersion() {
         return copyActiveItemVersion;
     }
 
-    public WildCard setCopyActiveItemVersion(byte copyActiveItemVersion) {
+    public WildCard setCopyActiveItemVersion(CardVersion copyActiveItemVersion) {
         this.copyActiveItemVersion = copyActiveItemVersion;
         return this;
     }

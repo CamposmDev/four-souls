@@ -1,30 +1,21 @@
 package org.camposmdev.model.card.loot;
 
 import org.camposmdev.model.card.attribute.CardType;
+import org.camposmdev.model.card.attribute.CardVersion;
 
 public class SoulHeartCard extends LootCard {
-    private byte version;
-    private byte value;
+    private CardVersion version;
 
     public SoulHeartCard() {
         super.setCardType(CardType.SHEART);
     }
 
-    public byte version() {
+    public CardVersion version() {
         return version;
     }
 
-    public SoulHeartCard setVersion(byte version) {
+    public SoulHeartCard setVersion(CardVersion version) {
         this.version = version;
-        return this;
-    }
-
-    public byte value() {
-        return value;
-    }
-
-    public SoulHeartCard setValue(byte value) {
-        this.value = value;
         return this;
     }
 }

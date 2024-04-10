@@ -1,11 +1,11 @@
 package org.camposmdev.model.card.eternal;
 
 import org.camposmdev.model.card.attribute.CardType;
-import org.camposmdev.model.card.attribute.CardVersionType;
+import org.camposmdev.model.card.attribute.CardVersion;
 
 public class PaidEternalCard extends EternalCard {
     private boolean isBagOTrash;
-    private CardVersionType bagOTrash;
+    private CardVersion bagOTrash;
     private boolean isBagOfCrafting, isIBS, isSumpotrium, isLilSteven;
     private boolean isSpelunkingPack, isLemegeton, isSpindownDice;
 
@@ -22,11 +22,11 @@ public class PaidEternalCard extends EternalCard {
         return this;
     }
 
-    public CardVersionType bagOTrash() {
+    public CardVersion bagOTrash() {
         return bagOTrash;
     }
 
-    public PaidEternalCard setBagOTrash(CardVersionType bagOTrash) {
+    public PaidEternalCard setBagOTrash(CardVersion bagOTrash) {
         this.bagOTrash = bagOTrash;
         return this;
     }

@@ -20,4 +20,12 @@ module model {
     opens org.camposmdev.model.card.bonus_soul to com.fasterxml.jackson.databind;
     exports org.camposmdev.model.card.character;
     opens org.camposmdev.model.card.character to com.fasterxml.jackson.databind;
+    exports org.camposmdev.model.card.attribute.loot;
+    opens org.camposmdev.model.card.attribute.loot to com.fasterxml.jackson.databind;
+    exports org.camposmdev.model.card.attribute.monster;
+    opens org.camposmdev.model.card.attribute.monster to com.fasterxml.jackson.databind;
+    exports org.camposmdev.model.card.treasure;
+    exports org.camposmdev.model.card.attribute.treasure;
+    exports org.camposmdev.model.card.room;
+    exports org.camposmdev.model.card.extra;
 }

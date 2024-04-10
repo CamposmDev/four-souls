@@ -40,17 +40,17 @@ public class ActiveFormController extends FormController<ActiveEternalCard> {
     public void init() {
         cbReroll.setValue(RerollType.NONE);
         cbReroll.getItems().addAll(RerollType.values());
-        cbPreventDamageFor.setValue(EntityTarget.ANY);
+        cbPreventDamageFor.setValue(EntityTarget.UNDEFINED);
         cbPreventDamageFor.getItems().addAll(EntityTarget.values());
-        cbPeekDeck.setValue(DeckType.NONE);
+        cbPeekDeck.setValue(DeckType.UNDEFINED);
         cbPeekDeck.getItems().addAll(DeckType.values());
         cbModifyDiceRoll.setValue(RollType.NONE);
         cbModifyDiceRoll.getItems().addAll(RollType.values());
-        cbDeckType.setValue(DeckType.NONE);
+        cbDeckType.setValue(DeckType.UNDEFINED);
         cbDeckType.getItems().addAll(DeckType.values());
-        cbModifyAttackTo.setValue(EntityTarget.ANY);
+        cbModifyAttackTo.setValue(EntityTarget.UNDEFINED);
         cbModifyAttackTo.getItems().addAll(EntityTarget.values());
-        cbDamageTo.setValue(EntityTarget.NONE);
+        cbDamageTo.setValue(EntityTarget.UNDEFINED);
         cbDamageTo.getItems().addAll(EntityTarget.values());
     }
 

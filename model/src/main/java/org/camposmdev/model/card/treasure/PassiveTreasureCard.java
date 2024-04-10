@@ -1,6 +1,7 @@
 package org.camposmdev.model.card.treasure;
 
 import org.camposmdev.model.card.attribute.CardType;
+import org.camposmdev.model.card.attribute.treasure.PassiveItem;
 
 public class PassiveTreasureCard extends TreasureCard {
     private PassiveItem item;

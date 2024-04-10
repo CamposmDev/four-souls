@@ -1,12 +1,13 @@
 package org.camposmdev.editor.ui.workspace.eternal;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import org.camposmdev.editor.ui.factory.DialogFactory;
 import org.camposmdev.model.card.eternal.PassiveEternalCard;
 import org.camposmdev.model.card.attribute.*;
-import org.camposmdev.model.game.Reward;
+import org.camposmdev.model.card.attribute.Reward;
 import org.camposmdev.util.FormController;
 
 import java.util.LinkedList;
@@ -14,15 +15,15 @@ import java.util.List;
 
 public class PassiveFormController extends FormController<PassiveEternalCard> {
     @FXML
-    ComboBox<Boolean> cbHasCounter;
+    CheckBox cbHasCounter;
     @FXML
     TextField tfTreasureAfterDeath;
     @FXML
-    ComboBox<Boolean> cbCounterIsHitPoints;
+    CheckBox cbCounterIsHitPoints;
     @FXML
     TextField tfCounterLimit, tfCounterResetsTo;
     @FXML
-    ComboBox<Boolean> cbIsAllowedToAttackAgain,
+    CheckBox cbIsAllowedToAttackAgain,
         cbIsAllowedToFlipCharacter,
         cbIsAllowedToCopyShopItem,
         cbIsCopiedShopItemForever,
@@ -54,30 +55,6 @@ public class PassiveFormController extends FormController<PassiveEternalCard> {
         damageDealt = null;
         killListeners = new LinkedList<>();
         counterExceededReward = null;
-
-        initBooleanComboBox(cbHasCounter);
-        initBooleanComboBox(cbCounterIsHitPoints);
-        initBooleanComboBox(cbIsAllowedToAttackAgain);
-        initBooleanComboBox(cbIsAllowedToFlipCharacter);
-        initBooleanComboBox(cbIsAllowedToCopyShopItem);
-        initBooleanComboBox(cbIsCopiedShopItemForever);
-        initBooleanComboBox(cbIsDeathPenaltyMoneyOn);
-        initBooleanComboBox(cbIsDeathPenaltyLootOn);
-        initBooleanComboBox(cbIsBallOfTumors);
-        initBooleanComboBox(cbIsDeathPenaltyTreasureOn);
-        initBooleanComboBox(cbPeekLootDeckAtStartToPublic);
-        initBooleanComboBox(cbIsAllowedToPlayMatchingLootCard);
-        initBooleanComboBox(cbIsPossession);
-        initBooleanComboBox(cbIsAllowedToCopyEternalItemAtStart);
-        initBooleanComboBox(cbIsLollypop);
-        initBooleanComboBox(cbIsHunkyBoys);
-        initBooleanComboBox(cbIsFocus);
-        initBooleanComboBox(cbIsRingOfSnake);
-    }
-
-    private void initBooleanComboBox(ComboBox<Boolean> cb) {
-        cb.getItems().addAll(true, false);
-        cb.setValue(false);
     }
 
     public void modRollListener() {
@@ -109,27 +86,27 @@ public class PassiveFormController extends FormController<PassiveEternalCard> {
 
     @Override
     public PassiveEternalCard submit() throws NumberFormatException {
-        var hasCounter = cbHasCounter.getValue();
+        var hasCounter = cbHasCounter.isSelected();
         byte treasureAfterDeath = Byte.parseByte(tfTreasureAfterDeath.getText());
         byte counterLimit = Byte.parseByte(tfCounterLimit.getText());
         byte counterResetsTo = Byte.parseByte(tfCounterResetsTo.getText());
-        var counterIsHitPoints = cbCounterIsHitPoints.getValue();
-        var isAllowedToAttackAgain = cbIsAllowedToAttackAgain.getValue();
-        var isAllowedToFlipCharacter = cbIsAllowedToFlipCharacter.getValue();
-        var isAllowedToCopyShopItem = cbIsAllowedToCopyShopItem.getValue();
-        var isAllowedToShopItemForever = cbIsCopiedShopItemForever.getValue();
-        var isDeathPenaltyMoneyOn = cbIsDeathPenaltyMoneyOn.getValue();
-        var isDeathPenaltyLootOn = cbIsDeathPenaltyLootOn.getValue();
-        var isBallOfTumors = cbIsBallOfTumors.getValue();
-        var isDeathPenaltyTreasureOn = cbIsDeathPenaltyTreasureOn.getValue();
-        var peekLootDeckAtStartToPublic = cbPeekLootDeckAtStartToPublic.getValue();
-        var isAllowedToPlayMatchingLootCard = cbIsAllowedToPlayMatchingLootCard.getValue();
-        var isPossession = cbIsPossession.getValue();
-        var isAllowedToCopyEternalItemAtStart = cbIsAllowedToCopyEternalItemAtStart.getValue();
-        var isLollypop = cbIsLollypop.getValue();
-        var isHunkyBoys = cbIsHunkyBoys.getValue();
-        var isFocus = cbIsFocus.getValue();
-        var isRingOfSnake = cbIsRingOfSnake.getValue();
+        var counterIsHitPoints = cbCounterIsHitPoints.isSelected();
+        var isAllowedToAttackAgain = cbIsAllowedToAttackAgain.isSelected();
+        var isAllowedToFlipCharacter = cbIsAllowedToFlipCharacter.isSelected();
+        var isAllowedToCopyShopItem = cbIsAllowedToCopyShopItem.isSelected();
+        var isAllowedToShopItemForever = cbIsCopiedShopItemForever.isSelected();
+        var isDeathPenaltyMoneyOn = cbIsDeathPenaltyMoneyOn.isSelected();
+        var isDeathPenaltyLootOn = cbIsDeathPenaltyLootOn.isSelected();
+        var isBallOfTumors = cbIsBallOfTumors.isSelected();
+        var isDeathPenaltyTreasureOn = cbIsDeathPenaltyTreasureOn.isSelected();
+        var peekLootDeckAtStartToPublic = cbPeekLootDeckAtStartToPublic.isSelected();
+        var isAllowedToPlayMatchingLootCard = cbIsAllowedToPlayMatchingLootCard.isSelected();
+        var isPossession = cbIsPossession.isSelected();
+        var isAllowedToCopyEternalItemAtStart = cbIsAllowedToCopyEternalItemAtStart.isSelected();
+        var isLollypop = cbIsLollypop.isSelected();
+        var isHunkyBoys = cbIsHunkyBoys.isSelected();
+        var isFocus = cbIsFocus.isSelected();
+        var isRingOfSnake = cbIsRingOfSnake.isSelected();
         return new PassiveEternalCard().setHasCounter(hasCounter)
                 .setTreasureAfterDeath(treasureAfterDeath)
                 .setCounterIsHitPoints(counterIsHitPoints)

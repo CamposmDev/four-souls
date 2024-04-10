@@ -15,7 +15,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
-import java.util.TreeMap;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.getAssetLoader;
 
@@ -32,8 +31,7 @@ public class Model {
 
     private Model() {
         imageAtlas = initImageAtlas();
-        cardAtlas = new MasterCardAtlas(new TreeMap<>(), new TreeMap<>(),
-                new TreeMap<>(), new TreeMap<>());
+        cardAtlas = new MasterCardAtlas();
     }
 
     private MasterImageAtlas initImageAtlas() {
@@ -69,23 +67,24 @@ public class Model {
 
     /**
      * Fetches key set of card type given by name
-     * @param name Type of card
+     * @param cardType Type of card
      * @return List of keys from its respective category
      */
-    public List<String> getImageAtlas(String name) {
-        return switch (name) {
-            case "character" -> loadImageAtlas(imageAtlas.character());
-            case "peternal", "aeternal", "paideternal", "oeternal", "seternal" ->
-                    loadImageAtlas(imageAtlas.eternal().get(name));
-            case "ptreasure", "atreasure", "paidtreasure", "otreasure", "streasure" ->
-                    loadImageAtlas(imageAtlas.treasure().get(name));
-            case "bmonster", "cmonster", "hmonster", "chamonster", "gevent", "bevent", "curse", "boss", "epic" ->
-                    loadImageAtlas(imageAtlas.monster().get(name));
-            case "cards", "trinkets", "pills", "runes", "bombs", "butter", "batteries", "keys", "dice", "sheart", "bheart", "sack", "lsoul", "wildcard" ->
-                    loadImageAtlas(imageAtlas.loot().get(name));
-            case "1c", "2c", "3c", "4c", "5c", "10c" -> loadImageAtlas(imageAtlas.money().get(name));
-            case "bsoul" -> loadImageAtlas(imageAtlas.bsoul());
-            case "room" -> loadImageAtlas(imageAtlas.room());
+    public List<String> getImageAtlas(CardType cardType) {
+        return switch (cardType) {
+            case CHARACTER -> loadImageAtlas(imageAtlas.character());
+            case PETERNAL, AETERNAL, SETERNAL, OETERNAL, PAIDETERNAL ->
+                    loadImageAtlas(imageAtlas.eternal().get(cardType.key()));
+            case PTREASURE, ATREASURE, PAIDTREASURE, OTREASURE, STREASURE ->
+                    loadImageAtlas(imageAtlas.treasure().get(cardType.key()));
+            case BMONSTER, CMONSTER, HMONSTER, CHAMONSTER, GEVENT, BEVENT, CURSE, BOSS, EPIC ->
+                    loadImageAtlas(imageAtlas.monster().get(cardType.key()));
+            case CARDS, TRINKETS, PILLS, RUNES, BOMBS, BUTTER, BATTERIES, KEYS, DICE, SHEART, BHEART, SACK, LSOUL, WILDCARD ->
+                    loadImageAtlas(imageAtlas.loot().get(cardType.key()));
+            case MONEY1C, MONEY2C, MONEY3C, MONEY4C, MONEY5C, MONEY10C ->
+                    loadImageAtlas(imageAtlas.money().get(cardType.key()));
+            case BSOUL -> loadImageAtlas(imageAtlas.bsoul());
+            case ROOM -> loadImageAtlas(imageAtlas.room());
             default -> null;
         };
     }

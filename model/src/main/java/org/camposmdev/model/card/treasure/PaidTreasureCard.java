@@ -2,8 +2,9 @@ package org.camposmdev.model.card.treasure;
 
 import org.camposmdev.model.card.BaseCard;
 import org.camposmdev.model.card.attribute.CardType;
+import org.camposmdev.model.card.attribute.treasure.PaidItem;
 
-public class PaidTreasureCard extends BaseCard {
+public class PaidTreasureCard extends TreasureCard {
     private PaidItem item;
 
     public PaidTreasureCard() {

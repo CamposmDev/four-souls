@@ -1,7 +1,6 @@
 package org.camposmdev.model.card.attribute;
 
 import io.vertx.core.json.JsonObject;
-import org.camposmdev.model.game.Reward;
 
 /**
  * When an entity dies, this listener reacts to it

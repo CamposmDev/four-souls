@@ -2,26 +2,28 @@ package org.camposmdev.model.card.loot;
 
 import org.camposmdev.model.card.attribute.CardType;
 import org.camposmdev.model.card.attribute.DeckType;
+import org.camposmdev.model.card.attribute.loot.LootOptionEvent;
+import org.camposmdev.model.card.attribute.loot.RuneEvent;
 
 public class RuneCard extends LootCard {
-    private OptionEvent[] options;
+    private LootOptionEvent[] options;
     private boolean discardActiveMonsters;
     private RuneEvent[] events;
     private boolean jera;
     private DeckType peekDeck;
     private byte peekDeckAmount;
     private boolean peekDeckSort;
-    private boolean destroyItemInPlayAndReplace, rerollAnyItem, algiz, berkano, galgalaz;
+    private boolean destroyItemInPlayAndReplace, rerollAnyItem, algiz, berkano, halgalaz;
 
     public RuneCard() {
         super.setCardType(CardType.RUNES);
     }
 
-    public OptionEvent[] options() {
+    public LootOptionEvent[] options() {
         return options;
     }
 
-    public RuneCard setOptions(OptionEvent[] options) {
+    public RuneCard setOptions(LootOptionEvent[] options) {
         this.options = options;
         return this;
     }
@@ -116,12 +118,12 @@ public class RuneCard extends LootCard {
         return this;
     }
 
-    public boolean galgalaz() {
-        return galgalaz;
+    public boolean halgalaz() {
+        return halgalaz;
     }
 
-    public RuneCard setGalgalaz(boolean galgalaz) {
-        this.galgalaz = galgalaz;
+    public RuneCard setHalgalaz(boolean galgalaz) {
+        this.halgalaz = galgalaz;
         return this;
     }
 }

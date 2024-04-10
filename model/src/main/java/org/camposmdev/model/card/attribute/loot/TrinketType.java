@@ -1,0 +1,31 @@
+package org.camposmdev.model.card.attribute.loot;
+
+public enum TrinketType {
+    AAA_BATTERY,
+    BAG_LUNCH,
+    BLOODY_PENNY,
+    BROKEN_ANKH,
+    BROKEN_REMOTE,
+    CAINS_EYE,
+    CALLUS,
+    CANCER,
+    COUNTERFEIT_PENNY,
+    CURVED_HORN,
+    GOLDEN_HORSESHOE,
+    GOLDEN_TRINKET,
+    GUPPYS_HAIRBALL,
+    LOOT_CARD,
+    LOST_SOUL,
+    LUCKY_TOE,
+    PINK_EYE,
+    POKER_CHIP,
+    PURPLE_HEART,
+    RAINBOW_TAPE_WORM,
+    RIB_OF_GREED,
+    SHORT_FUSE,
+    SWALLOWED_PENNY,
+    TAPE_WORM,
+    THE_LEFT_HAND,
+    TICK,
+    WISH_BONE
+}
