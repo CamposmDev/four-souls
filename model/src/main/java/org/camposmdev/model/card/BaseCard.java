@@ -50,7 +50,9 @@ public abstract class BaseCard implements Serializable {
     public JsonObject toJSON() {
         return JsonObject.of(
                 "id", id,
-                "image", image
+                "image", image,
+                "cardType", cardType,
+                "cardSet", cardSet
         );
     }
 

@@ -18,8 +18,8 @@ public class TreasureEditor extends BaseEditor {
 
     public TreasureEditor(CardType type) {
         cardType = type;
-        var btSubmit = new Button("Submit");
-        btSubmit.setOnAction(e -> commit());
+        var btCommit = new Button("Commit");
+        btCommit.setOnAction(e -> commit());
         switch (this.cardType) {
             case PTREASURE -> form = FXUtil.loadUI("workspace/treasure/PassiveTreasureForm.fxml");
             case ATREASURE -> form = FXUtil.loadUI("workspace/treasure/ActiveTreasureForm.fxml");
@@ -28,7 +28,7 @@ public class TreasureEditor extends BaseEditor {
             case STREASURE -> form = FXUtil.loadUI("workspace/treasure/SoulTreasureForm.fxml");
         }
         assert form != null;
-        root = new VBox(8, form.getRoot(), btSubmit);
+        root = new VBox(8, form.getRoot(), btCommit);
     }
 
     @Override

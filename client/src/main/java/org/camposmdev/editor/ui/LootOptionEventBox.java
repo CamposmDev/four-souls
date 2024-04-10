@@ -10,10 +10,11 @@ import org.camposmdev.editor.ui.factory.DialogFactory;
 import org.camposmdev.model.card.attribute.EntityTarget;
 import org.camposmdev.model.card.attribute.Reward;
 import org.camposmdev.model.card.attribute.loot.LootOptionEvent;
+import org.camposmdev.util.FormController;
 
 import java.util.List;
 
-public class LootOptionEventBox {
+public class LootOptionEventBox extends FormController<List<LootOptionEvent>> {
     private final ListView<LootOptionEvent> lv;
     private final Label damageLabel;
     private final TextField damageTextField;
@@ -81,13 +82,9 @@ public class LootOptionEventBox {
         lv.getItems().addAll(lst);
     }
 
-    public List<LootOptionEvent> build() {
-        return lv.getItems().stream().toList();
-    }
-
     public Node getContent() {
-        var btSubmit = new Button("Submit");
-        btSubmit.setOnAction(e -> {
+        var btCommit = new Button("Commit");
+        btCommit.setOnAction(e -> {
             try {
                 var lootOptionEvent = new LootOptionEvent();
                 lootOptionEvent.setDamage(Byte.parseByte(damageTextField.getText()));
@@ -111,8 +108,13 @@ public class LootOptionEventBox {
         gridPane.addRow(4, summonMonsterLabel, summonMonsterCheckBox);
         gridPane.addRow(5, destroyCurseLabel, destroyCurseCheckBox);
         gridPane.addRow(6, preventDamageToPlayerLabel, preventDamageToPlayerTextField);
-        gridPane.addRow(7, new StackPane(btSubmit));
-        gridPane.add(new StackPane(btSubmit), 0, 7, 2, 1);
+        gridPane.addRow(7, new StackPane(btCommit));
+        gridPane.add(new StackPane(btCommit), 0, 7, 2, 1);
         return new HBox(4, lv, gridPane);
+    }
+
+    @Override
+    public List<LootOptionEvent> submit() throws Exception {
+        return lv.getItems().stream().toList();
     }
 }

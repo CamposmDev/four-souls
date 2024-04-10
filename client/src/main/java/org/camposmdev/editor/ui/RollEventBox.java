@@ -8,13 +8,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import org.camposmdev.editor.ui.factory.DialogFactory;
 import org.camposmdev.model.card.attribute.*;
+import org.camposmdev.util.FormController;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class RollEventBox {
+public class RollEventBox extends FormController<List<RollEvent>> {
     TextField valuesField;
     TextField multRewardField;
     CheckBox noMonsterDamageCheckBox;
@@ -78,7 +77,8 @@ public class RollEventBox {
         lv.getItems().setAll(lst);
     }
 
-    public List<RollEvent> build() {
+    @Override
+    public List<RollEvent> submit() {
         return lv.getItems().stream().toList();
     }
 
@@ -196,8 +196,8 @@ public class RollEventBox {
         discardRandomItemCheckBox = new CheckBox();
         putOnMonsterSlotCheckBox = new CheckBox();
 
-        var btSubmit = new Button("Submit");
-        btSubmit.setOnAction(e -> {
+        var btCommit = new Button("Commit");
+        btCommit.setOnAction(e -> {
             try {
                 RollEvent rollEvent = new RollEvent();
                 // Set values for each property
@@ -255,7 +255,7 @@ public class RollEventBox {
         gridPane.addColumn(1, valuesField, multRewardField, noMonsterDamageCheckBox, modMonsterDamageField, multMonsterDamageField, cancelTurnCheckBox, stealPlayerLootCheckBox, damageField, damageToComboBox, attackAgainCheckBox, forceAttackAgainCheckBox, modPlayerButton, attackableCheckBox, returnToDeckCheckBox, modRollField, modAttackField, healMonsterField, cancelAttackCheckBox, expandMonsterField);
         gridPane.addColumn(2, rewardLabel, discardLootLabel, discardCentsLabel, peekDeckLabel, peekDeckAmountLabel, peekDeckSortLabel, soulHitPointsLabel, isSoulLabel, skipNextTurnLabel, isHeartItemLabel, rerollItemLabel, guppyItemLabel, killLabel, modMonstersAttackRollLabel, putOnTopMonsterDeckLabel, rollEventLabel, damageLinkLabel, discardRandomItemLabel, putOnMonsterSlotLabel);
         gridPane.addColumn(3, rewardButton, discardLootField, discardCentsField, peekDeckComboBox, peekDeckAmountField, peekDeckSortCheckBox, soulHitPointsField, isSoulCheckBox, skipNextTurnCheckBox, isHeartItemCheckBox, rerollItemField, guppyItemCheckBox, killComboBox, modMonstersAttackRollField, putOnTopMonsterDeckCheckBox, rollEventButton, damageLinkCheckBox, discardRandomItemCheckBox, putOnMonsterSlotCheckBox);
-        gridPane.add(new StackPane(btSubmit), 0, 19, 4, 1);
+        gridPane.add(new StackPane(btCommit), 0, 19, 4, 1);
         return new HBox(4, lv, gridPane);
     }
 }

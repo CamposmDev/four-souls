@@ -30,13 +30,13 @@ public class RoomEditor extends BaseEditor {
         cbRoomType.setPrefWidth(150);
         cbRoomType.getItems().addAll(RoomType.values());
 
-        var btSubmit = new Button("Submit");
-        btSubmit.setOnAction(e -> commit());
+        var btCommit = new Button("Commit");
+        btCommit.setOnAction(e -> commit());
 
         root = new GridPane(4, 4);
         root.addColumn(0, new Label("Card Set"), new Label("RoomType"));
         root.addColumn(1, cbCardSet, cbRoomType);
-        root.addRow(2, btSubmit);
+        root.addRow(2, btCommit);
     }
 
     @Override

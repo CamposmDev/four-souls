@@ -1,21 +1,17 @@
 package org.camposmdev.editor.ui;
 
-import com.almasb.fxgl.core.collection.grid.Grid;
 import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import org.camposmdev.model.card.attribute.Reward;
+import org.camposmdev.util.FormController;
 
-public class RewardBox {
-    private GridPane root;
-    private TextField tfLoot;
-    private TextField tfTreasure;
-    private TextField tfCents;
-    private TextField tfHitPoints;
-    private CheckBox cbRechargeItem, cbStealShopItem, cbDeath, cbIsEqualToCounter;
+public class RewardBox extends FormController<Reward> {
+    private final GridPane root;
+    private final TextField tfLoot, tfTreasure, tfCents, tfHitPoints;
+    private final CheckBox cbRechargeItem, cbStealShopItem, cbDeath, cbIsEqualToCounter;
 
     public RewardBox() {
         tfLoot = new TextField();
@@ -52,7 +48,12 @@ public class RewardBox {
         cbIsEqualToCounter.setSelected(reward.isEqualToCounter());
     }
 
-    public Reward build() throws NumberFormatException {
+    public Node getContent() {
+        return root;
+    }
+
+    @Override
+    public Reward submit() throws Exception {
         return new Reward(Byte.parseByte(tfLoot.getText()),
                 Byte.parseByte(tfTreasure.getText()),
                 Byte.parseByte(tfCents.getText()),
@@ -61,9 +62,5 @@ public class RewardBox {
                 cbStealShopItem.isSelected(),
                 cbDeath.isSelected(),
                 cbIsEqualToCounter.isSelected());
-    }
-
-    public Node getContent() {
-        return root;
     }
 }

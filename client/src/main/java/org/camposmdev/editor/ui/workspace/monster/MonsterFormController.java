@@ -13,17 +13,12 @@ import org.camposmdev.util.FormController;
 import java.util.LinkedList;
 import java.util.List;
 
-public class MonsterForm extends FormController<MonsterCard> {
+public class MonsterFormController extends FormController<MonsterCard> {
     /* Controls for Statistics */
     @FXML private ComboBox<CardSet> stat_cbCardSet;
     @FXML private TextField stat_tfHP, stat_tfDC, stat_tfATK, stat_tfSoul;
     @FXML private ComboBox<GameType> stat_game;
     @FXML private ComboBox<ChallengeType> stat_challenge;
-    /* Controls for Start Event */
-    @FXML private CheckBox se_rerollShopItem, se_kekeIsYou, se_isZombieJesus, se_isMomsHandAlt, se_isEvis;
-    @FXML private TextField se_damage;
-    @FXML private ComboBox<EntityTarget> se_damageTo;
-    @FXML private CheckBox se_rechargeOneTime, se_isGurdyAlt, se_counterDistributeDamage, se_isTheAdversary;
     /* Controls for Passive Event */
     @FXML private TextField pe_modMonstersAttackRoll, pe_modMonstersDamage, pe_modMonstersHitPoints;
     @FXML private CheckBox pe_attackable, pe_deathLink, pe_isShopkeeper, pe_isIndomitable, pe_isImposter, pe_isDickKnot;
@@ -86,20 +81,6 @@ public class MonsterForm extends FormController<MonsterCard> {
     @FXML private TextField dmge_modPlayersNextAttackRoll, dmge_damage, dmge_modAttackRoll, dmge_modDamage;
     @FXML private ComboBox<EntityTarget> dmge_damageTo;
     @FXML private CheckBox dmge_preventDamage, dmge_isTheScourge, dmge_damageCounter, dmge_pooCounter, dmge_noteAttackRolls, dmge_flipNextAttackRoll, dmge_spiderCounter;
-    /* Controls for End Event */
-    @FXML private CheckBox ee_isEyeStabber;
-    @FXML private CheckBox ee_moveMonsterToAnotherSlot;
-    @FXML private TextField ee_loot;
-    @FXML private TextField ee_discardLoot;
-    @FXML private TextField ee_lootCents;
-    @FXML private CheckBox ee_hasTinyHands;
-    @FXML private CheckBox ee_deactivateItemsAndCharacter;
-    @FXML private CheckBox ee_discardLootAndCentsEqualToSouls;
-    @FXML private CheckBox ee_lastManStanding;
-    @FXML private CheckBox ee_addCounter;
-    @FXML private CheckBox ee_lastManStandingAlt;
-    @FXML private TextField ee_putInMonsterDeck;
-    @FXML private CheckBox ee_notAttackedCounter;
     /* Controls for Death Event */
     @FXML private CheckBox de_attackAgain;
     @FXML private TextField de_damage;
@@ -130,7 +111,8 @@ public class MonsterForm extends FormController<MonsterCard> {
             de_summonCurse, de_isBalrog, de_discardHand, de_isPestilenceAlt, de_stealItemWithGoldCounter,
             de_skipChosenPlayersTurn, de_spiderCounterDistributeDamage, de_butItsReallyTheBloat;
     @FXML private TextField de_putInDeck, de_stealSoul, de_secondChanceAttributes;
-
+    @FXML protected FormController<StartEvent> se_formController;
+    @FXML protected FormController<EndEvent> ee_formController;
     private Reward stat_reward;
     private AttributeModifier pe_modifier;
     private List<RollListener> pe_rollListeners;
@@ -139,8 +121,8 @@ public class MonsterForm extends FormController<MonsterCard> {
     private List<RollEvent> dmge_rollEvents, dmge_damageRollEvents;
     private List<RollEvent> de_deathRollEvents, de_killRollEvents;
     private Reward de_reward;
-    @Override
-    public void init() {
+
+    public MonsterFormController() {
         stat_reward = null;
         pe_modifier = null;
         pe_rollListeners = new LinkedList<>();
@@ -150,15 +132,16 @@ public class MonsterForm extends FormController<MonsterCard> {
         dmge_damageRollEvents = new LinkedList<>();
         de_deathRollEvents = new LinkedList<>();
         de_killRollEvents = new LinkedList<>();
+    }
 
+    @Override
+    public void init() {
         stat_cbCardSet.setValue(CardSet.UNDEFINED);
         stat_cbCardSet.getItems().addAll(CardSet.values());
         stat_game.setValue(GameType.UNDEFINED);
         stat_game.getItems().addAll(GameType.values());
         stat_challenge.setValue(ChallengeType.UNDEFINED);
         stat_challenge.getItems().addAll(ChallengeType.values());
-        se_damageTo.setValue(EntityTarget.UNDEFINED);
-        se_damageTo.getItems().addAll(EntityTarget.values());
         pe_deathLinkDamageTo.setValue(EntityTarget.UNDEFINED);
         pe_deathLinkDamageTo.getItems().addAll(EntityTarget.values());
         ae_loseCentsTarget.setValue(EntityTarget.UNDEFINED);
@@ -190,30 +173,15 @@ public class MonsterForm extends FormController<MonsterCard> {
         card.setDamage(Byte.parseByte(stat_tfATK.getText()));
         card.setReward(stat_reward);
         card.setSoul(Byte.parseByte(stat_tfSoul.getText()));
-        card.setStartEvent(buildStartEvent());
+        card.setStartEvent(se_formController.submit());
         card.setPassiveEvent(buildPassiveEvent());
         card.setAttackEvent(buildAttackEvent());
         card.setDamageEvent(buildDamageEvent());
-        card.setEndEvent(buildEndEvent());
+        card.setEndEvent(ee_formController.submit());
         card.setDeathEvent(buildDeathEvent());
         card.setGame(stat_game.getValue());
         card.setChallenge(stat_challenge.getValue());
         return card;
-    }
-
-    private StartEvent buildStartEvent() {
-        return new StartEvent()
-                .setRerollShopItem(se_rerollShopItem.isSelected())
-                .setKekeIsYou(se_kekeIsYou.isSelected())
-                .setZombieJesus(se_isZombieJesus.isSelected())
-                .setMomsHandAlt(se_isMomsHandAlt.isSelected())
-                .setEvis(se_isEvis.isSelected())
-                .setDamage(Byte.parseByte(se_damage.getText()))
-                .setDamageTo(se_damageTo.getValue())
-                .setRechargeOneItem(se_rechargeOneTime.isSelected())
-                .setGurdyAlt(se_isGurdyAlt.isSelected())
-                .setCounterDistributeDamage(se_counterDistributeDamage.isSelected())
-                .setTheAdversary(se_isTheAdversary.isSelected());
     }
 
     private PassiveEvent buildPassiveEvent() {
@@ -321,27 +289,6 @@ public class MonsterForm extends FormController<MonsterCard> {
         event.setFlipNextAttackRoll(dmge_flipNextAttackRoll.isSelected());
         event.setSpiderCounter(dmge_spiderCounter.isSelected());
         return event;
-    }
-
-    private EndEvent buildEndEvent() {
-        EndEvent endEvent = new EndEvent();
-        endEvent.setEyeStabber(ee_isEyeStabber.isSelected());
-        endEvent.setMoveMonsterToAnotherSlot(ee_moveMonsterToAnotherSlot.isSelected());
-
-        // Parse byte values directly
-        endEvent.setLoot(Byte.parseByte(ee_loot.getText()));
-        endEvent.setDiscardLoot(Byte.parseByte(ee_discardLoot.getText()));
-        endEvent.setLootCents(Byte.parseByte(ee_lootCents.getText()));
-        endEvent.setPutInMonsterDeck(Byte.parseByte(ee_putInMonsterDeck.getText()));
-
-        endEvent.setHasTinyHands(ee_hasTinyHands.isSelected());
-        endEvent.setDeactivateItemsAndCharacter(ee_deactivateItemsAndCharacter.isSelected());
-        endEvent.setDiscardLootAndCentsEqualToSouls(ee_discardLootAndCentsEqualToSouls.isSelected());
-        endEvent.setLastManStanding(ee_lastManStanding.isSelected());
-        endEvent.setAddCounter(ee_addCounter.isSelected());
-        endEvent.setLastManStandingAlt(ee_lastManStandingAlt.isSelected());
-        endEvent.setNotAttackedCounter(ee_notAttackedCounter.isSelected());
-        return endEvent;
     }
 
     private DeathEvent buildDeathEvent() {

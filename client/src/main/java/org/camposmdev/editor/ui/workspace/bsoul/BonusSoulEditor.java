@@ -22,10 +22,10 @@ public class BonusSoulEditor extends BaseEditor {
         cardType = type;
         form = FXUtil.loadUI("BonusSoulForm.fxml");
         assert form != null;
-        var btSubmit = new Button("Submit");
-        btSubmit.setOnAction(e -> commit());
+        var btCommit = new Button("Commit");
+        btCommit.setOnAction(e -> commit());
         root = new GridPane(8, 12);
-        root.addColumn(0, form.getRoot(), btSubmit);
+        root.addColumn(0, form.getRoot(), btCommit);
     }
 
     @Override

@@ -13,11 +13,13 @@ import org.camposmdev.editor.ui.RewardBox;
 import org.camposmdev.editor.ui.RollEventBox;
 import org.camposmdev.editor.ui.workspace.loot.PillEventFormController;
 import org.camposmdev.editor.ui.workspace.loot.RuneEventFormController;
+import org.camposmdev.editor.ui.workspace.monster.MonsterOptionEventFormController;
 import org.camposmdev.model.card.attribute.*;
 import org.camposmdev.model.card.attribute.Reward;
 import org.camposmdev.model.card.attribute.loot.LootOptionEvent;
 import org.camposmdev.model.card.attribute.loot.PillEvent;
 import org.camposmdev.model.card.attribute.loot.RuneEvent;
+import org.camposmdev.model.card.attribute.monster.MonsterOptionEvent;
 import org.camposmdev.util.DialogBuilder;
 import org.camposmdev.util.FXUtil;
 
@@ -177,7 +179,7 @@ public class DialogFactory {
             try {
                 var type = cbRollType.getValue();
                 var roll = Byte.parseByte(tfRoll.getText());
-                var reward = rewardBox.build();
+                var reward = rewardBox.submit();
                 byte byteLoseCents = Byte.parseByte(tfLoseCents.getText());
                 byte byteDiscardLoot = Byte.parseByte(tfDiscardLoot.getText());
                 byte byteBuffMonsterATK = Byte.parseByte(tfBuffMonsterATK.getText());
@@ -241,7 +243,7 @@ public class DialogFactory {
         btSubmit.setOnAction(e -> {
             try {
                 var type = cbDeathType.getValue();
-                var reward = rewardBox.build();
+                var reward = rewardBox.submit();
                 var listener = new DeathListener(type, reward);
                 lv.getItems().add(listener);
             } catch (Exception ex) {
@@ -345,7 +347,7 @@ public class DialogFactory {
         btSubmit.setOnAction(e -> {
             Reward reward;
             try {
-                reward = rewardBox.build();
+                reward = rewardBox.submit();
                 var listener = new KillListener(reward);
                 lv.getItems().add(listener);
             } catch (Exception ex) {
@@ -378,7 +380,7 @@ public class DialogFactory {
             Reward obj = null;
             if (!x.getButtonData().isDefaultButton()) return null;
             try {
-                obj = box.build();
+                obj = box.submit();
             } catch (Exception ex) {
                 this.showErrorBox(ex);
             }
@@ -396,7 +398,7 @@ public class DialogFactory {
                 .buildAndShow().ifPresent(e -> {
                     if (e.getButtonData().isDefaultButton()) {
                         lst.clear();
-                        lst.addAll(box.build());
+                        lst.addAll(box.submit());
                     }
                 });
     }
@@ -410,8 +412,12 @@ public class DialogFactory {
                 .setDefaultBtn()
                 .buildAndShow().ifPresent(e -> {
                     if (e.getButtonData().isDefaultButton()) {
-                        lst.clear();
-                        lst.addAll(box.build());
+                        try {
+                            lst.clear();
+                            lst.addAll(box.submit());
+                        } catch (Exception ex) {
+                            throw new RuntimeException(ex);
+                        }
                     }
                 });
     }
@@ -469,6 +475,27 @@ public class DialogFactory {
                         lst.clear();
                         try {
                             var arr = ((RuneEventFormController) form.getController()).submit();
+                            lst.addAll(Arrays.asList(arr));
+                        } catch (Exception ex) {
+                            throw new RuntimeException(ex);
+                        }
+                    }
+                });
+    }
+
+    public void showMonsterOptionEventModifierBox(List<MonsterOptionEvent> lst) {
+        UI form = FXUtil.loadUI("workspace/monster/MonsterOptionEventForm.fxml");
+        assert form != null;
+        ((MonsterOptionEventFormController) form.getController()).load(lst.toArray(new MonsterOptionEvent[]{}));
+        new DialogBuilder().setTitle("Monster Option Event")
+                .setHeaderText("Choose one.")
+                .setContent(form.getRoot())
+                .setDefaultBtn()
+                .buildAndShow().ifPresent(e -> {
+                    if (e.getButtonData().isDefaultButton()) {
+                        lst.clear();
+                        try {
+                            var arr = ((MonsterOptionEventFormController) form.getController()).submit();
                             lst.addAll(Arrays.asList(arr));
                         } catch (Exception ex) {
                             throw new RuntimeException(ex);

@@ -27,12 +27,12 @@ public class ExtraEditor extends BaseEditor {
         cbTheHarbingers = new CheckBox();
         cbIndomitable = new CheckBox();
         cbTheBeast = new CheckBox();
-        var btSubmit = new Button("Submit");
-        btSubmit.setOnAction(e -> commit());
+        var btCommit = new Button("Commit");
+        btCommit.setOnAction(e -> commit());
         root = new GridPane(4, 4);
         root.addColumn(0, new Label("Card Set"), new Label("Force Attack"), new Label("The Harbingers"), new Label("Indomitable"), new Label("The Beast"));
         root.addColumn(1, cbCardSet, cbForceAttack, cbTheHarbingers, cbIndomitable, cbTheBeast);
-        root.addRow(5, btSubmit);
+        root.addRow(5, btCommit);
     }
     @Override
     public Node getContent() {

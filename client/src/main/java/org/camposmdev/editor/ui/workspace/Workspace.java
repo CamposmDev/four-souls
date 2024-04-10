@@ -1,9 +1,7 @@
 package org.camposmdev.editor.ui.workspace;
 
 import javafx.scene.Node;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import org.camposmdev.editor.ui.AppBar;
 import org.camposmdev.editor.ui.CardPicker;
 import org.camposmdev.editor.ui.NotificationBar;

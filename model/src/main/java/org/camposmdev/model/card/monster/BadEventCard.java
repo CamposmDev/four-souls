@@ -15,7 +15,7 @@ public class BadEventCard extends AbstractMonsterCard {
     private byte discardLoot;
     private boolean mothersShadow;
     private boolean overflow;
-    private boolean cancelTurn;
+    private boolean endTurn;
     private boolean dontStarve;
     private boolean bloat;
     private boolean isGoldenIdol;
@@ -120,11 +120,11 @@ public class BadEventCard extends AbstractMonsterCard {
     }
 
     public boolean cancelTurn() {
-        return cancelTurn;
+        return endTurn;
     }
 
-    public BadEventCard setCancelTurn(boolean cancelTurn) {
-        this.cancelTurn = cancelTurn;
+    public BadEventCard setEndTurn(boolean endTurn) {
+        this.endTurn = endTurn;
         return this;
     }
 

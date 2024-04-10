@@ -19,7 +19,7 @@ public class CharacterEditor extends BaseEditor {
     private final TextField tfHealth;
     private final TextField tfDamage;
     private final ListView<String> lvEternal;
-    private final Button btSubmit;
+    private final Button btCommit;
 
     private Image currentImage;
 
@@ -61,8 +61,8 @@ public class CharacterEditor extends BaseEditor {
             return cell;
         });
         lvEternal.getSelectionModel().selectFirst();
-        btSubmit = new Button("Submit");
-        btSubmit.setOnAction(e -> commit());
+        btCommit = new Button("Commit");
+        btCommit.setOnAction(e -> commit());
         root = new GridPane(12, 12);
 //        root.setAlignment(Pos.CENTER_LEFT);
         root.addColumn(0, new Label("Hit Points"),
@@ -70,7 +70,7 @@ public class CharacterEditor extends BaseEditor {
                 new Label("Eternal ID"));
         root.addColumn(1, tfHealth, tfDamage, lvEternal);
         root.add(cv.getContent(), 2, 0, 1, 4);
-        root.add(btSubmit, 0, 3);
+        root.add(btCommit, 0, 3);
     }
 
     private void build() {

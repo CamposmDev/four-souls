@@ -20,8 +20,8 @@ public class LootEditor extends BaseEditor {
 
     public LootEditor(CardType type) {
         cardType = type;
-        var btSubmit = new Button("Submit");
-        btSubmit.setOnAction(e -> commit());
+        var btCommit = new Button("Commit");
+        btCommit.setOnAction(e -> commit());
         switch (cardType) {
             case BATTERIES -> form = FXUtil.loadUI("workspace/loot/BatteryForm.fxml");
             case BHEART -> form = FXUtil.loadUI("workspace/loot/BlackHeartForm.fxml");
@@ -38,7 +38,7 @@ public class LootEditor extends BaseEditor {
             case WILDCARD -> form = FXUtil.loadUI("workspace/loot/WildForm.fxml");
         }
         if (form != null) {
-            root = new VBox(4, form.getRoot(), btSubmit);
+            root = new VBox(4, form.getRoot(), btCommit);
         } else {
             root = new VBox(4, new Label("Move on to the next card type."));
         }

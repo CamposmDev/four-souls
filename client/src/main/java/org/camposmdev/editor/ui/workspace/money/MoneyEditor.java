@@ -33,8 +33,8 @@ public class MoneyEditor extends BaseEditor {
         cbIsSticky = new CheckBox();
         cbIsButt = new CheckBox();
 
-        var btSubmit = new Button("Submit");
-        btSubmit.setOnAction(e -> commit());
+        var btCommit = new Button("Commit");
+        btCommit.setOnAction(e -> commit());
         root = new GridPane(4, 4);
         root.addRow(0, new Label("Card Set"), cbCardSet);
         root.addRow(1, new Label("Value"), tfValue);
@@ -42,7 +42,7 @@ public class MoneyEditor extends BaseEditor {
         root.addRow(3, new Label("Double Reward"), cbDoubleReward);
         root.addRow(4, new Label("Is Sticky"), cbIsSticky);
         root.addRow(5, new Label("Is Butt"), cbIsButt);
-        root.addRow(6, btSubmit);
+        root.addRow(6, btCommit);
     }
 
     @Override

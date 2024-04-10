@@ -22,8 +22,8 @@ public class EternalEditor extends BaseEditor {
 
     public EternalEditor(CardType type) {
         cardType = type;
-        var btSubmit = new Button("Submit");
-        btSubmit.setOnAction(e -> commit());
+        var btCommit = new Button("Commit");
+        btCommit.setOnAction(e -> commit());
         switch (cardType) {
             case PETERNAL -> form = FXUtil.loadUI("workspace/eternal/PassiveEternalForm.fxml");
             case AETERNAL -> form = FXUtil.loadUI("workspace/eternal/ActiveEternalForm.fxml");
@@ -31,7 +31,7 @@ public class EternalEditor extends BaseEditor {
             case SETERNAL -> form = FXUtil.loadUI("workspace/eternal/SoulEternalForm.fxml");
         }
         if (form != null) {
-            root = new VBox(4, form.getRoot(), btSubmit);
+            root = new VBox(4, form.getRoot(), btCommit);
         } else {
             root = new VBox(4, new Label("Move on to the next card type"));
         }
@@ -49,6 +49,7 @@ public class EternalEditor extends BaseEditor {
             var card = (EternalCard) ((FormController<?>) form.getController()).submit();
             card.setId(super.id());
             card.setImage(super.image());
+            card.setCardType(cardType);
             Model.instance().cards().add(card);
             var message = card.toString();
             NotificationBar.instance().push(message);
