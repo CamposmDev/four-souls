@@ -9,7 +9,7 @@ public class StartEvent {
     private boolean IsMomsHandAlt;
     private boolean isEvis;
     private byte damage;
-    private EntityTarget damageTarget;
+    private EntityTarget damageTo;
     private boolean rechargeOneItem;
     private boolean isGurdyAlt;
     private boolean counterDistributeDamage;
@@ -70,11 +70,11 @@ public class StartEvent {
     }
 
     public EntityTarget damageTarget() {
-        return damageTarget;
+        return damageTo;
     }
 
-    public StartEvent setDamageTarget(EntityTarget damageTarget) {
-        this.damageTarget = damageTarget;
+    public StartEvent setDamageTo(EntityTarget damageTo) {
+        this.damageTo = damageTo;
         return this;
     }
 

@@ -9,10 +9,10 @@ public class AttackEvent {
     private byte healMonster;
     private byte modNextAttackRoll;
     private byte damage;
-    private EntityTarget damageTarget;
-    private boolean cancelEverything;
+    private EntityTarget damageTo;
+    private boolean endTurn;
     private boolean isBigBony;
-    private RollEvent rollEvent;
+    private RollEvent[] rollEvent;
     private boolean isHenry;
     private byte discardLoot;
     private boolean cancelDamage;
@@ -67,20 +67,20 @@ public class AttackEvent {
     }
 
     public EntityTarget damageTarget() {
-        return damageTarget;
+        return damageTo;
     }
 
-    public AttackEvent setDamageTarget(EntityTarget damageTarget) {
-        this.damageTarget = damageTarget;
+    public AttackEvent setDamageTo(EntityTarget damageTo) {
+        this.damageTo = damageTo;
         return this;
     }
 
     public boolean cancelEverything() {
-        return cancelEverything;
+        return endTurn;
     }
 
-    public AttackEvent setCancelEverything(boolean cancelEverything) {
-        this.cancelEverything = cancelEverything;
+    public AttackEvent setEndTurn(boolean endTurn) {
+        this.endTurn = endTurn;
         return this;
     }
 
@@ -93,11 +93,11 @@ public class AttackEvent {
         return this;
     }
 
-    public RollEvent rollEvent() {
+    public RollEvent[] rollEvent() {
         return rollEvent;
     }
 
-    public AttackEvent setRollEvent(RollEvent rollEvent) {
+    public AttackEvent setRollEvent(RollEvent[] rollEvent) {
         this.rollEvent = rollEvent;
         return this;
     }

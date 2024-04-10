@@ -40,7 +40,7 @@ public class PassiveEvent {
     private boolean isItLivesAlt;
     private boolean playerDeathLinkDamage;
     private byte expandMonsterOnAttack;
-    private RollEvent preattackRollEvent;
+    private RollEvent[] preattackRollEvents;
     private boolean isPride;
     private boolean nonActivePlayerDiscardLoot;
     private boolean disableNonActivePlayerLootAndActiveItems;
@@ -369,12 +369,12 @@ public class PassiveEvent {
         return this;
     }
 
-    public RollEvent preattackRollEvent() {
-        return preattackRollEvent;
+    public RollEvent[] preattackRollEvents() {
+        return preattackRollEvents;
     }
 
-    public PassiveEvent setPreattackRollEvent(RollEvent preattackRollEvent) {
-        this.preattackRollEvent = preattackRollEvent;
+    public PassiveEvent setPreattackRollEvents(RollEvent[] preattackRollEvents) {
+        this.preattackRollEvents = preattackRollEvents;
         return this;
     }
 

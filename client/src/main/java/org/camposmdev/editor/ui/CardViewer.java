@@ -4,8 +4,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class CardViewer {
-    static final double WIDTH = 154 * 2.75;
-    static final double HEIGHT = 210 * 2.75;
+    static final double WIDTH = 154 * 2.6;
+    static final double HEIGHT = 210 * 2.6;
 
     private final ImageView iv;
 

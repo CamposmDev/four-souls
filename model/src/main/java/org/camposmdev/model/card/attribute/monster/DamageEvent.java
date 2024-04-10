@@ -7,9 +7,9 @@ public class DamageEvent {
     private byte modPlayersNextAttackRoll;
     private byte damage;
     private EntityTarget damageTo;
-    private RollEvent rollEvent;
+    private RollEvent[] rollEvents;
     private boolean preventDamage;
-    private RollEvent[] damageRollEvent;
+    private RollEvent[] damageRollEvents;
     private byte modAttackRoll;
     private byte modDamage;
     private boolean isTheScourge;
@@ -47,12 +47,12 @@ public class DamageEvent {
         return this;
     }
 
-    public RollEvent rollEvent() {
-        return rollEvent;
+    public RollEvent[] rollEvent() {
+        return rollEvents;
     }
 
-    public DamageEvent setRollEvent(RollEvent rollEvent) {
-        this.rollEvent = rollEvent;
+    public DamageEvent setRollEvents(RollEvent[] rollEvents) {
+        this.rollEvents = rollEvents;
         return this;
     }
 
@@ -66,11 +66,11 @@ public class DamageEvent {
     }
 
     public RollEvent[] damageRollEvent() {
-        return damageRollEvent;
+        return damageRollEvents;
     }
 
-    public DamageEvent setDamageRollEvent(RollEvent[] damageRollEvent) {
-        this.damageRollEvent = damageRollEvent;
+    public DamageEvent setDamageRollEvents(RollEvent[] damageRollEvents) {
+        this.damageRollEvents = damageRollEvents;
         return this;
     }
 

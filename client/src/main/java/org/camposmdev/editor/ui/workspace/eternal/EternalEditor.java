@@ -37,7 +37,13 @@ public class EternalEditor extends BaseEditor {
         }
     }
 
-    private void build() {
+    @Override
+    public Node getContent() {
+        return root;
+    }
+
+    @Override
+    public void commit() {
         try {
             /* build eternal base */
             var card = (EternalCard) ((FormController<?>) form.getController()).submit();
@@ -49,15 +55,5 @@ public class EternalEditor extends BaseEditor {
         } catch(Exception ex) {
             DialogFactory.instance().showErrorBox(ex);
         }
-    }
-
-    @Override
-    public Node getContent() {
-        return root;
-    }
-
-    @Override
-    public void commit() {
-        build();
     }
 }

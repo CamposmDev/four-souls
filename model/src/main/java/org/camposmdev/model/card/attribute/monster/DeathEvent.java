@@ -26,8 +26,8 @@ public class DeathEvent {
     private EntityTarget kill;
     private boolean cancelIfDamageDealt;
     private boolean forceAttackAgainOnSameSlot;
-    private RollEvent[] deathRollEvent;
-    private RollEvent killRollEvent;
+    private RollEvent[] deathRollEvents;
+    private RollEvent[] killRollEvents;
     private byte expandAny;
     private boolean isTapeWorm;
     private boolean greedlingRush;
@@ -238,20 +238,20 @@ public class DeathEvent {
     }
 
     public RollEvent[] deathRollEvent() {
-        return deathRollEvent;
+        return deathRollEvents;
     }
 
-    public DeathEvent setDeathRollEvent(RollEvent[] deathRollEvent) {
-        this.deathRollEvent = deathRollEvent;
+    public DeathEvent setDeathRollEvents(RollEvent[] deathRollEvents) {
+        this.deathRollEvents = deathRollEvents;
         return this;
     }
 
-    public RollEvent killRollEvent() {
-        return killRollEvent;
+    public RollEvent[] killRollEvent() {
+        return killRollEvents;
     }
 
-    public DeathEvent setKillRollEvent(RollEvent killRollEvent) {
-        this.killRollEvent = killRollEvent;
+    public DeathEvent setKillRollEvents(RollEvent[] killRollEvents) {
+        this.killRollEvents = killRollEvents;
         return this;
     }
 

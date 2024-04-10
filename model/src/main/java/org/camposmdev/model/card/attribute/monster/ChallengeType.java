@@ -1,6 +1,7 @@
 package org.camposmdev.model.card.attribute.monster;
 
 public enum ChallengeType {
+    UNDEFINED,
     RESURRECTION_DAY,
     RESURRECTED_RAG_MAN,
     DEVOUT_MOM,

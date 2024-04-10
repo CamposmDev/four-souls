@@ -416,10 +416,10 @@ public class DialogFactory {
                 });
     }
 
-    public void showAttributeModifierBox(AttributeModifier modifier) {
+    public Optional<AttributeModifier> showAttributeModifierBox(AttributeModifier modifier) {
         var box = new AttributeModifierBox();
         if (modifier != null) box.load(modifier);
-        new DialogBuilder().setTitle("Attribute Modifier")
+        return new DialogBuilder().setTitle("Attribute Modifier")
                 .setHeaderText("Modifies an attribute when a threshold is reached.")
                 .setContent(box.getContent())
                 .setDefaultBtn()
