@@ -1,9 +1,11 @@
 package org.camposmdev.model.card.monster;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.camposmdev.model.card.attribute.Reward;
 import org.camposmdev.model.card.attribute.monster.*;
 
-public class MonsterCard extends AbstractMonsterCard {
+public class MonsterCard extends BaseMonsterCard {
     private byte hitPoints;
     private byte damage;
     private byte roll;
@@ -18,7 +20,7 @@ public class MonsterCard extends AbstractMonsterCard {
     private GameType game;
     private ChallengeType challenge;
 
-    public byte hitPoints() {
+    public byte getHitPoints() {
         return hitPoints;
     }
 
@@ -27,7 +29,7 @@ public class MonsterCard extends AbstractMonsterCard {
         return this;
     }
 
-    public byte damage() {
+    public byte getDamage() {
         return damage;
     }
 
@@ -36,7 +38,7 @@ public class MonsterCard extends AbstractMonsterCard {
         return this;
     }
 
-    public byte roll() {
+    public byte getRoll() {
         return roll;
     }
 
@@ -45,7 +47,7 @@ public class MonsterCard extends AbstractMonsterCard {
         return this;
     }
 
-    public Reward reward() {
+    public Reward getReward() {
         return reward;
     }
 
@@ -54,7 +56,7 @@ public class MonsterCard extends AbstractMonsterCard {
         return this;
     }
 
-    public byte soul() {
+    public byte getSoul() {
         return soul;
     }
 
@@ -63,7 +65,7 @@ public class MonsterCard extends AbstractMonsterCard {
         return this;
     }
 
-    public StartEvent startEvent() {
+    public StartEvent getStartEvent() {
         return startEvent;
     }
 
@@ -72,7 +74,7 @@ public class MonsterCard extends AbstractMonsterCard {
         return this;
     }
 
-    public PassiveEvent passiveEvent() {
+    public PassiveEvent getPassiveEvent() {
         return passiveEvent;
     }
 
@@ -81,7 +83,7 @@ public class MonsterCard extends AbstractMonsterCard {
         return this;
     }
 
-    public AttackEvent attackEvent() {
+    public AttackEvent getAttackEvent() {
         return attackEvent;
     }
 
@@ -90,7 +92,7 @@ public class MonsterCard extends AbstractMonsterCard {
         return this;
     }
 
-    public DamageEvent damageEvent() {
+    public DamageEvent getDamageEvent() {
         return damageEvent;
     }
 
@@ -99,7 +101,7 @@ public class MonsterCard extends AbstractMonsterCard {
         return this;
     }
 
-    public DeathEvent deathEvent() {
+    public DeathEvent getDeathEvent() {
         return deathEvent;
     }
 
@@ -108,7 +110,7 @@ public class MonsterCard extends AbstractMonsterCard {
         return this;
     }
 
-    public EndEvent endEvent() {
+    public EndEvent getEndEvent() {
         return endEvent;
     }
 
@@ -117,7 +119,7 @@ public class MonsterCard extends AbstractMonsterCard {
         return this;
     }
 
-    public GameType game() {
+    public GameType getGame() {
         return game;
     }
 
@@ -126,12 +128,21 @@ public class MonsterCard extends AbstractMonsterCard {
         return this;
     }
 
-    public ChallengeType challenge() {
+    public ChallengeType getChallenge() {
         return challenge;
     }
 
     public MonsterCard setChallenge(ChallengeType challenge) {
         this.challenge = challenge;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        try {
+            return new ObjectMapper().writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

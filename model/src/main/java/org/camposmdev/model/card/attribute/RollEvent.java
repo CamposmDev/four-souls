@@ -1,8 +1,12 @@
 package org.camposmdev.model.card.attribute;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 public class RollEvent {
     private byte[] values;
     private byte multReward;
+    private byte multPlayersDamage;
     private boolean noMonsterDamage;
     private byte modMonsterDamage;
     private byte multMonsterDamage;
@@ -27,7 +31,7 @@ public class RollEvent {
     private byte peekDeckAmount;
     private boolean peekDeckSort;
     private byte soulHitPoints;
-    private boolean isSoul;
+    private boolean changeToSoul;
     private boolean skipNextTurn;
     private boolean isHeartItem;
     private byte rerollItem;
@@ -40,7 +44,7 @@ public class RollEvent {
     private boolean discardRandomItem;
     private boolean putOnMonsterSlot;
 
-    public byte[] values() {
+    public byte[] getValues() {
         return values;
     }
 
@@ -49,7 +53,7 @@ public class RollEvent {
         return this;
     }
 
-    public byte multReward() {
+    public byte getMultReward() {
         return multReward;
     }
 
@@ -58,7 +62,16 @@ public class RollEvent {
         return this;
     }
 
-    public boolean noMonsterDamage() {
+    public byte getMultPlayersDamage() {
+        return multPlayersDamage;
+    }
+
+    public RollEvent setMultPlayersDamage(byte multPlayersDamage) {
+        this.multPlayersDamage = multPlayersDamage;
+        return this;
+    }
+
+    public boolean isNoMonsterDamage() {
         return noMonsterDamage;
     }
 
@@ -67,7 +80,7 @@ public class RollEvent {
         return this;
     }
 
-    public byte modMonsterDamage() {
+    public byte getModMonsterDamage() {
         return modMonsterDamage;
     }
 
@@ -76,7 +89,7 @@ public class RollEvent {
         return this;
     }
 
-    public byte multMonsterDamage() {
+    public byte getMultMonsterDamage() {
         return multMonsterDamage;
     }
 
@@ -85,7 +98,7 @@ public class RollEvent {
         return this;
     }
 
-    public boolean cancelTurn() {
+    public boolean isCancelTurn() {
         return cancelTurn;
     }
 
@@ -94,7 +107,7 @@ public class RollEvent {
         return this;
     }
 
-    public boolean stealPlayerLoot() {
+    public boolean isStealPlayerLoot() {
         return stealPlayerLoot;
     }
 
@@ -103,7 +116,7 @@ public class RollEvent {
         return this;
     }
 
-    public byte damage() {
+    public byte getDamage() {
         return damage;
     }
 
@@ -112,7 +125,7 @@ public class RollEvent {
         return this;
     }
 
-    public EntityTarget damageTo() {
+    public EntityTarget getDamageTo() {
         return damageTo;
     }
 
@@ -121,7 +134,7 @@ public class RollEvent {
         return this;
     }
 
-    public boolean attackAgain() {
+    public boolean isAttackAgain() {
         return attackAgain;
     }
 
@@ -130,7 +143,7 @@ public class RollEvent {
         return this;
     }
 
-    public boolean forceAttackAgain() {
+    public boolean isForceAttackAgain() {
         return forceAttackAgain;
     }
 
@@ -139,7 +152,7 @@ public class RollEvent {
         return this;
     }
 
-    public AttributeModifier modPlayer() {
+    public AttributeModifier getModPlayer() {
         return modPlayer;
     }
 
@@ -148,7 +161,7 @@ public class RollEvent {
         return this;
     }
 
-    public boolean attackable() {
+    public boolean isAttackable() {
         return attackable;
     }
 
@@ -157,7 +170,7 @@ public class RollEvent {
         return this;
     }
 
-    public boolean returnToDeck() {
+    public boolean isReturnToDeck() {
         return returnToDeck;
     }
 
@@ -166,7 +179,7 @@ public class RollEvent {
         return this;
     }
 
-    public byte modRoll() {
+    public byte getModRoll() {
         return modRoll;
     }
 
@@ -175,7 +188,7 @@ public class RollEvent {
         return this;
     }
 
-    public byte modAttack() {
+    public byte getModAttack() {
         return modAttack;
     }
 
@@ -184,7 +197,7 @@ public class RollEvent {
         return this;
     }
 
-    public byte healMonster() {
+    public byte getHealMonster() {
         return healMonster;
     }
 
@@ -193,7 +206,7 @@ public class RollEvent {
         return this;
     }
 
-    public boolean cancelAttack() {
+    public boolean isCancelAttack() {
         return cancelAttack;
     }
 
@@ -202,7 +215,7 @@ public class RollEvent {
         return this;
     }
 
-    public byte expandMonster() {
+    public byte getExpandMonster() {
         return expandMonster;
     }
 
@@ -211,7 +224,7 @@ public class RollEvent {
         return this;
     }
 
-    public Reward reward() {
+    public Reward getReward() {
         return reward;
     }
 
@@ -220,7 +233,7 @@ public class RollEvent {
         return this;
     }
 
-    public byte discardLoot() {
+    public byte getDiscardLoot() {
         return discardLoot;
     }
 
@@ -229,7 +242,7 @@ public class RollEvent {
         return this;
     }
 
-    public byte discardCents() {
+    public byte getDiscardCents() {
         return discardCents;
     }
 
@@ -238,7 +251,7 @@ public class RollEvent {
         return this;
     }
 
-    public DeckType peekDeck() {
+    public DeckType getPeekDeck() {
         return peekDeck;
     }
 
@@ -247,7 +260,7 @@ public class RollEvent {
         return this;
     }
 
-    public byte peekDeckAmount() {
+    public byte getPeekDeckAmount() {
         return peekDeckAmount;
     }
 
@@ -256,7 +269,7 @@ public class RollEvent {
         return this;
     }
 
-    public boolean peekDeckSort() {
+    public boolean isPeekDeckSort() {
         return peekDeckSort;
     }
 
@@ -265,7 +278,7 @@ public class RollEvent {
         return this;
     }
 
-    public byte soulHitPoints() {
+    public byte getSoulHitPoints() {
         return soulHitPoints;
     }
 
@@ -274,16 +287,16 @@ public class RollEvent {
         return this;
     }
 
-    public boolean isSoul() {
-        return isSoul;
+    public boolean isChangeToSoul() {
+        return changeToSoul;
     }
 
-    public RollEvent setSoul(boolean soul) {
-        isSoul = soul;
+    public RollEvent setChangeToSoul(boolean changeToSoul) {
+        this.changeToSoul = changeToSoul;
         return this;
     }
 
-    public boolean skipNextTurn() {
+    public boolean isSkipNextTurn() {
         return skipNextTurn;
     }
 
@@ -301,7 +314,7 @@ public class RollEvent {
         return this;
     }
 
-    public byte rerollItem() {
+    public byte getRerollItem() {
         return rerollItem;
     }
 
@@ -310,7 +323,7 @@ public class RollEvent {
         return this;
     }
 
-    public boolean guppyItem() {
+    public boolean isGuppyItem() {
         return guppyItem;
     }
 
@@ -319,7 +332,7 @@ public class RollEvent {
         return this;
     }
 
-    public EntityTarget kill() {
+    public EntityTarget getKill() {
         return kill;
     }
 
@@ -328,7 +341,7 @@ public class RollEvent {
         return this;
     }
 
-    public byte modMonstersAttackRoll() {
+    public byte getModMonstersAttackRoll() {
         return modMonstersAttackRoll;
     }
 
@@ -337,7 +350,7 @@ public class RollEvent {
         return this;
     }
 
-    public boolean putOnTopMonsterDeck() {
+    public boolean isPutOnTopMonsterDeck() {
         return putOnTopMonsterDeck;
     }
 
@@ -346,7 +359,7 @@ public class RollEvent {
         return this;
     }
 
-    public RollEvent[] rollEvents() {
+    public RollEvent[] getRollEvents() {
         return rollEvents;
     }
 
@@ -355,7 +368,7 @@ public class RollEvent {
         return this;
     }
 
-    public boolean damageLink() {
+    public boolean isDamageLink() {
         return damageLink;
     }
 
@@ -364,7 +377,7 @@ public class RollEvent {
         return this;
     }
 
-    public boolean discardRandomItem() {
+    public boolean isDiscardRandomItem() {
         return discardRandomItem;
     }
 
@@ -373,12 +386,21 @@ public class RollEvent {
         return this;
     }
 
-    public boolean putOnMonsterSlot() {
+    public boolean isPutOnMonsterSlot() {
         return putOnMonsterSlot;
     }
 
     public RollEvent setPutOnMonsterSlot(boolean putOnMonsterSlot) {
         this.putOnMonsterSlot = putOnMonsterSlot;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        try {
+            return new ObjectMapper().writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

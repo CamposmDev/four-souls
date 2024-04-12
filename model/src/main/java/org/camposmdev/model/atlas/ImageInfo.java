@@ -1,8 +1,5 @@
 package org.camposmdev.model.atlas;
 
-import com.almasb.fxgl.dsl.FXGL;
-import javafx.scene.image.Image;
-
 public record ImageInfo (
         String origin,
         String highResImgURL,
@@ -16,12 +13,10 @@ public record ImageInfo (
     }
 
     public String highResImgName() {
-
         return highResImgURL.substring(highResImgURL.lastIndexOf('/') + 1);
     }
 
     public String lowResImgName() {
-
         return lowResImgURL.substring(lowResImgURL.lastIndexOf('/') + 1);
     }
 
@@ -39,13 +34,5 @@ public record ImageInfo (
      */
     public String source2() {
         return directory + lowResImgName();
-    }
-
-    public Image loadSource1() {
-        return FXGL.image(source1());
-    }
-
-    public Image loadSource2() {
-        return FXGL.image(source2());
     }
 }

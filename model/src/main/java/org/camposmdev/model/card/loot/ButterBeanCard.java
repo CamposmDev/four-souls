@@ -1,5 +1,7 @@
 package org.camposmdev.model.card.loot;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.camposmdev.model.card.attribute.CardType;
 
 public class ButterBeanCard extends LootCard {
@@ -9,7 +11,7 @@ public class ButterBeanCard extends LootCard {
         super.setCardType(CardType.BUTTER);
     }
 
-    public boolean cancelActiveItemEffect() {
+    public boolean isCancelActiveItemEffect() {
         return cancelActiveItemEffect;
     }
 
@@ -18,7 +20,7 @@ public class ButterBeanCard extends LootCard {
         return this;
     }
 
-    public boolean cancelLootEffect() {
+    public boolean isCancelLootEffect() {
         return cancelLootEffect;
     }
 
@@ -27,12 +29,21 @@ public class ButterBeanCard extends LootCard {
         return this;
     }
 
-    public boolean cancelPaidItemEffect() {
+    public boolean isCancelPaidItemEffect() {
         return cancelPaidItemEffect;
     }
 
     public ButterBeanCard setCancelPaidItemEffect(boolean cancelPaidItemEffect) {
         this.cancelPaidItemEffect = cancelPaidItemEffect;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        try {
+            return new ObjectMapper().writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

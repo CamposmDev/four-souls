@@ -1,15 +1,16 @@
 package org.camposmdev.model.atlas;
 
+import org.camposmdev.model.card.attribute.CardType;
 import org.camposmdev.model.card.eternal.*;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class EternalCardAtlas {
-    private Map<String, ActiveEternalCard> aeternal;
-    private Map<String, PaidEternalCard> paideternal;
-    private Map<String, PassiveEternalCard> peternal;
-    private Map<String, SoulEternalCard> seternal;
+public class EternalCardAtlas implements CardAtlas<EternalCard> {
+    protected Map<String, ActiveEternalCard> aeternal;
+    protected Map<String, PaidEternalCard> paideternal;
+    protected Map<String, PassiveEternalCard> peternal;
+    protected Map<String, SoulEternalCard> seternal;
 
 
     public EternalCardAtlas() {
@@ -19,12 +20,24 @@ public class EternalCardAtlas {
         this.seternal = new HashMap<>();
     }
 
+    @Override
     public void add(EternalCard card) {
-        switch (card.cardType()) {
-            case AETERNAL -> aeternal.put(card.id(), (ActiveEternalCard) card);
-            case PAIDETERNAL -> paideternal.put(card.id(), (PaidEternalCard) card);
-            case PETERNAL -> peternal.put(card.id(), (PassiveEternalCard) card);
-            case SETERNAL -> seternal.put(card.id(), (SoulEternalCard) card);
+        switch (card.getCardType()) {
+            case AETERNAL -> aeternal.put(card.getId(), (ActiveEternalCard) card);
+            case PAIDETERNAL -> paideternal.put(card.getId(), (PaidEternalCard) card);
+            case PETERNAL -> peternal.put(card.getId(), (PassiveEternalCard) card);
+            case SETERNAL -> seternal.put(card.getId(), (SoulEternalCard) card);
         }
+    }
+
+    @Override
+    public boolean contains(CardType cardType, String id) {
+        return switch (cardType) {
+            case AETERNAL -> aeternal.containsKey(id);
+            case PAIDETERNAL -> paideternal.containsKey(id);
+            case PETERNAL -> peternal.containsKey(id);
+            case SETERNAL -> seternal.containsKey(id);
+            default -> false;
+        };
     }
 }

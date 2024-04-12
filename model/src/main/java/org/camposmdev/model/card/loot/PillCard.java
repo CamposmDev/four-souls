@@ -1,29 +1,32 @@
 package org.camposmdev.model.card.loot;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.camposmdev.model.card.attribute.CardType;
 import org.camposmdev.model.card.attribute.CardVersion;
 import org.camposmdev.model.card.attribute.loot.PillEvent;
 
+import java.util.List;
+
 public class PillCard extends LootCard {
-    private PillEvent[] events;
+    private List<PillEvent> events;
     private byte repeat;
     private boolean share;
-    private CardVersion version;
 
     public PillCard() {
         super.setCardType(CardType.PILLS);
     }
 
-    public PillEvent[] events() {
+    public List<PillEvent> getEvents() {
         return events;
     }
 
-    public PillCard setEvents(PillEvent[] events) {
+    public PillCard setEvents(List<PillEvent> events) {
         this.events = events;
         return this;
     }
 
-    public byte repeat() {
+    public byte getRepeat() {
         return repeat;
     }
 
@@ -32,7 +35,7 @@ public class PillCard extends LootCard {
         return this;
     }
 
-    public boolean share() {
+    public boolean isShare() {
         return share;
     }
 
@@ -41,12 +44,12 @@ public class PillCard extends LootCard {
         return this;
     }
 
-    public CardVersion version() {
-        return version;
-    }
-
-    public PillCard setVersion(CardVersion version) {
-        this.version = version;
-        return this;
+    @Override
+    public String toString() {
+        try {
+            return new ObjectMapper().writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

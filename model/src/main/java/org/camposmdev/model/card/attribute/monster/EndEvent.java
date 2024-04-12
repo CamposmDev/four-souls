@@ -1,12 +1,15 @@
 package org.camposmdev.model.card.attribute.monster;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 public class EndEvent {
-    private boolean isEyeStabber;
+    private boolean eyeStabber;
     private boolean moveMonsterToAnotherSlot;
     private byte loot;
     private byte discardLoot;
     private byte lootCents;
-    private boolean hasTinyHands;
+    private boolean tinyHands;
     private boolean deactivateItemsAndCharacter;
     private boolean discardLootAndCentsEqualToSouls;
     private boolean lastManStanding;
@@ -16,15 +19,15 @@ public class EndEvent {
     private boolean notAttackedCounter;
 
     public boolean isEyeStabber() {
-        return isEyeStabber;
+        return eyeStabber;
     }
 
     public EndEvent setEyeStabber(boolean eyeStabber) {
-        isEyeStabber = eyeStabber;
+        this.eyeStabber = eyeStabber;
         return this;
     }
 
-    public boolean moveMonsterToAnotherSlot() {
+    public boolean isMoveMonsterToAnotherSlot() {
         return moveMonsterToAnotherSlot;
     }
 
@@ -33,7 +36,7 @@ public class EndEvent {
         return this;
     }
 
-    public byte loot() {
+    public byte getLoot() {
         return loot;
     }
 
@@ -42,7 +45,7 @@ public class EndEvent {
         return this;
     }
 
-    public byte discardLoot() {
+    public byte getDiscardLoot() {
         return discardLoot;
     }
 
@@ -51,7 +54,7 @@ public class EndEvent {
         return this;
     }
 
-    public byte lootCents() {
+    public byte getLootCents() {
         return lootCents;
     }
 
@@ -60,16 +63,16 @@ public class EndEvent {
         return this;
     }
 
-    public boolean hasTinyHands() {
-        return hasTinyHands;
+    public boolean isTinyHands() {
+        return tinyHands;
     }
 
-    public EndEvent setHasTinyHands(boolean hasTinyHands) {
-        this.hasTinyHands = hasTinyHands;
+    public EndEvent setTinyHands(boolean tinyHands) {
+        this.tinyHands = tinyHands;
         return this;
     }
 
-    public boolean deactivateItemsAndCharacter() {
+    public boolean isDeactivateItemsAndCharacter() {
         return deactivateItemsAndCharacter;
     }
 
@@ -78,7 +81,7 @@ public class EndEvent {
         return this;
     }
 
-    public boolean discardLootAndCentsEqualToSouls() {
+    public boolean isDiscardLootAndCentsEqualToSouls() {
         return discardLootAndCentsEqualToSouls;
     }
 
@@ -87,7 +90,7 @@ public class EndEvent {
         return this;
     }
 
-    public boolean lastManStanding() {
+    public boolean isLastManStanding() {
         return lastManStanding;
     }
 
@@ -96,7 +99,7 @@ public class EndEvent {
         return this;
     }
 
-    public boolean addCounter() {
+    public boolean isAddCounter() {
         return addCounter;
     }
 
@@ -105,7 +108,7 @@ public class EndEvent {
         return this;
     }
 
-    public boolean lastManStandingAlt() {
+    public boolean isLastManStandingAlt() {
         return lastManStandingAlt;
     }
 
@@ -114,7 +117,7 @@ public class EndEvent {
         return this;
     }
 
-    public byte putInMonsterDeck() {
+    public byte getPutInMonsterDeck() {
         return putInMonsterDeck;
     }
 
@@ -123,12 +126,21 @@ public class EndEvent {
         return this;
     }
 
-    public boolean notAttackedCounter() {
+    public boolean isNotAttackedCounter() {
         return notAttackedCounter;
     }
 
     public EndEvent setNotAttackedCounter(boolean notAttackedCounter) {
         this.notAttackedCounter = notAttackedCounter;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        try {
+            return new ObjectMapper().writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

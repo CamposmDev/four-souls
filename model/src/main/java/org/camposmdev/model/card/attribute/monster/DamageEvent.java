@@ -1,5 +1,7 @@
 package org.camposmdev.model.card.attribute.monster;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.camposmdev.model.card.attribute.EntityTarget;
 import org.camposmdev.model.card.attribute.RollEvent;
 
@@ -12,15 +14,14 @@ public class DamageEvent {
     private RollEvent[] damageRollEvents;
     private byte modAttackRoll;
     private byte modDamage;
-    private boolean isTheScourge;
+    private boolean theScourge;
     private boolean damageCounter;
     private boolean pooCounter;
     private boolean noteAttackRolls;
     private boolean flipNextAttackRoll;
     private boolean spiderCounter;
 
-
-    public byte modPlayersNextAttackRoll() {
+    public byte getModPlayersNextAttackRoll() {
         return modPlayersNextAttackRoll;
     }
 
@@ -29,7 +30,7 @@ public class DamageEvent {
         return this;
     }
 
-    public byte damage() {
+    public byte getDamage() {
         return damage;
     }
 
@@ -38,7 +39,7 @@ public class DamageEvent {
         return this;
     }
 
-    public EntityTarget damageTo() {
+    public EntityTarget getDamageTo() {
         return damageTo;
     }
 
@@ -47,7 +48,7 @@ public class DamageEvent {
         return this;
     }
 
-    public RollEvent[] rollEvent() {
+    public RollEvent[] getRollEvents() {
         return rollEvents;
     }
 
@@ -56,7 +57,7 @@ public class DamageEvent {
         return this;
     }
 
-    public boolean preventDamage() {
+    public boolean isPreventDamage() {
         return preventDamage;
     }
 
@@ -65,7 +66,7 @@ public class DamageEvent {
         return this;
     }
 
-    public RollEvent[] damageRollEvent() {
+    public RollEvent[] getDamageRollEvents() {
         return damageRollEvents;
     }
 
@@ -74,7 +75,7 @@ public class DamageEvent {
         return this;
     }
 
-    public byte modAttackRoll() {
+    public byte getModAttackRoll() {
         return modAttackRoll;
     }
 
@@ -83,7 +84,7 @@ public class DamageEvent {
         return this;
     }
 
-    public byte modDamage() {
+    public byte getModDamage() {
         return modDamage;
     }
 
@@ -93,15 +94,15 @@ public class DamageEvent {
     }
 
     public boolean isTheScourge() {
-        return isTheScourge;
+        return theScourge;
     }
 
     public DamageEvent setTheScourge(boolean theScourge) {
-        isTheScourge = theScourge;
+        this.theScourge = theScourge;
         return this;
     }
 
-    public boolean damageCounter() {
+    public boolean isDamageCounter() {
         return damageCounter;
     }
 
@@ -110,7 +111,7 @@ public class DamageEvent {
         return this;
     }
 
-    public boolean pooCounter() {
+    public boolean isPooCounter() {
         return pooCounter;
     }
 
@@ -119,7 +120,7 @@ public class DamageEvent {
         return this;
     }
 
-    public boolean noteAttackRolls() {
+    public boolean isNoteAttackRolls() {
         return noteAttackRolls;
     }
 
@@ -128,7 +129,7 @@ public class DamageEvent {
         return this;
     }
 
-    public boolean flipNextAttackRoll() {
+    public boolean isFlipNextAttackRoll() {
         return flipNextAttackRoll;
     }
 
@@ -137,12 +138,21 @@ public class DamageEvent {
         return this;
     }
 
-    public boolean spiderCounter() {
+    public boolean isSpiderCounter() {
         return spiderCounter;
     }
 
     public DamageEvent setSpiderCounter(boolean spiderCounter) {
         this.spiderCounter = spiderCounter;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        try {
+            return new ObjectMapper().writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

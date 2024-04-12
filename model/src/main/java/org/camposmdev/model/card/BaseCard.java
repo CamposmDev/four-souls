@@ -1,17 +1,18 @@
 package org.camposmdev.model.card;
 
-import io.vertx.core.json.JsonObject;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.camposmdev.model.atlas.ImageInfo;
 import org.camposmdev.model.card.attribute.CardSet;
 import org.camposmdev.model.card.attribute.CardType;
 
-import java.io.Serializable;
-
-public abstract class BaseCard implements Serializable {
-    private String id, image;
+public abstract class BaseCard {
+    private String id;
+    private ImageInfo image;
     private CardType cardType;
     private CardSet cardSet;
 
-    public String id() {
+    public String getId() {
         return id;
     }
 
@@ -20,16 +21,16 @@ public abstract class BaseCard implements Serializable {
         return this;
     }
 
-    public String image() {
+    public ImageInfo getImage() {
         return image;
     }
 
-    public BaseCard setImage(String image) {
+    public BaseCard setImage(ImageInfo image) {
         this.image = image;
         return this;
     }
 
-    public CardType cardType() {
+    public CardType getCardType() {
         return cardType;
     }
 
@@ -38,7 +39,7 @@ public abstract class BaseCard implements Serializable {
         return this;
     }
 
-    public CardSet cardSet() {
+    public CardSet getCardSet() {
         return cardSet;
     }
 
@@ -47,17 +48,12 @@ public abstract class BaseCard implements Serializable {
         return this;
     }
 
-    public JsonObject toJSON() {
-        return JsonObject.of(
-                "id", id,
-                "image", image,
-                "cardType", cardType,
-                "cardSet", cardSet
-        );
-    }
-
     @Override
     public String toString() {
-        return toJSON().encode();
+        try {
+            return new ObjectMapper().writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

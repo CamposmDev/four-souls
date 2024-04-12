@@ -4,7 +4,7 @@ public enum PaidItem {
     ATHAME,
     BATTERY_BUM,
     BATTERY_PACK,
-    BUMBO,
+    BUM_BO,
     CAR_BATTERY,
     CONTRACT_FROM_BELOW,
     DADS_KEY_V1,

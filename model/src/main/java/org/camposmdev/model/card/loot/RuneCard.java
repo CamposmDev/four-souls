@@ -1,5 +1,7 @@
 package org.camposmdev.model.card.loot;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.camposmdev.model.card.attribute.CardType;
 import org.camposmdev.model.card.attribute.DeckType;
 import org.camposmdev.model.card.attribute.loot.LootOptionEvent;
@@ -19,7 +21,7 @@ public class RuneCard extends LootCard {
         super.setCardType(CardType.RUNES);
     }
 
-    public LootOptionEvent[] options() {
+    public LootOptionEvent[] getOptions() {
         return options;
     }
 
@@ -28,7 +30,7 @@ public class RuneCard extends LootCard {
         return this;
     }
 
-    public boolean discardActiveMonsters() {
+    public boolean isDiscardActiveMonsters() {
         return discardActiveMonsters;
     }
 
@@ -37,7 +39,7 @@ public class RuneCard extends LootCard {
         return this;
     }
 
-    public RuneEvent[] events() {
+    public RuneEvent[] getEvents() {
         return events;
     }
 
@@ -46,7 +48,7 @@ public class RuneCard extends LootCard {
         return this;
     }
 
-    public boolean jera() {
+    public boolean isJera() {
         return jera;
     }
 
@@ -55,7 +57,7 @@ public class RuneCard extends LootCard {
         return this;
     }
 
-    public DeckType peekDeck() {
+    public DeckType getPeekDeck() {
         return peekDeck;
     }
 
@@ -64,7 +66,7 @@ public class RuneCard extends LootCard {
         return this;
     }
 
-    public byte peekDeckAmount() {
+    public byte getPeekDeckAmount() {
         return peekDeckAmount;
     }
 
@@ -73,7 +75,7 @@ public class RuneCard extends LootCard {
         return this;
     }
 
-    public boolean peekDeckSort() {
+    public boolean isPeekDeckSort() {
         return peekDeckSort;
     }
 
@@ -82,7 +84,7 @@ public class RuneCard extends LootCard {
         return this;
     }
 
-    public boolean destroyItemInPlayAndReplace() {
+    public boolean isDestroyItemInPlayAndReplace() {
         return destroyItemInPlayAndReplace;
     }
 
@@ -91,7 +93,7 @@ public class RuneCard extends LootCard {
         return this;
     }
 
-    public boolean rerollAnyItem() {
+    public boolean isRerollAnyItem() {
         return rerollAnyItem;
     }
 
@@ -100,7 +102,7 @@ public class RuneCard extends LootCard {
         return this;
     }
 
-    public boolean algiz() {
+    public boolean isAlgiz() {
         return algiz;
     }
 
@@ -109,7 +111,7 @@ public class RuneCard extends LootCard {
         return this;
     }
 
-    public boolean berkano() {
+    public boolean isBerkano() {
         return berkano;
     }
 
@@ -118,12 +120,21 @@ public class RuneCard extends LootCard {
         return this;
     }
 
-    public boolean halgalaz() {
+    public boolean isHalgalaz() {
         return halgalaz;
     }
 
-    public RuneCard setHalgalaz(boolean galgalaz) {
-        this.halgalaz = galgalaz;
+    public RuneCard setHalgalaz(boolean halgalaz) {
+        this.halgalaz = halgalaz;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        try {
+            return new ObjectMapper().writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

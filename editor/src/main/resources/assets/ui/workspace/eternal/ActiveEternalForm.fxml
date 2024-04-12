@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane hgap="4.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" vgap="4.0"
+          xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="org.camposmdev.editor.ui.workspace.eternal.ActiveEternalFormController">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+    </rowConstraints>
+    <padding>
+        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
+    </padding>
+    <Label text="reroll" GridPane.rowIndex="1"/>
+    <Label text="preventDamage" GridPane.rowIndex="2"/>
+    <Label text="preventDamageAmount" GridPane.rowIndex="3"/>
+    <Label text="preventDamageFor" GridPane.rowIndex="4"/>
+    <Label text="peekDeck" GridPane.rowIndex="5"/>
+    <Label text="peekDeckAmount" GridPane.rowIndex="6"/>
+    <Label text="modifyDiceRoll" GridPane.rowIndex="7"/>
+    <Label text="modifyDiceRollOffset" GridPane.rowIndex="8"/>
+    <Label text="foreverAlone" GridPane.rowIndex="9"/>
+    <Label text="recoverCardAtStartOfTurn" GridPane.rowIndex="10"/>
+    <Label text="recoverCard" GridPane.rowIndex="11"/>
+    <Label text="deckType" GridPane.rowIndex="13"/>
+    <Label text="modifyAttack" GridPane.rowIndex="14"/>
+    <Label text="modifyAttackAmount" GridPane.rowIndex="15"/>
+    <Label text="modifyAttackTo" GridPane.rowIndex="16"/>
+    <Label text="incubus" GridPane.rowIndex="17"/>
+    <Label text="rechargeAtEndOfTurn" GridPane.rowIndex="18"/>
+    <Label text="cancelAttack" GridPane.rowIndex="19"/>
+    <Label text="attackAgain" GridPane.rowIndex="20"/>
+    <Label text="preventDeath" GridPane.rowIndex="21"/>
+    <Label text="endTurn" GridPane.rowIndex="22"/>
+    <Label text="woodenNickel" GridPane.rowIndex="23"/>
+    <Label text="void" GridPane.rowIndex="24"/>
+    <Label text="lootAmount" GridPane.columnIndex="2"/>
+    <Label text="discardAmount" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+    <Label text="siblingRivalry" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+    <Label text="spindownDice" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
+    <Label text="ceremonialBlade" GridPane.columnIndex="2" GridPane.rowIndex="4"/>
+    <Label text="hemoptsis" GridPane.columnIndex="2" GridPane.rowIndex="5"/>
+    <Label text="gello" GridPane.columnIndex="2" GridPane.rowIndex="6"/>
+    <Label text="keepersBargin" GridPane.columnIndex="2" GridPane.rowIndex="7"/>
+    <Label text="abyss" GridPane.columnIndex="2" GridPane.rowIndex="8"/>
+    <Label text="deadWeight" GridPane.columnIndex="2" GridPane.rowIndex="9"/>
+    <Label text="lemegeton" GridPane.columnIndex="2" GridPane.rowIndex="10"/>
+    <Label text="animaSola" GridPane.columnIndex="2" GridPane.rowIndex="11"/>
+    <Label text="classicRoller" GridPane.columnIndex="2" GridPane.rowIndex="12"/>
+    <Label text="theRealLeftHand" GridPane.columnIndex="2" GridPane.rowIndex="13"/>
+    <Label text="damage" GridPane.columnIndex="2" GridPane.rowIndex="14"/>
+    <Label text="damageTo" GridPane.columnIndex="2" GridPane.rowIndex="15"/>
+    <Label text="bowAndArrow" GridPane.columnIndex="2" GridPane.rowIndex="16"/>
+    <Label text="girlfriend" GridPane.columnIndex="2" GridPane.rowIndex="17"/>
+    <Label text="gravity" GridPane.columnIndex="2" GridPane.rowIndex="18"/>
+    <Label text="emergencyMeeting" GridPane.columnIndex="2" GridPane.rowIndex="19"/>
+    <Label text="football" GridPane.columnIndex="2" GridPane.rowIndex="20"/>
+    <Label text="polarStar" GridPane.columnIndex="2" GridPane.rowIndex="21"/>
+    <Label text="rustySpoons" GridPane.columnIndex="2" GridPane.rowIndex="22"/>
+    <Label text="popPop" GridPane.columnIndex="2" GridPane.rowIndex="23"/>
+    <Label text="pinkProglottid" GridPane.columnIndex="2" GridPane.rowIndex="24"/>
+    <Label text="recoverCardAmount" GridPane.rowIndex="12"/>
+    <ComboBox fx:id="cbReroll" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+    <CheckBox fx:id="cbPreventDamage" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+    <TextField fx:id="tfPreventDamageAmount" promptText="[0, 127]" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+    <ComboBox fx:id="cbPreventDamageFor" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+    <ComboBox fx:id="cbPeekDeck" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+    <TextField fx:id="tfPeekDeckAmount" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+    <ComboBox fx:id="cbModifyDiceRoll" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
+    <TextField fx:id="tfModifyDiceRollOffset" promptText="[0, 127]" GridPane.columnIndex="1" GridPane.rowIndex="8"/>
+    <CheckBox fx:id="cbIsForeverAlone" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="9"/>
+    <CheckBox fx:id="cbRecoverCardAtStartOfTurn" mnemonicParsing="false" GridPane.columnIndex="1"
+              GridPane.rowIndex="10"/>
+    <CheckBox fx:id="cbRecoverCard" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="11"/>
+    <TextField fx:id="tfRecoverCardAmount" GridPane.columnIndex="1" GridPane.rowIndex="12"/>
+    <ComboBox fx:id="cbDeckType" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="13"/>
+    <CheckBox fx:id="cbModifyAttack" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="14"/>
+    <TextField fx:id="tfModifyAttackAmount" GridPane.columnIndex="1" GridPane.rowIndex="15"/>
+    <ComboBox fx:id="cbModifyAttackTo" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="16"/>
+    <CheckBox fx:id="cbIsIncubus" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="17"/>
+    <CheckBox fx:id="cbRechargeAtEndOfTurn" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="18"/>
+    <CheckBox fx:id="cbCancelAttack" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="19"/>
+    <CheckBox fx:id="cbAttackAgain" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="20"/>
+    <CheckBox fx:id="cbPreventDeath" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="21"/>
+    <CheckBox fx:id="cbEndTurn" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="22"/>
+    <CheckBox fx:id="cbIsWoodenNickel" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="23"/>
+    <CheckBox fx:id="cbIsVoid" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="24"/>
+    <TextField fx:id="tfLootAmount" GridPane.columnIndex="3"/>
+    <TextField fx:id="tfDiscardAmount" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+    <CheckBox fx:id="cbIsSiblingRivalry" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.rowIndex="2"/>
+    <CheckBox fx:id="cbIsSpindownDice" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.rowIndex="3"/>
+    <CheckBox fx:id="cbIsCeremonialBlade" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.rowIndex="4"/>
+    <CheckBox fx:id="cbIsHemoptsis" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.rowIndex="5"/>
+    <CheckBox fx:id="cbIsGello" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.rowIndex="6"/>
+    <CheckBox fx:id="cbIsKeepersBargin" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.rowIndex="7"/>
+    <CheckBox fx:id="cbIsAbyss" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.rowIndex="8"/>
+    <CheckBox fx:id="cbIsDeadWeight" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.rowIndex="9"/>
+    <CheckBox fx:id="cbIsLemegeton" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.rowIndex="10"/>
+    <CheckBox fx:id="cbIsAnimaSola" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.rowIndex="11"/>
+    <CheckBox fx:id="cbIsClassicRoller" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.rowIndex="12"/>
+    <CheckBox fx:id="cbIsTheRealLeftHand" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.rowIndex="13"/>
+    <TextField fx:id="tfDamage" GridPane.columnIndex="3" GridPane.rowIndex="14"/>
+    <ComboBox fx:id="cbDamageTo" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="15"/>
+    <CheckBox fx:id="cbIsBowAndArrow" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.rowIndex="16"/>
+    <CheckBox fx:id="cbIsGirlfriend" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.rowIndex="17"/>
+    <CheckBox fx:id="cbIsGravity" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.rowIndex="18"/>
+    <CheckBox fx:id="cbIsEmergencyMeeting" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.rowIndex="19"/>
+    <CheckBox fx:id="cbIsFootball" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.rowIndex="20"/>
+    <CheckBox fx:id="cbIsPolarStar" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.rowIndex="21"/>
+    <CheckBox fx:id="cbIsRustySpoons" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.rowIndex="22"/>
+    <CheckBox fx:id="cbIsPopPop" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.rowIndex="23"/>
+    <CheckBox fx:id="cbIsPinkProglottid" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.rowIndex="24"/>
+    <Label text="cardSet"/>
+    <ComboBox fx:id="cbCardSet" prefWidth="150.0" GridPane.columnIndex="1"/>
+</GridPane>

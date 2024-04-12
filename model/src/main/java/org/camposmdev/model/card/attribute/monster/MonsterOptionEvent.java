@@ -1,5 +1,7 @@
 package org.camposmdev.model.card.attribute.monster;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.camposmdev.model.card.attribute.EntityTarget;
 
 public class MonsterOptionEvent {
@@ -13,7 +15,7 @@ public class MonsterOptionEvent {
     private byte stealItems;
     private byte stealSouls;
 
-    public boolean discard() {
+    public boolean isDiscard() {
         return discard;
     }
 
@@ -22,7 +24,7 @@ public class MonsterOptionEvent {
         return this;
     }
 
-    public byte loot() {
+    public byte getLoot() {
         return loot;
     }
 
@@ -31,7 +33,7 @@ public class MonsterOptionEvent {
         return this;
     }
 
-    public byte damage() {
+    public byte getDamage() {
         return damage;
     }
 
@@ -40,7 +42,7 @@ public class MonsterOptionEvent {
         return this;
     }
 
-    public EntityTarget damageTo() {
+    public EntityTarget getDamageTo() {
         return damageTo;
     }
 
@@ -49,7 +51,7 @@ public class MonsterOptionEvent {
         return this;
     }
 
-    public boolean guppyItem() {
+    public boolean isGuppyItem() {
         return guppyItem;
     }
 
@@ -58,7 +60,7 @@ public class MonsterOptionEvent {
         return this;
     }
 
-    public byte stealCents() {
+    public byte getStealCents() {
         return stealCents;
     }
 
@@ -67,7 +69,7 @@ public class MonsterOptionEvent {
         return this;
     }
 
-    public byte stealLoot() {
+    public byte getStealLoot() {
         return stealLoot;
     }
 
@@ -76,7 +78,7 @@ public class MonsterOptionEvent {
         return this;
     }
 
-    public byte stealItems() {
+    public byte getStealItems() {
         return stealItems;
     }
 
@@ -85,12 +87,21 @@ public class MonsterOptionEvent {
         return this;
     }
 
-    public byte stealSouls() {
+    public byte getStealSouls() {
         return stealSouls;
     }
 
     public MonsterOptionEvent setStealSouls(byte stealSouls) {
         this.stealSouls = stealSouls;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        try {
+            return new ObjectMapper().writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

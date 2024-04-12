@@ -1,5 +1,7 @@
 package org.camposmdev.model.card.attribute.loot;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.camposmdev.model.card.attribute.EntityTarget;
 import org.camposmdev.model.card.attribute.Reward;
 
@@ -12,7 +14,7 @@ public class LootOptionEvent {
     protected boolean destroyCurse;
     protected byte preventDamageToPlayer;
 
-    public byte damage() {
+    public byte getDamage() {
         return damage;
     }
 
@@ -21,7 +23,7 @@ public class LootOptionEvent {
         return this;
     }
 
-    public EntityTarget damageTo() {
+    public EntityTarget getDamageTo() {
         return damageTo;
     }
 
@@ -30,7 +32,7 @@ public class LootOptionEvent {
         return this;
     }
 
-    public Reward reward() {
+    public Reward getReward() {
         return reward;
     }
 
@@ -39,7 +41,7 @@ public class LootOptionEvent {
         return this;
     }
 
-    public boolean attackAgain() {
+    public boolean isAttackAgain() {
         return attackAgain;
     }
 
@@ -48,7 +50,7 @@ public class LootOptionEvent {
         return this;
     }
 
-    public boolean summonMonster() {
+    public boolean isSummonMonster() {
         return summonMonster;
     }
 
@@ -57,7 +59,7 @@ public class LootOptionEvent {
         return this;
     }
 
-    public boolean destroyCurse() {
+    public boolean isDestroyCurse() {
         return destroyCurse;
     }
 
@@ -66,12 +68,21 @@ public class LootOptionEvent {
         return this;
     }
 
-    public byte preventDamageToPlayer() {
+    public byte getPreventDamageToPlayer() {
         return preventDamageToPlayer;
     }
 
     public LootOptionEvent setPreventDamageToPlayer(byte preventDamageToPlayer) {
         this.preventDamageToPlayer = preventDamageToPlayer;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        try {
+            return new ObjectMapper().writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

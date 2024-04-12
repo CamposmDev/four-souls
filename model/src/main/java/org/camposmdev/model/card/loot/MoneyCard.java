@@ -1,17 +1,18 @@
 package org.camposmdev.model.card.loot;
 
-import io.vertx.core.json.JsonObject;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.camposmdev.model.card.attribute.CardType;
 
 public class MoneyCard extends LootCard {
     private Byte value;
-    private boolean rechargeItem, doubleReward, isSticky, isButt;
+    private boolean rechargeItem, doubleReward, sticky, butt;
 
     public MoneyCard() {
         super.setCardType(CardType.MONEY);
     }
 
-    public Byte value() {
+    public Byte getValue() {
         return value;
     }
 
@@ -20,7 +21,7 @@ public class MoneyCard extends LootCard {
         return this;
     }
 
-    public boolean rechargeItem() {
+    public boolean isRechargeItem() {
         return rechargeItem;
     }
 
@@ -29,7 +30,7 @@ public class MoneyCard extends LootCard {
         return this;
     }
 
-    public boolean doubleReward() {
+    public boolean isDoubleReward() {
         return doubleReward;
     }
 
@@ -39,34 +40,29 @@ public class MoneyCard extends LootCard {
     }
 
     public boolean isSticky() {
-        return isSticky;
+        return sticky;
     }
 
     public MoneyCard setSticky(boolean sticky) {
-        isSticky = sticky;
+        this.sticky = sticky;
         return this;
     }
 
     public boolean isButt() {
-        return isButt;
+        return butt;
     }
 
     public MoneyCard setButt(boolean butt) {
-        isButt = butt;
+        this.butt = butt;
         return this;
     }
 
     @Override
-    public JsonObject toJSON() {
-        return super.toJSON()
-                .put("value", value)
-                .put("rechargeItem", rechargeItem)
-                .put("doubleReward", doubleReward)
-                .put("isSticky", isSticky);
-    }
-
-    @Override
     public String toString() {
-        return toJSON().encode();
+        try {
+            return new ObjectMapper().writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

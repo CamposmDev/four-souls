@@ -1,26 +1,32 @@
 package org.camposmdev.model.atlas;
 
-import io.vertx.core.json.JsonObject;
-import org.camposmdev.model.card.bonus_soul.BonusSoulCard;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.Version;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.module.SimpleModule;
+import org.camposmdev.model.card.BaseCard;
+import org.camposmdev.model.card.attribute.CardType;
+import org.camposmdev.model.card.bsoul.BonusSoulCard;
 import org.camposmdev.model.card.character.CharacterCard;
 import org.camposmdev.model.card.eternal.*;
 import org.camposmdev.model.card.extra.ExtraCard;
 import org.camposmdev.model.card.loot.*;
-import org.camposmdev.model.card.monster.AbstractMonsterCard;
+import org.camposmdev.model.card.monster.BaseMonsterCard;
 import org.camposmdev.model.card.room.RoomCard;
 import org.camposmdev.model.card.treasure.TreasureCard;
 
 import java.util.HashMap;
 import java.util.Map;
-public class MasterCardAtlas {
-    private final Map<String, BonusSoulCard> bsoul;
-    private final Map<String, CharacterCard> character;
-    private final EternalCardAtlas eternal;
-    private final Map<String, ExtraCard> extra;
-    private final LootCardAtlas loot;
-    private final MonsterCardAtlas monster;
-    private final Map<String, RoomCard> room;
-    private final TreasureCardAtlas treasure;
+public class MasterCardAtlas implements CardAtlas<BaseCard> {
+    protected Map<String, BonusSoulCard> bsoul;
+    protected Map<String, CharacterCard> character;
+    protected EternalCardAtlas eternal;
+    protected Map<String, ExtraCard> extra;
+    protected LootCardAtlas loot;
+    protected MonsterCardAtlas monster;
+    protected Map<String, RoomCard> room;
+    protected TreasureCardAtlas treasure;
 
     public MasterCardAtlas() {
         this.bsoul = new HashMap<>();
@@ -33,56 +39,58 @@ public class MasterCardAtlas {
         this.treasure = new TreasureCardAtlas();
     }
 
-    public void add(BonusSoulCard card) {
-        bsoul.put(card.id(), card);
-    }
-    public void add(CharacterCard card) {
-        character.put(card.id(), card);
-    }
-    public void add(EternalCard card) {
-        eternal.add(card);
-    }
-    public void add(ExtraCard card) {
-        extra.put(card.id(), card);
-    }
-    public void add(LootCard card) {
-        loot.add(card);
-    }
-    public void add(AbstractMonsterCard card) {
-        monster.add(card);
-    }
-    public void add(RoomCard card) {
-        room.put(card.id(), card);
-    }
-    public void add(TreasureCard card) {
-        treasure.add(card);
+    @Override
+    public void add(BaseCard card) {
+        switch (card.getCardType()) {
+            case BSOUL -> bsoul.put(card.getId(), (BonusSoulCard) card);
+            case CHARACTER -> character.put(card.getId(), (CharacterCard) card);
+            case AETERNAL, OETERNAL, PAIDETERNAL, PETERNAL, SETERNAL -> eternal.add((EternalCard) card);
+            case OUTSIDE -> extra.put(card.getId(), (ExtraCard) card);
+            case TRINKETS, PILLS, RUNES, BOMBS, BUTTER, BATTERIES, KEYS, DICE, SHEART, BHEART, SACK, LSOUL, WILDCARD, MONEY1C, MONEY2C, MONEY3C, MONEY4C, MONEY5C, MONEY10C -> loot.add((LootCard) card);
+            case BMONSTER, CMONSTER, HMONSTER, CHAMONSTER, GEVENT, BEVENT, CURSE, BOSS, EPIC -> monster.add((BaseMonsterCard) card);
+            case ROOM -> room.put(card.getId(), (RoomCard) card);
+            case PTREASURE, ATREASURE, PAIDTREASURE, OTREASURE, STREASURE -> treasure.add((TreasureCard) card);
+        }
     }
 
-    public JsonObject toJSON() {
-        var root = new JsonObject();
-//        var obj1 = new JsonObject();
-//        character.forEach((key, value) -> obj1.put(key, value.toJSON()));
-//        root.put(CardType.CHARACTER.key(), obj1);
-//        var obj2 = new JsonObject();
-////        eternal.forEach((key, value) -> obj2.put(key, value.toJSON()));
-//        root.put(CardType.ETERNAL.key(), obj2);
-//        var obj3 = new JsonObject();
-//        root.put(CardType.TREASURE.key(), obj3);
-//        var obj4 = new JsonObject();
-//        root.put(CardType.MONSTER.key(), obj4);
-//        var obj5 = new JsonObject();
-//        loot.forEach((key,value) -> obj5.put(key, value.toJSON()));
-//        root.put(CardType.LOOT.key(), obj5);
-//        var obj6 = new JsonObject();
-//        bsoul.forEach((key, value) -> obj6.put(key, value.toJSON()));
-//        root.put(CardType.BSOUL.key(), obj6);
-//        var obj7 = new JsonObject();
-//        root.put(CardType.ROOM.key(), obj7);
-        return root;
+    @Override
+    public boolean contains(CardType cardType, String key) {
+        return switch (cardType) {
+            case CHARACTER -> character.containsKey(key);
+            case PETERNAL, AETERNAL, SETERNAL, OETERNAL, PAIDETERNAL ->
+                eternal.contains(cardType, key);
+            case PTREASURE, ATREASURE, PAIDTREASURE, OTREASURE, STREASURE ->
+                treasure.contains(cardType, key);
+            case BMONSTER, CMONSTER, HMONSTER, CHAMONSTER, GEVENT, BEVENT, CURSE, BOSS, EPIC ->
+                monster.contains(cardType, key);
+            case TRINKETS, PILLS, RUNES, BOMBS, BUTTER, BATTERIES, KEYS, DICE, SHEART, BHEART, SACK, LSOUL, WILDCARD, MONEY1C, MONEY2C, MONEY3C, MONEY4C, MONEY5C, MONEY10C ->
+                loot.contains(cardType, key);
+            case BSOUL ->
+                bsoul.containsKey(key);
+            case ROOM ->
+                room.containsKey(key);
+            case OUTSIDE ->
+                extra.containsKey(key);
+            default -> false;
+        };
     }
 
     @Override
     public String toString() {
-        return toJSON().encodePrettily();
+        ObjectMapper mapper = new ObjectMapper();
+        var module = new SimpleModule("CardAtlasDataBind", new Version(1, 0, 0, null, null, null));
+        module.addSerializer(EternalCardAtlas.class, new EternalCardAtlasSerializer());
+        module.addSerializer(LootCardAtlas.class, new LootCardAtlasSerializer());
+        module.addSerializer(MasterCardAtlas.class, new MasterCardAtlasSerializer());
+        module.addSerializer(MonsterCardAtlas.class, new MonsterCardAtlasSerializer());
+        module.addSerializer(TreasureCardAtlas.class, new TreasureCardAtlasSerializer());
+        module.addSerializer(MoneyCardAtlas.class, new MoneyCardAtlasSerializer());
+        mapper.registerModule(module);
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+        try {
+            return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

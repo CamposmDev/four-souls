@@ -1,0 +1,24 @@
+.global-chat {
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+    -fx-font-family: "EdmundMcMillen_v2";
+    -fx-hbar-policy: never;
+    -fx-vbar-policy: never;
+    -fx-font-size: 13pt;
+}
+
+.chat-message {
+    -fx-fill: white;
+}
+
+.chat-field {
+    -fx-font-family: "EdmundMcMillen_v2";
+    -fx-font-size: 13pt;
+    -fx-background-color: rgba(0, 0, 0, 0.2);
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+    -fx-border-color: transparent;
+    -fx-text-fill: white;
+    -fx-pref-width: 400px;
+    -fx-prompt-text-fill: rgba(255, 255, 255, 0.2);
+}

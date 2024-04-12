@@ -1,21 +1,33 @@
 package org.camposmdev.model.card.loot;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.camposmdev.model.card.attribute.CardType;
 import org.camposmdev.model.card.attribute.CardVersion;
+import org.camposmdev.model.card.attribute.loot.BatteryType;
 
 public class BatteryCard extends LootCard {
-    private CardVersion version;
+    private BatteryType type;
 
     public BatteryCard() {
         super.setCardType(CardType.BATTERIES);
     }
 
-    public CardVersion version() {
-        return version;
+    public BatteryType getType() {
+        return type;
     }
 
-    public BatteryCard setVersion(CardVersion version) {
-        this.version = version;
+    public BatteryCard setType(BatteryType type) {
+        this.type = type;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        try {
+            return new ObjectMapper().writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

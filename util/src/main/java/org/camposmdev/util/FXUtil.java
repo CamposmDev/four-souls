@@ -11,6 +11,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.TextField;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.web.WebView;
@@ -31,7 +33,9 @@ public class FXUtil {
      */
     public static UI loadUI(String src) {
         try {
+            System.out.println(src);
             URL url = FXUtil.class.getClassLoader().getResource(UI_DIR + src);
+            System.out.println(url);
             var fxml = new FXMLLoader(url);
             var node = (Parent) fxml.load();
             /* Call controller's init method */
@@ -132,5 +136,40 @@ public class FXUtil {
 
     public static String getByteRange() {
         return String.format("[%d, %d]", Byte.MIN_VALUE, Byte.MAX_VALUE);
+    }
+
+    public static void initNumberFields(TextField... nodes) {
+        for (var textfield : nodes) {
+            initNumberField(textfield);
+        }
+    }
+
+    private static void initNumberField(TextField tf) {
+        tf.setText("0");
+        // Add scroll event listener to the text field
+        tf.addEventFilter(ScrollEvent.SCROLL, event -> {
+            // Get current number from the text field, or set to 0 if blank
+            short number = 0;
+            try {
+                number = Short.parseShort(tf.getText().trim());
+            } catch (NumberFormatException ignored) {
+            }
+            // Increment or decrement the number based on scroll direction
+            if (event.getDeltaY() < 0) {
+                number--;
+            } else {
+                number++;
+            }
+
+            // Loop around if number exceeds range [-128,127]
+            if (number > Byte.MAX_VALUE) {
+                number = Byte.MIN_VALUE;
+            } else if (number < Byte.MIN_VALUE) {
+                number = Byte.MAX_VALUE;
+            }
+
+            // Update the text field with the new number
+            tf.setText(String.valueOf(number));
+        });
     }
 }

@@ -1,6 +1,8 @@
 package org.camposmdev.model.card.attribute;
 
-import io.vertx.core.json.JsonObject;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * Reward that is given to player when an event
@@ -15,19 +17,13 @@ import io.vertx.core.json.JsonObject;
  * @param isEqualToCounter
  */
 public record Reward(Byte loot, Byte treasure, Byte cents, Byte hitPoints, Boolean rechargeItem, boolean stealShopItem, boolean death, boolean isEqualToCounter) {
-    public JsonObject toJSON() {
-        /* TODO - Update toString */
-        return JsonObject.of(
-                "loot", loot,
-                "treasure", treasure,
-                "cents", cents,
-                "hitPoints", hitPoints,
-                "rechargeItem", rechargeItem
-        );
-    }
-
     @Override
     public String toString() {
-        return toJSON().encode();
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            return mapper.writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

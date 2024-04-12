@@ -1,8 +1,10 @@
 package org.camposmdev.model.atlas;
 
-import com.almasb.fxgl.dsl.FXGL;
-import javafx.scene.image.Image;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.camposmdev.model.card.attribute.CardType;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
 public record MasterImageAtlas(
@@ -340,9 +342,15 @@ public record MasterImageAtlas(
     }
 
     private ImageAtlas loadImageAtlas(String src) {
-        var result = FXGL.getAssetLoader().loadJSON(src, ImageAtlas.class);
-        assert result.isPresent();
-        return result.get();
+        if (!src.startsWith("assets/"))
+            src = "assets/" + src;
+        var input = MasterImageAtlas.class.getClassLoader().getResourceAsStream(src);
+        var mapper = new ObjectMapper();
+        try {
+            return mapper.readValue(input, ImageAtlas.class);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
     
     public Set<String> allEternalKeys() {
@@ -355,7 +363,7 @@ public record MasterImageAtlas(
         return keySet;
     }
 
-    public Image loadSource2(CardType type, String key) {
+    public String source2(CardType type, String key) {
         switch (type) {
             case CHARACTER:
                 return loadCharacterJSON().source2(key);

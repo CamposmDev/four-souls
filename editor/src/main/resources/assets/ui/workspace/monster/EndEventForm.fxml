@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="org.camposmdev.editor.ui.workspace.monster.EndEventFormController"
+>
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+  <padding>
+    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+  </padding>
+  <Label text="eyeStabber" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+  <Label text="moveMonsterToAnotherSlot" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+  <Label text="loot" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+  <Label text="discardLoot" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+  <Label text="lootCents" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+  <Label text="hasTinyHands" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+  <Label text="deactivateItemsAndCharacter" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+  <Label text="discardLootAndCentsEqualToSouls" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+  <Label text="lastManStanding" GridPane.columnIndex="0" GridPane.rowIndex="8" />
+  <Label text="addCounter" GridPane.columnIndex="0" GridPane.rowIndex="9" />
+  <Label text="lastManStandingAlt" GridPane.columnIndex="0" GridPane.rowIndex="10" />
+  <Label text="putInMonsterDeck" GridPane.columnIndex="0" GridPane.rowIndex="11" />
+  <Label text="notAttackedCounter" GridPane.columnIndex="0" GridPane.rowIndex="12" />
+
+  <CheckBox fx:id="ee_isEyeStabber" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+  <CheckBox fx:id="ee_moveMonsterToAnotherSlot" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+  <TextField fx:id="ee_loot" promptText="[0,127]"  GridPane.columnIndex="1" GridPane.rowIndex="2" />
+  <TextField fx:id="ee_discardLoot" promptText="[0,127]"  GridPane.columnIndex="1" GridPane.rowIndex="3" />
+  <TextField fx:id="ee_lootCents" promptText="[0,127]"  GridPane.columnIndex="1" GridPane.rowIndex="4" />
+  <CheckBox fx:id="ee_hasTinyHands" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+  <CheckBox fx:id="ee_deactivateItemsAndCharacter" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+  <CheckBox fx:id="ee_discardLootAndCentsEqualToSouls" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+  <CheckBox fx:id="ee_lastManStanding" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+  <CheckBox fx:id="ee_addCounter" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+  <CheckBox fx:id="ee_lastManStandingAlt" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+  <TextField fx:id="ee_putInMonsterDeck" promptText="[0,127]"  GridPane.columnIndex="1" GridPane.rowIndex="11" />
+  <CheckBox fx:id="ee_notAttackedCounter" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+</GridPane>

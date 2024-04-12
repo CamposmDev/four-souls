@@ -1,5 +1,7 @@
 package org.camposmdev.model.card.attribute.loot;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.camposmdev.model.card.attribute.EntityTarget;
 import org.camposmdev.model.card.attribute.Reward;
 
@@ -13,7 +15,7 @@ public class RuneEvent {
     private boolean rerollAnyItem;
     private byte discardHandThenLoot;
 
-    public byte[] values() {
+    public byte[] getValues() {
         return values;
     }
 
@@ -22,7 +24,7 @@ public class RuneEvent {
         return this;
     }
 
-    public byte damage() {
+    public byte getDamage() {
         return damage;
     }
 
@@ -31,7 +33,7 @@ public class RuneEvent {
         return this;
     }
 
-    public EntityTarget damageTo() {
+    public EntityTarget getDamageTo() {
         return damageTo;
     }
 
@@ -40,7 +42,7 @@ public class RuneEvent {
         return this;
     }
 
-    public Reward reward() {
+    public Reward getReward() {
         return reward;
     }
 
@@ -49,7 +51,7 @@ public class RuneEvent {
         return this;
     }
 
-    public EntityTarget rewardTo() {
+    public EntityTarget getRewardTo() {
         return rewardTo;
     }
 
@@ -58,7 +60,7 @@ public class RuneEvent {
         return this;
     }
 
-    public boolean destroyItemInPlaceAndReplace() {
+    public boolean isDestroyItemInPlaceAndReplace() {
         return destroyItemInPlaceAndReplace;
     }
 
@@ -67,7 +69,7 @@ public class RuneEvent {
         return this;
     }
 
-    public boolean rerollAnyItem() {
+    public boolean isRerollAnyItem() {
         return rerollAnyItem;
     }
 
@@ -76,12 +78,21 @@ public class RuneEvent {
         return this;
     }
 
-    public byte discardHandThenLoot() {
+    public byte getDiscardHandThenLoot() {
         return discardHandThenLoot;
     }
 
     public RuneEvent setDiscardHandThenLoot(byte discardHandThenLoot) {
         this.discardHandThenLoot = discardHandThenLoot;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        try {
+            return new ObjectMapper().writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

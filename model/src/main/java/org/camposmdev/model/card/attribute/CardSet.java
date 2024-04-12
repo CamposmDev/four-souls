@@ -3,8 +3,8 @@ package org.camposmdev.model.card.attribute;
 public enum CardSet {
     BASE_V1,
     BASE_V2,
-    EXPANSION_V1,
-    EXPANSION_V2,
+    FOUR_SOULS_PLUS_V1,
+    FOUR_SOULS_PLUS_V2,
     REQUIEM,
     GOLD_BOX_V1,
     GOLD_BOX_V2,

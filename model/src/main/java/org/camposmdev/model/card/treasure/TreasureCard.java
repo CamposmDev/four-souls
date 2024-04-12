@@ -4,18 +4,18 @@ import org.camposmdev.model.card.BaseCard;
 import org.camposmdev.model.card.attribute.CardType;
 
 public abstract class TreasureCard extends BaseCard {
-    private boolean isGuppy;
+    private boolean guppy;
 
     public TreasureCard() {
         super.setCardType(CardType.TREASURE);
     }
 
     public boolean isGuppy() {
-        return isGuppy;
+        return guppy;
     }
 
     public TreasureCard setGuppy(boolean guppy) {
-        isGuppy = guppy;
+        this.guppy = guppy;
         return this;
     }
 }

@@ -1,5 +1,7 @@
 package org.camposmdev.model.card.loot;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.camposmdev.model.card.attribute.*;
 import org.camposmdev.model.card.attribute.loot.LootOptionEvent;
 
@@ -55,7 +57,7 @@ public class WildCard extends LootCard {
         super.setCardType(CardType.WILDCARD);
     }
 
-    public boolean theFool() {
+    public boolean isTheFool() {
         return theFool;
     }
 
@@ -64,7 +66,7 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public boolean changeDiceRollResult() {
+    public boolean isChangeDiceRollResult() {
         return changeDiceRollResult;
     }
 
@@ -73,7 +75,7 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public boolean highPriestess() {
+    public boolean isHighPriestess() {
         return highPriestess;
     }
 
@@ -82,7 +84,7 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public byte modPlayerHitPoint() {
+    public byte getModPlayerHitPoint() {
         return modPlayerHitPoint;
     }
 
@@ -91,7 +93,7 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public byte modPlayerDamage() {
+    public byte getModPlayerDamage() {
         return modPlayerDamage;
     }
 
@@ -100,7 +102,7 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public byte modPlayerDiceRoll() {
+    public byte getModPlayerDiceRoll() {
         return modPlayerDiceRoll;
     }
 
@@ -109,7 +111,7 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public DeckType peekDeck() {
+    public DeckType getPeekDeck() {
         return peekDeck;
     }
 
@@ -118,7 +120,7 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public byte peekDeckAmount() {
+    public byte getPeekDeckAmount() {
         return peekDeckAmount;
     }
 
@@ -127,7 +129,7 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public boolean peekDeck1Top() {
+    public boolean isPeekDeck1Top() {
         return peekDeck1Top;
     }
 
@@ -136,7 +138,7 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public boolean peekDeckSort() {
+    public boolean isPeekDeckSort() {
         return peekDeckSort;
     }
 
@@ -145,7 +147,7 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public boolean peekDeckBottomOption() {
+    public boolean isPeekDeckBottomOption() {
         return peekDeckBottomOption;
     }
 
@@ -154,7 +156,7 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public byte preventDamageToAny() {
+    public byte getPreventDamageToAny() {
         return preventDamageToAny;
     }
 
@@ -163,7 +165,7 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public byte preventNextDamageToAny() {
+    public byte getPreventNextDamageToAny() {
         return preventNextDamageToAny;
     }
 
@@ -172,7 +174,7 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public boolean justice() {
+    public boolean isJustice() {
         return justice;
     }
 
@@ -181,7 +183,7 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public RollEvent[] rollEvent() {
+    public RollEvent[] getRollEvent() {
         return rollEvent;
     }
 
@@ -190,7 +192,7 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public boolean attackAgain() {
+    public boolean isAttackAgain() {
         return attackAgain;
     }
 
@@ -199,7 +201,7 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public EntityTarget kill() {
+    public EntityTarget getKill() {
         return kill;
     }
 
@@ -208,7 +210,7 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public Reward reward() {
+    public Reward getReward() {
         return reward;
     }
 
@@ -217,7 +219,7 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public EntityTarget rewardTo() {
+    public EntityTarget getRewardTo() {
         return rewardTo;
     }
 
@@ -226,7 +228,7 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public LootOptionEvent[] options() {
+    public LootOptionEvent[] getOptions() {
         return options;
     }
 
@@ -235,7 +237,7 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public boolean devilDealStealItem() {
+    public boolean isDevilDealStealItem() {
         return devilDealStealItem;
     }
 
@@ -244,7 +246,7 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public boolean theSun() {
+    public boolean isTheSun() {
         return theSun;
     }
 
@@ -253,7 +255,7 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public boolean judgement() {
+    public boolean isJudgement() {
         return judgement;
     }
 
@@ -262,7 +264,7 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public boolean theWorld() {
+    public boolean isTheWorld() {
         return theWorld;
     }
 
@@ -271,7 +273,7 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public boolean creditCard() {
+    public boolean isCreditCard() {
         return creditCard;
     }
 
@@ -280,7 +282,7 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public CardVersion holyVersion() {
+    public CardVersion getHolyVersion() {
         return holyVersion;
     }
 
@@ -289,7 +291,7 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public boolean twoOfDiamonds() {
+    public boolean isTwoOfDiamonds() {
         return twoOfDiamonds;
     }
 
@@ -298,7 +300,7 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public boolean joker() {
+    public boolean isJoker() {
         return joker;
     }
 
@@ -307,7 +309,7 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public CardVersion copyActiveItemVersion() {
+    public CardVersion getCopyActiveItemVersion() {
         return copyActiveItemVersion;
     }
 
@@ -316,7 +318,7 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public boolean disableOtherPlayers() {
+    public boolean isDisableOtherPlayers() {
         return disableOtherPlayers;
     }
 
@@ -325,7 +327,7 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public boolean aceOfDiamonds() {
+    public boolean isAceOfDiamonds() {
         return aceOfDiamonds;
     }
 
@@ -334,7 +336,7 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public boolean emergencyContact() {
+    public boolean isEmergencyContact() {
         return emergencyContact;
     }
 
@@ -343,7 +345,7 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public boolean twoOfSpades() {
+    public boolean isTwoOfSpades() {
         return twoOfSpades;
     }
 
@@ -352,7 +354,7 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public boolean fiendFire() {
+    public boolean isFiendFire() {
         return fiendFire;
     }
 
@@ -361,7 +363,7 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public boolean goldKey() {
+    public boolean isGoldKey() {
         return goldKey;
     }
 
@@ -370,7 +372,7 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public boolean dadsNote() {
+    public boolean isDadsNote() {
         return dadsNote;
     }
 
@@ -379,7 +381,7 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public boolean magicMarker() {
+    public boolean isMagicMarker() {
         return magicMarker;
     }
 
@@ -388,7 +390,7 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public boolean bibleThump() {
+    public boolean isBibleThump() {
         return bibleThump;
     }
 
@@ -397,7 +399,7 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public boolean blanks() {
+    public boolean isBlanks() {
         return blanks;
     }
 
@@ -406,7 +408,7 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public boolean cheepcheepcheep() {
+    public boolean isCheepcheepcheep() {
         return cheepcheepcheep;
     }
 
@@ -415,7 +417,7 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public boolean chunkOfAmber() {
+    public boolean isChunkOfAmber() {
         return chunkOfAmber;
     }
 
@@ -424,7 +426,7 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public boolean cowOnATrashFarm() {
+    public boolean isCowOnATrashFarm() {
         return cowOnATrashFarm;
     }
 
@@ -433,7 +435,7 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public boolean greedButt() {
+    public boolean isGreedButt() {
         return greedButt;
     }
 
@@ -442,7 +444,7 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public boolean jester() {
+    public boolean isJester() {
         return jester;
     }
 
@@ -451,7 +453,7 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public boolean murder() {
+    public boolean isMurder() {
         return murder;
     }
 
@@ -460,13 +462,22 @@ public class WildCard extends LootCard {
         return this;
     }
 
-    public boolean witch() {
+    public boolean isWitch() {
         return witch;
     }
 
     public WildCard setWitch(boolean witch) {
         this.witch = witch;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        try {
+            return new ObjectMapper().writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
 

@@ -1,9 +1,13 @@
 package org.camposmdev.model.card.attribute.monster;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.camposmdev.model.card.attribute.AttributeModifier;
 import org.camposmdev.model.card.attribute.EntityTarget;
 import org.camposmdev.model.card.attribute.RollEvent;
 import org.camposmdev.model.card.attribute.RollListener;
+
+import java.util.List;
 
 public class PassiveEvent {
     private byte modMonstersAttackRoll;
@@ -12,11 +16,11 @@ public class PassiveEvent {
     private boolean attackable;
     private boolean deathLink;
     private AttributeModifier modifier;
-    private boolean isShopkeeper;
-    private boolean isIndomitable;
-    private boolean isImposter;
-    private boolean isDickKnot;
-    private RollListener[] rollListeners;
+    private boolean shopkeeper;
+    private boolean indomitable;
+    private boolean imposter;
+    private boolean dickKnot;
+    private List<RollListener> rollListeners;
     private byte activeItemDamage;
     private byte deathLinkDamage;
     private EntityTarget deathLinkDamageTo;
@@ -25,34 +29,34 @@ public class PassiveEvent {
     private byte deathLinkOptionalCents;
     private boolean deathLinkAttackAgain;
     private boolean endGame;
-    private boolean isDogma;
-    private boolean isUltraGreed;
+    private boolean dogma;
+    private boolean ultraGreed;
     private byte attackablePlayers;
     private boolean deathLinkCounter;
     private byte deathLinkCounterLimit;
     private boolean forceAttackDeck;
     private boolean playerDeathCounter;
-    private boolean isRadiance;
-    private boolean isTheCollector;
-    private boolean isTimerEater;
-    private boolean isDeliriumAlt;
-    private boolean isBallos;
-    private boolean isItLivesAlt;
+    private boolean radiance;
+    private boolean theCollector;
+    private boolean timeEater;
+    private boolean deliriumAlt;
+    private boolean ballos;
+    private boolean itLivesAlt;
     private boolean playerDeathLinkDamage;
     private byte expandMonsterOnAttack;
-    private RollEvent[] preattackRollEvents;
-    private boolean isPride;
+    private List<RollEvent> preattackRollEvents;
+    private boolean pride;
     private boolean nonActivePlayerDiscardLoot;
     private boolean disableNonActivePlayerLootAndActiveItems;
     private boolean forceAttack;
-    private boolean isSistersVis;
+    private boolean sistersVis;
     private boolean cancelAttackOn;
     private byte damageLinkModMonstersAttackRoll;
-    private boolean isGrandParent;
+    private boolean grandParent;
     private boolean expandMonsterOnPlay;
     private boolean forceAttackAgain;
-    private boolean isTheButcher;
-    private boolean isMelquiades;
+    private boolean theButcher;
+    private boolean melquiades;
     private boolean counterModsOtherMonstersAttackRoll;
     private boolean activeOnCovered;
     private boolean preattackGoldCounter;
@@ -63,7 +67,7 @@ public class PassiveEvent {
     private boolean counterLinkToDamage;
     private byte forceAttackOnCounter;
 
-    public byte modMonstersAttackRoll() {
+    public byte getModMonstersAttackRoll() {
         return modMonstersAttackRoll;
     }
 
@@ -72,7 +76,7 @@ public class PassiveEvent {
         return this;
     }
 
-    public byte modMonstersDamage() {
+    public byte getModMonstersDamage() {
         return modMonstersDamage;
     }
 
@@ -81,7 +85,7 @@ public class PassiveEvent {
         return this;
     }
 
-    public byte modMonstersHitPoints() {
+    public byte getModMonstersHitPoints() {
         return modMonstersHitPoints;
     }
 
@@ -90,7 +94,7 @@ public class PassiveEvent {
         return this;
     }
 
-    public boolean attackable() {
+    public boolean isAttackable() {
         return attackable;
     }
 
@@ -99,7 +103,7 @@ public class PassiveEvent {
         return this;
     }
 
-    public boolean deathLink() {
+    public boolean isDeathLink() {
         return deathLink;
     }
 
@@ -108,7 +112,7 @@ public class PassiveEvent {
         return this;
     }
 
-    public AttributeModifier modifier() {
+    public AttributeModifier getModifier() {
         return modifier;
     }
 
@@ -118,51 +122,51 @@ public class PassiveEvent {
     }
 
     public boolean isShopkeeper() {
-        return isShopkeeper;
+        return shopkeeper;
     }
 
     public PassiveEvent setShopkeeper(boolean shopkeeper) {
-        isShopkeeper = shopkeeper;
+        this.shopkeeper = shopkeeper;
         return this;
     }
 
     public boolean isIndomitable() {
-        return isIndomitable;
+        return indomitable;
     }
 
     public PassiveEvent setIndomitable(boolean indomitable) {
-        isIndomitable = indomitable;
+        this.indomitable = indomitable;
         return this;
     }
 
     public boolean isImposter() {
-        return isImposter;
+        return imposter;
     }
 
     public PassiveEvent setImposter(boolean imposter) {
-        isImposter = imposter;
+        this.imposter = imposter;
         return this;
     }
 
     public boolean isDickKnot() {
-        return isDickKnot;
+        return dickKnot;
     }
 
     public PassiveEvent setDickKnot(boolean dickKnot) {
-        isDickKnot = dickKnot;
+        this.dickKnot = dickKnot;
         return this;
     }
 
-    public RollListener[] rollListeners() {
+    public List<RollListener> getRollListeners() {
         return rollListeners;
     }
 
-    public PassiveEvent setRollListeners(RollListener[] rollListeners) {
+    public PassiveEvent setRollListeners(List<RollListener> rollListeners) {
         this.rollListeners = rollListeners;
         return this;
     }
 
-    public byte activeItemDamage() {
+    public byte getActiveItemDamage() {
         return activeItemDamage;
     }
 
@@ -171,7 +175,7 @@ public class PassiveEvent {
         return this;
     }
 
-    public byte deathLinkDamage() {
+    public byte getDeathLinkDamage() {
         return deathLinkDamage;
     }
 
@@ -180,7 +184,7 @@ public class PassiveEvent {
         return this;
     }
 
-    public EntityTarget deathLinkDamageTo() {
+    public EntityTarget getDeathLinkDamageTo() {
         return deathLinkDamageTo;
     }
 
@@ -198,7 +202,7 @@ public class PassiveEvent {
         return this;
     }
 
-    public byte deathLinkExpandMonster() {
+    public byte getDeathLinkExpandMonster() {
         return deathLinkExpandMonster;
     }
 
@@ -207,7 +211,7 @@ public class PassiveEvent {
         return this;
     }
 
-    public byte deathLinkOptionalCents() {
+    public byte getDeathLinkOptionalCents() {
         return deathLinkOptionalCents;
     }
 
@@ -216,7 +220,7 @@ public class PassiveEvent {
         return this;
     }
 
-    public boolean deathLinkAttackAgain() {
+    public boolean isDeathLinkAttackAgain() {
         return deathLinkAttackAgain;
     }
 
@@ -225,7 +229,7 @@ public class PassiveEvent {
         return this;
     }
 
-    public boolean endGame() {
+    public boolean isEndGame() {
         return endGame;
     }
 
@@ -235,24 +239,24 @@ public class PassiveEvent {
     }
 
     public boolean isDogma() {
-        return isDogma;
+        return dogma;
     }
 
     public PassiveEvent setDogma(boolean dogma) {
-        isDogma = dogma;
+        this.dogma = dogma;
         return this;
     }
 
     public boolean isUltraGreed() {
-        return isUltraGreed;
+        return ultraGreed;
     }
 
     public PassiveEvent setUltraGreed(boolean ultraGreed) {
-        isUltraGreed = ultraGreed;
+        this.ultraGreed = ultraGreed;
         return this;
     }
 
-    public byte attackablePlayers() {
+    public byte getAttackablePlayers() {
         return attackablePlayers;
     }
 
@@ -261,7 +265,7 @@ public class PassiveEvent {
         return this;
     }
 
-    public boolean deathLinkCounter() {
+    public boolean isDeathLinkCounter() {
         return deathLinkCounter;
     }
 
@@ -270,7 +274,7 @@ public class PassiveEvent {
         return this;
     }
 
-    public byte deathLinkCounterLimit() {
+    public byte getDeathLinkCounterLimit() {
         return deathLinkCounterLimit;
     }
 
@@ -279,7 +283,7 @@ public class PassiveEvent {
         return this;
     }
 
-    public boolean forceAttackDeck() {
+    public boolean isForceAttackDeck() {
         return forceAttackDeck;
     }
 
@@ -288,7 +292,7 @@ public class PassiveEvent {
         return this;
     }
 
-    public boolean playerDeathCounter() {
+    public boolean isPlayerDeathCounter() {
         return playerDeathCounter;
     }
 
@@ -298,60 +302,60 @@ public class PassiveEvent {
     }
 
     public boolean isRadiance() {
-        return isRadiance;
+        return radiance;
     }
 
     public PassiveEvent setRadiance(boolean radiance) {
-        isRadiance = radiance;
+        this.radiance = radiance;
         return this;
     }
 
     public boolean isTheCollector() {
-        return isTheCollector;
+        return theCollector;
     }
 
     public PassiveEvent setTheCollector(boolean theCollector) {
-        isTheCollector = theCollector;
+        this.theCollector = theCollector;
         return this;
     }
 
-    public boolean isTimerEater() {
-        return isTimerEater;
+    public boolean isTimeEater() {
+        return timeEater;
     }
 
-    public PassiveEvent setTimerEater(boolean timerEater) {
-        isTimerEater = timerEater;
+    public PassiveEvent setTimeEater(boolean timeEater) {
+        this.timeEater = timeEater;
         return this;
     }
 
     public boolean isDeliriumAlt() {
-        return isDeliriumAlt;
+        return deliriumAlt;
     }
 
     public PassiveEvent setDeliriumAlt(boolean deliriumAlt) {
-        isDeliriumAlt = deliriumAlt;
+        this.deliriumAlt = deliriumAlt;
         return this;
     }
 
     public boolean isBallos() {
-        return isBallos;
+        return ballos;
     }
 
     public PassiveEvent setBallos(boolean ballos) {
-        isBallos = ballos;
+        this.ballos = ballos;
         return this;
     }
 
     public boolean isItLivesAlt() {
-        return isItLivesAlt;
+        return itLivesAlt;
     }
 
     public PassiveEvent setItLivesAlt(boolean itLivesAlt) {
-        isItLivesAlt = itLivesAlt;
+        this.itLivesAlt = itLivesAlt;
         return this;
     }
 
-    public boolean playerDeathLinkDamage() {
+    public boolean isPlayerDeathLinkDamage() {
         return playerDeathLinkDamage;
     }
 
@@ -360,7 +364,7 @@ public class PassiveEvent {
         return this;
     }
 
-    public byte expandMonsterOnAttack() {
+    public byte getExpandMonsterOnAttack() {
         return expandMonsterOnAttack;
     }
 
@@ -369,25 +373,25 @@ public class PassiveEvent {
         return this;
     }
 
-    public RollEvent[] preattackRollEvents() {
+    public List<RollEvent> getPreattackRollEvents() {
         return preattackRollEvents;
     }
 
-    public PassiveEvent setPreattackRollEvents(RollEvent[] preattackRollEvents) {
+    public PassiveEvent setPreattackRollEvents(List<RollEvent> preattackRollEvents) {
         this.preattackRollEvents = preattackRollEvents;
         return this;
     }
 
     public boolean isPride() {
-        return isPride;
+        return pride;
     }
 
     public PassiveEvent setPride(boolean pride) {
-        isPride = pride;
+        this.pride = pride;
         return this;
     }
 
-    public boolean nonActivePlayerDiscardLoot() {
+    public boolean isNonActivePlayerDiscardLoot() {
         return nonActivePlayerDiscardLoot;
     }
 
@@ -396,7 +400,7 @@ public class PassiveEvent {
         return this;
     }
 
-    public boolean disableNonActivePlayerLootAndActiveItems() {
+    public boolean isDisableNonActivePlayerLootAndActiveItems() {
         return disableNonActivePlayerLootAndActiveItems;
     }
 
@@ -405,7 +409,7 @@ public class PassiveEvent {
         return this;
     }
 
-    public boolean forceAttack() {
+    public boolean isForceAttack() {
         return forceAttack;
     }
 
@@ -415,15 +419,15 @@ public class PassiveEvent {
     }
 
     public boolean isSistersVis() {
-        return isSistersVis;
+        return sistersVis;
     }
 
     public PassiveEvent setSistersVis(boolean sistersVis) {
-        isSistersVis = sistersVis;
+        this.sistersVis = sistersVis;
         return this;
     }
 
-    public boolean cancelAttackOn() {
+    public boolean isCancelAttackOn() {
         return cancelAttackOn;
     }
 
@@ -432,7 +436,7 @@ public class PassiveEvent {
         return this;
     }
 
-    public byte damageLinkModMonstersAttackRoll() {
+    public byte getDamageLinkModMonstersAttackRoll() {
         return damageLinkModMonstersAttackRoll;
     }
 
@@ -442,15 +446,15 @@ public class PassiveEvent {
     }
 
     public boolean isGrandParent() {
-        return isGrandParent;
+        return grandParent;
     }
 
     public PassiveEvent setGrandParent(boolean grandParent) {
-        isGrandParent = grandParent;
+        this.grandParent = grandParent;
         return this;
     }
 
-    public boolean expandMonsterOnPlay() {
+    public boolean isExpandMonsterOnPlay() {
         return expandMonsterOnPlay;
     }
 
@@ -459,7 +463,7 @@ public class PassiveEvent {
         return this;
     }
 
-    public boolean forceAttackAgain() {
+    public boolean isForceAttackAgain() {
         return forceAttackAgain;
     }
 
@@ -469,24 +473,24 @@ public class PassiveEvent {
     }
 
     public boolean isTheButcher() {
-        return isTheButcher;
+        return theButcher;
     }
 
     public PassiveEvent setTheButcher(boolean theButcher) {
-        isTheButcher = theButcher;
+        this.theButcher = theButcher;
         return this;
     }
 
     public boolean isMelquiades() {
-        return isMelquiades;
+        return melquiades;
     }
 
     public PassiveEvent setMelquiades(boolean melquiades) {
-        isMelquiades = melquiades;
+        this.melquiades = melquiades;
         return this;
     }
 
-    public boolean counterModsOtherMonstersAttackRoll() {
+    public boolean isCounterModsOtherMonstersAttackRoll() {
         return counterModsOtherMonstersAttackRoll;
     }
 
@@ -495,7 +499,7 @@ public class PassiveEvent {
         return this;
     }
 
-    public boolean activeOnCovered() {
+    public boolean isActiveOnCovered() {
         return activeOnCovered;
     }
 
@@ -504,7 +508,7 @@ public class PassiveEvent {
         return this;
     }
 
-    public boolean preattackGoldCounter() {
+    public boolean isPreattackGoldCounter() {
         return preattackGoldCounter;
     }
 
@@ -513,7 +517,7 @@ public class PassiveEvent {
         return this;
     }
 
-    public boolean deliriumPreventDamage() {
+    public boolean isDeliriumPreventDamage() {
         return deliriumPreventDamage;
     }
 
@@ -522,7 +526,7 @@ public class PassiveEvent {
         return this;
     }
 
-    public boolean deliriumRandomDeathPenaltyItem() {
+    public boolean isDeliriumRandomDeathPenaltyItem() {
         return deliriumRandomDeathPenaltyItem;
     }
 
@@ -531,7 +535,7 @@ public class PassiveEvent {
         return this;
     }
 
-    public byte attackRandomOnPlay() {
+    public byte getAttackRandomOnPlay() {
         return attackRandomOnPlay;
     }
 
@@ -540,7 +544,7 @@ public class PassiveEvent {
         return this;
     }
 
-    public boolean deathPlayerLink2Counters() {
+    public boolean isDeathPlayerLink2Counters() {
         return deathPlayerLink2Counters;
     }
 
@@ -549,7 +553,7 @@ public class PassiveEvent {
         return this;
     }
 
-    public boolean counterLinkToDamage() {
+    public boolean isCounterLinkToDamage() {
         return counterLinkToDamage;
     }
 
@@ -558,12 +562,21 @@ public class PassiveEvent {
         return this;
     }
 
-    public byte forceAttackOnCounter() {
+    public byte getForceAttackOnCounter() {
         return forceAttackOnCounter;
     }
 
     public PassiveEvent setForceAttackOnCounter(byte forceAttackOnCounter) {
         this.forceAttackOnCounter = forceAttackOnCounter;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        try {
+            return new ObjectMapper().writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

@@ -1,19 +1,16 @@
 package org.camposmdev.model.atlas;
 
-import com.almasb.fxgl.dsl.FXGL;
-import javafx.scene.image.Image;
-
 import java.util.Map;
 
 public record ImageAtlas(
         Map<String, ImageInfo> images
 ) {
-    public Image source1(String key) {
-        return FXGL.image(images.get(key).source1());
+    public String source1(String key) {
+        return images.get(key).source1();
     }
 
-    public Image source2(String key) {
-        return FXGL.image(images.get(key).source2());
+    public String source2(String key) {
+        return images.get(key).source2();
     }
 
     public boolean contains(String key) {

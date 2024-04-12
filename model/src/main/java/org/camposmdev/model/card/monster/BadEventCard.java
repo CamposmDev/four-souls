@@ -1,10 +1,12 @@
 package org.camposmdev.model.card.monster;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.camposmdev.model.card.attribute.CardType;
 import org.camposmdev.model.card.attribute.EntityTarget;
 import org.camposmdev.model.card.attribute.RollEvent;
 
-public class BadEventCard extends AbstractMonsterCard {
+public class BadEventCard extends BaseMonsterCard {
     private byte ambush;
     private boolean ambushAlt;
     private RollEvent[] rollEvents;
@@ -18,18 +20,18 @@ public class BadEventCard extends AbstractMonsterCard {
     private boolean endTurn;
     private boolean dontStarve;
     private boolean bloat;
-    private boolean isGoldenIdol;
-    private boolean isGrubFather;
-    private boolean isNightmareTick;
-    private boolean isQwop;
-    private boolean isTrialByTrolly;
-    private boolean isCorruptedData;
+    private boolean goldenIdol;
+    private boolean grubFather;
+    private boolean nightmareTick;
+    private boolean qwop;
+    private boolean trialByTrolly;
+    private boolean corruptedData;
 
     public BadEventCard() {
         super.setCardType(CardType.BEVENT);
     }
 
-    public byte ambush() {
+    public byte getAmbush() {
         return ambush;
     }
 
@@ -38,7 +40,7 @@ public class BadEventCard extends AbstractMonsterCard {
         return this;
     }
 
-    public boolean ambushAlt() {
+    public boolean isAmbushAlt() {
         return ambushAlt;
     }
 
@@ -47,7 +49,7 @@ public class BadEventCard extends AbstractMonsterCard {
         return this;
     }
 
-    public RollEvent[] rollEvents() {
+    public RollEvent[] getRollEvents() {
         return rollEvents;
     }
 
@@ -56,7 +58,7 @@ public class BadEventCard extends AbstractMonsterCard {
         return this;
     }
 
-    public boolean greed() {
+    public boolean isGreed() {
         return greed;
     }
 
@@ -65,7 +67,7 @@ public class BadEventCard extends AbstractMonsterCard {
         return this;
     }
 
-    public byte damage() {
+    public byte getDamage() {
         return damage;
     }
 
@@ -74,7 +76,7 @@ public class BadEventCard extends AbstractMonsterCard {
         return this;
     }
 
-    public EntityTarget damageTo() {
+    public EntityTarget getDamageTo() {
         return damageTo;
     }
 
@@ -83,7 +85,7 @@ public class BadEventCard extends AbstractMonsterCard {
         return this;
     }
 
-    public boolean bossRush() {
+    public boolean isBossRush() {
         return bossRush;
     }
 
@@ -92,7 +94,7 @@ public class BadEventCard extends AbstractMonsterCard {
         return this;
     }
 
-    public byte discardLoot() {
+    public byte getDiscardLoot() {
         return discardLoot;
     }
 
@@ -101,7 +103,7 @@ public class BadEventCard extends AbstractMonsterCard {
         return this;
     }
 
-    public boolean mothersShadow() {
+    public boolean isMothersShadow() {
         return mothersShadow;
     }
 
@@ -110,7 +112,7 @@ public class BadEventCard extends AbstractMonsterCard {
         return this;
     }
 
-    public boolean overflow() {
+    public boolean isOverflow() {
         return overflow;
     }
 
@@ -119,7 +121,7 @@ public class BadEventCard extends AbstractMonsterCard {
         return this;
     }
 
-    public boolean cancelTurn() {
+    public boolean isEndTurn() {
         return endTurn;
     }
 
@@ -128,7 +130,7 @@ public class BadEventCard extends AbstractMonsterCard {
         return this;
     }
 
-    public boolean dontStarve() {
+    public boolean isDontStarve() {
         return dontStarve;
     }
 
@@ -137,7 +139,7 @@ public class BadEventCard extends AbstractMonsterCard {
         return this;
     }
 
-    public boolean bloat() {
+    public boolean isBloat() {
         return bloat;
     }
 
@@ -147,56 +149,65 @@ public class BadEventCard extends AbstractMonsterCard {
     }
 
     public boolean isGoldenIdol() {
-        return isGoldenIdol;
+        return goldenIdol;
     }
 
     public BadEventCard setGoldenIdol(boolean goldenIdol) {
-        isGoldenIdol = goldenIdol;
+        this.goldenIdol = goldenIdol;
         return this;
     }
 
     public boolean isGrubFather() {
-        return isGrubFather;
+        return grubFather;
     }
 
     public BadEventCard setGrubFather(boolean grubFather) {
-        isGrubFather = grubFather;
+        this.grubFather = grubFather;
         return this;
     }
 
     public boolean isNightmareTick() {
-        return isNightmareTick;
+        return nightmareTick;
     }
 
     public BadEventCard setNightmareTick(boolean nightmareTick) {
-        isNightmareTick = nightmareTick;
+        this.nightmareTick = nightmareTick;
         return this;
     }
 
     public boolean isQwop() {
-        return isQwop;
+        return qwop;
     }
 
     public BadEventCard setQwop(boolean qwop) {
-        isQwop = qwop;
+        this.qwop = qwop;
         return this;
     }
 
     public boolean isTrialByTrolly() {
-        return isTrialByTrolly;
+        return trialByTrolly;
     }
 
     public BadEventCard setTrialByTrolly(boolean trialByTrolly) {
-        isTrialByTrolly = trialByTrolly;
+        this.trialByTrolly = trialByTrolly;
         return this;
     }
 
     public boolean isCorruptedData() {
-        return isCorruptedData;
+        return corruptedData;
     }
 
     public BadEventCard setCorruptedData(boolean corruptedData) {
-        isCorruptedData = corruptedData;
+        this.corruptedData = corruptedData;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        try {
+            return new ObjectMapper().writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

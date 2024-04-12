@@ -1,5 +1,7 @@
 package org.camposmdev.model.card.eternal;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.camposmdev.model.card.attribute.CardType;
 import org.camposmdev.model.card.attribute.DeckType;
 import org.camposmdev.model.card.attribute.EntityTarget;
@@ -15,29 +17,29 @@ public class ActiveEternalCard extends EternalCard {
     private byte peekDeckAmount;
     private RollType modifyDiceRoll;
     private byte modifyDiceRollOffset;
-    private boolean isForeverAlone, recoverCardAtStartOfTurn, recoverCard;
+    private boolean foreverAlone, recoverCardAtStartOfTurn, recoverCard;
     private byte recoverCardAmount;
     private DeckType DeckType;
     private boolean modifyAttack;
     private byte modifyAttackAmount;
     private EntityTarget modifyAttackTo;
-    private boolean isIncubus, rechargeAtEndOfTurn, cancelAttack, attackAgain;
-    private boolean preventDeath, endTurn, isWoodenNickel, isVoid;
+    private boolean incubus, rechargeAtEndOfTurn, cancelAttack, attackAgain;
+    private boolean preventDeath, endTurn, woodenNickel, voidFlag;
     private byte lootAmount;
     private byte discardAmount;
-    private boolean isSiblingRivalry, isSpindownDice, isCeremonialBlade, isHemoptysis;
-    private boolean isGello, isKeepersBargin, isAbyss, isDeadWeight;
-    private boolean isLemegeton, isAnimaSola, isClassicRoller, isTheRealLeftHand;
+    private boolean siblingRivalry, spindownDice, ceremonialBlade, hemoptysis;
+    private boolean gello, keepersBargin, abyss, deadWeight;
+    private boolean lemegeton, animaSola, classicRoller, theRealLeftHand;
     private byte damage;
     private EntityTarget damageTo;
-    private boolean isBowAndArrow, isGirlfriend, isGravity, isEmergencyMeeting;
-    private boolean isFootball, isPolarStar, isRustySpoons, isPopPop, isPinkProglottid;
+    private boolean bowAndArrow, girlFriend, gravity, emergencyMeeting;
+    private boolean football, polarStar, rustySpoons, popPop, pinkProglottid;
 
     public ActiveEternalCard() {
         super.setCardType(CardType.AETERNAL);
     }
 
-    public RerollType reroll() {
+    public RerollType getReroll() {
         return reroll;
     }
 
@@ -46,7 +48,7 @@ public class ActiveEternalCard extends EternalCard {
         return this;
     }
 
-    public boolean preventDamage() {
+    public boolean isPreventDamage() {
         return preventDamage;
     }
 
@@ -55,7 +57,7 @@ public class ActiveEternalCard extends EternalCard {
         return this;
     }
 
-    public byte preventDamageAmount() {
+    public byte getPreventDamageAmount() {
         return preventDamageAmount;
     }
 
@@ -64,7 +66,7 @@ public class ActiveEternalCard extends EternalCard {
         return this;
     }
 
-    public EntityTarget preventDamageFor() {
+    public EntityTarget getPreventDamageFor() {
         return preventDamageFor;
     }
 
@@ -73,7 +75,7 @@ public class ActiveEternalCard extends EternalCard {
         return this;
     }
 
-    public org.camposmdev.model.card.attribute.DeckType peekDeck() {
+    public org.camposmdev.model.card.attribute.DeckType getPeekDeck() {
         return peekDeck;
     }
 
@@ -82,7 +84,7 @@ public class ActiveEternalCard extends EternalCard {
         return this;
     }
 
-    public byte peekDeckAmount() {
+    public byte getPeekDeckAmount() {
         return peekDeckAmount;
     }
 
@@ -91,7 +93,7 @@ public class ActiveEternalCard extends EternalCard {
         return this;
     }
 
-    public RollType modifyDiceRoll() {
+    public RollType getModifyDiceRoll() {
         return modifyDiceRoll;
     }
 
@@ -100,7 +102,7 @@ public class ActiveEternalCard extends EternalCard {
         return this;
     }
 
-    public byte modifyDiceRollOffset() {
+    public byte getModifyDiceRollOffset() {
         return modifyDiceRollOffset;
     }
 
@@ -110,15 +112,15 @@ public class ActiveEternalCard extends EternalCard {
     }
 
     public boolean isForeverAlone() {
-        return isForeverAlone;
+        return foreverAlone;
     }
 
     public ActiveEternalCard setForeverAlone(boolean foreverAlone) {
-        isForeverAlone = foreverAlone;
+        this.foreverAlone = foreverAlone;
         return this;
     }
 
-    public boolean recoverCardAtStartOfTurn() {
+    public boolean isRecoverCardAtStartOfTurn() {
         return recoverCardAtStartOfTurn;
     }
 
@@ -127,7 +129,7 @@ public class ActiveEternalCard extends EternalCard {
         return this;
     }
 
-    public boolean recoverCard() {
+    public boolean isRecoverCard() {
         return recoverCard;
     }
 
@@ -136,7 +138,7 @@ public class ActiveEternalCard extends EternalCard {
         return this;
     }
 
-    public byte recoverCardAmount() {
+    public byte getRecoverCardAmount() {
         return recoverCardAmount;
     }
 
@@ -145,7 +147,7 @@ public class ActiveEternalCard extends EternalCard {
         return this;
     }
 
-    public org.camposmdev.model.card.attribute.DeckType DeckType() {
+    public org.camposmdev.model.card.attribute.DeckType getDeckType() {
         return DeckType;
     }
 
@@ -154,7 +156,7 @@ public class ActiveEternalCard extends EternalCard {
         return this;
     }
 
-    public boolean modifyAttack() {
+    public boolean isModifyAttack() {
         return modifyAttack;
     }
 
@@ -163,7 +165,7 @@ public class ActiveEternalCard extends EternalCard {
         return this;
     }
 
-    public byte modifyAttackAmount() {
+    public byte getModifyAttackAmount() {
         return modifyAttackAmount;
     }
 
@@ -172,7 +174,7 @@ public class ActiveEternalCard extends EternalCard {
         return this;
     }
 
-    public EntityTarget modifyAttackTo() {
+    public EntityTarget getModifyAttackTo() {
         return modifyAttackTo;
     }
 
@@ -182,15 +184,15 @@ public class ActiveEternalCard extends EternalCard {
     }
 
     public boolean isIncubus() {
-        return isIncubus;
+        return incubus;
     }
 
     public ActiveEternalCard setIncubus(boolean incubus) {
-        isIncubus = incubus;
+        this.incubus = incubus;
         return this;
     }
 
-    public boolean rechargeAtEndOfTurn() {
+    public boolean isRechargeAtEndOfTurn() {
         return rechargeAtEndOfTurn;
     }
 
@@ -199,7 +201,7 @@ public class ActiveEternalCard extends EternalCard {
         return this;
     }
 
-    public boolean cancelAttack() {
+    public boolean isCancelAttack() {
         return cancelAttack;
     }
 
@@ -208,7 +210,7 @@ public class ActiveEternalCard extends EternalCard {
         return this;
     }
 
-    public boolean attackAgain() {
+    public boolean isAttackAgain() {
         return attackAgain;
     }
 
@@ -217,7 +219,7 @@ public class ActiveEternalCard extends EternalCard {
         return this;
     }
 
-    public boolean preventDeath() {
+    public boolean isPreventDeath() {
         return preventDeath;
     }
 
@@ -226,7 +228,7 @@ public class ActiveEternalCard extends EternalCard {
         return this;
     }
 
-    public boolean endTurn() {
+    public boolean isEndTurn() {
         return endTurn;
     }
 
@@ -236,24 +238,24 @@ public class ActiveEternalCard extends EternalCard {
     }
 
     public boolean isWoodenNickel() {
-        return isWoodenNickel;
+        return woodenNickel;
     }
 
     public ActiveEternalCard setWoodenNickel(boolean woodenNickel) {
-        isWoodenNickel = woodenNickel;
+        this.woodenNickel = woodenNickel;
         return this;
     }
 
-    public boolean isVoid() {
-        return isVoid;
+    public boolean isVoidFlag() {
+        return voidFlag;
     }
 
-    public ActiveEternalCard setVoid(boolean aVoid) {
-        isVoid = aVoid;
+    public ActiveEternalCard setVoidFlag(boolean voidFlag) {
+        this.voidFlag = voidFlag;
         return this;
     }
 
-    public byte lootAmount() {
+    public byte getLootAmount() {
         return lootAmount;
     }
 
@@ -262,7 +264,7 @@ public class ActiveEternalCard extends EternalCard {
         return this;
     }
 
-    public byte discardAmount() {
+    public byte getDiscardAmount() {
         return discardAmount;
     }
 
@@ -272,114 +274,114 @@ public class ActiveEternalCard extends EternalCard {
     }
 
     public boolean isSiblingRivalry() {
-        return isSiblingRivalry;
+        return siblingRivalry;
     }
 
     public ActiveEternalCard setSiblingRivalry(boolean siblingRivalry) {
-        isSiblingRivalry = siblingRivalry;
+        this.siblingRivalry = siblingRivalry;
         return this;
     }
 
     public boolean isSpindownDice() {
-        return isSpindownDice;
+        return spindownDice;
     }
 
     public ActiveEternalCard setSpindownDice(boolean spindownDice) {
-        isSpindownDice = spindownDice;
+        this.spindownDice = spindownDice;
         return this;
     }
 
     public boolean isCeremonialBlade() {
-        return isCeremonialBlade;
+        return ceremonialBlade;
     }
 
     public ActiveEternalCard setCeremonialBlade(boolean ceremonialBlade) {
-        isCeremonialBlade = ceremonialBlade;
+        this.ceremonialBlade = ceremonialBlade;
         return this;
     }
 
     public boolean isHemoptysis() {
-        return isHemoptysis;
+        return hemoptysis;
     }
 
     public ActiveEternalCard setHemoptysis(boolean hemoptysis) {
-        isHemoptysis = hemoptysis;
+        this.hemoptysis = hemoptysis;
         return this;
     }
 
     public boolean isGello() {
-        return isGello;
+        return gello;
     }
 
     public ActiveEternalCard setGello(boolean gello) {
-        isGello = gello;
+        this.gello = gello;
         return this;
     }
 
     public boolean isKeepersBargin() {
-        return isKeepersBargin;
+        return keepersBargin;
     }
 
     public ActiveEternalCard setKeepersBargin(boolean keepersBargin) {
-        isKeepersBargin = keepersBargin;
+        this.keepersBargin = keepersBargin;
         return this;
     }
 
     public boolean isAbyss() {
-        return isAbyss;
+        return abyss;
     }
 
     public ActiveEternalCard setAbyss(boolean abyss) {
-        isAbyss = abyss;
+        this.abyss = abyss;
         return this;
     }
 
     public boolean isDeadWeight() {
-        return isDeadWeight;
+        return deadWeight;
     }
 
     public ActiveEternalCard setDeadWeight(boolean deadWeight) {
-        isDeadWeight = deadWeight;
+        this.deadWeight = deadWeight;
         return this;
     }
 
     public boolean isLemegeton() {
-        return isLemegeton;
+        return lemegeton;
     }
 
     public ActiveEternalCard setLemegeton(boolean lemegeton) {
-        isLemegeton = lemegeton;
+        this.lemegeton = lemegeton;
         return this;
     }
 
     public boolean isAnimaSola() {
-        return isAnimaSola;
+        return animaSola;
     }
 
     public ActiveEternalCard setAnimaSola(boolean animaSola) {
-        isAnimaSola = animaSola;
+        this.animaSola = animaSola;
         return this;
     }
 
     public boolean isClassicRoller() {
-        return isClassicRoller;
+        return classicRoller;
     }
 
     public ActiveEternalCard setClassicRoller(boolean classicRoller) {
-        isClassicRoller = classicRoller;
+        this.classicRoller = classicRoller;
         return this;
     }
 
     public boolean isTheRealLeftHand() {
-        return isTheRealLeftHand;
+        return theRealLeftHand;
     }
 
     public ActiveEternalCard setTheRealLeftHand(boolean theRealLeftHand) {
-        isTheRealLeftHand = theRealLeftHand;
+        this.theRealLeftHand = theRealLeftHand;
         return this;
     }
 
-    public byte damage() {
+    public byte getDamage() {
         return damage;
     }
 
@@ -388,7 +390,7 @@ public class ActiveEternalCard extends EternalCard {
         return this;
     }
 
-    public EntityTarget damageTo() {
+    public EntityTarget getDamageTo() {
         return damageTo;
     }
 
@@ -398,83 +400,92 @@ public class ActiveEternalCard extends EternalCard {
     }
 
     public boolean isBowAndArrow() {
-        return isBowAndArrow;
+        return bowAndArrow;
     }
 
     public ActiveEternalCard setBowAndArrow(boolean bowAndArrow) {
-        isBowAndArrow = bowAndArrow;
+        this.bowAndArrow = bowAndArrow;
         return this;
     }
 
-    public boolean isGirlfriend() {
-        return isGirlfriend;
+    public boolean isGirlFriend() {
+        return girlFriend;
     }
 
-    public ActiveEternalCard setGirlfriend(boolean girlfriend) {
-        isGirlfriend = girlfriend;
+    public ActiveEternalCard setGirlFriend(boolean girlFriend) {
+        this.girlFriend = girlFriend;
         return this;
     }
 
     public boolean isGravity() {
-        return isGravity;
+        return gravity;
     }
 
     public ActiveEternalCard setGravity(boolean gravity) {
-        isGravity = gravity;
+        this.gravity = gravity;
         return this;
     }
 
     public boolean isEmergencyMeeting() {
-        return isEmergencyMeeting;
+        return emergencyMeeting;
     }
 
     public ActiveEternalCard setEmergencyMeeting(boolean emergencyMeeting) {
-        isEmergencyMeeting = emergencyMeeting;
+        this.emergencyMeeting = emergencyMeeting;
         return this;
     }
 
     public boolean isFootball() {
-        return isFootball;
+        return football;
     }
 
     public ActiveEternalCard setFootball(boolean football) {
-        isFootball = football;
+        this.football = football;
         return this;
     }
 
     public boolean isPolarStar() {
-        return isPolarStar;
+        return polarStar;
     }
 
     public ActiveEternalCard setPolarStar(boolean polarStar) {
-        isPolarStar = polarStar;
+        this.polarStar = polarStar;
         return this;
     }
 
     public boolean isRustySpoons() {
-        return isRustySpoons;
+        return rustySpoons;
     }
 
     public ActiveEternalCard setRustySpoons(boolean rustySpoons) {
-        isRustySpoons = rustySpoons;
+        this.rustySpoons = rustySpoons;
         return this;
     }
 
     public boolean isPopPop() {
-        return isPopPop;
+        return popPop;
     }
 
     public ActiveEternalCard setPopPop(boolean popPop) {
-        isPopPop = popPop;
+        this.popPop = popPop;
         return this;
     }
 
     public boolean isPinkProglottid() {
-        return isPinkProglottid;
+        return pinkProglottid;
     }
 
     public ActiveEternalCard setPinkProglottid(boolean pinkProglottid) {
-        isPinkProglottid = pinkProglottid;
+        this.pinkProglottid = pinkProglottid;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        try {
+            return new ObjectMapper().writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

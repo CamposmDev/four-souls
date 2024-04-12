@@ -7,7 +7,16 @@ system/
 # DAT Files
 character.dat
 
+# Node Modules
+server/src/main/js/node_modules
+server/src/main/js/cards.json
+server/src/main/js/package-lock.json
+
+
 # Resource Files (Run RSoup to acquire them)
 client/src/main/resources/assets/textures/cards
 client/src/main/resources/assets/data/cards
 client/src/main/resources/assets/json/cards
+editor/src/main/resources/assets/textures/cards
+editor/src/main/resources/assets/data/cards
+editor/src/main/resources/assets/json/cards

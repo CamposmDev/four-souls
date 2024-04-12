@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="org.camposmdev.editor.ui.workspace.monster.StartEventFormController"
+>
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+  <padding>
+    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+  </padding>
+  <Label text="rerollShopItem" />
+  <Label text="kekeIsYou" GridPane.rowIndex="1" />
+  <Label text="zombieJesus" GridPane.rowIndex="2" />
+  <Label text="momsHandAlt" GridPane.rowIndex="3" />
+  <Label text="evis" GridPane.rowIndex="4" />
+  <Label text="damage" GridPane.rowIndex="5" />
+  <Label text="damageTo" GridPane.rowIndex="6" />
+  <Label text="rechargeOneItem" GridPane.rowIndex="7" />
+  <Label text="gurdyAlt" GridPane.rowIndex="8" />
+  <Label text="counterDistributeDamage" GridPane.rowIndex="9" />
+  <Label text="theAdversary" GridPane.rowIndex="10" />
+  <CheckBox fx:id="se_rerollShopItem" mnemonicParsing="false" GridPane.columnIndex="1" />
+  <CheckBox fx:id="se_kekeIsYou" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+  <CheckBox fx:id="se_isZombieJesus" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+  <CheckBox fx:id="se_isMomsHandAlt" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+  <CheckBox fx:id="se_isEvis" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+  <TextField fx:id="se_damage" promptText="[0,127]" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+  <ComboBox fx:id="se_damageTo" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+  <CheckBox fx:id="se_rechargeOneTime" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+  <CheckBox fx:id="se_isGurdyAlt" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+  <CheckBox fx:id="se_counterDistributeDamage" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+  <CheckBox fx:id="se_isTheAdversary" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+</GridPane>

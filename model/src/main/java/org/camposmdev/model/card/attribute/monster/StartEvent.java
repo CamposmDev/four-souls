@@ -1,21 +1,23 @@
 package org.camposmdev.model.card.attribute.monster;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.camposmdev.model.card.attribute.EntityTarget;
 
 public class StartEvent {
     private boolean rerollShopItem;
     private boolean kekeIsYou;
-    private boolean isZombieJesus;
-    private boolean IsMomsHandAlt;
-    private boolean isEvis;
+    private boolean zombieJesus;
+    private boolean momsHandAlt;
+    private boolean evis;
     private byte damage;
     private EntityTarget damageTo;
     private boolean rechargeOneItem;
-    private boolean isGurdyAlt;
+    private boolean gurdyAlt;
     private boolean counterDistributeDamage;
-    private boolean isTheAdversary;
+    private boolean theAdversary;
 
-    public boolean rerollShopItem() {
+    public boolean isRerollShopItem() {
         return rerollShopItem;
     }
 
@@ -24,7 +26,7 @@ public class StartEvent {
         return this;
     }
 
-    public boolean kekeIsYou() {
+    public boolean isKekeIsYou() {
         return kekeIsYou;
     }
 
@@ -34,33 +36,33 @@ public class StartEvent {
     }
 
     public boolean isZombieJesus() {
-        return isZombieJesus;
+        return zombieJesus;
     }
 
     public StartEvent setZombieJesus(boolean zombieJesus) {
-        isZombieJesus = zombieJesus;
+        this.zombieJesus = zombieJesus;
         return this;
     }
 
-    public boolean IsMomsHandAlt() {
-        return IsMomsHandAlt;
+    public boolean isMomsHandAlt() {
+        return momsHandAlt;
     }
 
     public StartEvent setMomsHandAlt(boolean momsHandAlt) {
-        IsMomsHandAlt = momsHandAlt;
+        this.momsHandAlt = momsHandAlt;
         return this;
     }
 
     public boolean isEvis() {
-        return isEvis;
+        return evis;
     }
 
     public StartEvent setEvis(boolean evis) {
-        isEvis = evis;
+        this.evis = evis;
         return this;
     }
 
-    public byte damage() {
+    public byte getDamage() {
         return damage;
     }
 
@@ -69,7 +71,7 @@ public class StartEvent {
         return this;
     }
 
-    public EntityTarget damageTarget() {
+    public EntityTarget getDamageTo() {
         return damageTo;
     }
 
@@ -78,7 +80,7 @@ public class StartEvent {
         return this;
     }
 
-    public boolean rechargeOneItem() {
+    public boolean isRechargeOneItem() {
         return rechargeOneItem;
     }
 
@@ -88,15 +90,15 @@ public class StartEvent {
     }
 
     public boolean isGurdyAlt() {
-        return isGurdyAlt;
+        return gurdyAlt;
     }
 
     public StartEvent setGurdyAlt(boolean gurdyAlt) {
-        isGurdyAlt = gurdyAlt;
+        this.gurdyAlt = gurdyAlt;
         return this;
     }
 
-    public boolean counterDistributeDamage() {
+    public boolean isCounterDistributeDamage() {
         return counterDistributeDamage;
     }
 
@@ -106,11 +108,20 @@ public class StartEvent {
     }
 
     public boolean isTheAdversary() {
-        return isTheAdversary;
+        return theAdversary;
     }
 
     public StartEvent setTheAdversary(boolean theAdversary) {
-        isTheAdversary = theAdversary;
+        this.theAdversary = theAdversary;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        try {
+            return new ObjectMapper().writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

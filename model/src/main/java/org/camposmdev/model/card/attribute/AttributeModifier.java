@@ -1,5 +1,7 @@
 package org.camposmdev.model.card.attribute;
 
+import java.util.List;
+
 public class AttributeModifier {
     private AttributeType thresholdType;
     private byte thresholdValue;
@@ -7,9 +9,9 @@ public class AttributeModifier {
     private boolean everyOtherTime;
     private AttributeType modType;
     private byte modValue;
-    private RollEvent[] events;
+    private List<RollEvent> events;
 
-    public AttributeType thresholdType() {
+    public AttributeType getThresholdType() {
         return thresholdType;
     }
 
@@ -18,7 +20,7 @@ public class AttributeModifier {
         return this;
     }
 
-    public Byte thresholdValue() {
+    public Byte getThresholdValue() {
         return thresholdValue;
     }
 
@@ -27,7 +29,7 @@ public class AttributeModifier {
         return this;
     }
 
-    public ThresholdCompare compare() {
+    public ThresholdCompare getCompare() {
         return compare;
     }
 
@@ -36,7 +38,7 @@ public class AttributeModifier {
         return this;
     }
 
-    public boolean everyOtherTime() {
+    public boolean isEveryOtherTime() {
         return everyOtherTime;
     }
 
@@ -45,7 +47,7 @@ public class AttributeModifier {
         return this;
     }
 
-    public AttributeType modType() {
+    public AttributeType getModType() {
         return modType;
     }
 
@@ -54,7 +56,7 @@ public class AttributeModifier {
         return this;
     }
 
-    public Byte modValue() {
+    public Byte getModValue() {
         return modValue;
     }
 
@@ -63,11 +65,11 @@ public class AttributeModifier {
         return this;
     }
 
-    public RollEvent[] events() {
+    public List<RollEvent> getEvents() {
         return events;
     }
 
-    public AttributeModifier setEvents(RollEvent[] events) {
+    public AttributeModifier setEvents(List<RollEvent> events) {
         this.events = events;
         return this;
     }

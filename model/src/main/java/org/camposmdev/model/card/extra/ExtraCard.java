@@ -1,17 +1,19 @@
 package org.camposmdev.model.card.extra;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.camposmdev.model.card.BaseCard;
 import org.camposmdev.model.card.attribute.CardType;
 
 public class ExtraCard extends BaseCard {
     private boolean forceAttack, theHarbingers, indomitable, theBeast;
 
-    public boolean forceAttack() {
-        return forceAttack;
+    public ExtraCard() {
+        super.setCardType(CardType.OUTSIDE);
     }
 
-    public ExtraCard() {
-        super.setCardType(CardType.EXTRA);
+    public boolean isForceAttack() {
+        return forceAttack;
     }
 
     public ExtraCard setForceAttack(boolean forceAttack) {
@@ -19,7 +21,7 @@ public class ExtraCard extends BaseCard {
         return this;
     }
 
-    public boolean theHarbingers() {
+    public boolean isTheHarbingers() {
         return theHarbingers;
     }
 
@@ -28,7 +30,7 @@ public class ExtraCard extends BaseCard {
         return this;
     }
 
-    public boolean indomitable() {
+    public boolean isIndomitable() {
         return indomitable;
     }
 
@@ -37,12 +39,21 @@ public class ExtraCard extends BaseCard {
         return this;
     }
 
-    public boolean theBeast() {
+    public boolean isTheBeast() {
         return theBeast;
     }
 
     public ExtraCard setTheBeast(boolean theBeast) {
         this.theBeast = theBeast;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        try {
+            return new ObjectMapper().writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

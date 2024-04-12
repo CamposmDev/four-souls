@@ -1,12 +1,14 @@
 package org.camposmdev.model.card.monster;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.camposmdev.model.card.attribute.CardType;
 import org.camposmdev.model.card.attribute.DeckType;
 import org.camposmdev.model.card.attribute.EntityTarget;
 import org.camposmdev.model.card.attribute.RollEvent;
 import org.camposmdev.model.card.attribute.monster.MonsterOptionEvent;
 
-public class GoodEventCard extends AbstractMonsterCard {
+public class GoodEventCard extends BaseMonsterCard {
     private byte ambush;
     private RollEvent[] rollEvents;
     private MonsterOptionEvent[] optionEvents;
@@ -26,17 +28,17 @@ public class GoodEventCard extends AbstractMonsterCard {
     private EntityTarget damageTo;
     private byte putInDeck;
     private boolean lustForBlood;
-    private boolean isGoldenIdol;
-    private boolean isNightmareTick;
-    private boolean isQwop;
+    private boolean goldenIdol;
+    private boolean nightmareTick;
+    private boolean qwop;
     private byte expandRoom;
-    private boolean isTVStatic;
+    private boolean tvStatic;
 
     public GoodEventCard() {
         super.setCardType(CardType.GEVENT);
     }
 
-    public byte ambush() {
+    public byte getAmbush() {
         return ambush;
     }
 
@@ -45,7 +47,7 @@ public class GoodEventCard extends AbstractMonsterCard {
         return this;
     }
 
-    public RollEvent[] rollEvents() {
+    public RollEvent[] getRollEvents() {
         return rollEvents;
     }
 
@@ -54,7 +56,7 @@ public class GoodEventCard extends AbstractMonsterCard {
         return this;
     }
 
-    public MonsterOptionEvent[] optionEvents() {
+    public MonsterOptionEvent[] getOptionEvents() {
         return optionEvents;
     }
 
@@ -63,7 +65,7 @@ public class GoodEventCard extends AbstractMonsterCard {
         return this;
     }
 
-    public DeckType peekDeck() {
+    public DeckType getPeekDeck() {
         return peekDeck;
     }
 
@@ -72,7 +74,7 @@ public class GoodEventCard extends AbstractMonsterCard {
         return this;
     }
 
-    public byte peekDeckAmount() {
+    public byte getPeekDeckAmount() {
         return peekDeckAmount;
     }
 
@@ -81,7 +83,7 @@ public class GoodEventCard extends AbstractMonsterCard {
         return this;
     }
 
-    public boolean peekDeckSort() {
+    public boolean isPeekDeckSort() {
         return peekDeckSort;
     }
 
@@ -90,7 +92,7 @@ public class GoodEventCard extends AbstractMonsterCard {
         return this;
     }
 
-    public byte loot() {
+    public byte getLoot() {
         return loot;
     }
 
@@ -99,7 +101,7 @@ public class GoodEventCard extends AbstractMonsterCard {
         return this;
     }
 
-    public byte expandShop() {
+    public byte getExpandShop() {
         return expandShop;
     }
 
@@ -108,7 +110,7 @@ public class GoodEventCard extends AbstractMonsterCard {
         return this;
     }
 
-    public boolean attackAgain() {
+    public boolean isAttackAgain() {
         return attackAgain;
     }
 
@@ -117,7 +119,7 @@ public class GoodEventCard extends AbstractMonsterCard {
         return this;
     }
 
-    public boolean weNeedToGoDeeper() {
+    public boolean isWeNeedToGoDeeper() {
         return weNeedToGoDeeper;
     }
 
@@ -126,7 +128,7 @@ public class GoodEventCard extends AbstractMonsterCard {
         return this;
     }
 
-    public byte expandMonster() {
+    public byte getExpandMonster() {
         return expandMonster;
     }
 
@@ -135,7 +137,7 @@ public class GoodEventCard extends AbstractMonsterCard {
         return this;
     }
 
-    public boolean weNeedToGoDeeperNonEvent() {
+    public boolean isWeNeedToGoDeeperNonEvent() {
         return weNeedToGoDeeperNonEvent;
     }
 
@@ -144,7 +146,7 @@ public class GoodEventCard extends AbstractMonsterCard {
         return this;
     }
 
-    public byte bossRush() {
+    public byte getBossRush() {
         return bossRush;
     }
 
@@ -153,7 +155,7 @@ public class GoodEventCard extends AbstractMonsterCard {
         return this;
     }
 
-    public boolean doubleTreasure() {
+    public boolean isDoubleTreasure() {
         return doubleTreasure;
     }
 
@@ -162,7 +164,7 @@ public class GoodEventCard extends AbstractMonsterCard {
         return this;
     }
 
-    public boolean rerollItems() {
+    public boolean isRerollItems() {
         return rerollItems;
     }
 
@@ -171,7 +173,7 @@ public class GoodEventCard extends AbstractMonsterCard {
         return this;
     }
 
-    public byte damage() {
+    public byte getDamage() {
         return damage;
     }
 
@@ -180,7 +182,7 @@ public class GoodEventCard extends AbstractMonsterCard {
         return this;
     }
 
-    public EntityTarget damageTo() {
+    public EntityTarget getDamageTo() {
         return damageTo;
     }
 
@@ -189,7 +191,7 @@ public class GoodEventCard extends AbstractMonsterCard {
         return this;
     }
 
-    public byte putInDeck() {
+    public byte getPutInDeck() {
         return putInDeck;
     }
 
@@ -198,7 +200,7 @@ public class GoodEventCard extends AbstractMonsterCard {
         return this;
     }
 
-    public boolean lustForBlood() {
+    public boolean isLustForBlood() {
         return lustForBlood;
     }
 
@@ -208,33 +210,33 @@ public class GoodEventCard extends AbstractMonsterCard {
     }
 
     public boolean isGoldenIdol() {
-        return isGoldenIdol;
+        return goldenIdol;
     }
 
     public GoodEventCard setGoldenIdol(boolean goldenIdol) {
-        isGoldenIdol = goldenIdol;
+        this.goldenIdol = goldenIdol;
         return this;
     }
 
     public boolean isNightmareTick() {
-        return isNightmareTick;
+        return nightmareTick;
     }
 
     public GoodEventCard setNightmareTick(boolean nightmareTick) {
-        isNightmareTick = nightmareTick;
+        this.nightmareTick = nightmareTick;
         return this;
     }
 
     public boolean isQwop() {
-        return isQwop;
+        return qwop;
     }
 
     public GoodEventCard setQwop(boolean qwop) {
-        isQwop = qwop;
+        this.qwop = qwop;
         return this;
     }
 
-    public byte expandRoom() {
+    public byte getExpandRoom() {
         return expandRoom;
     }
 
@@ -243,12 +245,21 @@ public class GoodEventCard extends AbstractMonsterCard {
         return this;
     }
 
-    public boolean isTVStatic() {
-        return isTVStatic;
+    public boolean isTvStatic() {
+        return tvStatic;
     }
 
-    public GoodEventCard setTVStatic(boolean TVStatic) {
-        isTVStatic = TVStatic;
+    public GoodEventCard setTvStatic(boolean tvStatic) {
+        this.tvStatic = tvStatic;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        try {
+            return new ObjectMapper().writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

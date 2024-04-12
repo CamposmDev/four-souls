@@ -1,8 +1,6 @@
 package org.camposmdev.model.card.attribute;
 
-import java.io.Serializable;
-
-public class Attribute implements Serializable {
+public class Attribute {
     private int max;
     private int current;
 

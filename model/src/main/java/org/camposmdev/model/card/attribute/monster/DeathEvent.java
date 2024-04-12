@@ -1,9 +1,13 @@
 package org.camposmdev.model.card.attribute.monster;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.camposmdev.model.card.attribute.DeckType;
 import org.camposmdev.model.card.attribute.EntityTarget;
 import org.camposmdev.model.card.attribute.RollEvent;
 import org.camposmdev.model.card.attribute.Reward;
+
+import java.util.List;
 
 public class DeathEvent {
     private boolean attackAgain;
@@ -26,38 +30,38 @@ public class DeathEvent {
     private EntityTarget kill;
     private boolean cancelIfDamageDealt;
     private boolean forceAttackAgainOnSameSlot;
-    private RollEvent[] deathRollEvents;
-    private RollEvent[] killRollEvents;
+    private List<RollEvent> deathRollEvents;
+    private List<RollEvent> killRollEvents;
     private byte expandAny;
-    private boolean isTapeWorm;
+    private boolean tapeWorm;
     private boolean greedlingRush;
     private Reward reward;
     private EntityTarget rewardTo;
     private boolean giveHeartCounter;
-    private boolean isHeartItem;
+    private boolean heartItem;
     private byte putInDeck;
     private byte stealSoul;
     private boolean summonHarbingers;
-    private boolean isBeastAlt;
+    private boolean beastAlt;
     private boolean deathLink;
     private boolean skipPlayersNextTurn;
-    private boolean isPeep;
-    private boolean isSloth;
+    private boolean peep;
+    private boolean sloth;
     private boolean attackMonsterDeck;
     private boolean secondChance;
     private byte[] secondChanceAttributes;
     private boolean giftSoul;
-    private boolean isClog;
+    private boolean clog;
     private boolean summonCurse;
-    private boolean isBalrog;
+    private boolean balrog;
     private boolean discardHand;
-    private boolean isPestilenceAlt;
+    private boolean pestilenceAlt;
     private boolean stealItemWithGoldCounter;
     private boolean skipChosenPlayersTurn;
     private boolean spiderCounterDistributeDamage;
     private boolean butItsReallyTheBloat;
 
-    public boolean attackAgain() {
+    public boolean isAttackAgain() {
         return attackAgain;
     }
 
@@ -66,7 +70,7 @@ public class DeathEvent {
         return this;
     }
 
-    public byte damage() {
+    public byte getDamage() {
         return damage;
     }
 
@@ -75,7 +79,7 @@ public class DeathEvent {
         return this;
     }
 
-    public EntityTarget damageTo() {
+    public EntityTarget getDamageTo() {
         return damageTo;
     }
 
@@ -84,7 +88,7 @@ public class DeathEvent {
         return this;
     }
 
-    public byte discardLoot() {
+    public byte getDiscardLoot() {
         return discardLoot;
     }
 
@@ -93,7 +97,7 @@ public class DeathEvent {
         return this;
     }
 
-    public EntityTarget discardLootTo() {
+    public EntityTarget getDiscardLootTo() {
         return discardLootTo;
     }
 
@@ -102,7 +106,7 @@ public class DeathEvent {
         return this;
     }
 
-    public byte loseCents() {
+    public byte getLoseCents() {
         return loseCents;
     }
 
@@ -111,7 +115,7 @@ public class DeathEvent {
         return this;
     }
 
-    public EntityTarget loseCentsTo() {
+    public EntityTarget getLoseCentsTo() {
         return loseCentsTo;
     }
 
@@ -120,7 +124,7 @@ public class DeathEvent {
         return this;
     }
 
-    public byte expandShop() {
+    public byte getExpandShop() {
         return expandShop;
     }
 
@@ -129,7 +133,7 @@ public class DeathEvent {
         return this;
     }
 
-    public boolean stealPlayerItem() {
+    public boolean isStealPlayerItem() {
         return stealPlayerItem;
     }
 
@@ -138,7 +142,7 @@ public class DeathEvent {
         return this;
     }
 
-    public boolean peekPlayerHand() {
+    public boolean isPeekPlayerHand() {
         return peekPlayerHand;
     }
 
@@ -147,7 +151,7 @@ public class DeathEvent {
         return this;
     }
 
-    public byte expandMonster() {
+    public byte getExpandMonster() {
         return expandMonster;
     }
 
@@ -156,7 +160,7 @@ public class DeathEvent {
         return this;
     }
 
-    public boolean forceAttackAgain() {
+    public boolean isForceAttackAgain() {
         return forceAttackAgain;
     }
 
@@ -165,7 +169,7 @@ public class DeathEvent {
         return this;
     }
 
-    public boolean rechargeAllItems() {
+    public boolean isRechargeAllItems() {
         return rechargeAllItems;
     }
 
@@ -174,7 +178,7 @@ public class DeathEvent {
         return this;
     }
 
-    public byte discardSoul() {
+    public byte getDiscardSoul() {
         return discardSoul;
     }
 
@@ -183,7 +187,7 @@ public class DeathEvent {
         return this;
     }
 
-    public DeckType peekDeck() {
+    public DeckType getPeekDeck() {
         return peekDeck;
     }
 
@@ -192,7 +196,7 @@ public class DeathEvent {
         return this;
     }
 
-    public byte peekDeckAmount() {
+    public byte getPeekDeckAmount() {
         return peekDeckAmount;
     }
 
@@ -201,7 +205,7 @@ public class DeathEvent {
         return this;
     }
 
-    public boolean peekDeckSort() {
+    public boolean isPeekDeckSort() {
         return peekDeckSort;
     }
 
@@ -210,7 +214,7 @@ public class DeathEvent {
         return this;
     }
 
-    public EntityTarget kill() {
+    public EntityTarget getKill() {
         return kill;
     }
 
@@ -219,7 +223,7 @@ public class DeathEvent {
         return this;
     }
 
-    public boolean cancelIfDamageDealt() {
+    public boolean isCancelIfDamageDealt() {
         return cancelIfDamageDealt;
     }
 
@@ -228,7 +232,7 @@ public class DeathEvent {
         return this;
     }
 
-    public boolean forceAttackAgainOnSameSlot() {
+    public boolean isForceAttackAgainOnSameSlot() {
         return forceAttackAgainOnSameSlot;
     }
 
@@ -237,25 +241,25 @@ public class DeathEvent {
         return this;
     }
 
-    public RollEvent[] deathRollEvent() {
+    public List<RollEvent> getDeathRollEvents() {
         return deathRollEvents;
     }
 
-    public DeathEvent setDeathRollEvents(RollEvent[] deathRollEvents) {
+    public DeathEvent setDeathRollEvents(List<RollEvent> deathRollEvents) {
         this.deathRollEvents = deathRollEvents;
         return this;
     }
 
-    public RollEvent[] killRollEvent() {
+    public List<RollEvent> getKillRollEvents() {
         return killRollEvents;
     }
 
-    public DeathEvent setKillRollEvents(RollEvent[] killRollEvents) {
+    public DeathEvent setKillRollEvents(List<RollEvent> killRollEvents) {
         this.killRollEvents = killRollEvents;
         return this;
     }
 
-    public byte expandAny() {
+    public byte getExpandAny() {
         return expandAny;
     }
 
@@ -265,15 +269,15 @@ public class DeathEvent {
     }
 
     public boolean isTapeWorm() {
-        return isTapeWorm;
+        return tapeWorm;
     }
 
     public DeathEvent setTapeWorm(boolean tapeWorm) {
-        isTapeWorm = tapeWorm;
+        this.tapeWorm = tapeWorm;
         return this;
     }
 
-    public boolean greedlingRush() {
+    public boolean isGreedlingRush() {
         return greedlingRush;
     }
 
@@ -282,7 +286,7 @@ public class DeathEvent {
         return this;
     }
 
-    public Reward reward() {
+    public Reward getReward() {
         return reward;
     }
 
@@ -291,7 +295,7 @@ public class DeathEvent {
         return this;
     }
 
-    public EntityTarget rewardTo() {
+    public EntityTarget getRewardTo() {
         return rewardTo;
     }
 
@@ -300,7 +304,7 @@ public class DeathEvent {
         return this;
     }
 
-    public boolean giveHeartCounter() {
+    public boolean isGiveHeartCounter() {
         return giveHeartCounter;
     }
 
@@ -310,15 +314,15 @@ public class DeathEvent {
     }
 
     public boolean isHeartItem() {
-        return isHeartItem;
+        return heartItem;
     }
 
     public DeathEvent setHeartItem(boolean heartItem) {
-        isHeartItem = heartItem;
+        this.heartItem = heartItem;
         return this;
     }
 
-    public byte putInDeck() {
+    public byte getPutInDeck() {
         return putInDeck;
     }
 
@@ -327,7 +331,7 @@ public class DeathEvent {
         return this;
     }
 
-    public byte stealSoul() {
+    public byte getStealSoul() {
         return stealSoul;
     }
 
@@ -336,7 +340,7 @@ public class DeathEvent {
         return this;
     }
 
-    public boolean summonHarbingers() {
+    public boolean isSummonHarbingers() {
         return summonHarbingers;
     }
 
@@ -346,15 +350,15 @@ public class DeathEvent {
     }
 
     public boolean isBeastAlt() {
-        return isBeastAlt;
+        return beastAlt;
     }
 
     public DeathEvent setBeastAlt(boolean beastAlt) {
-        isBeastAlt = beastAlt;
+        this.beastAlt = beastAlt;
         return this;
     }
 
-    public boolean deathLink() {
+    public boolean isDeathLink() {
         return deathLink;
     }
 
@@ -363,7 +367,7 @@ public class DeathEvent {
         return this;
     }
 
-    public boolean skipPlayersNextTurn() {
+    public boolean isSkipPlayersNextTurn() {
         return skipPlayersNextTurn;
     }
 
@@ -373,24 +377,24 @@ public class DeathEvent {
     }
 
     public boolean isPeep() {
-        return isPeep;
+        return peep;
     }
 
     public DeathEvent setPeep(boolean peep) {
-        isPeep = peep;
+        this.peep = peep;
         return this;
     }
 
     public boolean isSloth() {
-        return isSloth;
+        return sloth;
     }
 
     public DeathEvent setSloth(boolean sloth) {
-        isSloth = sloth;
+        this.sloth = sloth;
         return this;
     }
 
-    public boolean attackMonsterDeck() {
+    public boolean isAttackMonsterDeck() {
         return attackMonsterDeck;
     }
 
@@ -399,7 +403,7 @@ public class DeathEvent {
         return this;
     }
 
-    public boolean secondChance() {
+    public boolean isSecondChance() {
         return secondChance;
     }
 
@@ -408,7 +412,7 @@ public class DeathEvent {
         return this;
     }
 
-    public byte[] secondChanceAttributes() {
+    public byte[] getSecondChanceAttributes() {
         return secondChanceAttributes;
     }
 
@@ -417,7 +421,7 @@ public class DeathEvent {
         return this;
     }
 
-    public boolean giftSoul() {
+    public boolean isGiftSoul() {
         return giftSoul;
     }
 
@@ -427,15 +431,15 @@ public class DeathEvent {
     }
 
     public boolean isClog() {
-        return isClog;
+        return clog;
     }
 
     public DeathEvent setClog(boolean clog) {
-        isClog = clog;
+        this.clog = clog;
         return this;
     }
 
-    public boolean summonCurse() {
+    public boolean isSummonCurse() {
         return summonCurse;
     }
 
@@ -445,15 +449,15 @@ public class DeathEvent {
     }
 
     public boolean isBalrog() {
-        return isBalrog;
+        return balrog;
     }
 
     public DeathEvent setBalrog(boolean balrog) {
-        isBalrog = balrog;
+        this.balrog = balrog;
         return this;
     }
 
-    public boolean discardHand() {
+    public boolean isDiscardHand() {
         return discardHand;
     }
 
@@ -463,15 +467,15 @@ public class DeathEvent {
     }
 
     public boolean isPestilenceAlt() {
-        return isPestilenceAlt;
+        return pestilenceAlt;
     }
 
     public DeathEvent setPestilenceAlt(boolean pestilenceAlt) {
-        isPestilenceAlt = pestilenceAlt;
+        this.pestilenceAlt = pestilenceAlt;
         return this;
     }
 
-    public boolean stealItemWithGoldCounter() {
+    public boolean isStealItemWithGoldCounter() {
         return stealItemWithGoldCounter;
     }
 
@@ -480,7 +484,7 @@ public class DeathEvent {
         return this;
     }
 
-    public boolean skipChosenPlayersTurn() {
+    public boolean isSkipChosenPlayersTurn() {
         return skipChosenPlayersTurn;
     }
 
@@ -489,7 +493,7 @@ public class DeathEvent {
         return this;
     }
 
-    public boolean spiderCounterDistributeDamage() {
+    public boolean isSpiderCounterDistributeDamage() {
         return spiderCounterDistributeDamage;
     }
 
@@ -498,12 +502,21 @@ public class DeathEvent {
         return this;
     }
 
-    public boolean butItsReallyTheBloat() {
+    public boolean isButItsReallyTheBloat() {
         return butItsReallyTheBloat;
     }
 
     public DeathEvent setButItsReallyTheBloat(boolean butItsReallyTheBloat) {
         this.butItsReallyTheBloat = butItsReallyTheBloat;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        try {
+            return new ObjectMapper().writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

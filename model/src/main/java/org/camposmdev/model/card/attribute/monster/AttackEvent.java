@@ -1,5 +1,7 @@
 package org.camposmdev.model.card.attribute.monster;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.camposmdev.model.card.attribute.EntityTarget;
 import org.camposmdev.model.card.attribute.RollEvent;
 
@@ -11,9 +13,9 @@ public class AttackEvent {
     private byte damage;
     private EntityTarget damageTo;
     private boolean endTurn;
-    private boolean isBigBony;
+    private boolean bigBony;
     private RollEvent[] rollEvent;
-    private boolean isHenry;
+    private boolean henry;
     private byte discardLoot;
     private boolean cancelDamage;
     private boolean cancelAttack;
@@ -21,7 +23,7 @@ public class AttackEvent {
     private boolean voteRightOrLeft;
     private boolean roll2Dice;
 
-    public byte loseCents() {
+    public byte getLoseCents() {
         return loseCents;
     }
 
@@ -30,7 +32,7 @@ public class AttackEvent {
         return this;
     }
 
-    public EntityTarget loseCentsTarget() {
+    public EntityTarget getLoseCentsTarget() {
         return loseCentsTarget;
     }
 
@@ -39,7 +41,7 @@ public class AttackEvent {
         return this;
     }
 
-    public byte healMonster() {
+    public byte getHealMonster() {
         return healMonster;
     }
 
@@ -48,7 +50,7 @@ public class AttackEvent {
         return this;
     }
 
-    public byte modNextAttackRoll() {
+    public byte getModNextAttackRoll() {
         return modNextAttackRoll;
     }
 
@@ -57,7 +59,7 @@ public class AttackEvent {
         return this;
     }
 
-    public byte damage() {
+    public byte getDamage() {
         return damage;
     }
 
@@ -66,7 +68,7 @@ public class AttackEvent {
         return this;
     }
 
-    public EntityTarget damageTarget() {
+    public EntityTarget getDamageTo() {
         return damageTo;
     }
 
@@ -75,7 +77,7 @@ public class AttackEvent {
         return this;
     }
 
-    public boolean cancelEverything() {
+    public boolean isEndTurn() {
         return endTurn;
     }
 
@@ -85,15 +87,15 @@ public class AttackEvent {
     }
 
     public boolean isBigBony() {
-        return isBigBony;
+        return bigBony;
     }
 
     public AttackEvent setBigBony(boolean bigBony) {
-        isBigBony = bigBony;
+        this.bigBony = bigBony;
         return this;
     }
 
-    public RollEvent[] rollEvent() {
+    public RollEvent[] getRollEvent() {
         return rollEvent;
     }
 
@@ -103,15 +105,15 @@ public class AttackEvent {
     }
 
     public boolean isHenry() {
-        return isHenry;
+        return henry;
     }
 
     public AttackEvent setHenry(boolean henry) {
-        isHenry = henry;
+        this.henry = henry;
         return this;
     }
 
-    public byte discardLoot() {
+    public byte getDiscardLoot() {
         return discardLoot;
     }
 
@@ -120,7 +122,7 @@ public class AttackEvent {
         return this;
     }
 
-    public boolean cancelDamage() {
+    public boolean isCancelDamage() {
         return cancelDamage;
     }
 
@@ -129,7 +131,7 @@ public class AttackEvent {
         return this;
     }
 
-    public boolean cancelAttack() {
+    public boolean isCancelAttack() {
         return cancelAttack;
     }
 
@@ -138,7 +140,7 @@ public class AttackEvent {
         return this;
     }
 
-    public boolean killCounter() {
+    public boolean isKillCounter() {
         return killCounter;
     }
 
@@ -147,7 +149,7 @@ public class AttackEvent {
         return this;
     }
 
-    public boolean voteRightOrLeft() {
+    public boolean isVoteRightOrLeft() {
         return voteRightOrLeft;
     }
 
@@ -156,12 +158,21 @@ public class AttackEvent {
         return this;
     }
 
-    public boolean roll2Dice() {
+    public boolean isRoll2Dice() {
         return roll2Dice;
     }
 
     public AttackEvent setRoll2Dice(boolean roll2Dice) {
         this.roll2Dice = roll2Dice;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        try {
+            return new ObjectMapper().writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

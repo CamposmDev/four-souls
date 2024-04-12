@@ -1,10 +1,12 @@
 package org.camposmdev.model.card.monster;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.camposmdev.model.card.attribute.CardType;
 import org.camposmdev.model.card.attribute.monster.EndEvent;
 import org.camposmdev.model.card.attribute.monster.StartEvent;
 
-public class CurseCard extends AbstractMonsterCard {
+public class CurseCard extends BaseMonsterCard {
     private StartEvent startEffect;
     private EndEvent endEffect;
     private boolean discardSoulOnDeath;
@@ -21,7 +23,7 @@ public class CurseCard extends AbstractMonsterCard {
         super.setCardType(CardType.CURSE);
     }
 
-    public StartEvent startEffect() {
+    public StartEvent getStartEffect() {
         return startEffect;
     }
 
@@ -30,7 +32,7 @@ public class CurseCard extends AbstractMonsterCard {
         return this;
     }
 
-    public EndEvent endEffect() {
+    public EndEvent getEndEffect() {
         return endEffect;
     }
 
@@ -39,7 +41,7 @@ public class CurseCard extends AbstractMonsterCard {
         return this;
     }
 
-    public boolean discardSoulOnDeath() {
+    public boolean isDiscardSoulOnDeath() {
         return discardSoulOnDeath;
     }
 
@@ -48,7 +50,7 @@ public class CurseCard extends AbstractMonsterCard {
         return this;
     }
 
-    public byte modMonsterAttackRoll() {
+    public byte getModMonsterAttackRoll() {
         return modMonsterAttackRoll;
     }
 
@@ -57,7 +59,7 @@ public class CurseCard extends AbstractMonsterCard {
         return this;
     }
 
-    public boolean forceAttack() {
+    public boolean isForceAttack() {
         return forceAttack;
     }
 
@@ -66,7 +68,7 @@ public class CurseCard extends AbstractMonsterCard {
         return this;
     }
 
-    public boolean monsterEmpathy() {
+    public boolean isMonsterEmpathy() {
         return monsterEmpathy;
     }
 
@@ -75,7 +77,7 @@ public class CurseCard extends AbstractMonsterCard {
         return this;
     }
 
-    public byte monsterEmpathyLoot() {
+    public byte getMonsterEmpathyLoot() {
         return monsterEmpathyLoot;
     }
 
@@ -84,7 +86,7 @@ public class CurseCard extends AbstractMonsterCard {
         return this;
     }
 
-    public byte monsterEmpathyCents() {
+    public byte getMonsterEmpathyCents() {
         return monsterEmpathyCents;
     }
 
@@ -93,7 +95,7 @@ public class CurseCard extends AbstractMonsterCard {
         return this;
     }
 
-    public byte modMonsterDamage() {
+    public byte getModMonsterDamage() {
         return modMonsterDamage;
     }
 
@@ -102,7 +104,7 @@ public class CurseCard extends AbstractMonsterCard {
         return this;
     }
 
-    public boolean soulless() {
+    public boolean isSoulless() {
         return soulless;
     }
 
@@ -111,7 +113,7 @@ public class CurseCard extends AbstractMonsterCard {
         return this;
     }
 
-    public boolean gift() {
+    public boolean isGift() {
         return gift;
     }
 
@@ -120,12 +122,21 @@ public class CurseCard extends AbstractMonsterCard {
         return this;
     }
 
-    public boolean suspicious() {
+    public boolean isSuspicious() {
         return suspicious;
     }
 
     public CurseCard setSuspicious(boolean suspicious) {
         this.suspicious = suspicious;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        try {
+            return new ObjectMapper().writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

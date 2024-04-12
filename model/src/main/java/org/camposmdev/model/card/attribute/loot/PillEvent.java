@@ -1,5 +1,7 @@
 package org.camposmdev.model.card.attribute.loot;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.camposmdev.model.card.attribute.EntityTarget;
 import org.camposmdev.model.card.attribute.Reward;
 
@@ -24,8 +26,10 @@ public class PillEvent {
     protected byte otherPlayersDiscardLoot;
     protected boolean rerollAnyItem;
     protected byte putLoot;
+    protected boolean giftNonEternalItem;
+    protected PillItem item;
 
-    public byte[] values() {
+    public byte[] getValues() {
         return values;
     }
 
@@ -34,7 +38,7 @@ public class PillEvent {
         return this;
     }
 
-    public Reward reward() {
+    public Reward getReward() {
         return reward;
     }
 
@@ -43,7 +47,7 @@ public class PillEvent {
         return this;
     }
 
-    public EntityTarget rewardTo() {
+    public EntityTarget getRewardTo() {
         return rewardTo;
     }
 
@@ -52,7 +56,7 @@ public class PillEvent {
         return this;
     }
 
-    public byte discardCents() {
+    public byte getDiscardCents() {
         return discardCents;
     }
 
@@ -61,7 +65,7 @@ public class PillEvent {
         return this;
     }
 
-    public byte discardLoot() {
+    public byte getDiscardLoot() {
         return discardLoot;
     }
 
@@ -70,7 +74,7 @@ public class PillEvent {
         return this;
     }
 
-    public byte modPlayerDamage() {
+    public byte getModPlayerDamage() {
         return modPlayerDamage;
     }
 
@@ -79,7 +83,7 @@ public class PillEvent {
         return this;
     }
 
-    public byte modPlayerHitPoint() {
+    public byte getModPlayerHitPoint() {
         return modPlayerHitPoint;
     }
 
@@ -88,7 +92,7 @@ public class PillEvent {
         return this;
     }
 
-    public byte damage() {
+    public byte getDamage() {
         return damage;
     }
 
@@ -97,7 +101,7 @@ public class PillEvent {
         return this;
     }
 
-    public EntityTarget damageTo() {
+    public EntityTarget getDamageTo() {
         return damageTo;
     }
 
@@ -106,7 +110,7 @@ public class PillEvent {
         return this;
     }
 
-    public boolean rechargeAllItems() {
+    public boolean isRechargeAllItems() {
         return rechargeAllItems;
     }
 
@@ -115,7 +119,7 @@ public class PillEvent {
         return this;
     }
 
-    public byte modPlayerDiceRoll() {
+    public byte getModPlayerDiceRoll() {
         return modPlayerDiceRoll;
     }
 
@@ -124,7 +128,7 @@ public class PillEvent {
         return this;
     }
 
-    public byte modMonsterAttackRoll() {
+    public byte getModMonsterAttackRoll() {
         return modMonsterAttackRoll;
     }
 
@@ -133,7 +137,7 @@ public class PillEvent {
         return this;
     }
 
-    public boolean cancelLootEffect() {
+    public boolean isCancelLootEffect() {
         return cancelLootEffect;
     }
 
@@ -142,7 +146,7 @@ public class PillEvent {
         return this;
     }
 
-    public byte allDiscardLoot() {
+    public byte getAllDiscardLoot() {
         return allDiscardLoot;
     }
 
@@ -151,7 +155,7 @@ public class PillEvent {
         return this;
     }
 
-    public boolean rerollYourItem() {
+    public boolean isRerollYourItem() {
         return rerollYourItem;
     }
 
@@ -160,7 +164,7 @@ public class PillEvent {
         return this;
     }
 
-    public boolean rerollItemInPlay() {
+    public boolean isRerollItemInPlay() {
         return rerollItemInPlay;
     }
 
@@ -169,7 +173,7 @@ public class PillEvent {
         return this;
     }
 
-    public boolean reollAllItems() {
+    public boolean isReollAllItems() {
         return reollAllItems;
     }
 
@@ -178,7 +182,7 @@ public class PillEvent {
         return this;
     }
 
-    public byte otherPlayersDiscardLoot() {
+    public byte getOtherPlayersDiscardLoot() {
         return otherPlayersDiscardLoot;
     }
 
@@ -187,7 +191,7 @@ public class PillEvent {
         return this;
     }
 
-    public boolean rerollAnyItem() {
+    public boolean isRerollAnyItem() {
         return rerollAnyItem;
     }
 
@@ -196,13 +200,40 @@ public class PillEvent {
         return this;
     }
 
-    public byte putLoot() {
+    public byte getPutLoot() {
         return putLoot;
     }
 
     public PillEvent setPutLoot(byte putLoot) {
         this.putLoot = putLoot;
         return this;
+    }
+
+    public boolean isGiftNonEternalItem() {
+        return giftNonEternalItem;
+    }
+
+    public PillEvent setGiftNonEternalItem(boolean giftNonEternalItem) {
+        this.giftNonEternalItem = giftNonEternalItem;
+        return this;
+    }
+
+    public PillItem getItem() {
+        return item;
+    }
+
+    public PillEvent setItem(PillItem item) {
+        this.item = item;
+        return this;
+    }
+
+    @Override
+    public String toString() {
+        try {
+            return new ObjectMapper().writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
 

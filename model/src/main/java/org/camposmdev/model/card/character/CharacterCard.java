@@ -1,7 +1,9 @@
 package org.camposmdev.model.card.character;
 
-import io.vertx.core.json.JsonObject;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.camposmdev.model.card.BaseCard;
+import org.camposmdev.model.card.attribute.CardType;
 
 public class CharacterCard extends BaseCard {
     private byte hitPoints;
@@ -9,10 +11,10 @@ public class CharacterCard extends BaseCard {
     private String eternalId;
 
     public CharacterCard() {
-        super();
+        super.setCardType(CardType.CHARACTER);
     }
 
-    public byte hitPoints() {
+    public byte getHitPoints() {
         return hitPoints;
     }
 
@@ -21,7 +23,7 @@ public class CharacterCard extends BaseCard {
         return this;
     }
 
-    public byte damage() {
+    public byte getDamage() {
         return damage;
     }
 
@@ -30,7 +32,7 @@ public class CharacterCard extends BaseCard {
         return this;
     }
 
-    public String eternalId() {
+    public String getEternalId() {
         return eternalId;
     }
 
@@ -40,15 +42,11 @@ public class CharacterCard extends BaseCard {
     }
 
     @Override
-    public JsonObject toJSON() {
-        return super.toJSON()
-                .put("hitPoints", hitPoints)
-                .put("damage", damage)
-                .put("eternalId", eternalId);
-    }
-
-    @Override
     public String toString() {
-        return toJSON().encode();
+        try {
+            return new ObjectMapper().writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
