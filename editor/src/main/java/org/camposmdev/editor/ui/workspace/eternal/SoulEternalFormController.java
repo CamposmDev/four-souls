@@ -1,10 +1,8 @@
 package org.camposmdev.editor.ui.workspace.eternal;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import org.camposmdev.model.card.attribute.CardSet;
-import org.camposmdev.model.card.attribute.CardVersion;
 import org.camposmdev.model.card.eternal.SoulEternalCard;
 import org.camposmdev.util.FormController;
 

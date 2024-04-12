@@ -5,7 +5,6 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import org.camposmdev.editor.ui.factory.DialogFactory;
 import org.camposmdev.model.card.attribute.CardSet;
-import org.camposmdev.model.card.attribute.CardVersion;
 import org.camposmdev.model.card.attribute.loot.LootOptionEvent;
 import org.camposmdev.model.card.loot.KeyCard;
 import org.camposmdev.util.FormController;

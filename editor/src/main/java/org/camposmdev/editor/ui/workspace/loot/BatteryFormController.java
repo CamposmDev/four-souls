@@ -3,7 +3,6 @@ package org.camposmdev.editor.ui.workspace.loot;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import org.camposmdev.model.card.attribute.CardSet;
-import org.camposmdev.model.card.attribute.CardVersion;
 import org.camposmdev.model.card.attribute.loot.BatteryType;
 import org.camposmdev.model.card.loot.BatteryCard;
 import org.camposmdev.util.FormController;

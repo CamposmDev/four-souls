@@ -1,9 +1,7 @@
 package org.camposmdev.model.atlas;
 
-import com.fasterxml.jackson.core.JacksonException;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.camposmdev.model.card.monster.BadEventCard;
@@ -15,7 +13,7 @@ import java.io.IOException;
 
 public class MonsterCardAtlasDeserializer extends CardAtlasDeserializer<MonsterCardAtlas> {
     @Override
-    public MonsterCardAtlas deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JacksonException {
+    public MonsterCardAtlas deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
         var mapper = new ObjectMapper();
         var codec = p.getCodec();
         JsonNode node = codec.readTree(p);

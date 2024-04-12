@@ -6,7 +6,6 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import org.camposmdev.model.card.attribute.EntityTarget;
 import org.camposmdev.model.card.attribute.Reward;
-import org.camposmdev.model.card.attribute.loot.PillEvent;
 import org.camposmdev.model.card.attribute.loot.RuneEvent;
 import org.camposmdev.util.FXUtil;
 import org.camposmdev.util.FormController;

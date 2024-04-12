@@ -4,9 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import org.camposmdev.model.card.attribute.CardSet;
-import org.camposmdev.model.card.attribute.treasure.PassiveItem;
 import org.camposmdev.model.card.attribute.treasure.SoulItem;
-import org.camposmdev.model.card.treasure.PassiveTreasureCard;
 import org.camposmdev.model.card.treasure.SoulTreasureCard;
 import org.camposmdev.util.FormController;
 

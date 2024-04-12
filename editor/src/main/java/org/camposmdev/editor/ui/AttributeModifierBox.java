@@ -69,9 +69,7 @@ public class AttributeModifierBox {
         TextField modValueTextField = new TextField();
         modValueTextField.setPromptText("[0,127]");
         Button eventsButton = new Button("Modify");
-        eventsButton.setOnAction(e -> {
-            DialogFactory.instance().showRollEventModifierBox(events);
-        });
+        eventsButton.setOnAction(e -> DialogFactory.instance().showRollEventModifierBox(events));
 
         // Adding controls to the GridPane
         gridPane.addRow(0, new Label("thresholdType"), thresholdTypeComboBox);

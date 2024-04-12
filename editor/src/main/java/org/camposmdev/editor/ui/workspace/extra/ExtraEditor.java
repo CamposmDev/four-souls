@@ -11,7 +11,6 @@ import org.camposmdev.editor.ui.NotificationBar;
 import org.camposmdev.editor.ui.factory.DialogFactory;
 import org.camposmdev.editor.ui.workspace.BaseEditor;
 import org.camposmdev.model.card.attribute.CardSet;
-import org.camposmdev.model.card.attribute.CardType;
 import org.camposmdev.model.card.extra.ExtraCard;
 
 public class ExtraEditor extends BaseEditor {

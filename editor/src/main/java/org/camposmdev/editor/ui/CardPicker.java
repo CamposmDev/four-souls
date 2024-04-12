@@ -79,6 +79,7 @@ public class CardPicker {
                 if (isHovered && !cell.isEmpty()) {
                     try {
                         var src = Model.instance().images().source2(selectedCardType, cell.getItem());
+                        assert src != null;
                         var img = FXGL.image(src);
                         cv.setImage(img);
                     } catch (NullPointerException ex) {

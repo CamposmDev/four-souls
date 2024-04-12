@@ -6,7 +6,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import org.camposmdev.editor.ui.factory.DialogFactory;
 import org.camposmdev.model.card.attribute.CardSet;
-import org.camposmdev.model.card.attribute.CardVersion;
 import org.camposmdev.model.card.attribute.loot.PillEvent;
 import org.camposmdev.model.card.loot.PillCard;
 import org.camposmdev.util.FXUtil;

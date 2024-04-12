@@ -44,9 +44,4 @@ public class BonusSoulFormController extends FormController<BonusSoulCard> {
                 .setEnvy(isEnvy).setSloth(isSloth).setStrawberry(isStrawberry)
                 .setCardSet(cbCardSet.getValue());
     }
-
-    private void f(ComboBox<Boolean> cb) {
-        cb.setValue(false);
-        cb.getItems().setAll(true, false);
-    }
 }

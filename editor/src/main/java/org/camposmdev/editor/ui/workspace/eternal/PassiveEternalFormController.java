@@ -1,14 +1,10 @@
 package org.camposmdev.editor.ui.workspace.eternal;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
-import org.camposmdev.model.card.attribute.eternal.PaidItem;
 import org.camposmdev.model.card.attribute.eternal.PassiveItem;
 import org.camposmdev.model.card.eternal.PassiveEternalCard;
 import org.camposmdev.model.card.attribute.*;
-import org.camposmdev.model.card.attribute.Reward;
 import org.camposmdev.util.FormController;
 
 public class PassiveEternalFormController extends FormController<PassiveEternalCard> {

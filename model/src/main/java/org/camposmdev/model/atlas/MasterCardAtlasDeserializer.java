@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JacksonException;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
@@ -18,7 +17,7 @@ import java.io.IOException;
 public class MasterCardAtlasDeserializer extends CardAtlasDeserializer<MasterCardAtlas> {
 
     @Override
-    public MasterCardAtlas deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JacksonException {
+    public MasterCardAtlas deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
         var mapper = new ObjectMapper();
         var module = new SimpleModule("CardAtlasDataBind", new Version(1, 0, 0, null, null, null));
         module.addDeserializer(EternalCardAtlas.class, new EternalCardAtlasDeserializer());

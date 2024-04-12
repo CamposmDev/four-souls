@@ -56,6 +56,7 @@ public class CharacterEditor extends BaseEditor {
                 if (isHovered) {
                     if (!cell.isEmpty()) {
                         var src = Model.instance().images().source2(CardType.ETERNAL, cell.getItem());
+                        assert src != null;
                         var img = FXGL.image(src);
                         cv.setImage(img);
                     }

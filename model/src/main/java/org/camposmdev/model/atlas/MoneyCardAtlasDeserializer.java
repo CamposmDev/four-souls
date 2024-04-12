@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class MoneyCardAtlasDeserializer extends CardAtlasDeserializer<MoneyCardAtlas> {
     @Override
-    public MoneyCardAtlas deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JacksonException {
+    public MoneyCardAtlas deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
         var mapper = new ObjectMapper();
         var codec = p.getCodec();
         JsonNode node = codec.readTree(p);

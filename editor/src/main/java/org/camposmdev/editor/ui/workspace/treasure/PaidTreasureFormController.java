@@ -6,7 +6,6 @@ import javafx.scene.control.ComboBox;
 import org.camposmdev.model.card.attribute.CardSet;
 import org.camposmdev.model.card.attribute.treasure.PaidItem;
 import org.camposmdev.model.card.treasure.PaidTreasureCard;
-import org.camposmdev.model.card.treasure.PassiveTreasureCard;
 import org.camposmdev.util.FormController;
 
 public class PaidTreasureFormController extends FormController<PaidTreasureCard> {

@@ -13,7 +13,7 @@ import java.io.IOException;
 
 public class LootCardAtlasDeserializer extends CardAtlasDeserializer<LootCardAtlas> {
     @Override
-    public LootCardAtlas deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JacksonException {
+    public LootCardAtlas deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
         var mapper = new ObjectMapper();
         var module = new SimpleModule("CardAtlasDataBind", new Version(1, 0, 0, null, null, null));
         module.addDeserializer(MoneyCardAtlas.class, new MoneyCardAtlasDeserializer());

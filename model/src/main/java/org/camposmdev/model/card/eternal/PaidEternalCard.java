@@ -3,7 +3,6 @@ package org.camposmdev.model.card.eternal;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.camposmdev.model.card.attribute.CardType;
-import org.camposmdev.model.card.attribute.CardVersion;
 import org.camposmdev.model.card.attribute.eternal.PaidItem;
 
 public class PaidEternalCard extends EternalCard {

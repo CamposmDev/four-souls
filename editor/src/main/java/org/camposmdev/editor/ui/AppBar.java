@@ -75,9 +75,7 @@ public class AppBar {
         });
         var miFullScreen = new CheckMenuItem("Full Screen");
         miFullScreen.setAccelerator(new KeyCodeCombination((KeyCode.F11)));
-        miFullScreen.setOnAction(e -> {
-            FXGL.getPrimaryStage().setFullScreen(miFullScreen.isSelected());
-        });
+        miFullScreen.setOnAction(e -> FXGL.getPrimaryStage().setFullScreen(miFullScreen.isSelected()));
         var menu = new Menu("View");
         menu.getItems().addAll(miDarkMode, miFullScreen);
         return menu;

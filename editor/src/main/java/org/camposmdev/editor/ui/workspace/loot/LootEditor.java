@@ -13,7 +13,6 @@ import org.camposmdev.model.card.attribute.CardType;
 import org.camposmdev.model.card.loot.LootCard;
 import org.camposmdev.util.FXUtil;
 import org.camposmdev.util.FormController;
-import org.camposmdev.util.Log;
 
 public class LootEditor extends BaseEditor {
     private final VBox root;

@@ -3,7 +3,6 @@ package org.camposmdev.model.atlas;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.camposmdev.model.card.attribute.CardType;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.*;
 

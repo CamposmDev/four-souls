@@ -9,8 +9,6 @@ import org.camposmdev.model.card.eternal.PassiveEternalCard;
 import org.camposmdev.model.card.eternal.SoulEternalCard;
 
 import java.io.IOException;
-import java.util.Iterator;
-import java.util.Map;
 
 public class EternalCardAtlasDeserializer extends CardAtlasDeserializer<EternalCardAtlas> {
     @Override

@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import org.camposmdev.model.card.attribute.CardSet;
-import org.camposmdev.model.card.attribute.CardVersion;
 import org.camposmdev.model.card.attribute.EntityTarget;
 import org.camposmdev.model.card.loot.BombCard;
 import org.camposmdev.util.FXUtil;

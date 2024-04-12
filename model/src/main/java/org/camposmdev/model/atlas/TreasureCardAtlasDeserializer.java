@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class TreasureCardAtlasDeserializer extends JsonDeserializer<TreasureCardAtlas> {
     @Override
-    public TreasureCardAtlas deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JacksonException {
+    public TreasureCardAtlas deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
         var mapper = new ObjectMapper();
         var codec = p.getCodec();
         JsonNode node = codec.readTree(p);
