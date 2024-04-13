@@ -14,7 +14,8 @@ public record MasterImageAtlas(
         Map<String, String> loot,
         Map<String, String> money,
         String bsoul,
-        String room
+        String room,
+        String outside
 ) {
     public ImageAtlas loadCharacterJSON() {
         return loadImageAtlas(character);
@@ -150,6 +151,10 @@ public record MasterImageAtlas(
 
     public ImageAtlas loadLootWildcardJSON() {
         return loadImageAtlas(loot_wildcard());
+    }
+
+    public ImageAtlas loadOutsideJSON() {
+        return loadImageAtlas(outside());
     }
 
     public ImageAtlas loadMoney1cJSON() {
@@ -367,7 +372,7 @@ public record MasterImageAtlas(
             case CHARACTER:
                 return loadCharacterJSON().source2(key);
             case ETERNAL:
-                var table = loadPeternalJSON();
+                ImageAtlas table = loadPeternalJSON();
                 if (table.contains(key)) return table.source2(key);
                 table = loadAeternalJSON();
                 if (table.contains(key)) return table.source2(key);
@@ -459,55 +464,58 @@ public record MasterImageAtlas(
                 return loadBsoulJSON().source2(key);
             case ROOM:
                 return loadRoomJSON().source2(key);
+            case OUTSIDE:
+                return loadOutsideJSON().source2(key);
+            default: return null;
         }
-        return null;
     }
     
     public ImageInfo getInfo(CardType type, String key) {
         ImageInfo info;
-        switch (type.key()) {
-            case "character" -> info = loadCharacterJSON().get(key);
-            case "peternal" -> info = loadPeternalJSON().get(key);
-            case "aeternal" -> info = loadAeternalJSON().get(key);
-            case "paideternal" -> info = loadPaideternalJSON().get(key);
-            case "oeternal" -> info = loadOeternalJSON().get(key);
-            case "seternal" -> info = loadSeternalJSON().get(key);
-            case "ptreasure" -> info = loadPtreasureJSON().get(key);
-            case "atreasure" -> info = loadAtreasureJSON().get(key);
-            case "paidtreasure" -> info = loadPaidtreasureJSON().get(key);
-            case "otreasure" -> info = loadOtreasureJSON().get(key);
-            case "streasure" -> info = loadStreasureJSON().get(key);
-            case "bmonster" -> info = loadBmonsterJSON().get(key);
-            case "cmonster" -> info = loadCmonsterJSON().get(key);
-            case "hmonster" -> info = loadHmonsterJSON().get(key);
-            case "chamonster" -> info = loadChamonsterJSON().get(key);
-            case "gevent" -> info = loadGeventJSON().get(key);
-            case "bevent" -> info = loadBeventJSON().get(key);
-            case "curse" -> info = loadCurseJSON().get(key);
-            case "boss" -> info = loadMonsterBossJSON().get(key);
-            case "epic" -> info = loadMonsterEpicJSON().get(key);
-            case "cards" -> info = loadLootCardsJSON().get(key);
-            case "trinkets" -> info = loadLootTrinketsJSON().get(key);
-            case "pills" -> info = loadLootPillsJSON().get(key);
-            case "runes" -> info = loadLootRunesJSON().get(key);
-            case "bombs" -> info = loadLootBombsJSON().get(key);
-            case "butter" -> info = loadLootButterJSON().get(key);
-            case "batteries" -> info = loadLootBatteriesJSON().get(key);
-            case "keys" -> info = loadLootKeysJSON().get(key);
-            case "dice" -> info = loadLootDiceJSON().get(key);
-            case "sheart" -> info = loadLootSheartJSON().get(key);
-            case "bheart" -> info = loadLootBheartJSON().get(key);
-            case "sack" -> info = loadLootSackJSON().get(key);
-            case "lsoul" -> info = loadLootLsoulJSON().get(key);
-            case "wildcard" -> info = loadLootWildcardJSON().get(key);
-            case "1c" -> info = loadMoney1cJSON().get(key);
-            case "2c" -> info = loadMoney2cJSON().get(key);
-            case "3c" -> info = loadMoney3cJSON().get(key);
-            case "4c" -> info = loadMoney4cJSON().get(key);
-            case "5c" -> info = loadMoney5cJSON().get(key);
-            case "10c" -> info = loadMoney10cJSON().get(key);
-            case "bsoul" -> info = loadBsoulJSON().get(key);
-            case "room" -> info = loadRoomJSON().get(key);
+        switch (type) {
+            case CHARACTER -> info = loadCharacterJSON().get(key);
+            case PETERNAL -> info = loadPeternalJSON().get(key);
+            case AETERNAL -> info = loadAeternalJSON().get(key);
+            case PAIDETERNAL -> info = loadPaideternalJSON().get(key);
+            case OETERNAL -> info = loadOeternalJSON().get(key);
+            case SETERNAL -> info = loadSeternalJSON().get(key);
+            case PTREASURE -> info = loadPtreasureJSON().get(key);
+            case ATREASURE -> info = loadAtreasureJSON().get(key);
+            case PAIDTREASURE -> info = loadPaidtreasureJSON().get(key);
+            case OTREASURE -> info = loadOtreasureJSON().get(key);
+            case STREASURE -> info = loadStreasureJSON().get(key);
+            case BMONSTER -> info = loadBmonsterJSON().get(key);
+            case CMONSTER -> info = loadCmonsterJSON().get(key);
+            case HMONSTER -> info = loadHmonsterJSON().get(key);
+            case CHAMONSTER -> info = loadChamonsterJSON().get(key);
+            case GEVENT -> info = loadGeventJSON().get(key);
+            case BEVENT -> info = loadBeventJSON().get(key);
+            case CURSE -> info = loadCurseJSON().get(key);
+            case BOSS -> info = loadMonsterBossJSON().get(key);
+            case EPIC -> info = loadMonsterEpicJSON().get(key);
+            case CARDS -> info = loadLootCardsJSON().get(key);
+            case TRINKETS -> info = loadLootTrinketsJSON().get(key);
+            case PILLS -> info = loadLootPillsJSON().get(key);
+            case RUNES -> info = loadLootRunesJSON().get(key);
+            case BOMBS -> info = loadLootBombsJSON().get(key);
+            case BUTTER -> info = loadLootButterJSON().get(key);
+            case BATTERIES -> info = loadLootBatteriesJSON().get(key);
+            case KEYS -> info = loadLootKeysJSON().get(key);
+            case DICE -> info = loadLootDiceJSON().get(key);
+            case SHEART -> info = loadLootSheartJSON().get(key);
+            case BHEART -> info = loadLootBheartJSON().get(key);
+            case SACK -> info = loadLootSackJSON().get(key);
+            case LSOUL -> info = loadLootLsoulJSON().get(key);
+            case WILDCARD -> info = loadLootWildcardJSON().get(key);
+            case MONEY1C -> info = loadMoney1cJSON().get(key);
+            case MONEY2C -> info = loadMoney2cJSON().get(key);
+            case MONEY3C -> info = loadMoney3cJSON().get(key);
+            case MONEY4C -> info = loadMoney4cJSON().get(key);
+            case MONEY5C -> info = loadMoney5cJSON().get(key);
+            case MONEY10C -> info = loadMoney10cJSON().get(key);
+            case BSOUL -> info = loadBsoulJSON().get(key);
+            case ROOM -> info = loadRoomJSON().get(key);
+            case OUTSIDE -> info = loadOutsideJSON().get(key);
             default -> throw new IllegalArgumentException("Invalid key: " + key);
         }
         return info;

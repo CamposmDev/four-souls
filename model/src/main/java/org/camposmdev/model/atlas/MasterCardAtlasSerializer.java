@@ -13,7 +13,7 @@ public class MasterCardAtlasSerializer extends JsonSerializer<MasterCardAtlas> {
         gen.writeObjectField("bsoul", value.bsoul);
         gen.writeObjectField("character", value.character);
         gen.writeObjectField("eternal", value.eternal);
-        gen.writeObjectField("extra", value.extra);
+        gen.writeObjectField("outside", value.outside);
         gen.writeObjectField("loot", value.loot);
         gen.writeObjectField("monster", value.monster);
         gen.writeObjectField("room", value.room);

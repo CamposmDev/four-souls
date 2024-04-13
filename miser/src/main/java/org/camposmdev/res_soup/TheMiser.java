@@ -16,11 +16,16 @@ public class TheMiser {
     static final String UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36";
     private static final int MAX_RETRIES = 10;
     private static final String REGEX = "-308x420|-420x308|-420x300";
-
     private final String img_dir;
     private final List<ImageInfo> theList;
 
+    /**
+     * Fetch all the images of cards available in the given src parameter
+     * @param img_dir Location to save images
+     * @param src Location to pillage for images of cards
+     */
     public TheMiser(String img_dir, String src) {
+        /* Slice out the parent dir of cards since FXGL only the relative path starting from the textures dir */
         this.img_dir = img_dir.substring(img_dir.indexOf("cards/"));
         this.theList = new LinkedList<>();
         raid(src, true);

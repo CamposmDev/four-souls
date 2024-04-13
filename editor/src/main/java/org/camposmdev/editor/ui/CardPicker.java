@@ -54,7 +54,7 @@ public class CardPicker {
                 VBox.setVgrow(lv, Priority.ALWAYS);
             }
             var data = Model.instance().images().getInfo(selectedCardType, key);
-            editor.setId(data.name());
+            editor.setId(data.id());
             editor.setImage(data);
 
             currentImage = FXGL.image(data.source2());
@@ -83,7 +83,7 @@ public class CardPicker {
                         var img = FXGL.image(src);
                         cv.setImage(img);
                     } catch (NullPointerException ex) {
-                        Log.warn("Failed to load " + selectedCardType + ":" + cell.getItem());
+                        Log.warnf("Failed to load [%s]: %s", selectedCardType, cell.getItem());
                     }
                 }
                 if (wasHovered) {
@@ -103,7 +103,6 @@ public class CardPicker {
         selectedCardType = cardType;
         var lst = Model.instance().getImageAtlas(selectedCardType);
         theList.setAll(lst);
-//        workspace.clear();
         /* display the appropriate workspace */
         switch (selectedCardType) {
             case CHARACTER -> editor = new CharacterEditor();

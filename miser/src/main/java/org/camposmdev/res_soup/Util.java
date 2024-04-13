@@ -44,17 +44,27 @@ public class Util {
             /* write the json file */
             var map = new JsonObject();
             var obj = JsonObject.of("images", map);
-            for (var x : list) {
-                var name = x.name();
+            for (ImageInfo x : list) {
+                var name = x.id();
+                var value = JsonObject.of("origin", x.origin(),
+                        "highRestImgURL", x.highResImgURL(),
+                        "lowResImgURL", x.lowResImgURL(),
+                        "dir", x.dir());
                 if (map.containsKey(name)) {
                     /* if this occurs, then we got a problem */
-                    System.err.println("OVERWRITING\n" + obj.getJsonObject(name).encodePrettily());
+                    System.err.println("OVERWRITING\n" + name);
+                    map.put(name, JsonObject.of(
+                            "origin", x.origin(),
+                            "highResImgURL", x.highResImgURL(),
+                            "lowResImgURL", x.lowResImgURL(),
+                            "dir", x.dir()
+                    ));
                 } else {
                     map.put(name, JsonObject.of(
                             "origin", x.origin(),
                             "highResImgURL", x.highResImgURL(),
                             "lowResImgURL", x.lowResImgURL(),
-                            "directory", x.directory()
+                            "dir", x.dir()
                     ));
                 }
             }
@@ -65,7 +75,7 @@ public class Util {
             System.out.println("Saved: " + file);
 
             /* update the global JSON object */
-            /* acquire the parent directory name */
+            /* acquire the parent dir name */
             var type = file.getParentFile().getName();
             /* create a key based off the file name without '.json' */
             var key = file.getName().substring(0, file.getName().indexOf(".json"));
@@ -73,7 +83,7 @@ public class Util {
             var src = des.substring(des.indexOf("json"));
 
             switch (type) {
-                case "character", "bsoul", "room" -> theObject.put(type, src);
+                case "character", "bsoul", "room", "outside" -> theObject.put(type, src);
                 case "eternal", "treasure", "monster", "loot", "money" -> {
                     if (theObject.containsKey(type))
                         theObject.getJsonObject(type).put(key, src);
@@ -94,7 +104,8 @@ public class Util {
     }
 
     public static String parseURLtoJSON(String dir, String url) {
-        return JSON_DIR + dir + parseURL(url) + ".json";
+        var file_name = parseURL(url);
+        return JSON_DIR + dir + file_name + ".json";
     }
 
     /**
@@ -103,8 +114,8 @@ public class Util {
      * @return Value of card_type attribute
      */
     public static String parseURL(String url) {
-        String x = "card_type=";
-        return url.substring(url.indexOf("card_type=") + x.length());
+        final String x = "card_type=";
+        return url.substring(url.indexOf(x) + x.length());
     }
 
     public static String parseURLtoDIR(String url) {

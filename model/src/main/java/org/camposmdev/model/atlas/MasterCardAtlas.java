@@ -22,21 +22,21 @@ public class MasterCardAtlas implements CardAtlas<BaseCard> {
     protected Map<String, BonusSoulCard> bsoul;
     protected Map<String, CharacterCard> character;
     protected EternalCardAtlas eternal;
-    protected Map<String, ExtraCard> extra;
-    protected LootCardAtlas loot;
-    protected MonsterCardAtlas monster;
-    protected Map<String, RoomCard> room;
     protected TreasureCardAtlas treasure;
+    protected MonsterCardAtlas monster;
+    protected LootCardAtlas loot;
+    protected Map<String, RoomCard> room;
+    protected Map<String, ExtraCard> outside;
 
     public MasterCardAtlas() {
         this.bsoul = new HashMap<>();
         this.character = new HashMap<>();
         this.eternal = new EternalCardAtlas();
-        this.extra = new HashMap<>();
-        this.loot = new LootCardAtlas();
-        this.monster = new MonsterCardAtlas();
-        this.room = new HashMap<>();
         this.treasure = new TreasureCardAtlas();
+        this.monster = new MonsterCardAtlas();
+        this.loot = new LootCardAtlas();
+        this.room = new HashMap<>();
+        this.outside = new HashMap<>();
     }
 
     @Override
@@ -45,11 +45,11 @@ public class MasterCardAtlas implements CardAtlas<BaseCard> {
             case BSOUL -> bsoul.put(card.getId(), (BonusSoulCard) card);
             case CHARACTER -> character.put(card.getId(), (CharacterCard) card);
             case AETERNAL, OETERNAL, PAIDETERNAL, PETERNAL, SETERNAL -> eternal.add((EternalCard) card);
-            case OUTSIDE -> extra.put(card.getId(), (ExtraCard) card);
-            case TRINKETS, PILLS, RUNES, BOMBS, BUTTER, BATTERIES, KEYS, DICE, SHEART, BHEART, SACK, LSOUL, WILDCARD, MONEY1C, MONEY2C, MONEY3C, MONEY4C, MONEY5C, MONEY10C -> loot.add((LootCard) card);
-            case BMONSTER, CMONSTER, HMONSTER, CHAMONSTER, GEVENT, BEVENT, CURSE, BOSS, EPIC -> monster.add((BaseMonsterCard) card);
-            case ROOM -> room.put(card.getId(), (RoomCard) card);
             case PTREASURE, ATREASURE, PAIDTREASURE, OTREASURE, STREASURE -> treasure.add((TreasureCard) card);
+            case BMONSTER, CMONSTER, HMONSTER, CHAMONSTER, GEVENT, BEVENT, CURSE, BOSS, EPIC -> monster.add((BaseMonsterCard) card);
+            case TRINKETS, PILLS, RUNES, BOMBS, BUTTER, BATTERIES, KEYS, DICE, SHEART, BHEART, SACK, LSOUL, WILDCARD, MONEY1C, MONEY2C, MONEY3C, MONEY4C, MONEY5C, MONEY10C -> loot.add((LootCard) card);
+            case ROOM -> room.put(card.getId(), (RoomCard) card);
+            case OUTSIDE -> outside.put(card.getId(), (ExtraCard) card);
         }
     }
 
@@ -70,7 +70,7 @@ public class MasterCardAtlas implements CardAtlas<BaseCard> {
             case ROOM ->
                 room.containsKey(key);
             case OUTSIDE ->
-                extra.containsKey(key);
+                outside.containsKey(key);
             default -> false;
         };
     }

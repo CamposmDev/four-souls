@@ -14,7 +14,7 @@
     <version>1.0.0</version>
     <modules>
         <module>model</module>
-        <module>res-soup</module>
+        <module>miser</module>
         <module>util</module>
         <module>client</module>
         <module>server</module>

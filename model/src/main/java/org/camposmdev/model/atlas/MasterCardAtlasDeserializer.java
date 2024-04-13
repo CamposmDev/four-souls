@@ -1,6 +1,5 @@
 package org.camposmdev.model.atlas;
 
-import com.fasterxml.jackson.core.JacksonException;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.DeserializationContext;
@@ -32,7 +31,7 @@ public class MasterCardAtlasDeserializer extends CardAtlasDeserializer<MasterCar
         var bsoul = node.get("bsoul");
         var character = node.get("character");
         var eternal = node.get("eternal");
-        var extra = node.get("extra");
+        var outside = node.get("outside");
         var loot = node.get("loot");
         var monster = node.get("monster");
         var room = node.get("room");
@@ -43,8 +42,8 @@ public class MasterCardAtlasDeserializer extends CardAtlasDeserializer<MasterCar
             obj.character = deserializeMap(character, mapper, CharacterCard.class);
         if (!eternal.isEmpty())
             obj.eternal = mapper.treeToValue(eternal, EternalCardAtlas.class);
-        if (!isEmptyMap(extra))
-            obj.extra = deserializeMap(extra, mapper, ExtraCard.class);
+        if (!isEmptyMap(outside))
+            obj.outside = deserializeMap(outside, mapper, ExtraCard.class);
         if (!loot.isEmpty())
             obj.loot = mapper.treeToValue(loot, LootCardAtlas.class);
         if (!isEmptyMap(monster))

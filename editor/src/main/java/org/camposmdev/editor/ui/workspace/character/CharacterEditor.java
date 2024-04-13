@@ -39,6 +39,8 @@ public class CharacterEditor extends BaseEditor {
         lvEternal = new ListView<>(eternalKeys);
         lvEternal.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         lvEternal.getSelectionModel().selectedItemProperty().addListener((ov, arg0, arg1) -> {
+            /* if an eternal item is unselected, do not try to fetch its image */
+            if (arg1 == null) return;
             var src = Model.instance().images().source2(CardType.ETERNAL, arg1);
             assert src != null;
             currentImage = FXGL.image(src);

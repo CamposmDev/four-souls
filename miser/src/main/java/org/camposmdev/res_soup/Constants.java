@@ -3,7 +3,7 @@ package org.camposmdev.res_soup;
 import java.util.List;
 
 public interface Constants {
-    String TARGET_DIR = "./client/src/main/resources/assets/";
+    String TARGET_DIR = "./editor/src/main/resources/assets/";
     String CARDS_DIR = TARGET_DIR + "textures/cards/";
     String CHARACTER_DIR = CARDS_DIR + "character/";
     String ETERNAL_DIR = CARDS_DIR + "eternal/";
@@ -13,6 +13,7 @@ public interface Constants {
     String MONEY_DIR = CARDS_DIR + LOOT_DIR.replaceAll(CARDS_DIR, "") + "money/";
     String BSOUL_DIR = CARDS_DIR + "bsoul/";
     String ROOM_DIR = CARDS_DIR + "room/";
+    String OUTSIDE_DIR = CARDS_DIR + "outside/";
 
     String JSON_DIR = TARGET_DIR + "json/cards/";
 
@@ -26,8 +27,8 @@ public interface Constants {
             MONEY_DIR,
             BSOUL_DIR,
             ROOM_DIR,
+            OUTSIDE_DIR,
             JSON_DIR
-//            DAT_DIR
     };
     String CHARACTERS_URL = "https://foursouls.com/card-search/?identical=no&cardstatus=all&card_type=character";
     String[] ETERNAL_URLS = {
@@ -120,7 +121,7 @@ public interface Constants {
     };
     String BSOUL_URL = "https://foursouls.com/card-search/?identical=no&cardstatus=all&card_type=bsoul";
     String ROOM_CARDS_URL = "https://foursouls.com/card-search/?identical=no&cardstatus=all&card_type=room";
-    String EXTRA_CARDS = "https://foursouls.com/card-search/?card_type=outside";
+    String OUTSIDE_CARDS_URL = "https://foursouls.com/card-search/?identical=no&cardstatus=all&card_type=outside";
 
     List<String> OUTLIAR_IMGS = List.of("FlipCornerNote.png", "", "", "");
 }

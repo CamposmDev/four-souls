@@ -13,8 +13,8 @@
         <module name="client" />
         <module name="editor" />
         <module name="model" />
-        <module name="res-soup" />
         <module name="util" />
+        <module name="miser" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

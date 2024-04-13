@@ -81,6 +81,7 @@ public class Model {
                     loadImageAtlas(imageAtlas.money().get(cardType.key()));
             case BSOUL -> loadImageAtlas(imageAtlas.bsoul());
             case ROOM -> loadImageAtlas(imageAtlas.room());
+            case OUTSIDE -> loadImageAtlas(imageAtlas.outside());
             default -> null;
         };
     }

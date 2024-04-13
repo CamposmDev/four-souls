@@ -21,21 +21,23 @@ public class Program implements Constants {
     public static void main(String[] args) {
         var timer = new Timex().start();
         mkdirs();
+        /* this is where the fun begins */
         downloadCardBacks(CARDS_DIR);
+        downloadCards(BSOUL_DIR, "bsoul/", BSOUL_URL);
         downloadCards(CHARACTER_DIR, "character/" , CHARACTERS_URL);
         downloadCards(ETERNAL_DIR, "eternal/", ETERNAL_URLS);
         downloadCards(TREASURE_DIR, "treasure/", TREASURE_URLS);
         downloadCards(MONSTER_DIR, "monster/", MONSTER_URLS);
         downloadCards(LOOT_DIR, "loot/", LOOT_URLS);
         downloadCards(MONEY_DIR, "money/", MONEY_URLS);
-        downloadCards(BSOUL_DIR, "bsoul/", BSOUL_URL);
         downloadCards(ROOM_DIR, "room/", ROOM_CARDS_URL);
+        downloadCards(OUTSIDE_DIR, "outside/", OUTSIDE_CARDS_URL);
         saveTheObject();
         System.out.printf("Finished Raiding (%s)\n", timer.stop());
     }
 
     /**
-     * Creates directories to form the directory structure to store all data files and image files in
+     * Creates directories to form the dir structure to store all data files and image files in
      * the client module.
      */
     public static void mkdirs() {
@@ -104,12 +106,12 @@ public class Program implements Constants {
      * Since directories: character, bsoul, room are the only ones that have no subdirectories.
      * The program has to update the {imgdir} to re-direct the destination path to save the image file to
      * the appropriate subdirectory.
-     * @param img_dir Path to parent directory of the potential image that has to be saved to a subdirectory
+     * @param img_dir Path to parent dir of the potential image that has to be saved to a subdirectory
      * @param url URL to sub-category of the type of base
      * @return Updated path to save the image file, otherwise returns {imgdir}
      */
     public static String buildDIR(String img_dir, String url) {
-        if (img_dir.equals(CHARACTER_DIR) || img_dir.equals(BSOUL_DIR) || img_dir.equals(ROOM_DIR)) {
+        if (img_dir.equals(CHARACTER_DIR) || img_dir.equals(BSOUL_DIR) || img_dir.equals(ROOM_DIR) || img_dir.equals(OUTSIDE_DIR)) {
             return img_dir;
         } else {
             return (img_dir + parseURLtoDIR(url));
