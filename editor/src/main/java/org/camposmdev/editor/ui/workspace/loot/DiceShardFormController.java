@@ -10,8 +10,6 @@ import org.camposmdev.util.FormController;
 public class DiceShardFormController extends FormController<DiceShardCard> {
     @FXML
     ComboBox<CardSet> cbCardSet;
-    @FXML
-    CheckBox cbReroll;
 
     @Override
     public void init() {
@@ -22,7 +20,6 @@ public class DiceShardFormController extends FormController<DiceShardCard> {
     @Override
     public DiceShardCard submit() throws Exception {
         return (DiceShardCard) new DiceShardCard()
-                .setReroll(cbReroll.isSelected())
                 .setCardSet(cbCardSet.getValue());
     }
 }

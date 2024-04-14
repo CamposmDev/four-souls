@@ -26,6 +26,7 @@ public class LootEditor extends BaseEditor {
             case BHEART -> form = FXUtil.loadUI("workspace/loot/BlackHeartForm.fxml");
             case BOMBS -> form = FXUtil.loadUI("workspace/loot/BombForm.fxml");
             case BUTTER -> form = FXUtil.loadUI("workspace/loot/ButterBeanForm.fxml");
+            case CARDS -> form = FXUtil.loadUI("workspace/loot/TarotForm.fxml");
             case DICE -> form = FXUtil.loadUI("workspace/loot/DiceShardForm.fxml");
             case KEYS -> form = FXUtil.loadUI("workspace/loot/KeyForm.fxml");
             case LSOUL -> form = FXUtil.loadUI("workspace/loot/LostSoulForm.fxml");
@@ -53,7 +54,7 @@ public class LootEditor extends BaseEditor {
         try {
             var card = (LootCard) ((FormController<?>) form.getController()).submit();
             card.setId(super.id()).setImage(super.image());
-            Model.instance().cards().add(card);
+            Model.instance().addCard(card);
             NotificationBar.instance().push(card);
         } catch (Exception ex) {
             DialogFactory.instance().showErrorBox(ex);

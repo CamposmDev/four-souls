@@ -8,10 +8,12 @@ import org.camposmdev.model.card.attribute.EntityTarget;
 import org.camposmdev.model.card.attribute.RollEvent;
 import org.camposmdev.model.card.attribute.monster.MonsterOptionEvent;
 
+import java.util.List;
+
 public class GoodEventCard extends BaseMonsterCard {
     private byte ambush;
-    private RollEvent[] rollEvents;
-    private MonsterOptionEvent[] optionEvents;
+    private List<RollEvent> rollEvents;
+    private List<MonsterOptionEvent> optionEvents;
     private DeckType peekDeck;
     private byte peekDeckAmount;
     private boolean peekDeckSort;
@@ -47,20 +49,20 @@ public class GoodEventCard extends BaseMonsterCard {
         return this;
     }
 
-    public RollEvent[] getRollEvents() {
+    public List<RollEvent> getRollEvents() {
         return rollEvents;
     }
 
-    public GoodEventCard setRollEvents(RollEvent[] rollEvents) {
+    public GoodEventCard setRollEvents(List<RollEvent> rollEvents) {
         this.rollEvents = rollEvents;
         return this;
     }
 
-    public MonsterOptionEvent[] getOptionEvents() {
+    public List<MonsterOptionEvent> getOptionEvents() {
         return optionEvents;
     }
 
-    public GoodEventCard setOptionEvents(MonsterOptionEvent[] optionEvents) {
+    public GoodEventCard setOptionEvents(List<MonsterOptionEvent> optionEvents) {
         this.optionEvents = optionEvents;
         return this;
     }

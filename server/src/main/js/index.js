@@ -3,24 +3,19 @@ const fs = require('fs')
 const { DEFAULT_MASTER_CARD_ATLAS, FILE, CardType } = require('./util/constants')
 const card = require('./express/middleware/card')
 
-const model = {
-    cards: {
-        
-    }
-};
+const model = {cards: DEFAULT_MASTER_CARD_ATLAS}
 
 /* Try to read {FILE} */
 fs.readFile(FILE, (err, data) => {
     if (err) {
         console.error(`Failed to read ${FILE} (${err.code})`);
-        model.cards = DEFAULT_MASTER_CARD_ATLAS;
-        fs.writeFile(FILE, JSON.stringify(model), (err) => {
+        fs.writeFile(FILE, JSON.stringify(model.cards), (err) => {
             if (err) console.log(`Failed to write ${FILE}`)
             else console.log(`Wrote ${FILE}`);
         })
     } else {
         console.log(`Read ${FILE}`)
-        model.cards = JSON.parse(data).cards;
+        model.cards = JSON.parse(data);
     }
 });
 
@@ -30,7 +25,7 @@ process.on('SIGINT', async () => {
     /* save the current state of model to file */
     function waitForFile() {
         return new Promise((resolve, reject) => {
-            fs.writeFile(FILE, JSON.stringify(model), (err) => {
+            fs.writeFile(FILE, JSON.stringify(model.cards), (err) => {
                 if (err) {
                     console.log(`Failed to write ${FILE}`);
                     reject();
@@ -51,12 +46,16 @@ cardRouter.use(card.verify)
 /* Handle POST requests for Bonus Soul Cards */
 cardRouter.post(`/${CardType.BSOUL}`, async (req, res) => {
     const card = req.body;
+    if (card.cardType !== CardType.BSOUL)
+        return res.status(400).json({"message": 'Invalid "cardType" value'})
     model.cards.bsoul[card.id] = card;
     return res.json({ "message": "Created BonusSoulCard", "cards": model });
 });
 /* Handle POST requests for Character Cards */
 cardRouter.post(`/${CardType.CHARACTER}`, async (req, res) => {
     const card = req.body;
+    if (card.cardType !== CardType.CHARACTER)
+        return res.status(400).json({"message": 'Invalid "cardType" value'})
     model.cards.character[card.id] = card;
     return res.json({ "message": "Created CharacterCard", "cards": model })
 });
@@ -81,11 +80,65 @@ cardRouter.post(`/${CardType.ETERNAL}`, async (req, res) => {
     }
     return res.json({ "message": "Created EternalCard", "cards": model })
 });
-/* Handle POST requests for Outside Cards */
-cardRouter.post(`/${CardType.OUTSIDE}`, async (req, res) => {
+/* Handle POST requests for Treasure Cards */
+cardRouter.post(`/${CardType.TREASURE}`, async (req, res) => {
     const card = req.body;
-    model.cards.extra[card.id] = card;
-    return res.json({"message": "Created OutsideCard", "cards": model})
+    switch (card.cardType) {
+        case CardType.ATREASURE:
+            model.cards.treasure.atreasure[card.id] = card;
+            break;
+        case CardType.OTREASURE:
+            model.cards.treasure.otreasure[card.id] = card;
+            break;
+        case CardType.PAIDTREASURE:
+            model.cards.treasure.paidtreasure[card.id] = card;
+            break;
+        case CardType.PTREASURE:
+            model.cards.treasure.ptreasure[card.id] = card;
+            break;
+        case CardType.STREASURE:
+            model.cards.treasure.streasure[card.id] = card;
+            break;
+        default:
+            return res.status(404).json({ 'message': 'Invalid "cardType" value' })
+    }
+    return res.json({ "message": "Created TreasureCard", "cards": model })
+});
+/* Handle POST requests for Monster Cards */
+cardRouter.post(`/${CardType.MONSTER}`, async (req, res) => {
+    const card = req.body;
+    switch (card.cardType) {
+        case CardType.BMONSTER:
+            model.cards.monster.bmonster[card.id] = card;
+            break;
+        case CardType.CMONSTER:
+            model.cards.monster.cmonster[card.id] = card;
+            break;
+        case CardType.HMONSTER:
+            model.cards.monster.hmonster[card.id] = card;
+            break;
+        case CardType.CHAMONSTER:
+            model.cards.monster.chamonster[card.id] = card;
+            break;
+        case CardType.GEVENT:
+            model.cards.monster.gevent[card.id] = card;
+            break;
+        case CardType.BEVENT:
+            model.cards.monster.bevent[card.id] = card;
+            break;
+        case CardType.CURSE:
+            model.cards.monster.curse[card.id] = card;
+            break;
+        case CardType.BOSS:
+            model.cards.monster.boss[card.id] = card;
+            break;
+        case CardType.EPIC:
+            model.cards.monster.epic[card.id] = card;
+            break;
+        default:
+            return res.status(404).json({ 'message': 'Invalid "cardType" value' })
+    }
+    return res.json({ "message": "Created MonsterCard", "cards": model })
 });
 /* Handle POST requests for Loot Cards */
 cardRouter.post(`/${CardType.LOOT}`, async (req, res) => {
@@ -156,71 +209,21 @@ cardRouter.post(`/${CardType.LOOT}`, async (req, res) => {
     }
     return res.json({ "message": "Created LootCard", "cards": model })
 });
-/* Handle POST requests for Monster Cards */
-cardRouter.post(`/${CardType.MONSTER}`, async (req, res) => {
-    const card = req.body;
-    switch (card.cardType) {
-        case CardType.BMONSTER:
-            model.cards.monster.bmonster[card.id] = card;
-            break;
-        case CardType.CMONSTER:
-            model.cards.monster.cmonster[card.id] = card;
-            break;
-        case CardType.HMONSTER:
-            model.cards.monster.hmonster[card.id] = card;
-            break;
-        case CardType.CHAMONSTER:
-            model.cards.monster.chamonster[card.id] = card;
-            break;
-        case CardType.GEVENT:
-            model.cards.monster.gevent[card.id] = card;
-            break;
-        case CardType.BEVENT:
-            model.cards.monster.bevent[card.id] = card;
-            break;
-        case CardType.CURSE:
-            model.cards.monster.curse[card.id] = card;
-            break;
-        case CardType.BOSS:
-            model.cards.monster.boss[card.id] = card;
-            break;
-        case CardType.EPIC:
-            model.cards.monster.epic[card.id] = card;
-            break;
-        default:
-            return res.status(404).json({ 'message': 'Invalid "cardType" value' })
-    }
-    return res.json({ "message": "Created MonsterCard", "cards": model })
-});
 /* Handle POST requests for Room Cards */
 cardRouter.post(`/${CardType.ROOM}`, async (req, res) => {
     const card = req.body;
+    if (card.cardType !== CardType.ROOM)
+        return res.status(400).json({"message": 'Invalid "cardType" value'})
     model.cards.room[card.id] = card;
     return res.json({"message": "Created RoomCard", "cards": model})
 });
-/* Handle POST requests for Treasure Cards */
-cardRouter.post(`/${CardType.TREASURE}`, async (req, res) => {
+/* Handle POST requests for Outside Cards */
+cardRouter.post(`/${CardType.OUTSIDE}`, async (req, res) => {
     const card = req.body;
-    switch (card.cardType) {
-        case CardType.ATREASURE:
-            model.cards.treasure.atreasure[card.id] = card;
-            break;
-        case CardType.OTREASURE:
-            model.cards.treasure.otreasure[card.id] = card;
-            break;
-        case CardType.PAIDTREASURE:
-            model.cards.treasure.paidtreasure[card.id] = card;
-            break;
-        case CardType.PTREASURE:
-            model.cards.treasure.ptreasure[card.id] = card;
-            break;
-        case CardType.STREASURE:
-            model.cards.treasure.streasure[card.id] = card;
-            break;
-        default:
-            return res.status(404).json({ 'message': 'Invalid "cardType" value' })
-    }
-    return res.json({ "message": "Created TreasureCard", "cards": model })
+    if (card.cardType !== CardType.OUTSIDE)
+        return res.status(400).json({"message": 'Invalid "cardType" value'})
+    model.cards.outside[card.id] = card;
+    return res.json({"message": "Created OutsideCard", "cards": model})
 });
 
 const apiRouter = express.Router();
@@ -228,20 +231,13 @@ apiRouter.use('/card', cardRouter);
 /* Handle GET requests for Model */
 apiRouter.get('/', async (req, res) => {
     if (!req) return res.status(400).json({"message": "Bad Request"});
-    return res.status(200).json(model);
+    return res.status(200).json(model.cards);
 });
 
+const port = 3000;
 const app = express();
 app.use(express.json());
-const port = 3000;
 app.use('/api', apiRouter);
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`)
-});
-
-const { WebSocketServer } = require('ws');
-
-const wss = new WebSocketServer({port: 3001});
-wss.on('connection', (conn, req) => {
-    
 });

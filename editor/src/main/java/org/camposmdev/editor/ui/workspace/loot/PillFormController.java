@@ -43,6 +43,8 @@ public class PillFormController extends FormController<PillCard> {
         pill.setEvents(pillEvents)
             .setRepeat(Byte.parseByte(tfRepeat.getText()))
             .setShare(cbShare.isSelected());
+        /* clear pill events to make it more efficient for data entry of a new pill card */
+        pillEvents = new LinkedList<>();
         return pill;
     }
 }

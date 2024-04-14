@@ -52,9 +52,9 @@ public class RollEventBox extends FormController<List<RollEvent>> {
     CheckBox discardRandomItemCheckBox;
     CheckBox putOnMonsterSlotCheckBox;
 
-    private final AttributeModifier modifier;
+    private AttributeModifier modifier;
     private Reward reward;
-    private final List<RollEvent> rollEvents;
+    private List<RollEvent> rollEvents;
     private final ListView<RollEvent> lv;
 
 
@@ -82,6 +82,64 @@ public class RollEventBox extends FormController<List<RollEvent>> {
     @Override
     public List<RollEvent> submit() {
         return lv.getItems().stream().toList();
+    }
+
+    public void commit() {
+        try {
+            RollEvent rollEvent = new RollEvent();
+            // Set values for each property
+            String strValues = valuesField.getText();
+            String[] valueTokens = strValues.split(",");
+            List<Byte> values = new LinkedList<>();
+            for (String valueToken : valueTokens)
+                values.add(Byte.parseByte(valueToken));
+            rollEvent.setValues(values);
+            rollEvent.setMultReward(Byte.parseByte(multRewardField.getText()));
+            rollEvent.setMultPlayersDamage(Byte.parseByte(multPlayersDamageField.getText()));
+            rollEvent.setNoMonsterDamage(noMonsterDamageCheckBox.isSelected());
+            rollEvent.setModMonsterDamage(Byte.parseByte(modMonsterDamageField.getText()));
+            rollEvent.setMultMonsterDamage(Byte.parseByte(multMonsterDamageField.getText()));
+            rollEvent.setCancelTurn(cancelTurnCheckBox.isSelected());
+            rollEvent.setStealPlayerLoot(stealPlayerLootCheckBox.isSelected());
+            rollEvent.setDamage(Byte.parseByte(damageField.getText()));
+            rollEvent.setDamageTo(damageToComboBox.getValue());
+            rollEvent.setAttackAgain(attackAgainCheckBox.isSelected());
+            rollEvent.setForceAttackAgain(forceAttackAgainCheckBox.isSelected());
+            rollEvent.setModPlayer(modifier);
+            rollEvent.setAttackable(attackableCheckBox.isSelected());
+            rollEvent.setReturnToDeck(returnToDeckCheckBox.isSelected());
+            rollEvent.setModRoll(Byte.parseByte(modRollField.getText()));
+            rollEvent.setModAttack(Byte.parseByte(modAttackField.getText()));
+            rollEvent.setHealMonster(Byte.parseByte(healMonsterField.getText()));
+            rollEvent.setCancelAttack(cancelAttackCheckBox.isSelected());
+            rollEvent.setExpandMonster(Byte.parseByte(expandMonsterField.getText()));
+            rollEvent.setReward(reward);
+            rollEvent.setDiscardLoot(Byte.parseByte(discardLootField.getText()));
+            rollEvent.setDiscardCents(Byte.parseByte(discardCentsField.getText()));
+            rollEvent.setPeekDeck(peekDeckComboBox.getValue());
+            rollEvent.setPeekDeckAmount(Byte.parseByte(peekDeckAmountField.getText()));
+            rollEvent.setPeekDeckSort(peekDeckSortCheckBox.isSelected());
+            rollEvent.setSoulHitPoints(Byte.parseByte(soulHitPointsField.getText()));
+            rollEvent.setChangeToSoul(isSoulCheckBox.isSelected());
+            rollEvent.setSkipNextTurn(skipNextTurnCheckBox.isSelected());
+            rollEvent.setHeartItem(isHeartItemCheckBox.isSelected());
+            rollEvent.setRerollItem(Byte.parseByte(rerollItemField.getText()));
+            rollEvent.setGuppyItem(guppyItemCheckBox.isSelected());
+            rollEvent.setKill(killComboBox.getValue());
+            rollEvent.setModMonstersAttackRoll(Byte.parseByte(modMonstersAttackRollField.getText()));
+            rollEvent.setPutOnTopMonsterDeck(putOnTopMonsterDeckCheckBox.isSelected());
+            rollEvent.setRollEvents(rollEvents.toArray(new RollEvent[]{}));
+            rollEvent.setDamageLink(damageLinkCheckBox.isSelected());
+            rollEvent.setDiscardRandomItem(discardRandomItemCheckBox.isSelected());
+            rollEvent.setPutOnMonsterSlot(putOnMonsterSlotCheckBox.isSelected());
+            lv.getItems().add(rollEvent);
+            /* reset the fields for efficient data entry */
+            modifier = null;
+            reward = null;
+            rollEvents = new LinkedList<>();
+        }  catch (Exception ex) {
+            DialogFactory.instance().showErrorBox(ex);
+        }
     }
 
     public Node getContent() {
@@ -200,66 +258,14 @@ public class RollEventBox extends FormController<List<RollEvent>> {
 
 
         var btCommit = new Button("Commit");
-        btCommit.setOnAction(e -> {
-            try {
-                RollEvent rollEvent = new RollEvent();
-                // Set values for each property
-                String strValues = valuesField.getText();
-                String[] valueTokens = strValues.split(",");
-                byte[] values = new byte[valueTokens.length];
-                for (int i = 0; i < valueTokens.length; i++)
-                    values[i] = Byte.parseByte(valueTokens[i]);
-                rollEvent.setValues(values);
-                rollEvent.setMultReward(Byte.parseByte(multRewardField.getText()));
-                rollEvent.setMultPlayersDamage(Byte.parseByte(multPlayersDamageField.getText()));
-                rollEvent.setNoMonsterDamage(noMonsterDamageCheckBox.isSelected());
-                rollEvent.setModMonsterDamage(Byte.parseByte(modMonsterDamageField.getText()));
-                rollEvent.setMultMonsterDamage(Byte.parseByte(multMonsterDamageField.getText()));
-                rollEvent.setCancelTurn(cancelTurnCheckBox.isSelected());
-                rollEvent.setStealPlayerLoot(stealPlayerLootCheckBox.isSelected());
-                rollEvent.setDamage(Byte.parseByte(damageField.getText()));
-                rollEvent.setDamageTo(damageToComboBox.getValue());
-                rollEvent.setAttackAgain(attackAgainCheckBox.isSelected());
-                rollEvent.setForceAttackAgain(forceAttackAgainCheckBox.isSelected());
-                rollEvent.setModPlayer(modifier);
-                rollEvent.setAttackable(attackableCheckBox.isSelected());
-                rollEvent.setReturnToDeck(returnToDeckCheckBox.isSelected());
-                rollEvent.setModRoll(Byte.parseByte(modRollField.getText()));
-                rollEvent.setModAttack(Byte.parseByte(modAttackField.getText()));
-                rollEvent.setHealMonster(Byte.parseByte(healMonsterField.getText()));
-                rollEvent.setCancelAttack(cancelAttackCheckBox.isSelected());
-                rollEvent.setExpandMonster(Byte.parseByte(expandMonsterField.getText()));
-                rollEvent.setReward(reward);
-                rollEvent.setDiscardLoot(Byte.parseByte(discardLootField.getText()));
-                rollEvent.setDiscardCents(Byte.parseByte(discardCentsField.getText()));
-                rollEvent.setPeekDeck(peekDeckComboBox.getValue());
-                rollEvent.setPeekDeckAmount(Byte.parseByte(peekDeckAmountField.getText()));
-                rollEvent.setPeekDeckSort(peekDeckSortCheckBox.isSelected());
-                rollEvent.setSoulHitPoints(Byte.parseByte(soulHitPointsField.getText()));
-                rollEvent.setChangeToSoul(isSoulCheckBox.isSelected());
-                rollEvent.setSkipNextTurn(skipNextTurnCheckBox.isSelected());
-                rollEvent.setHeartItem(isHeartItemCheckBox.isSelected());
-                rollEvent.setRerollItem(Byte.parseByte(rerollItemField.getText()));
-                rollEvent.setGuppyItem(guppyItemCheckBox.isSelected());
-                rollEvent.setKill(killComboBox.getValue());
-                rollEvent.setModMonstersAttackRoll(Byte.parseByte(modMonstersAttackRollField.getText()));
-                rollEvent.setPutOnTopMonsterDeck(putOnTopMonsterDeckCheckBox.isSelected());
-                rollEvent.setRollEvents(rollEvents.toArray(new RollEvent[]{}));
-                rollEvent.setDamageLink(damageLinkCheckBox.isSelected());
-                rollEvent.setDiscardRandomItem(discardRandomItemCheckBox.isSelected());
-                rollEvent.setPutOnMonsterSlot(putOnMonsterSlotCheckBox.isSelected());
-                lv.getItems().add(rollEvent);
-            }  catch (Exception ex) {
-                DialogFactory.instance().showErrorBox(ex);
-            }
-        });
+        btCommit.setOnAction(e -> commit());
 
         // Add labels and controls to gridPane
         gridPane.addColumn(0, valuesLabel, multRewardLabel, multPlayersDamageLabel, noMonsterDamageLabel, modMonsterDamageLabel, multMonsterDamageLabel, cancelTurnLabel, stealPlayerLootLabel, damageLabel, damageToLabel, attackAgainLabel, forceAttackAgainLabel, modPlayerLabel, attackableLabel, returnToDeckLabel, modRollLabel, modAttackLabel, healMonsterLabel, cancelAttackLabel, expandMonsterLabel);
         gridPane.addColumn(1, valuesField, multRewardField, multPlayersDamageField, noMonsterDamageCheckBox, modMonsterDamageField, multMonsterDamageField, cancelTurnCheckBox, stealPlayerLootCheckBox, damageField, damageToComboBox, attackAgainCheckBox, forceAttackAgainCheckBox, modPlayerButton, attackableCheckBox, returnToDeckCheckBox, modRollField, modAttackField, healMonsterField, cancelAttackCheckBox, expandMonsterField);
         gridPane.addColumn(2, rewardLabel, discardLootLabel, discardCentsLabel, peekDeckLabel, peekDeckAmountLabel, peekDeckSortLabel, soulHitPointsLabel, isSoulLabel, skipNextTurnLabel, isHeartItemLabel, rerollItemLabel, guppyItemLabel, killLabel, modMonstersAttackRollLabel, putOnTopMonsterDeckLabel, rollEventLabel, damageLinkLabel, discardRandomItemLabel, putOnMonsterSlotLabel);
         gridPane.addColumn(3, rewardButton, discardLootField, discardCentsField, peekDeckComboBox, peekDeckAmountField, peekDeckSortCheckBox, soulHitPointsField, isSoulCheckBox, skipNextTurnCheckBox, isHeartItemCheckBox, rerollItemField, guppyItemCheckBox, killComboBox, modMonstersAttackRollField, putOnTopMonsterDeckCheckBox, rollEventButton, damageLinkCheckBox, discardRandomItemCheckBox, putOnMonsterSlotCheckBox);
-        gridPane.add(new StackPane(btCommit), 0, 20, 4, 1);
+        gridPane.add(btCommit, 0, 20, 1, 1);
         return new HBox(4, lv, gridPane);
     }
 }

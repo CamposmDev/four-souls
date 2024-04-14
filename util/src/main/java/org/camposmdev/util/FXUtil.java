@@ -33,9 +33,7 @@ public class FXUtil {
      */
     public static UI loadUI(String src) {
         try {
-            System.out.println(src);
             URL url = FXUtil.class.getClassLoader().getResource(UI_DIR + src);
-            System.out.println(url);
             var fxml = new FXMLLoader(url);
             var node = (Parent) fxml.load();
             /* Call controller's init method */

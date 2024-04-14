@@ -10,81 +10,73 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.StackPane?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="4.0"
-      xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="org.camposmdev.editor.ui.workspace.loot.PillEventFormController">
-    <ListView fx:id="lv"/>
-    <GridPane hgap="4.0" vgap="4.0">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="4.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.camposmdev.editor.ui.workspace.loot.PillEventFormController">
+    <ListView fx:id="lv" />
+    <GridPane fx:id="root" hgap="4.0" vgap="4.0">
         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
         </columnConstraints>
         <rowConstraints>
-            <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
-         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
-        <Label text="values"/>
-        <Label text="reward" GridPane.rowIndex="1"/>
-        <Label text="rewardTo" GridPane.rowIndex="2"/>
-        <Label text="discardCents" GridPane.rowIndex="3"/>
-        <Label text="discardLoot" GridPane.rowIndex="4"/>
-        <Label text="modPlayerDamage" GridPane.rowIndex="5"/>
-        <Label text="modPlayerHitPoint" GridPane.rowIndex="6"/>
-        <Label text="damage" GridPane.rowIndex="7"/>
-        <Label text="damageTo" GridPane.rowIndex="8"/>
-        <Label text="rechargeAllItems" GridPane.rowIndex="9"/>
-        <Label text="modPlayerDiceRoll" GridPane.columnIndex="2"/>
-        <TextField fx:id="tfValues" promptText="[0, 127]" GridPane.columnIndex="1"/>
-        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#modReward" text="Modify"
-                GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-        <ComboBox fx:id="cbRewardTo" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-        <TextField fx:id="tfDiscardCents" promptText="[0, 127]" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-        <TextField fx:id="tfDiscardLoot" promptText="[0, 127]" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
-        <TextField fx:id="tfModPlayerDamage" promptText="[0, 127]" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
-        <TextField fx:id="tfModPlayerHitPoint" promptText="[0, 127]" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
-        <TextField fx:id="tfDamage" promptText="[0, 127]" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
-        <ComboBox fx:id="cbDamageTo" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="8"/>
-        <CheckBox fx:id="cbRechargeAllItems" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="9"/>
-        <TextField fx:id="tfModPlayerDiceRoll" promptText="[0, 127]" GridPane.columnIndex="3"/>
-        <Label text="modMonsterAttackRoll" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
-        <Label text="cancelLootEffect" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
-        <Label text="allDiscardLoot" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
-        <Label text="rerollPlayerItem" GridPane.columnIndex="2" GridPane.rowIndex="4"/>
-        <Label text="rerollItemInPlay" GridPane.columnIndex="2" GridPane.rowIndex="5"/>
-        <Label text="rerollAllItems" GridPane.columnIndex="2" GridPane.rowIndex="6"/>
-        <Label text="otherPlayersDiscardLoot" GridPane.columnIndex="2" GridPane.rowIndex="7"/>
-        <Label text="rerollAnyItem" GridPane.columnIndex="2" GridPane.rowIndex="8"/>
-        <Label text="putLoot" GridPane.columnIndex="2" GridPane.rowIndex="9"/>
-        <TextField fx:id="tfModMonsterAttackRoll" promptText="[0, 127]" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
-        <CheckBox fx:id="cbCancelLootEffect" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.rowIndex="2"/>
-        <TextField fx:id="tfAllDiscardLoot" promptText="[0, 127]" GridPane.columnIndex="3" GridPane.rowIndex="3"/>
-        <CheckBox fx:id="cbRerollPlayerItem" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.rowIndex="4"/>
-        <CheckBox fx:id="cbRerollItemInPlay" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.rowIndex="5"/>
-        <CheckBox fx:id="cbRerollAllItems" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.rowIndex="6"/>
-        <TextField fx:id="tfOtherPlayersDiscardLoot" promptText="[0, 127]" GridPane.columnIndex="3"
-                   GridPane.rowIndex="7"/>
-        <CheckBox fx:id="cbRerollAnyItem" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.rowIndex="8"/>
-        <TextField fx:id="tfPutLoot" promptText="[0, 127]" GridPane.columnIndex="3" GridPane.rowIndex="9"/>
-        <StackPane GridPane.columnSpan="4" GridPane.rowIndex="11">
-            <Button mnemonicParsing="false" onMouseClicked="#commit" text="Commit"/>
-        </StackPane>
-        <Label text="giftNonEternalItem" GridPane.rowIndex="10"/>
-        <Label text="item" GridPane.columnIndex="2" GridPane.rowIndex="10"/>
-        <ComboBox fx:id="cbItem" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="10"/>
-        <CheckBox fx:id="cbGift" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="10"/>
+        <Label text="values" />
+        <Label text="reward" GridPane.rowIndex="1" />
+        <Label text="rewardTo" GridPane.rowIndex="2" />
+        <Label text="discardCents" GridPane.rowIndex="3" />
+        <Label text="discardLoot" GridPane.rowIndex="4" />
+        <Label text="modPlayerDamage" GridPane.rowIndex="5" />
+        <Label text="modPlayerHitPoint" GridPane.rowIndex="6" />
+        <Label text="damage" GridPane.rowIndex="7" />
+        <Label text="damageTo" GridPane.rowIndex="8" />
+        <Label text="rechargeAllItems" GridPane.rowIndex="9" />
+        <Label text="modPlayerDiceRoll" GridPane.columnIndex="2" />
+        <TextField fx:id="tfValues" promptText="1,2,3,4,5,6" GridPane.columnIndex="1" />
+        <ComboBox fx:id="cbRewardTo" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <TextField fx:id="tfDiscardCents" promptText="[0, 127]" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <TextField fx:id="tfDiscardLoot" promptText="[0, 127]" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+        <TextField fx:id="tfModPlayerDamage" promptText="[0, 127]" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+        <TextField fx:id="tfModPlayerHitPoint" promptText="[0, 127]" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+        <TextField fx:id="tfDamage" promptText="[0, 127]" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+        <ComboBox fx:id="cbDamageTo" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+        <CheckBox fx:id="cbRechargeAllItems" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+        <TextField fx:id="tfModPlayerDiceRoll" promptText="[0, 127]" GridPane.columnIndex="3" />
+        <Label text="modMonsterAttackRoll" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+        <Label text="cancelLootEffect" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+        <Label text="allDiscardLoot" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+        <Label text="rerollPlayerItem" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+        <Label text="rerollItemInPlay" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+        <Label text="rerollAllItems" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+        <Label text="otherPlayersDiscardLoot" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+        <Label text="rerollAnyItem" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+        <Label text="putLoot" GridPane.columnIndex="2" GridPane.rowIndex="9" />
+        <TextField fx:id="tfModMonsterAttackRoll" promptText="[0, 127]" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+        <CheckBox fx:id="cbCancelLootEffect" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+        <TextField fx:id="tfAllDiscardLoot" promptText="[0, 127]" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+        <CheckBox fx:id="cbRerollPlayerItem" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+        <CheckBox fx:id="cbRerollItemInPlay" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+        <CheckBox fx:id="cbRerollAllItems" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+        <TextField fx:id="tfOtherPlayersDiscardLoot" promptText="[0, 127]" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+        <CheckBox fx:id="cbRerollAnyItem" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.rowIndex="8" />
+        <TextField fx:id="tfPutLoot" promptText="[0, 127]" GridPane.columnIndex="3" GridPane.rowIndex="9" />
+         <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#commit" text="Commit" GridPane.rowIndex="11" />
+        <Label text="giftNonEternalItem" GridPane.rowIndex="10" />
+        <Label text="item" GridPane.columnIndex="2" GridPane.rowIndex="10" />
+        <ComboBox fx:id="cbItem" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="10" />
+        <CheckBox fx:id="cbGift" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="10" />
     </GridPane>
 </HBox>

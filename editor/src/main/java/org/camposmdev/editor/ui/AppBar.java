@@ -1,6 +1,10 @@
 package org.camposmdev.editor.ui;
 
 import com.almasb.fxgl.dsl.FXGL;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
+import org.camposmdev.editor.net.API;
 import org.camposmdev.editor.ui.workspace.Workspace;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -11,6 +15,11 @@ import javafx.scene.input.KeyCombination;
 import org.camposmdev.editor.model.Model;
 import org.camposmdev.editor.ui.factory.DialogFactory;
 import org.camposmdev.model.card.attribute.CardType;
+
+import java.awt.*;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 public class AppBar {
     private final MenuBar menuBar;
@@ -28,15 +37,18 @@ public class AppBar {
     private Menu buildFileMenu() {
         var miOpen = new MenuItem("Load...");
         miOpen.setAccelerator(new KeyCodeCombination(KeyCode.O, KeyCombination.SHORTCUT_DOWN));
-        miOpen.setOnAction(e -> Model.instance().loadCards());
+        miOpen.setOnAction(e -> Model.instance().loadMasterCardAtlas());
         var miSave = new MenuItem("Save");
         miSave.setAccelerator(new KeyCodeCombination(KeyCode.S, KeyCodeCombination.SHORTCUT_DOWN));
-        miSave.setOnAction(e -> Model.instance().saveCards());
+        miSave.setOnAction(e -> Model.instance().saveMasterCardAtlas());
         var miPreview = new MenuItem("Preview");
         miPreview.setAccelerator(new KeyCodeCombination(KeyCode.P, KeyCodeCombination.SHORTCUT_DOWN));
         miPreview.setOnAction(e -> {
-            var payload = Model.instance().cards().toString();
-            DialogFactory.instance().showPreviewBox(payload);
+            try {
+                Desktop.getDesktop().browse(new URI(API.base_url));
+            } catch (IOException | URISyntaxException ex) {
+                NotificationBar.instance().push("Failed to preview latest version of master card atlas");
+            }
         });
         var miExit = new MenuItem("Exit");
         miExit.setAccelerator(new KeyCodeCombination(KeyCode.Q, KeyCodeCombination.SHORTCUT_DOWN));
@@ -64,14 +76,16 @@ public class AppBar {
 
     private Menu buildViewMenu() {
         CheckMenuItem miDarkMode = new CheckMenuItem("Dark Mode");
+        miDarkMode.setSelected(true);
         miDarkMode.setAccelerator(new KeyCodeCombination(KeyCode.D, KeyCombination.SHORTCUT_DOWN));
         miDarkMode.setOnAction(e -> {
             var css = FXGL.getAssetLoader().loadCSS("dark.css");
-            if (miDarkMode.isSelected()) {
-                FXGL.getPrimaryStage().getScene().getStylesheets().add(css.getExternalForm());
-            } else {
-                FXGL.getPrimaryStage().getScene().getStylesheets().remove(css.getExternalForm());
-            }
+            var external = css.getExternalForm();
+            var sheets = FXGL.getPrimaryStage().getScene().getStylesheets();
+            if (miDarkMode.isSelected())
+                sheets.add(external);
+            else
+                sheets.remove(external);
         });
         var miFullScreen = new CheckMenuItem("Full Screen");
         miFullScreen.setAccelerator(new KeyCodeCombination((KeyCode.F11)));
@@ -222,6 +236,7 @@ public class AppBar {
 
     public MenuItem buildOutsideMenu() {
         var mi_outside = new MenuItem(CardType.OUTSIDE.pretty());
+        mi_outside.setAccelerator(new KeyCodeCombination(KeyCode.O, KeyCombination.SHORTCUT_DOWN, KeyCombination.SHIFT_DOWN));
         mi_outside.setOnAction(new MenuHandler());
         return mi_outside;
     }

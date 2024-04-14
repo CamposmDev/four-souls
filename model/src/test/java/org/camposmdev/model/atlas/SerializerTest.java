@@ -78,7 +78,7 @@ public class SerializerTest {
 
     @Test
     void testReward() throws JsonProcessingException {
-        var reward = new Reward((byte) 0, (byte) 0, (byte) 0, (byte) 0,true, false, false, false);
+        Reward reward = new Reward(0,0,0,0,true, false, false, false);
         String actual = mapper.writeValueAsString(reward);
         JsonNode jsonNode = mapper.readTree(actual);
         Field[] fields = Reward.class.getFields();

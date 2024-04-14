@@ -33,9 +33,9 @@
                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
             </padding>
             <Label text="cardSet" />
-            <Label text="HP" GridPane.rowIndex="1" />
-            <Label text="DC" GridPane.rowIndex="2" />
-            <Label text="ATK" GridPane.rowIndex="3" />
+            <Label text="hitPoints" GridPane.rowIndex="1" />
+            <Label text="roll" GridPane.rowIndex="2" />
+            <Label text="damage" GridPane.rowIndex="3" />
             <Label text="reward" GridPane.rowIndex="4" />
             <Label text="soul" GridPane.rowIndex="5" />
             <ComboBox fx:id="stat_cbCardSet" prefWidth="150.0" GridPane.columnIndex="1" />
@@ -472,7 +472,7 @@
             <CheckBox fx:id="de_isSloth" GridPane.columnIndex="3" GridPane.rowIndex="11" />
             <CheckBox fx:id="de_attackMonsterDeck" GridPane.columnIndex="3" GridPane.rowIndex="12" />
             <CheckBox fx:id="de_secondChance" GridPane.columnIndex="3" GridPane.rowIndex="13" />
-            <TextField fx:id="de_secondChanceAttributes" promptText="[0,127]" GridPane.columnIndex="3" GridPane.rowIndex="14" />
+            <TextField fx:id="de_secondChanceAttributes" promptText="HP, DC, ATK" GridPane.columnIndex="3" GridPane.rowIndex="14" />
             <CheckBox fx:id="de_giftSoul" GridPane.columnIndex="3" GridPane.rowIndex="15" />
             <CheckBox fx:id="de_isClog" GridPane.columnIndex="3" GridPane.rowIndex="16" />
             <CheckBox fx:id="de_summonCurse" GridPane.columnIndex="3" GridPane.rowIndex="17" />

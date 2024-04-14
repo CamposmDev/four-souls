@@ -12,7 +12,7 @@ public class LootCardAtlas implements CardAtlas<LootCard> {
     protected Map<String, BlackHeartCard> bheart;
     protected Map<String, BombCard> bomb;
     protected Map<String, ButterBeanCard> butter;
-    protected Map<String, WildCard> cards;
+    protected Map<String, TarotCard> cards;
     protected Map<String, DiceShardCard> dice;
     protected Map<String, KeyCard> key;
     protected Map<String, LostSoulCard> lsoul;
@@ -49,7 +49,7 @@ public class LootCardAtlas implements CardAtlas<LootCard> {
             case BHEART -> bheart.put(card.getId(), (BlackHeartCard) card);
             case BOMBS -> bomb.put(card.getId(), (BombCard) card);
             case BUTTER -> butter.put(card.getId(), (ButterBeanCard) card);
-            case CARDS -> cards.put(card.getId(), (WildCard) card);
+            case CARDS -> cards.put(card.getId(), (TarotCard) card);
             case DICE -> dice.put(card.getId(), (DiceShardCard) card);
             case KEYS -> key.put(card.getId(), (KeyCard) card);
             case LSOUL -> lsoul.put(card.getId(), (LostSoulCard) card);

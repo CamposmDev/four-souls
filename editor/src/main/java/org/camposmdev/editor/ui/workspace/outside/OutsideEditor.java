@@ -1,4 +1,4 @@
-package org.camposmdev.editor.ui.workspace.extra;
+package org.camposmdev.editor.ui.workspace.outside;
 
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -11,14 +11,14 @@ import org.camposmdev.editor.ui.NotificationBar;
 import org.camposmdev.editor.ui.factory.DialogFactory;
 import org.camposmdev.editor.ui.workspace.BaseEditor;
 import org.camposmdev.model.card.attribute.CardSet;
-import org.camposmdev.model.card.extra.ExtraCard;
+import org.camposmdev.model.card.extra.OutsideCard;
 
-public class ExtraEditor extends BaseEditor {
+public class OutsideEditor extends BaseEditor {
     private final GridPane root;
     private final ComboBox<CardSet> cbCardSet;
     private final CheckBox cbForceAttack, cbTheHarbingers, cbIndomitable, cbTheBeast;
 
-    public ExtraEditor() {
+    public OutsideEditor() {
         cbCardSet = new ComboBox<>();
         cbCardSet.setValue(CardSet.UNDEFINED);
         cbCardSet.getItems().addAll(CardSet.values());
@@ -41,7 +41,7 @@ public class ExtraEditor extends BaseEditor {
     @Override
     public void commit() {
         try {
-            var card = new ExtraCard()
+            var card = new OutsideCard()
                     .setForceAttack(cbForceAttack.isSelected())
                     .setTheHarbingers(cbTheHarbingers.isSelected())
                     .setIndomitable(cbIndomitable.isSelected())
@@ -49,7 +49,7 @@ public class ExtraEditor extends BaseEditor {
             card.setId(super.id())
                     .setImage(super.image())
                     .setCardSet(cbCardSet.getValue());
-            Model.instance().cards().add(card);
+            Model.instance().addCard(card);
             NotificationBar.instance().push(card);
         } catch (Exception ex) {
             DialogFactory.instance().showErrorBox(ex);

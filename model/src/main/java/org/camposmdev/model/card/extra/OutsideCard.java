@@ -5,10 +5,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.camposmdev.model.card.BaseCard;
 import org.camposmdev.model.card.attribute.CardType;
 
-public class ExtraCard extends BaseCard {
+public class OutsideCard extends BaseCard {
     private boolean forceAttack, theHarbingers, indomitable, theBeast;
 
-    public ExtraCard() {
+    public OutsideCard() {
         super.setCardType(CardType.OUTSIDE);
     }
 
@@ -16,7 +16,7 @@ public class ExtraCard extends BaseCard {
         return forceAttack;
     }
 
-    public ExtraCard setForceAttack(boolean forceAttack) {
+    public OutsideCard setForceAttack(boolean forceAttack) {
         this.forceAttack = forceAttack;
         return this;
     }
@@ -25,7 +25,7 @@ public class ExtraCard extends BaseCard {
         return theHarbingers;
     }
 
-    public ExtraCard setTheHarbingers(boolean theHarbingers) {
+    public OutsideCard setTheHarbingers(boolean theHarbingers) {
         this.theHarbingers = theHarbingers;
         return this;
     }
@@ -34,7 +34,7 @@ public class ExtraCard extends BaseCard {
         return indomitable;
     }
 
-    public ExtraCard setIndomitable(boolean indomitable) {
+    public OutsideCard setIndomitable(boolean indomitable) {
         this.indomitable = indomitable;
         return this;
     }
@@ -43,7 +43,7 @@ public class ExtraCard extends BaseCard {
         return theBeast;
     }
 
-    public ExtraCard setTheBeast(boolean theBeast) {
+    public OutsideCard setTheBeast(boolean theBeast) {
         this.theBeast = theBeast;
         return this;
     }

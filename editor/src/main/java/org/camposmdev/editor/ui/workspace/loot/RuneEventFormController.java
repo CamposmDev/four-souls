@@ -1,5 +1,7 @@
 package org.camposmdev.editor.ui.workspace.loot;
 
+import javafx.scene.layout.GridPane;
+import org.camposmdev.editor.ui.RewardBox;
 import org.camposmdev.editor.ui.factory.DialogFactory;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -27,11 +29,14 @@ public class RuneEventFormController extends FormController<RuneEvent[]> {
     private CheckBox cbRerollAnyItem;
     @FXML
     private TextField tfDiscardHandThenLoot;
-    private Reward reward;
+    @FXML GridPane root;
+    private RewardBox rewardBox;
 
     @Override
     public void init() {
-        FXUtil.initNumberFields(tfValues, tfDamage, tfDiscardHandThenLoot);
+        rewardBox = new RewardBox();
+        root.add(rewardBox.getContent(), 1, 3);
+        FXUtil.initNumberFields(tfDamage, tfDiscardHandThenLoot);
         cbDamageTo.setValue(EntityTarget.UNDEFINED);
         cbDamageTo.getItems().addAll(EntityTarget.values());
         cbRewardTo.setValue(EntityTarget.UNDEFINED);
@@ -51,10 +56,6 @@ public class RuneEventFormController extends FormController<RuneEvent[]> {
         lv.getItems().addAll(runeEvents);
     }
 
-    public void modReward() {
-        DialogFactory.instance().showRewardModifierBox(reward).ifPresent(x -> reward = x);
-    }
-
     public RuneEvent build() throws Exception {
         String[] tokens = tfValues.getText().split(",");
         byte[] values = new byte[tokens.length];
@@ -64,7 +65,7 @@ public class RuneEventFormController extends FormController<RuneEvent[]> {
                 .setValues(values)
                 .setDamage(Byte.parseByte(tfDamage.getText()))
                 .setDamageTo(cbDamageTo.getValue())
-                .setReward(reward)
+                .setReward(rewardBox.submit())
                 .setRewardTo(cbRewardTo.getValue())
                 .setDestroyItemInPlaceAndReplace(cbDestroyItemInPlayAndReplace.isSelected())
                 .setRerollAnyItem(cbRerollAnyItem.isSelected())

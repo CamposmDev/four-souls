@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import org.camposmdev.model.card.bsoul.BonusSoulCard;
 import org.camposmdev.model.card.character.CharacterCard;
-import org.camposmdev.model.card.extra.ExtraCard;
+import org.camposmdev.model.card.extra.OutsideCard;
 import org.camposmdev.model.card.room.RoomCard;
 
 import java.io.IOException;
@@ -43,7 +43,7 @@ public class MasterCardAtlasDeserializer extends CardAtlasDeserializer<MasterCar
         if (!eternal.isEmpty())
             obj.eternal = mapper.treeToValue(eternal, EternalCardAtlas.class);
         if (!isEmptyMap(outside))
-            obj.outside = deserializeMap(outside, mapper, ExtraCard.class);
+            obj.outside = deserializeMap(outside, mapper, OutsideCard.class);
         if (!loot.isEmpty())
             obj.loot = mapper.treeToValue(loot, LootCardAtlas.class);
         if (!isEmptyMap(monster))

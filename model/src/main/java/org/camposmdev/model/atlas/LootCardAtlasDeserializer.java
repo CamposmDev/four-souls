@@ -45,7 +45,7 @@ public class LootCardAtlasDeserializer extends CardAtlasDeserializer<LootCardAtl
         if (!isEmptyMap(butter))
             obj.butter = deserializeMap(butter, mapper, ButterBeanCard.class);
         if (!isEmptyMap(cards))
-            obj.cards = deserializeMap(cards, mapper, WildCard.class);
+            obj.cards = deserializeMap(cards, mapper, TarotCard.class);
         if (!isEmptyMap(dice))
             obj.dice = deserializeMap(dice, mapper, DiceShardCard.class);
         if (!isEmptyMap(key))

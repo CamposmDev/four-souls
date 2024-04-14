@@ -4,14 +4,17 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.camposmdev.model.card.BaseCard;
 import org.camposmdev.model.card.attribute.CardType;
+import org.camposmdev.model.card.attribute.character.SpecialType;
 
 public class CharacterCard extends BaseCard {
     private byte hitPoints;
     private byte damage;
     private String eternalId;
+    private SpecialType special;
 
     public CharacterCard() {
         super.setCardType(CardType.CHARACTER);
+        this.special = SpecialType.DEFAULT;
     }
 
     public byte getHitPoints() {
@@ -38,6 +41,15 @@ public class CharacterCard extends BaseCard {
 
     public CharacterCard setEternalId(String eternalId) {
         this.eternalId = eternalId;
+        return this;
+    }
+
+    public SpecialType getSpecial() {
+        return special;
+    }
+
+    public CharacterCard setSpecial(SpecialType special) {
+        this.special = special;
         return this;
     }
 

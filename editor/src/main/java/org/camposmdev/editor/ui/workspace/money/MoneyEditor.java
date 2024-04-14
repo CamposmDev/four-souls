@@ -65,7 +65,7 @@ public class MoneyEditor extends BaseEditor {
             var card = new MoneyCard();
             card.setId(id()).setImage(image()).setCardSet(cardSet).setCardType(cardType);
             card.setValue(value).setRechargeItem(rechargeItem).setDoubleReward(doubleReward).setSticky(isSticky).setButt(isButt);
-            Model.instance().cards().add(card);
+            Model.instance().addCard(card);
             NotificationBar.instance().push(card.toString());
         } catch (Exception ex) {
             DialogFactory.instance().showErrorBox(ex);

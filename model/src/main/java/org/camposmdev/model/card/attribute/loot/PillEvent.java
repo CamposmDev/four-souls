@@ -5,8 +5,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.camposmdev.model.card.attribute.EntityTarget;
 import org.camposmdev.model.card.attribute.Reward;
 
+import java.util.List;
+
 public class PillEvent {
-    protected byte[] values;
+    protected List<Byte> values;
     protected Reward reward;
     protected EntityTarget rewardTo;
     protected byte discardCents;
@@ -29,11 +31,11 @@ public class PillEvent {
     protected boolean giftNonEternalItem;
     protected PillItem item;
 
-    public byte[] getValues() {
+    public List<Byte> getValues() {
         return values;
     }
 
-    public PillEvent setValues(byte[] values) {
+    public PillEvent setValues(List<Byte> values) {
         this.values = values;
         return this;
     }

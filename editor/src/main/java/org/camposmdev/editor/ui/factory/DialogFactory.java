@@ -2,8 +2,10 @@ package org.camposmdev.editor.ui.factory;
 
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.ui.UI;
+import javafx.stage.FileChooser;
 import org.camposmdev.editor.ui.AttributeModifierBox;
-import org.camposmdev.editor.ui.LootOptionEventBox;
+import org.camposmdev.editor.ui.NotificationBar;
+import org.camposmdev.editor.ui.workspace.loot.LootOptionFormController;
 import org.camposmdev.editor.ui.workspace.loot.PillEventFormController;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
@@ -12,15 +14,18 @@ import org.camposmdev.editor.ui.RewardBox;
 import org.camposmdev.editor.ui.RollEventBox;
 import org.camposmdev.editor.ui.workspace.loot.RuneEventFormController;
 import org.camposmdev.editor.ui.workspace.monster.MonsterOptionEventFormController;
+import org.camposmdev.model.atlas.MasterCardAtlas;
 import org.camposmdev.model.card.attribute.*;
 import org.camposmdev.model.card.attribute.Reward;
-import org.camposmdev.model.card.attribute.loot.LootOptionEvent;
+import org.camposmdev.model.card.attribute.loot.LootOption;
 import org.camposmdev.model.card.attribute.loot.PillEvent;
 import org.camposmdev.model.card.attribute.loot.RuneEvent;
 import org.camposmdev.model.card.attribute.monster.MonsterOptionEvent;
 import org.camposmdev.util.DialogBuilder;
 import org.camposmdev.util.FXUtil;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
@@ -64,48 +69,8 @@ public class DialogFactory {
         alert.showAndWait();
     }
 
-    @Deprecated
     public void showPreviewBox(String payload) {
-//        Function<JsonObject, TextArea> preview = (obj) -> {
-//            final double ZOOM_FACTOR = 1.1;
-//            Function<TextArea, Void> increase = ta -> {
-//                double currentFontSize = ta.getFont().getSize();
-//                ta.setStyle("-fx-font-size: " + (currentFontSize * ZOOM_FACTOR));
-//                return null;
-//            };
-//            Function<TextArea, Void> decrease = ta -> {
-//                double currentFontSize = ta.getFont().getSize();
-//                ta.setStyle("-fx-font-size: " + (currentFontSize / ZOOM_FACTOR));
-//                return null;
-//            };
-//            var node = new TextArea(obj.encodePrettily());
-//            node.setPrefSize(800, 700);
-//            node.setEditable(false);
-//            node.setStyle("-fx-font-size: 14");
-//            node.setOnKeyPressed((KeyEvent event) -> {
-//                if (event.isControlDown()) {
-//                    if (event.getCode() == KeyCode.EQUALS) {
-//                        increase.apply(node);
-//                    } else if (event.getCode() == KeyCode.MINUS) {
-//                        decrease.apply(node);
-//                    }
-//                }
-//            });
-//            return node;
-//        };
-//        var root = new TabPane();
-//        root.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
-////        payload.forEach(entry -> {
-////            var ta = preview.apply((JsonObject) entry.getValue());
-////            root.getTabs().add(new Tab(entry.getKey(), ta));
-////        });
-//        new DialogBuilder()
-//                .setAlertType(Alert.AlertType.INFORMATION)
-//                .setTitle("Preview")
-//                .setHeaderText("Master Card Atlas")
-//                .setDefaultBtn()
-//                .setContent(root)
-//                .buildAndShow();
+
     }
 
     public void showExitBox() {
@@ -252,18 +217,21 @@ public class DialogFactory {
                 });
     }
 
-    public void showLootOptionEventModifierBox(List<LootOptionEvent> lst) {
-        var box = new LootOptionEventBox();
-        box.load(lst);
-        new DialogBuilder().setTitle("Loot Option Event")
+    @Deprecated
+    public void showLootOptionEventModifierBox(List<LootOption> lst) {
+        UI form = FXUtil.loadUI("workspace/loot/LootOptionForm.fxml");
+        assert form != null;
+        var controller = (LootOptionFormController) form.getController();
+        controller.load(lst);
+        new DialogBuilder().setTitle("Loot Option")
                 .setHeaderText("You played a loot card, choose one.")
-                .setContent(box.getContent())
+                .setContent(form.getRoot())
                 .setDefaultBtn()
                 .buildAndShow().ifPresent(e -> {
                     if (e.getButtonData().isDefaultButton()) {
                         try {
                             lst.clear();
-                            lst.addAll(box.submit());
+                            lst.addAll(controller.submit());
                         } catch (Exception ex) {
                             throw new RuntimeException(ex);
                         }
@@ -295,7 +263,7 @@ public class DialogFactory {
         assert form != null;
         ((PillEventFormController) form.getController()).load(lst.toArray(new PillEvent[]{}));
         new DialogBuilder().setTitle("Pill Event")
-                .setHeaderText("You played a pill card. Choose one.")
+                .setHeaderText("You played a pill card. Roll for an event.")
                 .setContent(form.getRoot())
                 .setDefaultBtn()
                 .buildAndShow().ifPresent(e -> {
@@ -311,6 +279,7 @@ public class DialogFactory {
                 });
     }
 
+    @Deprecated
     public void showRuneEventModifierBox(List<RuneEvent> lst) {
         UI form = FXUtil.loadUI("workspace/loot/RuneEventForm.fxml");
         assert form != null;
@@ -351,5 +320,25 @@ public class DialogFactory {
                         }
                     }
                 });
+    }
+
+    public void saveMasterCardAtlas(MasterCardAtlas masterCardAtlas) {
+        var filterJSON = new FileChooser.ExtensionFilter("JSON", "*.json");
+        var fc = new FileChooser();
+        fc.setTitle("Save Master Card Atlas to local machine.");
+        fc.getExtensionFilters().add(filterJSON);
+        fc.setSelectedExtensionFilter(filterJSON);
+        fc.setInitialFileName("cards");
+        var f = fc.showSaveDialog(FXGL.getPrimaryStage());
+        if (f == null) return;
+        /* otherwise save the cards */
+        try(var fos = new FileOutputStream(f)) {
+            var payload = masterCardAtlas.toString();
+            fos.write(payload.getBytes());
+            fos.flush();
+            NotificationBar.instance().push("Saved " + f);
+        } catch (IOException ex) {
+            DialogFactory.instance().showErrorBox(ex);
+        }
     }
 }

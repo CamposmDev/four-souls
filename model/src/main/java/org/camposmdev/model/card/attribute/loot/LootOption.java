@@ -5,20 +5,21 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.camposmdev.model.card.attribute.EntityTarget;
 import org.camposmdev.model.card.attribute.Reward;
 
-public class LootOptionEvent {
+public class LootOption {
     protected byte damage;
     protected EntityTarget damageTo;
     protected Reward reward;
-    protected boolean attackAgain;
+    protected boolean mayAttackAgain;
     protected boolean summonMonster;
     protected boolean destroyCurse;
-    protected byte preventDamageToPlayer;
+    protected byte preventDamage;
+    protected EntityTarget preventDamageTo;
 
     public byte getDamage() {
         return damage;
     }
 
-    public LootOptionEvent setDamage(byte damage) {
+    public LootOption setDamage(byte damage) {
         this.damage = damage;
         return this;
     }
@@ -27,7 +28,7 @@ public class LootOptionEvent {
         return damageTo;
     }
 
-    public LootOptionEvent setDamageTo(EntityTarget damageTo) {
+    public LootOption setDamageTo(EntityTarget damageTo) {
         this.damageTo = damageTo;
         return this;
     }
@@ -36,17 +37,17 @@ public class LootOptionEvent {
         return reward;
     }
 
-    public LootOptionEvent setReward(Reward reward) {
+    public LootOption setReward(Reward reward) {
         this.reward = reward;
         return this;
     }
 
-    public boolean isAttackAgain() {
-        return attackAgain;
+    public boolean isMayAttackAgain() {
+        return mayAttackAgain;
     }
 
-    public LootOptionEvent setAttackAgain(boolean attackAgain) {
-        this.attackAgain = attackAgain;
+    public LootOption setMayAttackAgain(boolean mayAttackAgain) {
+        this.mayAttackAgain = mayAttackAgain;
         return this;
     }
 
@@ -54,7 +55,7 @@ public class LootOptionEvent {
         return summonMonster;
     }
 
-    public LootOptionEvent setSummonMonster(boolean summonMonster) {
+    public LootOption setSummonMonster(boolean summonMonster) {
         this.summonMonster = summonMonster;
         return this;
     }
@@ -63,17 +64,26 @@ public class LootOptionEvent {
         return destroyCurse;
     }
 
-    public LootOptionEvent setDestroyCurse(boolean destroyCurse) {
+    public LootOption setDestroyCurse(boolean destroyCurse) {
         this.destroyCurse = destroyCurse;
         return this;
     }
 
-    public byte getPreventDamageToPlayer() {
-        return preventDamageToPlayer;
+    public byte getPreventDamage() {
+        return preventDamage;
     }
 
-    public LootOptionEvent setPreventDamageToPlayer(byte preventDamageToPlayer) {
-        this.preventDamageToPlayer = preventDamageToPlayer;
+    public LootOption setPreventDamage(byte preventDamage) {
+        this.preventDamage = preventDamage;
+        return this;
+    }
+
+    public EntityTarget getPreventDamageTo() {
+        return preventDamageTo;
+    }
+
+    public LootOption setPreventDamageTo(EntityTarget preventDamageTo) {
+        this.preventDamageTo = preventDamageTo;
         return this;
     }
 

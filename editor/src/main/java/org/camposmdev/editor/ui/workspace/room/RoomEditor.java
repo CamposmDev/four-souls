@@ -51,7 +51,7 @@ public class RoomEditor extends BaseEditor {
                     .setId(super.id())
                     .setImage(super.image())
                     .setCardSet(cbCardSet.getValue());
-            Model.instance().cards().add(card);
+            Model.instance().addCard(card);
             NotificationBar.instance().push(card);
         } catch (Exception ex) {
             DialogFactory.instance().showErrorBox(ex);

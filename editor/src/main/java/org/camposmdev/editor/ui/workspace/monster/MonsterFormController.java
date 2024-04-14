@@ -12,6 +12,7 @@ import org.camposmdev.model.card.monster.MonsterCard;
 import org.camposmdev.util.FXUtil;
 import org.camposmdev.util.FormController;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -119,13 +120,13 @@ public class MonsterFormController extends FormController<MonsterCard> {
     @FXML protected FormController<EndEvent> ee_formController;
     private Reward stat_reward;
     private AttributeModifier pe_modifier;
-    private final List<RollListener> pe_rollListeners;
-    private final List<RollEvent> pe_preattackRollEvents;
-    private final List<RollEvent> ae_rollEvents;
-    private final List<RollEvent> dmge_rollEvents;
-    private final List<RollEvent> dmge_damageRollEvents;
-    private final List<RollEvent> de_deathRollEvents;
-    private final List<RollEvent> de_killRollEvents;
+    private List<RollListener> pe_rollListeners;
+    private List<RollEvent> pe_preattackRollEvents;
+    private List<RollEvent> ae_rollEvents;
+    private List<RollEvent> dmge_rollEvents;
+    private List<RollEvent> dmge_damageRollEvents;
+    private List<RollEvent> de_deathRollEvents;
+    private List<RollEvent> de_killRollEvents;
     private Reward de_reward;
 
     public MonsterFormController() {
@@ -150,7 +151,7 @@ public class MonsterFormController extends FormController<MonsterCard> {
                 ae_modNextAttackRoll, ae_damage, ae_discardLoot, dmge_modPlayersNextAttackRoll,
                 dmge_damage, dmge_modAttackRoll, dmge_modDamage, de_damage, de_discardLoot,
                 de_loseCents, de_expandMonster, de_expandShop, de_discardSoul, de_peekDeckAmount, de_expandAny,
-                de_putInDeck, de_stealSoul, de_secondChanceAttributes);
+                de_putInDeck, de_stealSoul);
         stat_cbCardSet.setValue(CardSet.UNDEFINED);
         stat_cbCardSet.getItems().addAll(CardSet.values());
         stat_game.setValue(GameType.UNDEFINED);
@@ -196,6 +197,17 @@ public class MonsterFormController extends FormController<MonsterCard> {
         card.setDeathEvent(buildDeathEvent());
         card.setGame(stat_game.getValue());
         card.setChallenge(stat_challenge.getValue());
+        /* create new instance fields for efficient data entry */
+        stat_reward = null;
+        pe_modifier = new AttributeModifier();
+        pe_rollListeners = new LinkedList<>();
+        pe_preattackRollEvents = new LinkedList<>();
+        ae_rollEvents = new LinkedList<>();
+        dmge_rollEvents = new LinkedList<>();
+        dmge_damageRollEvents = new LinkedList<>();
+        de_deathRollEvents = new LinkedList<>();
+        de_killRollEvents = new LinkedList<>();
+        de_reward = null;
         return card;
     }
 
@@ -358,12 +370,14 @@ public class MonsterFormController extends FormController<MonsterCard> {
         // Parsing byte fields
         deathEvent.setPutInDeck(Byte.parseByte(de_putInDeck.getText()));
         deathEvent.setStealSoul(Byte.parseByte(de_stealSoul.getText()));
-        String[] tokens = de_secondChanceAttributes.getText().split(",");
-        byte[] secondChanceAttributes = new byte[tokens.length];
-        for (int i = 0; i < tokens.length; i++)
-            secondChanceAttributes[i] = Byte.parseByte(tokens[i]);
+        String secondChanceAttributesText = de_secondChanceAttributes.getText();
+        List<Byte> secondChanceAttributes = new ArrayList<>();
+        if (!secondChanceAttributesText.isBlank()) {
+            String[] tokens = de_secondChanceAttributes.getText().split(",");
+            for (String token : tokens)
+                secondChanceAttributes.add(Byte.parseByte(token));
+        }
         deathEvent.setSecondChanceAttributes(secondChanceAttributes);
-
         // Setting roll events
         deathEvent.setDeathRollEvents(de_deathRollEvents);
         deathEvent.setKillRollEvents(de_killRollEvents);

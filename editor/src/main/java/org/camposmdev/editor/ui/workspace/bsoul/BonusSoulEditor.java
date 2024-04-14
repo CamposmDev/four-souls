@@ -35,7 +35,7 @@ public class BonusSoulEditor extends BaseEditor {
         try {
             var card = (BonusSoulCard) ((FormController<?>) form.getController()).submit();
             card.setId(super.id()).setImage(super.image());
-            Model.instance().cards().add(card);
+            Model.instance().addCard(card);
             NotificationBar.instance().push(card);
         } catch (Exception e) {
             DialogFactory.instance().showErrorBox(e);

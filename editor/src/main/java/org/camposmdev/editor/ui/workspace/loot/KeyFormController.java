@@ -5,37 +5,31 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import org.camposmdev.editor.ui.factory.DialogFactory;
 import org.camposmdev.model.card.attribute.CardSet;
-import org.camposmdev.model.card.attribute.loot.LootOptionEvent;
+import org.camposmdev.model.card.attribute.loot.CardKind;
+import org.camposmdev.model.card.attribute.loot.LootOption;
 import org.camposmdev.model.card.loot.KeyCard;
 import org.camposmdev.util.FormController;
 
 import java.util.LinkedList;
-import java.util.List;
 
 public class KeyFormController extends FormController<KeyCard> {
     @FXML
-    ComboBox<CardSet> cbCardSet;
+    ComboBox<CardSet> cardSet;
     @FXML
-    CheckBox cbGoldKey;
-
-    private List<LootOptionEvent> lootOptionEvents;
+    ComboBox<CardKind> kind;
 
     @Override
     public void init() {
-        lootOptionEvents = new LinkedList<>();
-        cbCardSet.setValue(CardSet.UNDEFINED);
-        cbCardSet.getItems().addAll(CardSet.values());
-    }
-
-    public void modOptions() {
-        DialogFactory.instance().showLootOptionEventModifierBox(lootOptionEvents);
+        cardSet.setValue(CardSet.UNDEFINED);
+        cardSet.getItems().addAll(CardSet.values());
+        kind.setValue(CardKind.O_THE_FOOL);
+        kind.getItems().addAll(CardKind.values());
     }
 
     @Override
     public KeyCard submit() throws Exception {
         return (KeyCard) new KeyCard()
-                .setGoldKey(cbGoldKey.isSelected())
-                .setOptions(lootOptionEvents.toArray(new LootOptionEvent[]{}))
-                .setCardSet(cbCardSet.getValue());
+                .setKind(kind.getValue())
+                .setCardSet(cardSet.getValue());
     }
 }

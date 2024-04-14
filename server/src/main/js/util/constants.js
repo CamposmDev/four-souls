@@ -7,9 +7,26 @@ const DEFAULT_MASTER_CARD_ATLAS = {
     "peternal": {},
     "seternal": {}
   },
-  "extra": {},
+  "treasure": {
+    "atreasure": {},
+    "otreasure": {},
+    "paidtreasure": {},
+    "ptreasure": {},
+    "streasure": {}
+  },
+  "monster": {
+    "bmonster": {},
+    "cmonster": {},
+    "hmonster": {},
+    "chamonster": {},
+    "gevent": {},
+    "bevent": {},
+    "curse": {},
+    "boss": {},
+    "epic": {}
+  },
   "loot": {
-    "battery": {},
+    "batteries": {},
     "bheart": {},
     "bomb": {},
     "butter": {},
@@ -32,25 +49,8 @@ const DEFAULT_MASTER_CARD_ATLAS = {
       "money10c": {},
     }
   },
-  "monster": {
-    "bmonster": {},
-    "cmonster": {},
-    "hmonster": {},
-    "chamonster": {},
-    "gevent": {},
-    "bevent": {},
-    "curse": {},
-    "boss": {},
-    "epic": {}
-  },
   "room": {},
-  "treasure": {
-    "atreasure": {},
-    "otreasure": {},
-    "paidtreasure": {},
-    "ptreasure": {},
-    "streasure": {}
-  }
+  "outside": {},
 }
 
 const FILE = './cards.json';

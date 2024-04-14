@@ -3,6 +3,8 @@ package org.camposmdev.editor.ui.workspace.loot;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.GridPane;
+import org.camposmdev.editor.ui.RewardBox;
 import org.camposmdev.editor.ui.factory.DialogFactory;
 import org.camposmdev.model.card.attribute.EntityTarget;
 import org.camposmdev.model.card.attribute.Reward;
@@ -10,6 +12,9 @@ import org.camposmdev.model.card.attribute.loot.PillEvent;
 import org.camposmdev.model.card.attribute.loot.PillItem;
 import org.camposmdev.util.FXUtil;
 import org.camposmdev.util.FormController;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PillEventFormController extends FormController<PillEvent[]> {
     @FXML
@@ -56,12 +61,14 @@ public class PillEventFormController extends FormController<PillEvent[]> {
     private ComboBox<PillItem> cbItem;
     @FXML
     private ListView<PillEvent> lv;
-
-    private Reward reward;
+    @FXML private GridPane root;
+    private RewardBox rewardBox;
 
     @Override
     public void init() {
-        FXUtil.initNumberFields(tfValues, tfDiscardCents, tfDiscardLoot, tfModPlayerDamage,
+        rewardBox = new RewardBox();
+        root.add(rewardBox.getContent(), 1, 1);
+        FXUtil.initNumberFields(tfDiscardCents, tfDiscardLoot, tfModPlayerDamage,
                 tfModPlayerHitPoint, tfDamage, tfModPlayerDiceRoll, tfModMonsterAttackRoll,
                 tfAllDiscardLoot, tfOtherPlayersDiscardLoot, tfPutLoot);
         cbDamageTo.setValue(EntityTarget.UNDEFINED);
@@ -78,10 +85,6 @@ public class PillEventFormController extends FormController<PillEvent[]> {
                 lv.getItems().remove(lv.getSelectionModel().getSelectedItem());
             }
         });
-    }
-
-    public void modReward() {
-        DialogFactory.instance().showRewardModifierBox(reward).ifPresent(x -> reward = x);
     }
 
     public void load(PillEvent... pillEvents) {
@@ -101,9 +104,10 @@ public class PillEventFormController extends FormController<PillEvent[]> {
     public PillEvent build() throws Exception {
         // Retrieve data from UI controls
         String[] tokens = tfValues.getText().split(",");
-        byte[] values = new byte[tokens.length];
-        for (int i = 0; i < tokens.length; i++)
-            values[i] = Byte.parseByte(tokens[i]);
+        List<Byte> values = new ArrayList<>(tokens.length);
+        for (String token : tokens) {
+            values.add(Byte.parseByte(token));
+        }
         EntityTarget rewardTo = cbRewardTo.getValue();
         byte discardCents = Byte.parseByte(tfDiscardCents.getText());
         byte discardLoot = Byte.parseByte(tfDiscardLoot.getText());
@@ -122,11 +126,10 @@ public class PillEventFormController extends FormController<PillEvent[]> {
         byte otherPlayersDiscardLoot = Byte.parseByte(tfOtherPlayersDiscardLoot.getText());
         boolean rerollAnyItem = cbRerollAnyItem.isSelected();
         byte putLoot = Byte.parseByte(tfPutLoot.getText());
-
         // Create a new PillEvent object and set its properties
-        return new PillEvent()
+        PillEvent pillEvent = new PillEvent()
                 .setValues(values)
-                .setReward(reward)
+                .setReward(rewardBox.submit())
                 .setRewardTo(rewardTo)
                 .setDiscardCents(discardCents)
                 .setDiscardLoot(discardLoot)
@@ -145,6 +148,7 @@ public class PillEventFormController extends FormController<PillEvent[]> {
                 .setOtherPlayersDiscardLoot(otherPlayersDiscardLoot)
                 .setRerollAnyItem(rerollAnyItem)
                 .setPutLoot(putLoot);
+        return pillEvent;
     }
 
     @Override

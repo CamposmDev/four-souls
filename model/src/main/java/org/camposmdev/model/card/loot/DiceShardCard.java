@@ -5,19 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.camposmdev.model.card.attribute.CardType;
 
 public class DiceShardCard extends LootCard {
-    private boolean reroll;
-
     public DiceShardCard() {
         super.setCardType(CardType.DICE);
-    }
-
-    public boolean isReroll() {
-        return reroll;
-    }
-
-    public DiceShardCard setReroll(boolean reroll) {
-        this.reroll = reroll;
-        return this;
     }
 
     @Override

@@ -3,31 +3,22 @@ package org.camposmdev.model.card.loot;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.camposmdev.model.card.attribute.CardType;
-import org.camposmdev.model.card.attribute.loot.LootOptionEvent;
+import org.camposmdev.model.card.attribute.loot.CardKind;
+import org.camposmdev.model.card.attribute.loot.LootOption;
 
 public class KeyCard extends LootCard {
-    private boolean goldKey;
-    private LootOptionEvent[] options;
+    private CardKind kind;
 
     public KeyCard() {
         super.setCardType(CardType.KEYS);
     }
 
-    public boolean isGoldKey() {
-        return goldKey;
+    public CardKind getKind() {
+        return kind;
     }
 
-    public KeyCard setGoldKey(boolean goldKey) {
-        this.goldKey = goldKey;
-        return this;
-    }
-
-    public LootOptionEvent[] getOptions() {
-        return options;
-    }
-
-    public KeyCard setOptions(LootOptionEvent[] options) {
-        this.options = options;
+    public KeyCard setKind(CardKind kind) {
+        this.kind = kind;
         return this;
     }
 

@@ -23,7 +23,5 @@
         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
     </padding>
     <Label text="cardSet"/>
-    <Label text="version" GridPane.rowIndex="1"/>
     <ComboBox fx:id="cbCardSet" prefWidth="150.0" GridPane.columnIndex="1"/>
-    <ComboBox fx:id="cbVersion" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
 </GridPane>

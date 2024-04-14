@@ -10,6 +10,7 @@ module model {
     exports org.camposmdev.model.net;
     exports org.camposmdev.model.card.attribute;
     opens org.camposmdev.model.card.attribute to com.fasterxml.jackson.databind;
+    exports org.camposmdev.model.card.attribute.character;
     exports org.camposmdev.model.card.eternal;
     exports org.camposmdev.model.card.attribute.eternal;
     opens org.camposmdev.model.card.eternal to com.fasterxml.jackson.databind;

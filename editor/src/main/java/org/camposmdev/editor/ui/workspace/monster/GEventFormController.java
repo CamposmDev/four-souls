@@ -42,8 +42,8 @@ public class GEventFormController extends FormController<GoodEventCard> {
     @FXML private TextField expandRoom;
     @FXML private CheckBox isTVStatic;
 
-    private final List<RollEvent> rollEvents;
-    private final List<MonsterOptionEvent> options;
+    private List<RollEvent> rollEvents;
+    private List<MonsterOptionEvent> options;
 
     public GEventFormController() {
         rollEvents = new LinkedList<>();
@@ -66,8 +66,8 @@ public class GEventFormController extends FormController<GoodEventCard> {
         var card = new GoodEventCard();
         card.setCardSet(cardSet.getValue());
         card.setAmbush(Byte.parseByte(ambush.getText()));
-        card.setRollEvents(rollEvents.toArray(new RollEvent[]{}));
-        card.setOptionEvents(options.toArray(new MonsterOptionEvent[]{}));
+        card.setRollEvents(rollEvents);
+        card.setOptionEvents(options);
         card.setPeekDeck(peekDeck.getValue());
         card.setPeekDeckAmount(Byte.parseByte(peekDeckAmount.getText()));
         card.setPeekDeckSort(peekDeckSort.isSelected());
@@ -89,6 +89,9 @@ public class GEventFormController extends FormController<GoodEventCard> {
         card.setQwop(isQwop.isSelected());
         card.setExpandRoom(Byte.parseByte(expandRoom.getText()));
         card.setTvStatic(isTVStatic.isSelected());
+        /* clear rollEvents and options for efficient data entry */
+        rollEvents = new LinkedList<>();
+        options = new LinkedList<>();
         return card;
     }
 

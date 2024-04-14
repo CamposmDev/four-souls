@@ -10,21 +10,16 @@ import org.camposmdev.util.FormController;
 public class BlackHeartFormController extends FormController<BlackHeartCard> {
     @FXML
     ComboBox<CardSet> cbCardSet;
-    @FXML
-    ComboBox<CardVersion> cbVersion;
 
     @Override
     public void init() {
         cbCardSet.setValue(CardSet.UNDEFINED);
         cbCardSet.getItems().addAll(CardSet.values());
-        cbVersion.setValue(CardVersion.UNDEFINED);
-        cbVersion.getItems().addAll(CardVersion.values());
     }
 
     @Override
     public BlackHeartCard submit() throws Exception {
         return (BlackHeartCard) new BlackHeartCard()
-                .setVersion(cbVersion.getValue())
                 .setCardSet(cbCardSet.getValue());
     }
 }

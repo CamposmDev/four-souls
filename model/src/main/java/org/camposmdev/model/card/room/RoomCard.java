@@ -12,7 +12,7 @@ public class RoomCard extends BaseCard {
         super.setCardType(CardType.ROOM);
     }
 
-    public RoomType roomType() {
+    public RoomType getRoomType() {
         return roomType;
     }
 

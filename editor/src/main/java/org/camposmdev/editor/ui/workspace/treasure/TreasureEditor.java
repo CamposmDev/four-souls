@@ -41,7 +41,7 @@ public class TreasureEditor extends BaseEditor {
         try {
             var card = (TreasureCard) ((FormController<?>) form.getController()).submit();
             card.setId(super.id()).setImage(super.image());
-            Model.instance().cards().add(card);
+            Model.instance().addCard(card);
             NotificationBar.instance().push(card);
         } catch (Exception ex) {
             DialogFactory.instance().showErrorBox(ex);

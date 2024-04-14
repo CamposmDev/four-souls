@@ -52,10 +52,10 @@ public class RewardBox extends FormController<Reward> {
 
     @Override
     public Reward submit() throws Exception {
-        return new Reward(Byte.parseByte(tfLoot.getText()),
-                Byte.parseByte(tfTreasure.getText()),
-                Byte.parseByte(tfCents.getText()),
-                Byte.parseByte(tfHitPoints.getText()),
+        return new Reward(Integer.parseInt(tfLoot.getText()),
+                Integer.parseInt(tfTreasure.getText()),
+                Integer.parseInt(tfCents.getText()),
+                Integer.parseInt(tfHitPoints.getText()),
                 cbRechargeItem.isSelected(),
                 cbStealShopItem.isSelected(),
                 cbDeath.isSelected(),

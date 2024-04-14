@@ -3,8 +3,10 @@ package org.camposmdev.model.card.attribute;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.util.List;
+
 public class RollEvent {
-    private byte[] values;
+    private List<Byte> values;
     private byte multReward;
     private byte multPlayersDamage;
     private boolean noMonsterDamage;
@@ -44,11 +46,11 @@ public class RollEvent {
     private boolean discardRandomItem;
     private boolean putOnMonsterSlot;
 
-    public byte[] getValues() {
+    public List<Byte> getValues() {
         return values;
     }
 
-    public RollEvent setValues(byte[] values) {
+    public RollEvent setValues(List<Byte> values) {
         this.values = values;
         return this;
     }

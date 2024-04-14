@@ -2,13 +2,24 @@ package org.camposmdev.editor.model;
 
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.dsl.FXGLForKtKt;
+import org.camposmdev.editor.net.API;
 import org.camposmdev.editor.ui.NotificationBar;
 import org.camposmdev.editor.ui.factory.DialogFactory;
 import javafx.stage.FileChooser;
 import org.camposmdev.model.atlas.ImageAtlas;
 import org.camposmdev.model.atlas.MasterCardAtlas;
 import org.camposmdev.model.atlas.MasterImageAtlas;
+import org.camposmdev.model.card.BaseCard;
 import org.camposmdev.model.card.attribute.CardType;
+import org.camposmdev.model.card.bsoul.BonusSoulCard;
+import org.camposmdev.model.card.character.CharacterCard;
+import org.camposmdev.model.card.eternal.EternalCard;
+import org.camposmdev.model.card.extra.OutsideCard;
+import org.camposmdev.model.card.loot.LootCard;
+import org.camposmdev.model.card.monster.MonsterCard;
+import org.camposmdev.model.card.room.RoomCard;
+import org.camposmdev.model.card.treasure.TreasureCard;
+import org.camposmdev.util.Log;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -22,23 +33,15 @@ public class Model {
         return model;
     }
 
-    private final MasterImageAtlas imageAtlas;
-    private MasterCardAtlas cardAtlas;
+    private final MasterImageAtlas masterImageAtlas;
+    private MasterCardAtlas masterCardAtlas;
 
     private Model() {
-        imageAtlas = initImageAtlas();
-        cardAtlas = new MasterCardAtlas();
+        masterImageAtlas = initImageAtlas();
+        masterCardAtlas = new MasterCardAtlas();
     }
 
     private MasterImageAtlas initImageAtlas() {
-        //        loadJSON(deck.character(), ImageDataAtlas.class).loadSource2All();
-//        deck.eternal().forEach((x, y) -> loadCards(y));
-//        deck.treasure().forEach((x, y) -> loadCards(y));
-//        deck.monster().forEach((x, y) -> loadCards(y));
-//        deck.loot().forEach((x, y) -> loadCards(y));
-//        deck.money().forEach((x, y) -> loadCards(y));
-//        loadJSON(deck.bsoul(), ImageDataAtlas.class).loadSource2All();
-//        loadJSON(deck.room(), ImageDataAtlas.class).loadSource2All();
         return loadJSON("json/cards/cards.json", MasterImageAtlas.class);
     }
 
@@ -53,12 +56,29 @@ public class Model {
                 .images().keySet().stream().toList();
     }
 
-    public MasterImageAtlas images() {
-        return imageAtlas;
+    public MasterImageAtlas getImages() {
+        return masterImageAtlas;
     }
 
-    public MasterCardAtlas cards() {
-        return cardAtlas;
+    public void addCard(BaseCard card) {
+        /* add the card to the local master card atlas */
+        masterCardAtlas.add(card);
+        /* then upload this card to the server if able */
+        switch (card.getCardType()) {
+            case BSOUL -> API.instance().createBSoulCard((BonusSoulCard) card);
+            case CHARACTER -> API.instance().createCharacterCard((CharacterCard) card);
+            case PETERNAL, AETERNAL, PAIDETERNAL, OETERNAL, SETERNAL ->
+                    API.instance().createEternalCard((EternalCard) card);
+            case PTREASURE, ATREASURE, PAIDTREASURE, OTREASURE, STREASURE ->
+                    API.instance().createTreasureCard((TreasureCard) card);
+            case BMONSTER, CMONSTER, HMONSTER, CHAMONSTER, GEVENT, BEVENT, CURSE, BOSS, EPIC ->
+                    API.instance().createMonsterCard((MonsterCard) card);
+            case CARDS, TRINKETS, PILLS, RUNES, BOMBS, BUTTER, BATTERIES, KEYS, DICE, SHEART, BHEART, SACK, LSOUL, WILDCARD, MONEY, MONEY1C, MONEY2C, MONEY3C, MONEY4C, MONEY5C, MONEY10C ->
+                    API.instance().createLootCard((LootCard) card);
+            case ROOM -> API.instance().createRoomCard((RoomCard) card);
+            case OUTSIDE -> API.instance().createOutsideCard((OutsideCard) card);
+            default -> Log.fatal("Failed to upload card to server!");
+        }
     }
 
     /**
@@ -68,66 +88,39 @@ public class Model {
      */
     public List<String> getImageAtlas(CardType cardType) {
         return switch (cardType) {
-            case CHARACTER -> loadImageAtlas(imageAtlas.character());
+            case CHARACTER -> loadImageAtlas(masterImageAtlas.character());
             case PETERNAL, AETERNAL, SETERNAL, OETERNAL, PAIDETERNAL ->
-                    loadImageAtlas(imageAtlas.eternal().get(cardType.key()));
+                    loadImageAtlas(masterImageAtlas.eternal().get(cardType.key()));
             case PTREASURE, ATREASURE, PAIDTREASURE, OTREASURE, STREASURE ->
-                    loadImageAtlas(imageAtlas.treasure().get(cardType.key()));
+                    loadImageAtlas(masterImageAtlas.treasure().get(cardType.key()));
             case BMONSTER, CMONSTER, HMONSTER, CHAMONSTER, GEVENT, BEVENT, CURSE, BOSS, EPIC ->
-                    loadImageAtlas(imageAtlas.monster().get(cardType.key()));
+                    loadImageAtlas(masterImageAtlas.monster().get(cardType.key()));
             case CARDS, TRINKETS, PILLS, RUNES, BOMBS, BUTTER, BATTERIES, KEYS, DICE, SHEART, BHEART, SACK, LSOUL, WILDCARD ->
-                    loadImageAtlas(imageAtlas.loot().get(cardType.key()));
+                    loadImageAtlas(masterImageAtlas.loot().get(cardType.key()));
             case MONEY1C, MONEY2C, MONEY3C, MONEY4C, MONEY5C, MONEY10C ->
-                    loadImageAtlas(imageAtlas.money().get(cardType.key()));
-            case BSOUL -> loadImageAtlas(imageAtlas.bsoul());
-            case ROOM -> loadImageAtlas(imageAtlas.room());
-            case OUTSIDE -> loadImageAtlas(imageAtlas.outside());
+                    loadImageAtlas(masterImageAtlas.money().get(cardType.key()));
+            case BSOUL -> loadImageAtlas(masterImageAtlas.bsoul());
+            case ROOM -> loadImageAtlas(masterImageAtlas.room());
+            case OUTSIDE -> loadImageAtlas(masterImageAtlas.outside());
             default -> null;
         };
     }
 
-    @Deprecated
-    public void loadCards() {
-//        var filterJSON = new FileChooser.ExtensionFilter("JSON", "*.json");
-//        var fc = new FileChooser();
-//        fc.setTitle("Open File");
-//        fc.getExtensionFilters().add(filterJSON);
-//        fc.setSelectedExtensionFilter(filterJSON);
-//        var f = fc.showOpenDialog(FXGL.getPrimaryStage());
-//        if (f == null) return;
-//        /* otherwise open the file */
-//        Log.info("Load JSON file: " + f);
-//        try (var fis = new FileInputStream(f)) {
-//            var data = fis.readAllBytes();
-//            String payload = new String(data);
-//            cardAtlas = Json.decodeValue(payload, MasterCardAtlas.class);
-//            NotificationBar.instance().push("Loaded " + f);
-//        } catch (IOException ex) {
-//            DialogFactory.instance().showErrorBox(ex);
-//        }
-    }
-
-    public void saveCards() {
-        var filterJSON = new FileChooser.ExtensionFilter("JSON", "*.json");
-        var fc = new FileChooser();
-        fc.setTitle("Open File");
-        fc.getExtensionFilters().add(filterJSON);
-        fc.setSelectedExtensionFilter(filterJSON);
-        fc.setInitialFileName("cards");
-        var f = fc.showSaveDialog(FXGL.getPrimaryStage());
-        if (f == null) return;
-        /* otherwise save the cards */
-        try(var fos = new FileOutputStream(f)) {
-            var payload = cards().toString();
-            fos.write(payload.getBytes());
-            fos.flush();
-            NotificationBar.instance().push("Saved " + f);
-        } catch (IOException ex) {
-            DialogFactory.instance().showErrorBox(ex);
+    public void loadMasterCardAtlas() {
+        var masterCardAtlas = API.instance().fetchMasterCardAtlas();
+        if (masterCardAtlas == null) {
+            NotificationBar.instance().push("Failed to load latest version of master card atlas");
+        } else {
+            NotificationBar.instance().push("Successfully loaded latest version of master card atlas");
+            this.masterCardAtlas = masterCardAtlas;
         }
     }
 
+    public void saveMasterCardAtlas() {
+        DialogFactory.instance().saveMasterCardAtlas(masterCardAtlas);
+    }
+
     public boolean isCardImplemented(CardType selectedCardType, String id) {
-        return cards().contains(selectedCardType, id);
+        return this.masterCardAtlas.contains(selectedCardType, id);
     }
 }

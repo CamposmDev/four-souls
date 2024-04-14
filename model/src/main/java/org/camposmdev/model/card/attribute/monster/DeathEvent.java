@@ -49,7 +49,7 @@ public class DeathEvent {
     private boolean sloth;
     private boolean attackMonsterDeck;
     private boolean secondChance;
-    private byte[] secondChanceAttributes;
+    private List<Byte> secondChanceAttributes;
     private boolean giftSoul;
     private boolean clog;
     private boolean summonCurse;
@@ -412,11 +412,11 @@ public class DeathEvent {
         return this;
     }
 
-    public byte[] getSecondChanceAttributes() {
+    public List<Byte> getSecondChanceAttributes() {
         return secondChanceAttributes;
     }
 
-    public DeathEvent setSecondChanceAttributes(byte[] secondChanceAttributes) {
+    public DeathEvent setSecondChanceAttributes(List<Byte> secondChanceAttributes) {
         this.secondChanceAttributes = secondChanceAttributes;
         return this;
     }

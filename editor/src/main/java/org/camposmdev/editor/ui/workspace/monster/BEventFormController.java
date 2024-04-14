@@ -36,7 +36,7 @@ public class BEventFormController extends FormController<BadEventCard> {
     @FXML private CheckBox isTrialByTrolly;
     @FXML private CheckBox isCorruptedData;
 
-    private final List<RollEvent> rollEvents;
+    private List<RollEvent> rollEvents;
 
     public BEventFormController() {
         rollEvents = new LinkedList<>();
@@ -56,28 +56,27 @@ public class BEventFormController extends FormController<BadEventCard> {
         var event = new BadEventCard();
         // Set values from controls
         event.setCardSet(cardSet.getValue());
-        event.setAmbush(Byte.parseByte(ambush.getText()));
-        event.setAmbushAlt(ambushAlt.isSelected());
-        event.setGreed(greed.isSelected());
-        event.setDamage(Byte.parseByte(damage.getText()));
-        event.setDamageTo(damageTo.getValue());
-        event.setBossRush(bossRush.isSelected());
-        event.setDiscardLoot(Byte.parseByte(discardLoot.getText()));
-        event.setMothersShadow(mothersShadow.isSelected());
-        event.setOverflow(overflow.isSelected());
-        event.setEndTurn(endTurn.isSelected());
-        event.setDontStarve(dontStarve.isSelected());
-        event.setBloat(bloat.isSelected());
-        event.setGoldenIdol(isGoldenIdol.isSelected());
-        event.setGrubFather(isGrubFather.isSelected());
-        event.setNightmareTick(isNightmareTick.isSelected());
-        event.setQwop(isQwop.isSelected());
-        event.setTrialByTrolly(isTrialByTrolly.isSelected());
-        event.setCorruptedData(isCorruptedData.isSelected());
-
-        // Assuming rollEvents list is not null
-        event.setRollEvents(rollEvents.toArray(new RollEvent[]{}));
-
+        event.setAmbush(Byte.parseByte(ambush.getText()))
+            .setAmbushAlt(ambushAlt.isSelected())
+            .setGreed(greed.isSelected())
+            .setDamage(Byte.parseByte(damage.getText()))
+            .setDamageTo(damageTo.getValue())
+            .setBossRush(bossRush.isSelected())
+            .setDiscardLoot(Byte.parseByte(discardLoot.getText()))
+            .setMothersShadow(mothersShadow.isSelected())
+            .setOverflow(overflow.isSelected())
+            .setEndTurn(endTurn.isSelected())
+            .setDontStarve(dontStarve.isSelected())
+            .setBloat(bloat.isSelected())
+            .setGoldenIdol(isGoldenIdol.isSelected())
+            .setGrubFather(isGrubFather.isSelected())
+            .setNightmareTick(isNightmareTick.isSelected())
+            .setQwop(isQwop.isSelected())
+            .setTrialByTrolly(isTrialByTrolly.isSelected())
+            .setCorruptedData(isCorruptedData.isSelected())
+            .setRollEvents(rollEvents);
+        /* create new roll events for efficient data entry */
+        rollEvents = new LinkedList<>();
         return event;
     }
 

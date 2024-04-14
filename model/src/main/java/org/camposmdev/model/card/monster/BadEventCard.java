@@ -6,10 +6,12 @@ import org.camposmdev.model.card.attribute.CardType;
 import org.camposmdev.model.card.attribute.EntityTarget;
 import org.camposmdev.model.card.attribute.RollEvent;
 
+import java.util.List;
+
 public class BadEventCard extends BaseMonsterCard {
     private byte ambush;
     private boolean ambushAlt;
-    private RollEvent[] rollEvents;
+    private List<RollEvent> rollEvents;
     private boolean greed;
     private byte damage;
     private EntityTarget damageTo;
@@ -49,11 +51,11 @@ public class BadEventCard extends BaseMonsterCard {
         return this;
     }
 
-    public RollEvent[] getRollEvents() {
+    public List<RollEvent> getRollEvents() {
         return rollEvents;
     }
 
-    public BadEventCard setRollEvents(RollEvent[] rollEvents) {
+    public BadEventCard setRollEvents(List<RollEvent> rollEvents) {
         this.rollEvents = rollEvents;
         return this;
     }

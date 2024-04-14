@@ -15,7 +15,7 @@ import javafx.util.Callback;
 import org.camposmdev.editor.model.Model;
 import org.camposmdev.editor.ui.workspace.character.CharacterEditor;
 import org.camposmdev.editor.ui.workspace.eternal.EternalEditor;
-import org.camposmdev.editor.ui.workspace.extra.ExtraEditor;
+import org.camposmdev.editor.ui.workspace.outside.OutsideEditor;
 import org.camposmdev.editor.ui.workspace.loot.LootEditor;
 import org.camposmdev.editor.ui.workspace.money.MoneyEditor;
 import org.camposmdev.editor.ui.workspace.monster.MonsterEditor;
@@ -53,7 +53,7 @@ public class CardPicker {
                 root.getChildren().addAll(cv.getContent(), lv);
                 VBox.setVgrow(lv, Priority.ALWAYS);
             }
-            var data = Model.instance().images().getInfo(selectedCardType, key);
+            var data = Model.instance().getImages().getInfo(selectedCardType, key);
             editor.setId(data.id());
             editor.setImage(data);
 
@@ -78,7 +78,7 @@ public class CardPicker {
             cell.hoverProperty().addListener((ov, wasHovered, isHovered) -> {
                 if (isHovered && !cell.isEmpty()) {
                     try {
-                        var src = Model.instance().images().source2(selectedCardType, cell.getItem());
+                        var src = Model.instance().getImages().source2(selectedCardType, cell.getItem());
                         assert src != null;
                         var img = FXGL.image(src);
                         cv.setImage(img);
@@ -121,7 +121,7 @@ public class CardPicker {
             case ROOM ->
                     editor = new RoomEditor(selectedCardType);
             case OUTSIDE ->
-                    editor = new ExtraEditor();
+                    editor = new OutsideEditor();
         }
         workspace.set(editor);
         lv.getSelectionModel().selectFirst();

@@ -16,7 +16,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * @param death
  * @param isEqualToCounter
  */
-public record Reward(Byte loot, Byte treasure, Byte cents, Byte hitPoints, Boolean rechargeItem, boolean stealShopItem, boolean death, boolean isEqualToCounter) {
+public record Reward(Integer loot, Integer treasure, Integer cents, Integer hitPoints, Boolean rechargeItem, boolean stealShopItem, boolean death, boolean isEqualToCounter) {
     @Override
     public String toString() {
         ObjectMapper mapper = new ObjectMapper();
