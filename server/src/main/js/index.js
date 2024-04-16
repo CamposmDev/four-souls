@@ -3,7 +3,7 @@ const fs = require('fs')
 const { DEFAULT_MASTER_CARD_ATLAS, FILE, CardType } = require('./util/constants')
 const card = require('./express/middleware/card')
 
-const model = {cards: DEFAULT_MASTER_CARD_ATLAS}
+const model = { cards: DEFAULT_MASTER_CARD_ATLAS }
 
 /* Try to read {FILE} */
 fs.readFile(FILE, (err, data) => {
@@ -41,23 +41,23 @@ process.on('SIGINT', async () => {
     process.exit(0);
 });
 
-const cardRouter = express.Router({caseSensitive: false});
+const cardRouter = express.Router({ caseSensitive: false });
 cardRouter.use(card.verify)
 /* Handle POST requests for Bonus Soul Cards */
 cardRouter.post(`/${CardType.BSOUL}`, async (req, res) => {
     const card = req.body;
     if (card.cardType !== CardType.BSOUL)
-        return res.status(400).json({"message": 'Invalid "cardType" value'})
+        return res.status(400).json({ "message": 'Invalid "cardType" value' })
     model.cards.bsoul[card.id] = card;
-    return res.json({ "message": "Created BonusSoulCard", "cards": model });
+    return res.json({ "message": "Created BonusSoulCard" });
 });
 /* Handle POST requests for Character Cards */
 cardRouter.post(`/${CardType.CHARACTER}`, async (req, res) => {
     const card = req.body;
     if (card.cardType !== CardType.CHARACTER)
-        return res.status(400).json({"message": 'Invalid "cardType" value'})
+        return res.status(400).json({ "message": 'Invalid "cardType" value' })
     model.cards.character[card.id] = card;
-    return res.json({ "message": "Created CharacterCard", "cards": model })
+    return res.json({ "message": "Created CharacterCard" });
 });
 /* Handle POST requests for Eternal Cards */
 cardRouter.post(`/${CardType.ETERNAL}`, async (req, res) => {
@@ -78,7 +78,7 @@ cardRouter.post(`/${CardType.ETERNAL}`, async (req, res) => {
         default:
             return res.status(404).json({ 'message': 'Invalid "cardType" value' })
     }
-    return res.json({ "message": "Created EternalCard", "cards": model })
+    return res.json({ "message": "Created EternalCard" });
 });
 /* Handle POST requests for Treasure Cards */
 cardRouter.post(`/${CardType.TREASURE}`, async (req, res) => {
@@ -102,7 +102,7 @@ cardRouter.post(`/${CardType.TREASURE}`, async (req, res) => {
         default:
             return res.status(404).json({ 'message': 'Invalid "cardType" value' })
     }
-    return res.json({ "message": "Created TreasureCard", "cards": model })
+    return res.json({ "message": "Created TreasureCard" });
 });
 /* Handle POST requests for Monster Cards */
 cardRouter.post(`/${CardType.MONSTER}`, async (req, res) => {
@@ -138,7 +138,7 @@ cardRouter.post(`/${CardType.MONSTER}`, async (req, res) => {
         default:
             return res.status(404).json({ 'message': 'Invalid "cardType" value' })
     }
-    return res.json({ "message": "Created MonsterCard", "cards": model })
+    return res.json({ "message": "Created MonsterCard" });
 });
 /* Handle POST requests for Loot Cards */
 cardRouter.post(`/${CardType.LOOT}`, async (req, res) => {
@@ -207,30 +207,30 @@ cardRouter.post(`/${CardType.LOOT}`, async (req, res) => {
         default:
             return res.status(404).json({ 'message': 'Invalid "cardType" value' })
     }
-    return res.json({ "message": "Created LootCard", "cards": model })
+    return res.json({ "message": "Created LootCard" });
 });
 /* Handle POST requests for Room Cards */
 cardRouter.post(`/${CardType.ROOM}`, async (req, res) => {
     const card = req.body;
     if (card.cardType !== CardType.ROOM)
-        return res.status(400).json({"message": 'Invalid "cardType" value'})
+        return res.status(400).json({ "message": 'Invalid "cardType" value' })
     model.cards.room[card.id] = card;
-    return res.json({"message": "Created RoomCard", "cards": model})
+    return res.json({ "message": "Created RoomCard" });
 });
 /* Handle POST requests for Outside Cards */
 cardRouter.post(`/${CardType.OUTSIDE}`, async (req, res) => {
     const card = req.body;
     if (card.cardType !== CardType.OUTSIDE)
-        return res.status(400).json({"message": 'Invalid "cardType" value'})
+        return res.status(400).json({ "message": 'Invalid "cardType" value' })
     model.cards.outside[card.id] = card;
-    return res.json({"message": "Created OutsideCard", "cards": model})
+    return res.json({ "message": "Created OutsideCard" });
 });
 
 const apiRouter = express.Router();
 apiRouter.use('/card', cardRouter);
 /* Handle GET requests for Model */
 apiRouter.get('/', async (req, res) => {
-    if (!req) return res.status(400).json({"message": "Bad Request"});
+    if (!req) return res.status(400).json({ "message": "Bad Request" });
     return res.status(200).json(model.cards);
 });
 

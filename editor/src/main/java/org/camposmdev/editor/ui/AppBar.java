@@ -31,7 +31,8 @@ public class AppBar {
         var mFile = buildFileMenu();
         var mEdit = buildEditMenu();
         var mView = buildViewMenu();
-        menuBar = new MenuBar(mFile, mEdit, mView);
+        var mHelp = buildHelpMenu();
+        menuBar = new MenuBar(mFile, mEdit, mView, mHelp);
     }
 
     private Menu buildFileMenu() {
@@ -93,6 +94,20 @@ public class AppBar {
         var menu = new Menu("View");
         menu.getItems().addAll(miDarkMode, miFullScreen);
         return menu;
+    }
+
+    private Menu buildHelpMenu() {
+        MenuItem miBug = new MenuItem("Submit a Bug Report");
+        miBug.setOnAction(e -> {
+            /* forward user to GitHub repo issues tab */
+        });
+        MenuItem miAbout = new MenuItem("About");
+        miAbout.setOnAction(e -> {
+            /* show window to display info about this program */
+        });
+        Menu m = new Menu("Help");
+        m.getItems().addAll(miBug, miAbout);
+        return m;
     }
 
     private MenuItem buildBSoulMenu() {
@@ -218,19 +233,24 @@ public class AppBar {
     }
 
     public Menu buildTreasureMenu() {
-        var mi_atreasure = new MenuItem(CardType.ATREASURE.pretty());
-        mi_atreasure.setOnAction(new MenuHandler());
-        var mi_otreasure = new MenuItem(CardType.OTREASURE.pretty());
-        mi_otreasure.setOnAction(new MenuHandler());
-        var mi_paidtreasure = new MenuItem(CardType.PAIDTREASURE.pretty());
-        mi_paidtreasure.setOnAction(new MenuHandler());
-        var mi_ptreasure = new MenuItem(CardType.PTREASURE.pretty());
-        mi_ptreasure.setOnAction(new MenuHandler());
-        var mi_streasure = new MenuItem(CardType.STREASURE.pretty());
-        mi_streasure.setOnAction(new MenuHandler());
+//        var mi_atreasure = new MenuItem(CardType.ATREASURE.pretty());
+//        mi_atreasure.setOnAction(new MenuHandler());
+//        var mi_otreasure = new MenuItem(CardType.OTREASURE.pretty());
+//        mi_otreasure.setOnAction(new MenuHandler());
+//        var mi_paidtreasure = new MenuItem(CardType.PAIDTREASURE.pretty());
+//        mi_paidtreasure.setOnAction(new MenuHandler());
+//        var mi_ptreasure = new MenuItem(CardType.PTREASURE.pretty());
+//        mi_ptreasure.setOnAction(new MenuHandler());
+//        var mi_streasure = new MenuItem(CardType.STREASURE.pretty());
+//        mi_streasure.setOnAction(new MenuHandler());
         var mTreasure = new Menu(CardType.TREASURE.pretty());
-        mTreasure.getItems().addAll(mi_atreasure, mi_otreasure,
-                mi_paidtreasure, mi_ptreasure, mi_streasure);
+        for (var type : CardType.treasures()) {
+            var mi = new MenuItem(type.pretty());
+            mi.setOnAction(new MenuHandler());
+            mTreasure.getItems().add(mi);
+        }
+//        mTreasure.getItems().addAll(mi_atreasure, mi_otreasure,
+//                mi_paidtreasure, mi_ptreasure, mi_streasure);
         return mTreasure;
     }
 

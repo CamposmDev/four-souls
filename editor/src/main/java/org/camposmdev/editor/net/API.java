@@ -18,9 +18,9 @@ import java.io.IOException;
 
 public class API {
     private static API api;
-    private static final String HOST = "localhost";
-    private static final int PORT = 3000;
-    public static final String base_url = "http://" + HOST + ":" + PORT + "/api/";
+    private static String host = "localhost";
+    private static int port = 3000;
+    public static final String base_url = "http://" + host + ":" + port + "/api/";
     public static final String card_url = base_url + "card/";
     private static OkHttpClient client;
     public static API instance() {

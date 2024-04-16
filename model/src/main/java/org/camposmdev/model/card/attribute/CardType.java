@@ -1,10 +1,12 @@
 package org.camposmdev.model.card.attribute;
 
+import java.util.List;
+
 public enum CardType{
     CHARACTER("character", "Character"),
     ETERNAL("eternal", "Eternal Treasure"),
-    PETERNAL("peternal", "Passive Eternal Treasure"),
     AETERNAL("aeternal", "Active Eternal Treasure"),
+    PETERNAL("peternal", "Passive Eternal Treasure"),
     PAIDETERNAL("paideternal", "Paid Eternal Treasure"),
     OETERNAL("oeternal", "One-Use Eternal Treasure"),
     SETERNAL("seternal", "Soul Eternal Treasure"),
@@ -73,5 +75,21 @@ public enum CardType{
                 return type;
         }
         throw new IllegalArgumentException("Invalid CardType: " + name);
+    }
+
+    public static List<CardType> eternals() {
+        return List.of(AETERNAL, PETERNAL, PAIDETERNAL, SETERNAL);
+    }
+
+    public static List<CardType> treasures() {
+        return List.of(ATREASURE, PAIDTREASURE, PTREASURE, OTREASURE, STREASURE);
+    }
+
+    public static List<CardType> monsters() {
+        return List.of(BMONSTER, CMONSTER, HMONSTER, CHAMONSTER, GEVENT, BEVENT, CURSE, BOSS, EPIC);
+    }
+
+    public static List<CardType> loot() {
+        return List.of(CARDS, TRINKETS, PILLS, RUNES, BOMBS, BUTTER, BATTERIES, KEYS, DICE, SHEART, BHEART, SACK, LSOUL, WILDCARD, MONEY1C, MONEY2C, MONEY3C, MONEY4C, MONEY5C, MONEY10C);
     }
 }
