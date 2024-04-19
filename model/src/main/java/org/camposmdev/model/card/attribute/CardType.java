@@ -1,5 +1,14 @@
 package org.camposmdev.model.card.attribute;
 
+import org.camposmdev.model.card.bsoul.BonusSoulCard;
+import org.camposmdev.model.card.character.CharacterCard;
+import org.camposmdev.model.card.eternal.EternalCard;
+import org.camposmdev.model.card.extra.OutsideCard;
+import org.camposmdev.model.card.loot.LootCard;
+import org.camposmdev.model.card.monster.MonsterCard;
+import org.camposmdev.model.card.room.RoomCard;
+import org.camposmdev.model.card.treasure.TreasureCard;
+
 import java.util.List;
 
 public enum CardType{
@@ -78,7 +87,7 @@ public enum CardType{
     }
 
     public static List<CardType> eternals() {
-        return List.of(AETERNAL, PETERNAL, PAIDETERNAL, SETERNAL);
+        return List.of(AETERNAL, PAIDETERNAL, PETERNAL, SETERNAL);
     }
 
     public static List<CardType> treasures() {
@@ -90,6 +99,24 @@ public enum CardType{
     }
 
     public static List<CardType> loot() {
-        return List.of(CARDS, TRINKETS, PILLS, RUNES, BOMBS, BUTTER, BATTERIES, KEYS, DICE, SHEART, BHEART, SACK, LSOUL, WILDCARD, MONEY1C, MONEY2C, MONEY3C, MONEY4C, MONEY5C, MONEY10C);
+        return List.of(CARDS, TRINKETS, PILLS, RUNES, BUTTER, BOMBS, BATTERIES, KEYS, DICE, SHEART, BHEART, SACK, LSOUL, MONEY, WILDCARD);
+    }
+
+    public static List<CardType> money() {
+        return List.of(MONEY1C, MONEY2C, MONEY3C, MONEY4C, MONEY5C, MONEY10C);
+    }
+
+    public static CardType categoryOf(CardType cardType) {
+        return switch (cardType) {
+            case PETERNAL, AETERNAL, PAIDETERNAL, OETERNAL, SETERNAL ->
+                    ETERNAL;
+            case PTREASURE, ATREASURE, PAIDTREASURE, OTREASURE, STREASURE ->
+                    TREASURE;
+            case BMONSTER, CMONSTER, HMONSTER, CHAMONSTER, GEVENT, BEVENT, CURSE, BOSS, EPIC ->
+                    MONSTER;
+            case CARDS, TRINKETS, PILLS, RUNES, BOMBS, BUTTER, BATTERIES, KEYS, DICE, SHEART, BHEART, SACK, LSOUL, WILDCARD, MONEY, MONEY1C, MONEY2C, MONEY3C, MONEY4C, MONEY5C, MONEY10C ->
+                    LOOT;
+            default -> cardType;
+        };
     }
 }

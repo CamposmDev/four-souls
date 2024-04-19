@@ -33,9 +33,9 @@
                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
             </padding>
             <Label text="cardSet" />
-            <Label text="hitPoints" GridPane.rowIndex="1" />
-            <Label text="roll" GridPane.rowIndex="2" />
-            <Label text="damage" GridPane.rowIndex="3" />
+            <Label text="hp" GridPane.rowIndex="1" />
+            <Label text="dc" GridPane.rowIndex="2" />
+            <Label text="atk" GridPane.rowIndex="3" />
             <Label text="reward" GridPane.rowIndex="4" />
             <Label text="soul" GridPane.rowIndex="5" />
             <ComboBox fx:id="stat_cbCardSet" prefWidth="150.0" GridPane.columnIndex="1" />

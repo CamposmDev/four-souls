@@ -184,9 +184,9 @@ public class MonsterFormController extends FormController<MonsterCard> {
     public MonsterCard submit() throws Exception {
         var card = new MonsterCard();
         card.setCardSet(stat_cbCardSet.getValue());
-        card.setHitPoints(Byte.parseByte(stat_tfHP.getText()));
-        card.setRoll(Byte.parseByte(stat_tfDC.getText()));
-        card.setDamage(Byte.parseByte(stat_tfATK.getText()));
+        card.setHp(Byte.parseByte(stat_tfHP.getText()));
+        card.setDc(Byte.parseByte(stat_tfDC.getText()));
+        card.setAtk(Byte.parseByte(stat_tfATK.getText()));
         card.setReward(stat_reward);
         card.setSoul(Byte.parseByte(stat_tfSoul.getText()));
         card.setStartEvent(se_formController.submit());

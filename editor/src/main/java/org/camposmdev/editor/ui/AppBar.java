@@ -1,9 +1,11 @@
 package org.camposmdev.editor.ui;
 
 import com.almasb.fxgl.dsl.FXGL;
+import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.image.ImageView;
 import org.camposmdev.editor.net.API;
 import org.camposmdev.editor.ui.workspace.Workspace;
 import javafx.event.ActionEvent;
@@ -20,6 +22,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Objects;
 
 public class AppBar {
     private final MenuBar menuBar;
@@ -48,14 +51,19 @@ public class AppBar {
             try {
                 Desktop.getDesktop().browse(new URI(API.base_url));
             } catch (IOException | URISyntaxException ex) {
-                NotificationBar.instance().push("Failed to preview latest version of master card atlas");
+                throw new RuntimeException();
             }
+        });
+        var miPref = new MenuItem("Preferences");
+        miPref.setAccelerator(new KeyCodeCombination(KeyCode.COMMA, KeyCodeCombination.SHORTCUT_DOWN));
+        miPref.setOnAction(e -> {
+            DialogFactory.instance().showPreferences();
         });
         var miExit = new MenuItem("Exit");
         miExit.setAccelerator(new KeyCodeCombination(KeyCode.Q, KeyCodeCombination.SHORTCUT_DOWN));
         miExit.setOnAction(e -> DialogFactory.instance().showExitBox());
         var menu = new Menu("File");
-        menu.getItems().addAll(miOpen, miSave, miPreview, new SeparatorMenuItem(), miExit);
+        menu.getItems().addAll(miOpen, miSave, miPreview, new SeparatorMenuItem(), miPref, new SeparatorMenuItem(), miExit);
         return menu;
     }
 
@@ -100,162 +108,127 @@ public class AppBar {
         MenuItem miBug = new MenuItem("Submit a Bug Report");
         miBug.setOnAction(e -> {
             /* forward user to GitHub repo issues tab */
+            try {
+                Desktop.getDesktop().browse(new URI(API.issues));
+            } catch (IOException | URISyntaxException ex) {
+                throw new RuntimeException();
+            }
         });
         MenuItem miAbout = new MenuItem("About");
         miAbout.setOnAction(e -> {
             /* show window to display info about this program */
+            DialogFactory.instance().showAboutBox();
         });
         Menu m = new Menu("Help");
         m.getItems().addAll(miBug, miAbout);
         return m;
     }
-
+    static final double ICON_SIZE = 16;
     private MenuItem buildBSoulMenu() {
+        var iv = new ImageView(FXGL.image("cards/BonusSoulCardBack-110x150.png"));
+        iv.setPreserveRatio(true);
+        iv.setFitWidth(ICON_SIZE);
         var mi_bsoul = new MenuItem(CardType.BSOUL.pretty());
+        mi_bsoul.setGraphic(iv);
         mi_bsoul.setAccelerator(new KeyCodeCombination(KeyCode.B, KeyCombination.SHORTCUT_DOWN, KeyCombination.SHIFT_DOWN));
         mi_bsoul.setOnAction(new MenuHandler());
         return mi_bsoul;
     }
 
     private MenuItem buildCharacterMenu() {
+        var iv = new ImageView(FXGL.image("cards/CharacterCardBack-110x150.png"));
+        iv.setPreserveRatio(true);
+        iv.setFitWidth(ICON_SIZE);
         var mi_character = new MenuItem(CardType.CHARACTER.pretty());
+        mi_character.setGraphic(iv);
         mi_character.setAccelerator(new KeyCodeCombination(KeyCode.C, KeyCombination.SHORTCUT_DOWN, KeyCombination.SHIFT_DOWN));
         mi_character.setOnAction(new MenuHandler());
         return mi_character;
     }
 
     private Menu buildEternalMenu() {
-        var mi_a_eternal = new MenuItem(CardType.AETERNAL.pretty());
-        mi_a_eternal.setOnAction(new MenuHandler());
-        var mi_o_eternal = new MenuItem(CardType.OETERNAL.pretty());
-        mi_o_eternal.setOnAction(new MenuHandler());
-        var mi_paid_eternal = new MenuItem(CardType.PAIDETERNAL.pretty());
-        mi_paid_eternal.setOnAction(new MenuHandler());
-        var mi_p_eternal = new MenuItem(CardType.PETERNAL.pretty());
-        mi_p_eternal.setOnAction(new MenuHandler());
-        var mi_s_eternal = new MenuItem(CardType.SETERNAL.pretty());
-        mi_s_eternal.setOnAction(new MenuHandler());
+        var iv = new ImageView(FXGL.image("cards/EternalCardBack-110x150.png"));
+        iv.setPreserveRatio(true);
+        iv.setFitWidth(ICON_SIZE);
         var mEternal = new Menu(CardType.ETERNAL.pretty());
-        mEternal.getItems().addAll(mi_a_eternal, mi_o_eternal,
-                mi_paid_eternal, mi_p_eternal, mi_s_eternal);
+        mEternal.setGraphic(iv);
+        for (var x : CardType.eternals()) {
+            var mi = new MenuItem(x.pretty());
+            mi.setOnAction(new MenuHandler());
+            mEternal.getItems().add(mi);
+        }
         return mEternal;
     }
 
     private Menu buildLootMenu() {
-        var mi_loot_batteries = new MenuItem(CardType.BATTERIES.pretty());
-        mi_loot_batteries.setOnAction(new MenuHandler());
-        var mi_loot_bheart = new MenuItem(CardType.BHEART.pretty());
-        mi_loot_bheart.setOnAction(new MenuHandler());
-        var mi_loot_bombs = new MenuItem(CardType.BOMBS.pretty());
-        mi_loot_bombs.setOnAction(new MenuHandler());
-        var mi_loot_butter = new MenuItem(CardType.BUTTER.pretty());
-        mi_loot_butter.setOnAction(new MenuHandler());
-        var mi_loot_cards = new MenuItem(CardType.CARDS.pretty());
-        mi_loot_cards.setOnAction(new MenuHandler());
-        var mi_loot_dice = new MenuItem(CardType.DICE.pretty());
-        mi_loot_dice.setOnAction(new MenuHandler());
-        var mi_loot_keys = new MenuItem(CardType.KEYS.pretty());
-        mi_loot_keys.setOnAction(new MenuHandler());
-        var mi_loot_lsoul = new MenuItem(CardType.LSOUL.pretty());
-        mi_loot_lsoul.setOnAction(new MenuHandler());
-        var mi_loot_pills = new MenuItem(CardType.PILLS.pretty());
-        mi_loot_pills.setOnAction(new MenuHandler());
-        var mi_loot_runes = new MenuItem(CardType.RUNES.pretty());
-        mi_loot_runes.setOnAction(new MenuHandler());
-        var mi_loot_sack = new MenuItem(CardType.SACK.pretty());
-        mi_loot_sack.setOnAction(new MenuHandler());
-        var mi_loot_sheart = new MenuItem(CardType.SHEART.pretty());
-        mi_loot_sheart.setOnAction(new MenuHandler());
-        var mi_loot_trinkets = new MenuItem(CardType.TRINKETS.pretty());
-        mi_loot_trinkets.setOnAction(new MenuHandler());
-        var mi_loot_wildcard = new MenuItem(CardType.WILDCARD.pretty());
-        mi_loot_wildcard.setOnAction(new MenuHandler());
-        mi_loot_wildcard.setOnAction(new MenuHandler());
+        var iv = new ImageView(FXGL.image("cards/LootCardBack-110x150.png"));
+        iv.setPreserveRatio(true);
+        iv.setFitWidth(ICON_SIZE);
         var mLoot = new Menu(CardType.LOOT.pretty());
-        var mMoney = buildMoneyMenu();
-        mLoot.getItems().addAll(mi_loot_batteries, mi_loot_bheart, mi_loot_bombs,
-                mi_loot_butter, mi_loot_cards, mi_loot_dice, mi_loot_keys, mi_loot_lsoul,
-                mMoney, mi_loot_pills, mi_loot_runes, mi_loot_sack, mi_loot_sheart,
-                mi_loot_trinkets, mi_loot_wildcard);
+        mLoot.setGraphic(iv);
+        for (var x : CardType.loot()) {
+            if (x == CardType.MONEY) {
+                var mMoney = new Menu(x.pretty());
+                for (var y : CardType.money()) {
+                    var mi = new MenuItem(y.pretty());
+                    mi.setOnAction(new MenuHandler());
+                    mMoney.getItems().add(mi);
+                }
+                mLoot.getItems().add(mMoney);
+            } else {
+                var mi = new MenuItem(x.pretty());
+                mi.setOnAction(new MenuHandler());
+                mLoot.getItems().add(mi);
+            }
+        }
         return mLoot;
     }
 
-    private Menu buildMoneyMenu() {
-        var mi_1c = new MenuItem(CardType.MONEY1C.pretty());
-        mi_1c.setOnAction(new MenuHandler());
-        var mi_2c = new MenuItem(CardType.MONEY2C.pretty());
-        mi_2c.setOnAction(new MenuHandler());
-        var mi_3c = new MenuItem(CardType.MONEY3C.pretty());
-        mi_3c.setOnAction(new MenuHandler());
-        var mi_4c = new MenuItem(CardType.MONEY4C.pretty());
-        mi_4c.setOnAction(new MenuHandler());
-        var mi_5c = new MenuItem(CardType.MONEY5C.pretty());
-        mi_5c.setOnAction(new MenuHandler());
-        var mi_10c = new MenuItem(CardType.MONEY10C.pretty());
-        mi_10c.setOnAction(new MenuHandler());
-        var mMoney = new Menu(CardType.MONEY.pretty());
-        mMoney.getItems().addAll(mi_1c, mi_2c, mi_3c,
-                mi_4c, mi_5c, mi_10c);
-        return mMoney;
-    }
-
     private Menu buildMonsterMenu() {
-        var mi_bevent = new MenuItem(CardType.BEVENT.pretty());
-        mi_bevent.setOnAction(new MenuHandler());
-        var mi_bmonster = new MenuItem(CardType.BMONSTER.pretty());
-        mi_bmonster.setOnAction(new MenuHandler());
-        var mi_boss = new MenuItem(CardType.BOSS.pretty());
-        mi_boss.setOnAction(new MenuHandler());
-        var mi_chamonster = new MenuItem(CardType.CHAMONSTER.pretty());
-        mi_chamonster.setOnAction(new MenuHandler());
-        var mi_cmonster = new MenuItem(CardType.CMONSTER.pretty());
-        mi_cmonster.setOnAction(new MenuHandler());
-        var mi_curse = new MenuItem(CardType.CURSE.pretty());
-        mi_curse.setOnAction(new MenuHandler());
-        var mi_epic = new MenuItem(CardType.EPIC.pretty());
-        mi_epic.setOnAction(new MenuHandler());
-        var mi_gevent = new MenuItem(CardType.GEVENT.pretty());
-        mi_gevent.setOnAction(new MenuHandler());
-        var mi_hmonster = new MenuItem(CardType.HMONSTER.pretty());
-        mi_hmonster.setOnAction(new MenuHandler());
+        var iv = new ImageView(FXGL.image("cards/MonsterCardBack-110x150.png"));
+        iv.setPreserveRatio(true);
+        iv.setFitWidth(ICON_SIZE);
         var mMonster = new Menu(CardType.MONSTER.pretty());
-        mMonster.getItems().addAll(mi_bevent, mi_bmonster, mi_boss,
-                mi_chamonster, mi_cmonster, mi_curse, mi_epic,
-                mi_gevent, mi_hmonster);
+        mMonster.setGraphic(iv);
+        for (var type : CardType.monsters()) {
+            var mi = new MenuItem(type.pretty());
+            mi.setOnAction(new MenuHandler());
+            mMonster.getItems().add(mi);
+        }
         return mMonster;
     }
 
     public MenuItem buildRoomMenu() {
+        var iv = new ImageView(FXGL.image("cards/RoomCardBack-150x110.png"));
+        iv.setPreserveRatio(true);
+        iv.setFitHeight(ICON_SIZE);
         var mi_room = new MenuItem(CardType.ROOM.pretty());
+        mi_room.setGraphic(iv);
         mi_room.setAccelerator(new KeyCodeCombination(KeyCode.R, KeyCombination.SHORTCUT_DOWN, KeyCombination.SHIFT_DOWN));
         mi_room.setOnAction(new MenuHandler());
         return mi_room;
     }
 
     public Menu buildTreasureMenu() {
-//        var mi_atreasure = new MenuItem(CardType.ATREASURE.pretty());
-//        mi_atreasure.setOnAction(new MenuHandler());
-//        var mi_otreasure = new MenuItem(CardType.OTREASURE.pretty());
-//        mi_otreasure.setOnAction(new MenuHandler());
-//        var mi_paidtreasure = new MenuItem(CardType.PAIDTREASURE.pretty());
-//        mi_paidtreasure.setOnAction(new MenuHandler());
-//        var mi_ptreasure = new MenuItem(CardType.PTREASURE.pretty());
-//        mi_ptreasure.setOnAction(new MenuHandler());
-//        var mi_streasure = new MenuItem(CardType.STREASURE.pretty());
-//        mi_streasure.setOnAction(new MenuHandler());
+        var iv = new ImageView(FXGL.image("cards/TreasureCardBack-110x150.png"));
+        iv.setPreserveRatio(true);
+        iv.setFitWidth(ICON_SIZE);
         var mTreasure = new Menu(CardType.TREASURE.pretty());
+        mTreasure.setGraphic(iv);
         for (var type : CardType.treasures()) {
             var mi = new MenuItem(type.pretty());
             mi.setOnAction(new MenuHandler());
             mTreasure.getItems().add(mi);
         }
-//        mTreasure.getItems().addAll(mi_atreasure, mi_otreasure,
-//                mi_paidtreasure, mi_ptreasure, mi_streasure);
         return mTreasure;
     }
 
     public MenuItem buildOutsideMenu() {
+        var iv = new ImageView(FXGL.image("cards/OutsideCardBack-110x150.png"));
+        iv.setPreserveRatio(true);
+        iv.setFitWidth(ICON_SIZE);
         var mi_outside = new MenuItem(CardType.OUTSIDE.pretty());
+        mi_outside.setGraphic(iv);
         mi_outside.setAccelerator(new KeyCodeCombination(KeyCode.O, KeyCombination.SHORTCUT_DOWN, KeyCombination.SHIFT_DOWN));
         mi_outside.setOnAction(new MenuHandler());
         return mi_outside;

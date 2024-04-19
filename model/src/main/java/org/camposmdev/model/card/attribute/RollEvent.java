@@ -12,7 +12,7 @@ public class RollEvent {
     private boolean noMonsterDamage;
     private byte modMonsterDamage;
     private byte multMonsterDamage;
-    private boolean cancelTurn;
+    private boolean endTurn;
     private boolean stealPlayerLoot;
     private byte damage;
     private EntityTarget damageTo;
@@ -21,10 +21,10 @@ public class RollEvent {
     private AttributeModifier modPlayer;
     private boolean attackable;
     private boolean returnToDeck;
-    private byte modRoll;
-    private byte modAttack;
+    private byte modMonstersDC;
+    private byte modMonstersAttack;
     private byte healMonster;
-    private boolean cancelAttack;
+    private boolean endAttack;
     private byte expandMonster;
     private Reward reward;
     private byte discardLoot;
@@ -33,15 +33,15 @@ public class RollEvent {
     private byte peekDeckAmount;
     private boolean peekDeckSort;
     private byte soulHitPoints;
-    private boolean changeToSoul;
+    private boolean soul;
     private boolean skipNextTurn;
-    private boolean isHeartItem;
+    private boolean heartItem;
     private byte rerollItem;
     private boolean guppyItem;
     private EntityTarget kill;
-    private byte modMonstersAttackRoll;
-    private boolean putOnTopMonsterDeck;
-    private RollEvent[] rollEvents;
+    private byte modAllMonstersDC;
+    private boolean putOnTopOfMonsterDeck;
+    private List<RollEvent> rollEvents;
     private boolean damageLink;
     private boolean discardRandomItem;
     private boolean putOnMonsterSlot;
@@ -100,12 +100,12 @@ public class RollEvent {
         return this;
     }
 
-    public boolean isCancelTurn() {
-        return cancelTurn;
+    public boolean isEndTurn() {
+        return endTurn;
     }
 
-    public RollEvent setCancelTurn(boolean cancelTurn) {
-        this.cancelTurn = cancelTurn;
+    public RollEvent setEndTurn(boolean endTurn) {
+        this.endTurn = endTurn;
         return this;
     }
 
@@ -181,21 +181,21 @@ public class RollEvent {
         return this;
     }
 
-    public byte getModRoll() {
-        return modRoll;
+    public byte getModMonstersDC() {
+        return modMonstersDC;
     }
 
-    public RollEvent setModRoll(byte modRoll) {
-        this.modRoll = modRoll;
+    public RollEvent setModMonstersDC(byte modMonstersDC) {
+        this.modMonstersDC = modMonstersDC;
         return this;
     }
 
-    public byte getModAttack() {
-        return modAttack;
+    public byte getModMonstersAttack() {
+        return modMonstersAttack;
     }
 
-    public RollEvent setModAttack(byte modAttack) {
-        this.modAttack = modAttack;
+    public RollEvent setModMonstersAttack(byte modMonstersAttack) {
+        this.modMonstersAttack = modMonstersAttack;
         return this;
     }
 
@@ -208,12 +208,12 @@ public class RollEvent {
         return this;
     }
 
-    public boolean isCancelAttack() {
-        return cancelAttack;
+    public boolean isEndAttack() {
+        return endAttack;
     }
 
-    public RollEvent setCancelAttack(boolean cancelAttack) {
-        this.cancelAttack = cancelAttack;
+    public RollEvent setEndAttack(boolean endAttack) {
+        this.endAttack = endAttack;
         return this;
     }
 
@@ -289,12 +289,12 @@ public class RollEvent {
         return this;
     }
 
-    public boolean isChangeToSoul() {
-        return changeToSoul;
+    public boolean isSoul() {
+        return soul;
     }
 
-    public RollEvent setChangeToSoul(boolean changeToSoul) {
-        this.changeToSoul = changeToSoul;
+    public RollEvent setSoul(boolean soul) {
+        this.soul = soul;
         return this;
     }
 
@@ -308,11 +308,11 @@ public class RollEvent {
     }
 
     public boolean isHeartItem() {
-        return isHeartItem;
+        return heartItem;
     }
 
     public RollEvent setHeartItem(boolean heartItem) {
-        isHeartItem = heartItem;
+        this.heartItem = heartItem;
         return this;
     }
 
@@ -343,29 +343,29 @@ public class RollEvent {
         return this;
     }
 
-    public byte getModMonstersAttackRoll() {
-        return modMonstersAttackRoll;
+    public byte getModAllMonstersDC() {
+        return modAllMonstersDC;
     }
 
-    public RollEvent setModMonstersAttackRoll(byte modMonstersAttackRoll) {
-        this.modMonstersAttackRoll = modMonstersAttackRoll;
+    public RollEvent setModAllMonstersDC(byte modAllMonstersDC) {
+        this.modAllMonstersDC = modAllMonstersDC;
         return this;
     }
 
-    public boolean isPutOnTopMonsterDeck() {
-        return putOnTopMonsterDeck;
+    public boolean isPutOnTopOfMonsterDeck() {
+        return putOnTopOfMonsterDeck;
     }
 
-    public RollEvent setPutOnTopMonsterDeck(boolean putOnTopMonsterDeck) {
-        this.putOnTopMonsterDeck = putOnTopMonsterDeck;
+    public RollEvent setPutOnTopOfMonsterDeck(boolean putOnTopOfMonsterDeck) {
+        this.putOnTopOfMonsterDeck = putOnTopOfMonsterDeck;
         return this;
     }
 
-    public RollEvent[] getRollEvents() {
+    public List<RollEvent> getRollEvents() {
         return rollEvents;
     }
 
-    public RollEvent setRollEvents(RollEvent[] rollEvents) {
+    public RollEvent setRollEvents(List<RollEvent> rollEvents) {
         this.rollEvents = rollEvents;
         return this;
     }

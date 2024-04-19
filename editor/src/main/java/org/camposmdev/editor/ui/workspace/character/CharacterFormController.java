@@ -82,8 +82,8 @@ public class CharacterFormController extends FormController<CharacterCard> {
     @Override
     public CharacterCard submit() throws Exception {
         return (CharacterCard) new CharacterCard()
-                .setHitPoints(Byte.parseByte(hitPoints.getText()))
-                .setDamage(Byte.parseByte(damage.getText()))
+                .setHp(Byte.parseByte(hitPoints.getText()))
+                .setAtk(Byte.parseByte(damage.getText()))
                 .setEternalId(lvEternal.getSelectionModel().getSelectedItem())
                 .setSpecial(special.getValue())
                 .setCardSet(cardSet.getValue());

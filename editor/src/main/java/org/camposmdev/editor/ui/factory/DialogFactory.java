@@ -3,15 +3,14 @@ package org.camposmdev.editor.ui.factory;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.ui.UI;
 import javafx.stage.FileChooser;
-import org.camposmdev.editor.ui.AttributeModifierBox;
-import org.camposmdev.editor.ui.NotificationBar;
+import javafx.util.Duration;
+import org.camposmdev.editor.net.API;
+import org.camposmdev.editor.ui.*;
 import org.camposmdev.editor.ui.workspace.loot.LootOptionFormController;
 import org.camposmdev.editor.ui.workspace.loot.PillEventFormController;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
-import org.camposmdev.editor.ui.RewardBox;
-import org.camposmdev.editor.ui.RollEventBox;
 import org.camposmdev.editor.ui.workspace.loot.RuneEventFormController;
 import org.camposmdev.editor.ui.workspace.monster.MonsterOptionEventFormController;
 import org.camposmdev.model.atlas.MasterCardAtlas;
@@ -203,16 +202,18 @@ public class DialogFactory {
     }
 
     public void showRollEventModifierBox(List<RollEvent> lst) {
-        var box = new RollEventBox();
-        box.load(lst);
+        UI form = FXUtil.loadUI("workspace/RollEventForm.fxml");
+        assert form != null;
+        RollEventFormController controller = form.getController();
+        controller.load(lst);
         new DialogBuilder().setTitle("Roll Event Modifier")
                 .setHeaderText("Roll for an event.")
-                .setContent(box.getContent())
+                .setContent(form.getRoot())
                 .setDefaultBtn()
                 .buildAndShow().ifPresent(e -> {
                     if (e.getButtonData().isDefaultButton()) {
                         lst.clear();
-                        lst.addAll(box.submit());
+                        lst.addAll(controller.submit());
                     }
                 });
     }
@@ -340,5 +341,42 @@ public class DialogFactory {
         } catch (IOException ex) {
             DialogFactory.instance().showErrorBox(ex);
         }
+    }
+
+    public void showPreferences() {
+        var root = new GridPane(8,8);
+        var tfHost = new TextField(API.instance().host());
+        var tfPort = new TextField(API.instance().port().toString());
+        var btPing = new Button("Ping (...)");
+        btPing.setMaxWidth(Integer.MAX_VALUE);
+        Runnable ping = () -> {
+            try {
+                String host = tfHost.getText();
+                int port = Integer.parseInt(tfPort.getText());
+                API.instance().setHostAndPort(host, port);
+                btPing.setText(String.format("Ping (%d ms)", API.instance().ping()));
+            } catch (Exception ignored) {}
+        };
+        btPing.setOnAction(e -> {
+            FXGL.runOnce(ping, Duration.ONE);
+        });
+        root.addRow(0, new Label("Host"), tfHost);
+        root.addRow(1, new Label("Port"), tfPort);
+        root.add(btPing, 0, 2, 2, 1);
+        FXGL.runOnce(ping, Duration.ONE);
+        new DialogBuilder()
+                .setTitle("Preferences")
+                .setContent(root)
+                .setDefaultBtn().buildAndShow();
+    }
+
+    public void showAboutBox() {
+        UI ui = FXUtil.loadUI("About.fxml");
+        assert ui != null : "Failed to load About.fxml";
+        new DialogBuilder().setTitle("About")
+                .setHeaderText(FXGL.getSettings().getTitle())
+                .setContent(ui.getRoot())
+                .setDefaultBtn()
+                .buildAndShow();
     }
 }

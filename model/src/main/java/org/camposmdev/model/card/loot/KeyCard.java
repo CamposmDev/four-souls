@@ -6,7 +6,8 @@ import org.camposmdev.model.card.attribute.CardType;
 import org.camposmdev.model.card.attribute.loot.CardKind;
 import org.camposmdev.model.card.attribute.loot.LootOption;
 
-public class KeyCard extends LootCard {
+public class
+KeyCard extends LootCard {
     private CardKind kind;
 
     public KeyCard() {

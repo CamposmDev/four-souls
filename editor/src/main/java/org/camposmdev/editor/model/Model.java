@@ -64,21 +64,7 @@ public class Model {
         /* add the card to the local master card atlas */
         masterCardAtlas.add(card);
         /* then upload this card to the server if able */
-        switch (card.getCardType()) {
-            case BSOUL -> API.instance().createBSoulCard((BonusSoulCard) card);
-            case CHARACTER -> API.instance().createCharacterCard((CharacterCard) card);
-            case PETERNAL, AETERNAL, PAIDETERNAL, OETERNAL, SETERNAL ->
-                    API.instance().createEternalCard((EternalCard) card);
-            case PTREASURE, ATREASURE, PAIDTREASURE, OTREASURE, STREASURE ->
-                    API.instance().createTreasureCard((TreasureCard) card);
-            case BMONSTER, CMONSTER, HMONSTER, CHAMONSTER, GEVENT, BEVENT, CURSE, BOSS, EPIC ->
-                    API.instance().createMonsterCard((MonsterCard) card);
-            case CARDS, TRINKETS, PILLS, RUNES, BOMBS, BUTTER, BATTERIES, KEYS, DICE, SHEART, BHEART, SACK, LSOUL, WILDCARD, MONEY, MONEY1C, MONEY2C, MONEY3C, MONEY4C, MONEY5C, MONEY10C ->
-                    API.instance().createLootCard((LootCard) card);
-            case ROOM -> API.instance().createRoomCard((RoomCard) card);
-            case OUTSIDE -> API.instance().createOutsideCard((OutsideCard) card);
-            default -> Log.fatal("Failed to upload card to server!");
-        }
+        API.instance().createCard(card);
     }
 
     /**
@@ -109,9 +95,9 @@ public class Model {
     public void loadMasterCardAtlas() {
         var masterCardAtlas = API.instance().fetchMasterCardAtlas();
         if (masterCardAtlas == null) {
-            NotificationBar.instance().push("Failed to load latest version of master card atlas");
+            FXGL.getNotificationService().pushNotification("Failed to fetch Master Card Atlas");
         } else {
-            NotificationBar.instance().push("Successfully loaded latest version of master card atlas");
+            FXGL.getNotificationService().pushNotification("Loaded Master Card Atlas");
             this.masterCardAtlas = masterCardAtlas;
         }
     }

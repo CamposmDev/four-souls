@@ -10,8 +10,8 @@ fs.readFile(FILE, (err, data) => {
     if (err) {
         console.error(`Failed to read ${FILE} (${err.code})`);
         fs.writeFile(FILE, JSON.stringify(model.cards), (err) => {
-            if (err) console.log(`Failed to write ${FILE}`)
-            else console.log(`Wrote ${FILE}`);
+            if (err) console.log(`Failed to create ${FILE}`)
+            else console.log(`Created ${FILE}`);
         })
     } else {
         console.log(`Read ${FILE}`)
@@ -19,8 +19,7 @@ fs.readFile(FILE, (err, data) => {
     }
 });
 
-
-/* Add handler for when program terminates */
+/* Try to save {model} to {FILE} when program terminates */
 process.on('SIGINT', async () => {
     /* save the current state of model to file */
     function waitForFile() {
@@ -30,14 +29,18 @@ process.on('SIGINT', async () => {
                     console.log(`Failed to write ${FILE}`);
                     reject();
                 } else {
-                    console.log(`Wrote ${FILE}`)
+                    console.log(`Saved ${FILE}`)
                     resolve();
                 }
             })
         });
     }
     /* wait for model to finish saving */
-    await waitForFile();
+    try {
+        await waitForFile();
+    } catch (err) {
+        console.log(err);
+    }
     process.exit(0);
 });
 
@@ -140,6 +143,7 @@ cardRouter.post(`/${CardType.MONSTER}`, async (req, res) => {
     }
     return res.json({ "message": "Created MonsterCard" });
 });
+
 /* Handle POST requests for Loot Cards */
 cardRouter.post(`/${CardType.LOOT}`, async (req, res) => {
     const card = req.body;

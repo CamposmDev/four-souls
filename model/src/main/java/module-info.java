@@ -30,4 +30,6 @@ module model {
     exports org.camposmdev.model.card.attribute.treasure;
     exports org.camposmdev.model.card.room;
     exports org.camposmdev.model.card.extra;
+    exports org.camposmdev.model.card.attribute.outside.OutsideType;
+    exports org.camposmdev.model.card.attribute.loot.MoneyEffect;
 }

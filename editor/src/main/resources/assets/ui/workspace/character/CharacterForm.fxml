@@ -23,8 +23,8 @@
   </rowConstraints>
    <children>
       <Label text="cardSet" />
-      <Label text="hitPoints" GridPane.rowIndex="1" />
-      <Label text="damage" GridPane.rowIndex="2" />
+      <Label text="hp" GridPane.rowIndex="1" />
+      <Label text="atk" GridPane.rowIndex="2" />
       <Label text="eternalId" GridPane.rowIndex="3" />
       <ListView fx:id="lvEternal" GridPane.columnIndex="1" GridPane.rowIndex="3" />
       <ComboBox fx:id="cardSet" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />

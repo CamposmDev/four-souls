@@ -7,8 +7,8 @@ import org.camposmdev.model.card.attribute.CardType;
 import org.camposmdev.model.card.attribute.character.SpecialType;
 
 public class CharacterCard extends BaseCard {
-    private byte hitPoints;
-    private byte damage;
+    private byte hp;
+    private byte atk;
     private String eternalId;
     private SpecialType special;
 
@@ -17,21 +17,21 @@ public class CharacterCard extends BaseCard {
         this.special = SpecialType.DEFAULT;
     }
 
-    public byte getHitPoints() {
-        return hitPoints;
+    public byte getHp() {
+        return hp;
     }
 
-    public CharacterCard setHitPoints(byte hitPoints) {
-        this.hitPoints = hitPoints;
+    public CharacterCard setHp(byte hp) {
+        this.hp = hp;
         return this;
     }
 
-    public byte getDamage() {
-        return damage;
+    public byte getAtk() {
+        return atk;
     }
 
-    public CharacterCard setDamage(byte damage) {
-        this.damage = damage;
+    public CharacterCard setAtk(byte atk) {
+        this.atk = atk;
         return this;
     }
 

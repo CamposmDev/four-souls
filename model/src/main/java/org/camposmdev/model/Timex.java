@@ -10,16 +10,23 @@ public class Timex {
     }
 
     public Timex stop() {
-        this.elapsed = System.currentTimeMillis() - start;
+        this.elapsed = System.currentTimeMillis() - this.start;
         return this;
     }
 
     public long seconds() {
-        return (elapsed / 1000) % 60;
+        return (this.elapsed / 1000) % 60;
     }
 
     public long minutes() {
-        return elapsed / (1000 * 60);
+        return this.elapsed / (1000 * 60);
+    }
+
+    /**
+     * @return The time in milliseconds
+     */
+    public long toMillis() {
+        return this.elapsed;
     }
 
     @Override

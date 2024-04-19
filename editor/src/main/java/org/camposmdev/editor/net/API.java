@@ -2,26 +2,22 @@ package org.camposmdev.editor.net;
 
 import com.almasb.fxgl.dsl.FXGL;
 import okhttp3.*;
+import org.camposmdev.model.Timex;
 import org.camposmdev.model.atlas.MasterCardAtlas;
+import org.camposmdev.model.card.BaseCard;
 import org.camposmdev.model.card.attribute.CardType;
-import org.camposmdev.model.card.bsoul.BonusSoulCard;
-import org.camposmdev.model.card.character.CharacterCard;
-import org.camposmdev.model.card.eternal.*;
-import org.camposmdev.model.card.extra.OutsideCard;
-import org.camposmdev.model.card.loot.LootCard;
-import org.camposmdev.model.card.monster.MonsterCard;
-import org.camposmdev.model.card.room.RoomCard;
-import org.camposmdev.model.card.treasure.*;
 import org.camposmdev.util.Log;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 public class API {
+    public static String issues = "https://github.com/CamposmDev/four-souls/issues";
     private static API api;
-    private static String host = "localhost";
-    private static int port = 3000;
-    public static final String base_url = "http://" + host + ":" + port + "/api/";
-    public static final String card_url = base_url + "card/";
+    private static String host = "http://localhost";
+    private static Integer port = 3000;
+    public static String base_url = host + ":" + port + "/api/";
+    public static String card_url = base_url + "card/";
     private static OkHttpClient client;
     public static API instance() {
         if (api == null) api = new API();
@@ -29,7 +25,9 @@ public class API {
     }
 
     private API() {
-        client = new OkHttpClient();
+        client = new OkHttpClient.Builder()
+                .connectTimeout(5, TimeUnit.SECONDS)
+                .build();
     }
 
     public MasterCardAtlas fetchMasterCardAtlas() {
@@ -40,139 +38,43 @@ public class API {
                 return MasterCardAtlas.deserialize(data);
             }
         } catch (IOException ex) {
-            Log.fatal("Failed to fetch latest version of master card atlas");
+            System.err.println(ex);
         }
         return null;
     }
 
-    public void createBSoulCard(BonusSoulCard card) {
-        final var url = card_url + CardType.BSOUL.key();
+    public void createCard(BaseCard card) {
+        var url = card_url + CardType.categoryOf(card.getCardType()).key();
         var reqBody = RequestBody.create(card.toString(), MediaType.parse("application/json"));
-        var req = new Request.Builder().url(url).post(reqBody).build();
+        Request req = new Request.Builder().url(url).post(reqBody).build();
         try (var res = client.newCall(req).execute()) {
-            if (res.isSuccessful()) {
-                FXGL.getNotificationService().pushNotification("Card uploaded to server!");
-            } else {
-                assert res.body() != null;
+            if (res.body() != null)
                 FXGL.getNotificationService().pushNotification(res.body().string());
-            }
         } catch (IOException ex) {
-            Log.fatal("Failed to post to " + url);
+            FXGL.getNotificationService().pushNotification("Failed to connect to server.");
         }
     }
 
-    public void createCharacterCard(CharacterCard card) {
-        final var url = card_url + CardType.CHARACTER.key();
-        var reqBody = RequestBody.create(card.toString(), MediaType.parse("application/json"));
-        var req = new Request.Builder().url(url).post(reqBody).build();
-        try (var res = client.newCall(req).execute()) {
-            if (res.isSuccessful()) {
-                FXGL.getNotificationService().pushNotification("Card uploaded to server!");
-            } else {
-                assert res.body() != null;
-                FXGL.getNotificationService().pushNotification(res.body().string());
-            }
-        } catch (IOException ex) {
-            Log.fatal("Failed to post to " + url);
-        }
+    public void setHostAndPort(String host, int port) {
+        API.host = host;
+        API.port = port;
+        base_url = API.host + ":" + API.port + "/api/";
+        card_url = base_url + "card/";
     }
 
-    public void createEternalCard(EternalCard card) {
-        final var url = card_url + CardType.ETERNAL.key();
-        String payload = card.toString();
-        var reqBody = RequestBody.create(payload, MediaType.parse("application/json"));
-        var req = new Request.Builder().url(url).post(reqBody).build();
-        try (var res = client.newCall(req).execute()) {
-            if (res.isSuccessful()) {
-                FXGL.getNotificationService().pushNotification("Card uploaded to server!");
-            } else {
-                assert res.body() != null;
-                FXGL.getNotificationService().pushNotification(res.body().string());
-            }
-        } catch (IOException ex) {
-            Log.fatal("Failed to post to " + url);
-        }
+    public String host() {
+        return host;
     }
 
-    public void createTreasureCard(TreasureCard card) {
-        final var url = card_url + CardType.TREASURE.key();
-        String payload = card.toString();
-        var reqBody = RequestBody.create(payload, MediaType.parse("application/json"));
-        var req = new Request.Builder().url(url).post(reqBody).build();
-        try (var res = client.newCall(req).execute()) {
-            if (res.isSuccessful()) {
-                FXGL.getNotificationService().pushNotification("Card uploaded to server!");
-            } else {
-                assert res.body() != null;
-                FXGL.getNotificationService().pushNotification(res.body().string());
-            }
-        } catch (IOException ex) {
-            Log.fatal("Failed to post to " + url);
-        }
+    public Integer port() {
+        return port;
     }
 
-    public void createMonsterCard(MonsterCard card) {
-        final var url = card_url + CardType.MONSTER.key();
-        String payload = card.toString();
-        var reqBody = RequestBody.create(payload, MediaType.parse("application/json"));
-        var req = new Request.Builder().url(url).post(reqBody).build();
-        try (var res = client.newCall(req).execute()) {
-            if (res.isSuccessful()) {
-                FXGL.getNotificationService().pushNotification("Card uploaded to server!");
-            } else {
-                assert res.body() != null;
-                FXGL.getNotificationService().pushNotification(res.body().string());
-            }
-        } catch (IOException ex) {
-            Log.fatal("Failed to post to " + url);
-        }
-    }
-
-    public void createLootCard(LootCard card) {
-        final var url = card_url + CardType.LOOT.key();
-        var reqBody = RequestBody.create(card.toString(), MediaType.parse("application/json"));
-        var req = new Request.Builder().url(url).post(reqBody).build();
-        try (var res = client.newCall(req).execute()) {
-            if (res.isSuccessful()) {
-                FXGL.getNotificationService().pushNotification("Card uploaded to server!");
-            } else {
-                assert res.body() != null;
-                FXGL.getNotificationService().pushNotification(res.body().string());
-            }
-        } catch (IOException ex) {
-            Log.fatal("Failed to post to " + url);
-        }
-    }
-
-    public void createRoomCard(RoomCard card) {
-        final var url = card_url + CardType.ROOM.key();
-        var reqBody = RequestBody.create(card.toString(), MediaType.parse("application/json"));
-        var req = new Request.Builder().url(url).post(reqBody).build();
-        try (var res = client.newCall(req).execute()) {
-            if (res.isSuccessful()) {
-                FXGL.getNotificationService().pushNotification("Card uploaded to server!");
-            } else {
-                assert res.body() != null;
-                FXGL.getNotificationService().pushNotification(res.body().string());
-            }
-        } catch (IOException ex) {
-            Log.fatal("Failed to post to " + url);
-        }
-    }
-
-    public void createOutsideCard(OutsideCard card) {
-        final var url = card_url + CardType.OUTSIDE.key();
-        var reqBody = RequestBody.create(card.toString(), MediaType.parse("application/json"));
-        var req = new Request.Builder().url(url).post(reqBody).build();
-        try (var res = client.newCall(req).execute()) {
-            if (res.isSuccessful()) {
-                FXGL.getNotificationService().pushNotification("Card uploaded to server!");
-            } else {
-                assert res.body() != null;
-                FXGL.getNotificationService().pushNotification(res.body().string());
-            }
-        } catch (IOException ex) {
-            Log.fatal("Failed to post to " + url);
-        }
+    public Long ping() {
+        Timex timex = new Timex();
+        timex.start();
+        MasterCardAtlas atlas = fetchMasterCardAtlas();
+        timex.stop();
+        return (atlas == null) ? -1L : timex.toMillis();
     }
 }

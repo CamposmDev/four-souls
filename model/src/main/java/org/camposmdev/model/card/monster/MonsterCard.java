@@ -6,9 +6,9 @@ import org.camposmdev.model.card.attribute.Reward;
 import org.camposmdev.model.card.attribute.monster.*;
 
 public class MonsterCard extends BaseMonsterCard {
-    private byte hitPoints;
-    private byte damage;
-    private byte roll;
+    private byte hp;
+    private byte atk;
+    private byte dc;
     private Reward reward;
     private byte soul;
     private StartEvent startEvent;
@@ -20,30 +20,30 @@ public class MonsterCard extends BaseMonsterCard {
     private GameType game;
     private ChallengeType challenge;
 
-    public byte getHitPoints() {
-        return hitPoints;
+    public byte getHp() {
+        return hp;
     }
 
-    public MonsterCard setHitPoints(byte hitPoints) {
-        this.hitPoints = hitPoints;
+    public MonsterCard setHp(byte hp) {
+        this.hp = hp;
         return this;
     }
 
-    public byte getDamage() {
-        return damage;
+    public byte getAtk() {
+        return atk;
     }
 
-    public MonsterCard setDamage(byte damage) {
-        this.damage = damage;
+    public MonsterCard setAtk(byte atk) {
+        this.atk = atk;
         return this;
     }
 
-    public byte getRoll() {
-        return roll;
+    public byte getDc() {
+        return dc;
     }
 
-    public MonsterCard setRoll(byte roll) {
-        this.roll = roll;
+    public MonsterCard setDc(byte dc) {
+        this.dc = dc;
         return this;
     }
 

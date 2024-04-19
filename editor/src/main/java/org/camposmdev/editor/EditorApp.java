@@ -40,9 +40,8 @@ public class EditorApp extends GameApplication {
 
     @Override
     protected void initUI() {
-        FXGL.getNotificationService().setBackgroundColor(Color.BLACK);
+        FXGL.getNotificationService().setBackgroundColor(Color.web("#2D2D30"));
         FXGL.getNotificationService().setTextColor(Color.WHITE);
-
         var editor = new Workspace(FXGLForKtKt.getAppWidth(), FXGLForKtKt.getAppHeight());
         FXGLForKtKt.addUINode(editor.getContent());
         FXGL.getPrimaryStage().setOnCloseRequest(e -> {
