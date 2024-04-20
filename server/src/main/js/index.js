@@ -239,7 +239,15 @@ apiRouter.get('/', async (req, res) => {
     return res.status(200).json(model.cards);
 });
 
-const port = 3000;
+const DEFAULT_PORT = 3000;
+let port = DEFAULT_PORT;
+const argv = process.argv;
+argv.forEach((val, index, arr) => {
+    if (val == '-p' || val == '--port' && argv[index+1]) {
+        port = Number(argv[index+1]);
+    }
+});
+
 const app = express();
 app.use(express.json());
 app.use('/api', apiRouter);
