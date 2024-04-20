@@ -11,23 +11,18 @@ import com.almasb.fxgl.texture.Texture;
 import javafx.animation.Interpolator;
 import javafx.animation.RotateTransition;
 import javafx.geometry.Point2D;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
-import org.camposmdev.client.game.GameFactory;
+import org.camposmdev.client.game.FSGameFactory;
 import org.camposmdev.client.game.component.D6AnimationComponent;
 import org.camposmdev.client.ui.FSSceneFactory;
-import org.camposmdev.model.Timex;
-import org.camposmdev.model.atlas.ImageAtlas;
-import org.camposmdev.model.atlas.MasterImageAtlas;
-import org.camposmdev.util.Log;
+import org.camposmdev.client.ui.TopDrawerView;
+import org.camposmdev.util.FXUtil;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -39,127 +34,121 @@ public class FourSoulsApp extends GameApplication {
     }
 
     @Override
-    protected void initSettings(GameSettings settings) {
-        settings.setTitle("Four Souls");
-        settings.setVersion("1.0");
-        settings.setAppIcon("icons/soul_circle.png");
-        settings.setWidth(1600);
-        settings.setHeight(900);
-        settings.setPreserveResizeRatio(true);
-        settings.setScaleAffectedOnResize(true);
-        settings.setIntroEnabled(true);
-        settings.setMainMenuEnabled(true);
-        settings.setGameMenuEnabled(true);
-        settings.setSceneFactory(new FSSceneFactory());
-        settings.setManualResizeEnabled(true);
-        settings.setFullScreenAllowed(true);
-        settings.setDefaultCursor(new CursorInfo("cursor.png", 0, 0));
-        settings.setFontGame("EdmundMcMillen_v2.ttf");
-        settings.setApplicationMode(ApplicationMode.DEBUG);
+    protected void initSettings(GameSettings options) {
+        final int WIDTH = 1600, HEIGHT = 900;
+        options.setApplicationMode(ApplicationMode.DEVELOPER);
+        options.setTitle("Four Souls");
+        options.setVersion("1.0.0");
+        options.setAppIcon("icons/soul_circle.png");
+        options.setWidth(WIDTH);
+        options.setHeight(HEIGHT);
+        options.setPreserveResizeRatio(true);
+        options.setScaleAffectedOnResize(true);
+        if (options.getApplicationMode() == ApplicationMode.RELEASE) {
+            options.setIntroEnabled(true);
+            options.setMainMenuEnabled(true);
+            options.setGameMenuEnabled(true);
+            options.setSceneFactory(new FSSceneFactory());
+        }
+        options.setManualResizeEnabled(true);
+        options.setFullScreenAllowed(true);
+        options.setDefaultCursor(new CursorInfo("cursor.png", 0, 0));
+        options.setFontGame("EdmundMcMillen_v2.ttf");
     }
 
     @Override
     protected void onPreInit() {
-        var timer = new Timex().start();
+        final double VOLUME = 0.1;
         getNotificationService().setBackgroundColor(Color.web("#121212"));
         getNotificationService().setTextColor(Color.WHITE);
-//        getAssetLoader().loadVideo("kickstarter_trailer.mp4");
-//        getAssetLoader().loadMusic("03 The Binding of Isaac.mp3");
-//        getAssetLoader().loadTexture("spritesheets/nightmare.png");
-//        getAssetLoader().loadTexture("spritesheets/loading.png");
         getAssetLoader().loadTexture("board.jpg");
-        getSettings().setGlobalMusicVolume(0.1);
-        getSettings().setGlobalSoundVolume(0.1);
-//        loadDeck();
-        Log.debugf("Finished loading assets (%s)\n", timer.stop());
+        getSettings().setGlobalMusicVolume(VOLUME);
+        getSettings().setGlobalSoundVolume(VOLUME);
     }
 
     @Override
     protected void initUI() {
-        var button1 = getUIFactoryService().newButton("Button1");
-        var button2 = getUIFactoryService().newButton("Button2");
-        var box = new HBox(10, button1, button2);
-        box.setAlignment(Pos.CENTER_LEFT);
-        box.setStyle("""
-                -fx-background-color: rgba(0,0,0,0.5);
-                """);
-        box.setPrefWidth(getAppWidth());
-        box.setPrefHeight(100);
-        double[] vertices = {
-                40, 50,     // Top left corner
-                260, 50,    // Top right corner
-                200, 80,   // Bottom right corner
-                100, 80    // Bottom left corner
-        };
-        var poly = new javafx.scene.shape.Polygon(vertices);
-        poly.setFill(Color.BLACK);
-        poly.setOpacity(0.5);
-        var flag = new AtomicBoolean(true);
-        var header = new VBox(box, poly);
-        header.setAlignment(Pos.CENTER);
-        poly.setOnMouseClicked(e -> {
-            if (flag.get()) {
-                animationBuilder().duration(Duration.millis(250)).onFinished(() -> flag.set(false)).translate(header).to(new Point2D(0, 0)).buildAndPlay();
-            } else {
-                animationBuilder().duration(Duration.millis(250)).onFinished(() -> flag.set(true)).translate(header).to(new Point2D(0, -100)).buildAndPlay();
-            }
-        });
-        addUINode(header, 0, -100);
+        TopDrawerView topDrawer = new TopDrawerView();
+        topDrawer.render();
     }
-
-
 
     @Override
     protected void initGame() {
-        getGameWorld().addEntityFactory(new GameFactory());
+        getGameWorld().addEntityFactory(new FSGameFactory());
         final var X_BORDER_MARGIN = 16;
         final var Y_BORDER_MARGIN = 16;
         final var Y_MID_OFFSET = 12;
-//        FXGL.loopBGM("The Binding of Isaac - 11 Repentant.mp3");
         var background = texture("board.jpg");
-        background.setFitWidth(getSettings().getWidth());
-        background.setFitHeight(getSettings().getHeight());
+        background.setFitWidth(getAppWidth());
+        background.setFitHeight(getAppHeight());
         getGameScene().addGameView(new GameView(background, -1));
-        var isaac = loadCardTexture("cards/character/b-isaac.png");
-        var treasureCardBack = loadCardTexture("cards/TreasureCardBack.png");
-        var lootCardBack = loadCardTexture("cards/LootCardBack.png");
-        var monsterCardBack = loadCardTexture("cards/MonsterCardBack.png");
+        var treasureCardBack = loadCard("cards/TreasureCardBack.png");
+        var lootCardBack = FXUtil.loadCard("cards/LootCardBack.png");
+        var monsterCardBack = loadCard("cards/MonsterCardBack.png");
 
-        var butterBean = loadCardTexture("cards/loot/butter/b2-butter_bean.png");
-        var beanEntity = new EntityBuilder().at(getAppWidth()/2d - butterBean.getFitWidth()/2d,
-                getAppHeight()/2d + Y_MID_OFFSET - butterBean.getFitHeight()/2d)
+        var butterBean = loadCard("cards/loot/butter/b2-butter_bean.png");
+        var beanEntity = new EntityBuilder().at(getAppWidth() / 2d - butterBean.getFitWidth() / 2d,
+                        getAppHeight() / 2d + Y_MID_OFFSET - butterBean.getFitHeight() / 2d)
                 .view(butterBean).build();
+        /* add treasure deck to game world */
         var treasureEntity = new EntityBuilder().at(X_BORDER_MARGIN,
-                getAppHeight()/2d + Y_MID_OFFSET - treasureCardBack.getFitHeight()/2d).view(treasureCardBack).buildAndAttach();
-        var lootCardEntity = new EntityBuilder().at(
-                getAppWidth()/2d - lootCardBack.getFitWidth()/2d,
-                getAppHeight()/2d + Y_MID_OFFSET - lootCardBack.getFitHeight()/2d)
+                getAppHeight() / 2d + Y_MID_OFFSET - treasureCardBack.getFitHeight() / 2d).view(treasureCardBack).build();
+        getGameWorld().addEntity(treasureEntity);
+        /* add loot deck to game world */
+        var lootEntity = new EntityBuilder().at(
+                        getAppWidth() / 2d - lootCardBack.getFitWidth() / 2d,
+                        getAppHeight() / 2d + Y_MID_OFFSET - lootCardBack.getFitHeight() / 2d)
                 .view(lootCardBack).buildAndAttach();
-        lootCardEntity.getViewComponent().addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+        lootEntity.getViewComponent().addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             var r = rotateOut(lootCardBack);
             r.play();
             r.setOnFinished(e1 -> {
-                getGameWorld().addEntity(beanEntity);
                 var r1 = rotateIn(butterBean);
                 r1.play();
+                getGameWorld().addEntity(beanEntity);
             });
         });
         var monsterEntity = new EntityBuilder().at(
                 getAppWidth() - monsterCardBack.getFitWidth() - X_BORDER_MARGIN,
-                getAppHeight()/2d + Y_MID_OFFSET - monsterCardBack.getFitHeight()/2d).view(monsterCardBack).buildAndAttach();
-        var playerEntity = new EntityBuilder().at(X_BORDER_MARGIN, getAppHeight() - isaac.getFitHeight() - Y_BORDER_MARGIN).view(isaac).buildAndAttach();
+                getAppHeight() / 2d + Y_MID_OFFSET - monsterCardBack.getFitHeight() / 2d).view(monsterCardBack).build();
+        getGameWorld().addEntity(monsterEntity);
 
+        var playerEntity = getGameWorld().spawn("player");
+        getGameWorld().addEntity(playerEntity);
+        addScaleOnMouseClick(playerEntity, ScaleFrom.BOTTOM_LEFT);
         addScaleOnMouseHover(playerEntity, ScaleFrom.BOTTOM_LEFT);
 
         var entity = getGameWorld().spawn("d6");
         entity.getViewComponent().addEventHandler(MouseEvent.MOUSE_CLICKED, e ->
                 entity.getComponent(D6AnimationComponent.class).roll().onSuccess(x -> {
-                    /* TODO */
-            Log.debugf("Player rolled %d\n", x);
-        }));
+
+                }));
         entity.translate(new Point2D(-16, -16));
 //        var entity = new EntityBuilder().view("d6_red.png").buildAndAttach();
 //        entity.setScaleUniform(5);
+    }
+
+    private void addScaleOnMouseClick(Entity entity, ScaleFrom type) {
+        var lst = entity.getViewComponent().getChildren();
+        if (lst.isEmpty()) return;
+        if (!(lst.getFirst() instanceof ImageView)) return;
+        var width = ((ImageView) lst.getFirst()).getFitWidth();
+        var height = ((ImageView) lst.getLast()).getFitHeight();
+        var scale = new AtomicBoolean(true);
+        switch (type) {
+            case BOTTOM_LEFT -> {
+                entity.getViewComponent().addOnClickHandler(e -> {
+                    if (scale.get()) {
+                        entity.setY(entity.getY() - height);
+                        entity.setScaleUniform(2);
+                    } else {
+                        entity.setY(entity.getY() + height);
+                        entity.setScaleUniform(1);
+                    }
+                    scale.set(!scale.get());
+                });
+            }
+        }
     }
 
     enum ScaleFrom {
@@ -181,11 +170,11 @@ public class FourSoulsApp extends GameApplication {
             }
             case TOP_CENTER -> {
                 entity.getViewComponent().addEventHandler(MouseEvent.MOUSE_ENTERED, e -> {
-                    entity.setX(entity.getX() - width/2d);
+                    entity.setX(entity.getX() - width / 2d);
                     entity.setScaleUniform(2);
                 });
                 entity.getViewComponent().addEventHandler(MouseEvent.MOUSE_EXITED, e -> {
-                    entity.setX(entity.getX() + width/2d);
+                    entity.setX(entity.getX() + width / 2d);
                     entity.setScaleUniform(1);
                 });
             }
@@ -201,35 +190,35 @@ public class FourSoulsApp extends GameApplication {
             }
             case CENTER_LEFT -> {
                 entity.getViewComponent().addEventHandler(MouseEvent.MOUSE_ENTERED, e -> {
-                    entity.setY(entity.getY() - height/2);
+                    entity.setY(entity.getY() - height / 2);
                     entity.setScaleUniform(2);
                 });
                 entity.getViewComponent().addEventHandler(MouseEvent.MOUSE_EXITED, e -> {
-                    entity.setY(entity.getY() + height/2);
+                    entity.setY(entity.getY() + height / 2);
                     entity.setScaleUniform(1);
                 });
             }
             case CENTER -> {
                 entity.getViewComponent().addEventHandler(MouseEvent.MOUSE_ENTERED, e -> {
-                    entity.setX(entity.getX() - width/2d);
-                    entity.setY(entity.getY() - height/2d);
+                    entity.setX(entity.getX() - width / 2d);
+                    entity.setY(entity.getY() - height / 2d);
                     entity.setScaleUniform(2);
                 });
                 entity.getViewComponent().addEventHandler(MouseEvent.MOUSE_EXITED, e -> {
-                    entity.setX(entity.getX() + width/2d);
-                    entity.setY(entity.getY() + height/2d);
+                    entity.setX(entity.getX() + width / 2d);
+                    entity.setY(entity.getY() + height / 2d);
                     entity.setScaleUniform(1);
                 });
             }
             case CENTER_RIGHT -> {
                 entity.getViewComponent().addEventHandler(MouseEvent.MOUSE_ENTERED, e -> {
                     entity.setX(entity.getX() - width);
-                    entity.setY(entity.getY() - height/2d);
+                    entity.setY(entity.getY() - height / 2d);
                     entity.setScaleUniform(2);
                 });
                 entity.getViewComponent().addEventHandler(MouseEvent.MOUSE_EXITED, e -> {
                     entity.setX(entity.getX() + width);
-                    entity.setY(entity.getY() + height/2d);
+                    entity.setY(entity.getY() + height / 2d);
                     entity.setScaleUniform(1);
                 });
             }
@@ -245,12 +234,12 @@ public class FourSoulsApp extends GameApplication {
             }
             case BOTTOM_CENTER -> {
                 entity.getViewComponent().addEventHandler(MouseEvent.MOUSE_ENTERED, e -> {
-                    entity.setX(entity.getX() - width/2d);
+                    entity.setX(entity.getX() - width / 2d);
                     entity.setY(entity.getY() - height);
                     entity.setScaleUniform(2);
                 });
                 entity.getViewComponent().addEventHandler(MouseEvent.MOUSE_EXITED, e -> {
-                    entity.setX(entity.getX() + width/2d);
+                    entity.setX(entity.getX() + width / 2d);
                     entity.setY(entity.getY() + height);
                     entity.setScaleUniform(1);
                 });
@@ -290,9 +279,7 @@ public class FourSoulsApp extends GameApplication {
         return rotator;
     }
 
-    private Texture loadCardTexture(String src) {
-//        final var FIT_WIDTH = 154;
-//        final var FIT_HEIGHT = 210;
+    private Texture loadCard(String src) {
         final var FIT_WIDTH = 120;
         final var FIT_HEIGHT = 176;
         var iv = texture(src);
@@ -300,31 +287,6 @@ public class FourSoulsApp extends GameApplication {
         iv.setFitHeight(FIT_HEIGHT);
         iv.setEffect(new DropShadow(12, 8, 12, Color.BLACK));
         return iv;
-    }
-
-    private void loadDeck() {
-        var deck = loadJSON("json/cards/cards.json", MasterImageAtlas.class);
-        var characters = loadJSON(deck.character(), ImageAtlas.class);
-        characters.images().values().forEach(data -> getAssetLoader().loadTexture(data.source2()));
-//        deck.eternal().forEach(x -> loadCards(x));
-//        deck.treasure().forEach(x -> loadCards(x));
-//        deck.monster().forEach(x -> loadCards(x));
-//        deck.loot().forEach(x -> loadCards(x));
-//        deck.money().forEach(x -> loadCards(x));
-//        deck.bsoul().forEach(x -> loadCards(x));
-//        deck.room().forEach(x -> loadCards(x));
-    }
-
-    private void loadCards(String src) {
-        var atlas = loadJSON(src, ImageAtlas.class);
-        atlas.images().values().forEach(data ->
-                getAssetLoader().loadTexture(data.source2()));
-    }
-
-    private <T> T loadJSON(String src, Class<T> type) {
-        var result = getAssetLoader().loadJSON(src, type);
-        assert result.isPresent();
-        return result.get();
     }
 }
 

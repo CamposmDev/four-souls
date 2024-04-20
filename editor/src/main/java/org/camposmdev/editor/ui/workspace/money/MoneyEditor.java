@@ -20,6 +20,7 @@ public class MoneyEditor extends BaseEditor {
     private final TextField tfValue;
     private final ComboBox<MoneyEffect> effect;
     private final CardType cardType;
+
     public MoneyEditor(CardType type) {
         cardType = type;
         cbCardSet = new ComboBox<>();

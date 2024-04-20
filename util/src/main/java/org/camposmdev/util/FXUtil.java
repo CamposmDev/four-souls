@@ -1,20 +1,27 @@
 package org.camposmdev.util;
 
 import com.almasb.fxgl.dsl.FXGL;
+import com.almasb.fxgl.texture.Texture;
 import com.almasb.fxgl.ui.UI;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.web.WebView;
 import javafx.util.Duration;
 
@@ -62,6 +69,51 @@ public class FXUtil {
             e.printStackTrace(System.out);
         }
         return null;
+    }
+
+    public static <T> T loadJSON(String src, Class<T> type) {
+        var result = FXGL.getAssetLoader().loadJSON(src, type);
+        assert result.isPresent() : "Failed to find " + src;
+        return result.get();
+    }
+
+    public static Texture loadCard(String src) {
+        final var FIT_WIDTH = 120;
+        final var FIT_HEIGHT = 176;
+        final var ARC_SIZE = 24;
+        var iv = FXGL.texture(src);
+        var img = iv.getImage();
+//        var clip = new Rectangle();
+//        clip.setArcWidth(ARC_SIZE);
+//        clip.setArcHeight(ARC_SIZE);
+        if (img.getWidth() < img.getHeight()) {
+            iv.setFitWidth(FIT_WIDTH);
+            iv.setFitHeight(FIT_HEIGHT);
+//            clip.setWidth(img.getWidth());
+//            clip.setHeight(img.getHeight());
+        } else {
+            iv.setFitWidth(FIT_HEIGHT);
+            iv.setFitHeight(FIT_WIDTH);
+//            clip.setWidth(img.getHeight());
+//            clip.setHeight(img.getWidth());
+        }
+//        iv.setClip(clip);
+        Platform.runLater(() -> {
+//            SnapshotParameters parameters = new SnapshotParameters();
+//            parameters.setFill(Color.TRANSPARENT);
+//            var w_img = iv.snapshot(parameters, null);
+//            iv.setClip(null);
+//            iv.setImage(w_img);
+//            if (w_img.getWidth() < w_img.getHeight()) {
+//                iv.setFitWidth(FIT_WIDTH);
+//                iv.setFitHeight(FIT_HEIGHT);
+//            } else {
+//                iv.setFitWidth(FIT_HEIGHT);
+//                iv.setFitHeight(FIT_WIDTH);
+//            }
+            iv.setEffect(new DropShadow(12, 8, 12, Color.BLACK));
+        });
+        return iv;
     }
 
     public static WebView loadSpace() {

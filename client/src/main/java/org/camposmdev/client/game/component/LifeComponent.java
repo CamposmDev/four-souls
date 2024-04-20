@@ -3,23 +3,25 @@ package org.camposmdev.client.game.component;
 import com.almasb.fxgl.entity.component.Component;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import org.camposmdev.util.Log;
 
 public class LifeComponent extends Component {
     private static final int DEFAULT_HP = 2;
-    private final IntegerProperty hp;
+    public final IntegerProperty value;
 
     public LifeComponent() {
-        this.hp = new SimpleIntegerProperty(DEFAULT_HP);
+        this.value = new SimpleIntegerProperty(DEFAULT_HP);
     }
 
-    public IntegerProperty hpProperty() {
-        return hp;
+    @Override
+    public void onAdded() {
+        System.out.println("life added");
     }
 
     @Override
     public void onUpdate(double tpf) {
-        if (hp.get() <= 0) {
-            System.out.println("played died");
+        if (value.get() <= 0) {
+            Log.info("player died");
         }
     }
 }

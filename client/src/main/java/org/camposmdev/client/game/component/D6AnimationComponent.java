@@ -9,6 +9,7 @@ import javafx.animation.Animation;
 import javafx.animation.TranslateTransition;
 import javafx.scene.Node;
 import javafx.util.Duration;
+import org.camposmdev.util.Log;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
 
@@ -66,6 +67,8 @@ public class D6AnimationComponent extends Component {
         if (transition.getStatus() != Animation.Status.RUNNING) {
             transition.setOnFinished(e -> {
                 idx = (int) (Math.random() * N_SIDES);
+                var dc = idx + 1;
+                Log.infof("player-dc=%d\n", dc);
                 animTexture.playAnimationChannel(sides[idx]);
                 promise.complete(idx + 1);
             });
