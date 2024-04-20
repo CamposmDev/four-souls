@@ -1,7 +1,7 @@
 package org.camposmdev.editor.ui;
 
 import com.almasb.fxgl.dsl.FXGL;
-import org.camposmdev.editor.ui.workspace.IEditor;
+import org.camposmdev.editor.ui.workspace.CardEditor;
 import org.camposmdev.editor.ui.workspace.Workspace;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
@@ -31,7 +31,7 @@ public class CardPicker {
     private final VBox root;
     private final ListView<String> lv;
     private final CardViewer cv;
-    private IEditor editor;
+    private CardEditor editor;
 
     private CardType selectedCardType;
     private Image currentImage;

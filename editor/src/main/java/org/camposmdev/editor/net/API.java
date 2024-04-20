@@ -38,7 +38,7 @@ public class API {
                 return MasterCardAtlas.deserialize(data);
             }
         } catch (IOException ex) {
-            System.err.println(ex);
+            Log.fatal("Failed to fetch latest version of MasterCardAtlas");
         }
         return null;
     }

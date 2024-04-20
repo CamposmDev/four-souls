@@ -2,6 +2,8 @@ package org.camposmdev.editor.ui.factory;
 
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.ui.UI;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
 import org.camposmdev.editor.net.API;
@@ -14,6 +16,7 @@ import javafx.scene.layout.*;
 import org.camposmdev.editor.ui.workspace.loot.RuneEventFormController;
 import org.camposmdev.editor.ui.workspace.monster.MonsterOptionEventFormController;
 import org.camposmdev.model.atlas.MasterCardAtlas;
+import org.camposmdev.model.card.BaseCard;
 import org.camposmdev.model.card.attribute.*;
 import org.camposmdev.model.card.attribute.Reward;
 import org.camposmdev.model.card.attribute.loot.LootOption;
@@ -27,9 +30,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Function;
 
 public class DialogFactory {
     private static DialogFactory factory;
@@ -66,10 +69,6 @@ public class DialogFactory {
                 .build();
         alert.getDialogPane().setExpandableContent(content);
         alert.showAndWait();
-    }
-
-    public void showPreviewBox(String payload) {
-
     }
 
     public void showExitBox() {
@@ -113,7 +112,7 @@ public class DialogFactory {
         var checkBoxIsSatanAlt = new CheckBox();
         var tfModRoll = new TextField();
         FXUtil.initNumberFields(tfRoll, tfLoseCents, tfDiscardLoot, tfBuffMonsterATK, tfHealMonsters, tfDamage, tfHeal, tfGainCents, tfPeekDeckAmount, tfModMonsterRoll, tfModRoll);
-        var gridPane = new GridPane(4,4);
+        var gridPane = new GridPane(4, 4);
         var btCommit = new Button("Commit");
         gridPane.addColumn(0, new Label("RollType"),
                 new Label("Roll Value"), new Label("Reward"), new Label("Lose Cents"),
@@ -175,11 +174,11 @@ public class DialogFactory {
                 .setContent(root)
                 .setDefaultBtn()
                 .buildAndShow().ifPresent(e -> {
-            if (e.getButtonData().isDefaultButton()) {
-                lst.clear();
-                lst.addAll(lv.getItems().stream().toList());
-            }
-        });
+                    if (e.getButtonData().isDefaultButton()) {
+                        lst.clear();
+                        lst.addAll(lv.getItems().stream().toList());
+                    }
+                });
     }
 
     public Optional<Reward> showRewardModifierBox(Reward reward) {
@@ -190,15 +189,15 @@ public class DialogFactory {
                 .setDefaultBtn()
                 .setContent(box.getContent())
                 .buildAndShow().map(x -> {
-            Reward obj = null;
-            if (!x.getButtonData().isDefaultButton()) return null;
-            try {
-                obj = box.submit();
-            } catch (Exception ex) {
-                this.showErrorBox(ex);
-            }
-            return obj;
-        });
+                    Reward obj = null;
+                    if (!x.getButtonData().isDefaultButton()) return null;
+                    try {
+                        obj = box.submit();
+                    } catch (Exception ex) {
+                        this.showErrorBox(ex);
+                    }
+                    return obj;
+                });
     }
 
     public void showRollEventModifierBox(List<RollEvent> lst) {
@@ -248,14 +247,14 @@ public class DialogFactory {
                 .setContent(box.getContent())
                 .setDefaultBtn()
                 .buildAndShow().map(x -> {
-                   AttributeModifier obj = null;
-                   if (!x.getButtonData().isDefaultButton()) return null;
-                   try {
-                       obj = box.build();
-                   } catch (Exception ex) {
-                       this.showErrorBox(ex);
-                   }
-                   return obj;
+                    AttributeModifier obj = null;
+                    if (!x.getButtonData().isDefaultButton()) return null;
+                    try {
+                        obj = box.submit();
+                    } catch (Exception ex) {
+                        this.showErrorBox(ex);
+                    }
+                    return obj;
                 });
     }
 
@@ -333,7 +332,7 @@ public class DialogFactory {
         var f = fc.showSaveDialog(FXGL.getPrimaryStage());
         if (f == null) return;
         /* otherwise save the cards */
-        try(var fos = new FileOutputStream(f)) {
+        try (var fos = new FileOutputStream(f)) {
             var payload = masterCardAtlas.toString();
             fos.write(payload.getBytes());
             fos.flush();
@@ -344,26 +343,25 @@ public class DialogFactory {
     }
 
     public void showPreferences() {
-        var root = new GridPane(8,8);
+        var root = new GridPane(8, 8);
         var tfHost = new TextField(API.instance().host());
         var tfPort = new TextField(API.instance().port().toString());
         var btPing = new Button("Ping (...)");
         btPing.setMaxWidth(Integer.MAX_VALUE);
-        Runnable ping = () -> {
+        Runnable runnable = () -> {
             try {
                 String host = tfHost.getText();
                 int port = Integer.parseInt(tfPort.getText());
                 API.instance().setHostAndPort(host, port);
                 btPing.setText(String.format("Ping (%d ms)", API.instance().ping()));
-            } catch (Exception ignored) {}
+            } catch (Exception ignored) {
+            }
         };
-        btPing.setOnAction(e -> {
-            FXGL.runOnce(ping, Duration.ONE);
-        });
+        btPing.setOnAction(e -> FXGL.runOnce(runnable, Duration.ONE));
         root.addRow(0, new Label("Host"), tfHost);
         root.addRow(1, new Label("Port"), tfPort);
         root.add(btPing, 0, 2, 2, 1);
-        FXGL.runOnce(ping, Duration.ONE);
+        FXGL.runOnce(runnable, Duration.ONE);
         new DialogBuilder()
                 .setTitle("Preferences")
                 .setContent(root)
@@ -378,5 +376,64 @@ public class DialogFactory {
                 .setContent(ui.getRoot())
                 .setDefaultBtn()
                 .buildAndShow();
+    }
+
+
+    public void showJSONViewer(BaseCard card) {
+        final double WIDTH = 800, HEIGHT = 700;
+        final int DEFAULT_FONT_SIZE = 14;
+        final int MIN_FONT_SIZE = 12;
+        AtomicInteger fontSize = new AtomicInteger(DEFAULT_FONT_SIZE);
+        Function<String, TextArea> editor = (content) -> {
+            final double ZOOM_FACTOR = 1.1;
+            Function<TextArea, Void> increase = x -> {
+                double temp = fontSize.get() * ZOOM_FACTOR;
+                fontSize.set((int) temp);
+                x.setStyle(String.format("-fx-font-family: monospace; -fx-font-size: %d;", fontSize.get()));
+                return null;
+            };
+            Function<TextArea, Void> decrease = x -> {
+                double temp = fontSize.get() / ZOOM_FACTOR;
+                if (temp < MIN_FONT_SIZE) return null;
+                fontSize.set((int) temp);
+                x.setStyle(String.format("-fx-font-family: monospace; -fx-font-size: %d;", fontSize.get()));
+                return null;
+            };
+            var ta = new TextArea(content);
+            ta.setEditable(false);
+            ta.setPrefSize(WIDTH, HEIGHT);
+            ta.setStyle(String.format("-fx-font-family: monospace; -fx-font-size: %d;", fontSize.get()));
+            ta.setOnKeyPressed(event -> {
+                if (!event.isControlDown())
+                    return;
+                if (event.getCode() == KeyCode.EQUALS)
+                    increase.apply(ta);
+                else if (event.getCode() == KeyCode.MINUS)
+                    decrease.apply(ta);
+            });
+            ta.setOnScroll(event -> {
+                if (!event.isControlDown())
+                    return;
+                if (event.getDeltaY() > 0) {
+                    increase.apply(ta);
+                } else {
+                    decrease.apply(ta);
+                }
+            });
+            return ta;
+        };
+        try {
+            var mapper = new ObjectMapper();
+            var content = mapper.readTree(card.toString()).toPrettyString();
+            var ta = editor.apply(content);
+            var root = new StackPane(ta);
+            new DialogBuilder().setTitle("JSON Viewer")
+                    .setHeaderText(card.getId())
+                    .setContent(root)
+                    .setDefaultBtn()
+                    .buildAndShow();
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

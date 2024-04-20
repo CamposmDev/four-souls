@@ -13,12 +13,11 @@ public class Workspace {
     private final BorderPane centerPane;
     public Workspace(int width, int height) {
         cardPicker = new CardPicker(this);
-        var appBar = new AppBar(this);
-        var appBarBox = appBar.getContent();
+        var appBar = AppBar.instance(this).getContent();
         var notifyBox = NotificationBar.instance().getContent();
         centerPane = new BorderPane();
         centerPane.setBottom(notifyBox);
-        root = new BorderPane(centerPane, appBarBox, null, null, cardPicker.getContent());
+        root = new BorderPane(centerPane, appBar, null, null, cardPicker.getContent());
         root.setPrefSize(width, height);
     }
 
@@ -26,7 +25,7 @@ public class Workspace {
         cardPicker.edit(cardType);
     }
 
-    public void set(IEditor editor) {
+    public void set(CardEditor editor) {
         centerPane.setCenter(editor.getContent());
     }
 

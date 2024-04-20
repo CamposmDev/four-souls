@@ -6,11 +6,12 @@ import javafx.scene.layout.GridPane;
 import org.camposmdev.editor.ui.factory.DialogFactory;
 import org.camposmdev.model.card.attribute.*;
 import org.camposmdev.util.FXUtil;
+import org.camposmdev.util.FormController;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class AttributeModifierBox {
+public class AttributeModifierBox extends FormController<AttributeModifier> {
     private final ComboBox<AttributeType> thresholdTypeComboBox;
     private final TextField thresholdValueTextField;
     private final ComboBox<ThresholdCompare> thresholdCompareComboBox;
@@ -42,7 +43,8 @@ public class AttributeModifierBox {
         events.addAll(modifier.getEvents());
     }
 
-    public AttributeModifier build() throws NumberFormatException {
+    @Override
+    public AttributeModifier submit() throws Exception {
         AttributeModifier modifier = new AttributeModifier();
         modifier.setThresholdType(thresholdTypeComboBox.getValue());
         modifier.setThresholdValue(Byte.parseByte(thresholdValueTextField.getText()));

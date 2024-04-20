@@ -7,4 +7,5 @@ open module editor {
     requires com.almasb.fxgl.all;
     requires java.desktop;
     requires okhttp3;
+    requires com.fasterxml.jackson.databind;
 }

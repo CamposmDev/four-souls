@@ -1,7 +1,6 @@
 package org.camposmdev.editor.ui;
 
 import com.almasb.fxgl.dsl.FXGL;
-import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -16,26 +15,58 @@ import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import org.camposmdev.editor.model.Model;
 import org.camposmdev.editor.ui.factory.DialogFactory;
+import org.camposmdev.model.card.BaseCard;
 import org.camposmdev.model.card.attribute.CardType;
 
 import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.Objects;
+import java.util.List;
 
 public class AppBar {
+    private static AppBar singleton;
+
+    public static AppBar instance(Workspace workspace) {
+        if (singleton == null) singleton = new AppBar(workspace);
+        return singleton;
+    }
+
+    public static AppBar instance() {
+        return singleton;
+    }
+
     private final MenuBar menuBar;
     private final Workspace workspace;
+    private final Menu mCommits;
 
     public AppBar(Workspace workspace) {
-        super();
         this.workspace = workspace;
+        this.mCommits = new Menu("Recent Commits");
+        this.setRecentCommits(List.of());
         var mFile = buildFileMenu();
         var mEdit = buildEditMenu();
         var mView = buildViewMenu();
         var mHelp = buildHelpMenu();
         menuBar = new MenuBar(mFile, mEdit, mView, mHelp);
+    }
+
+    public void setRecentCommits(List<BaseCard> lst) {
+        var miClearMenu = new MenuItem("Clear Menu");
+        miClearMenu.setOnAction(e -> Model.instance().clearRecentCommits());
+        if (lst.isEmpty()) {
+            mCommits.getItems().add(miClearMenu);
+        } else {
+            mCommits.getItems().clear();
+            for (var x : lst) {
+                var mi = new MenuItem(x.getId());
+                mi.setOnAction(e -> DialogFactory.instance().showJSONViewer(x));
+                mCommits.getItems().add(mi);
+            }
+            mCommits.getItems().add(new SeparatorMenuItem());
+            mCommits.getItems().add(miClearMenu);
+        }
+
     }
 
     private Menu buildFileMenu() {
@@ -56,14 +87,12 @@ public class AppBar {
         });
         var miPref = new MenuItem("Preferences");
         miPref.setAccelerator(new KeyCodeCombination(KeyCode.COMMA, KeyCodeCombination.SHORTCUT_DOWN));
-        miPref.setOnAction(e -> {
-            DialogFactory.instance().showPreferences();
-        });
+        miPref.setOnAction(e -> DialogFactory.instance().showPreferences());
         var miExit = new MenuItem("Exit");
         miExit.setAccelerator(new KeyCodeCombination(KeyCode.Q, KeyCodeCombination.SHORTCUT_DOWN));
         miExit.setOnAction(e -> DialogFactory.instance().showExitBox());
         var menu = new Menu("File");
-        menu.getItems().addAll(miOpen, miSave, miPreview, new SeparatorMenuItem(), miPref, new SeparatorMenuItem(), miExit);
+        menu.getItems().addAll(miOpen, miSave, miPreview, mCommits, new SeparatorMenuItem(), miPref, new SeparatorMenuItem(), miExit);
         return menu;
     }
 
@@ -198,7 +227,7 @@ public class AppBar {
         return mMonster;
     }
 
-    public MenuItem buildRoomMenu() {
+    private MenuItem buildRoomMenu() {
         var iv = new ImageView(FXGL.image("cards/RoomCardBack-150x110.png"));
         iv.setPreserveRatio(true);
         iv.setFitHeight(ICON_SIZE);
@@ -209,7 +238,7 @@ public class AppBar {
         return mi_room;
     }
 
-    public Menu buildTreasureMenu() {
+    private Menu buildTreasureMenu() {
         var iv = new ImageView(FXGL.image("cards/TreasureCardBack-110x150.png"));
         iv.setPreserveRatio(true);
         iv.setFitWidth(ICON_SIZE);
@@ -223,7 +252,7 @@ public class AppBar {
         return mTreasure;
     }
 
-    public MenuItem buildOutsideMenu() {
+    private MenuItem buildOutsideMenu() {
         var iv = new ImageView(FXGL.image("cards/OutsideCardBack-110x150.png"));
         iv.setPreserveRatio(true);
         iv.setFitWidth(ICON_SIZE);

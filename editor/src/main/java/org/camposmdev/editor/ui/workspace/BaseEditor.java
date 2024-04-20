@@ -2,7 +2,7 @@ package org.camposmdev.editor.ui.workspace;
 
 import org.camposmdev.model.atlas.ImageInfo;
 
-public abstract class BaseEditor implements IEditor {
+public abstract class BaseEditor implements CardEditor {
     private String id;
     private ImageInfo image;
 

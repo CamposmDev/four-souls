@@ -3,27 +3,16 @@ package org.camposmdev.editor.model;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.dsl.FXGLForKtKt;
 import org.camposmdev.editor.net.API;
-import org.camposmdev.editor.ui.NotificationBar;
+import org.camposmdev.editor.ui.AppBar;
 import org.camposmdev.editor.ui.factory.DialogFactory;
-import javafx.stage.FileChooser;
 import org.camposmdev.model.atlas.ImageAtlas;
 import org.camposmdev.model.atlas.MasterCardAtlas;
 import org.camposmdev.model.atlas.MasterImageAtlas;
 import org.camposmdev.model.card.BaseCard;
 import org.camposmdev.model.card.attribute.CardType;
-import org.camposmdev.model.card.bsoul.BonusSoulCard;
-import org.camposmdev.model.card.character.CharacterCard;
-import org.camposmdev.model.card.eternal.EternalCard;
-import org.camposmdev.model.card.extra.OutsideCard;
-import org.camposmdev.model.card.loot.LootCard;
-import org.camposmdev.model.card.monster.MonsterCard;
-import org.camposmdev.model.card.room.RoomCard;
-import org.camposmdev.model.card.treasure.TreasureCard;
-import org.camposmdev.util.Log;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.List;
+import java.util.Stack;
 
 public class Model {
     private static Model model = null;
@@ -35,10 +24,12 @@ public class Model {
 
     private final MasterImageAtlas masterImageAtlas;
     private MasterCardAtlas masterCardAtlas;
+    private final Stack<BaseCard> recentCommits;
 
     private Model() {
         masterImageAtlas = initImageAtlas();
         masterCardAtlas = new MasterCardAtlas();
+        recentCommits = new Stack<>();
     }
 
     private MasterImageAtlas initImageAtlas() {
@@ -65,6 +56,10 @@ public class Model {
         masterCardAtlas.add(card);
         /* then upload this card to the server if able */
         API.instance().createCard(card);
+        /* then add the card to recent commits */
+        recentCommits.addFirst(card);
+        /* update the app bar */
+        AppBar.instance().setRecentCommits(recentCommits);
     }
 
     /**
@@ -95,7 +90,7 @@ public class Model {
     public void loadMasterCardAtlas() {
         var masterCardAtlas = API.instance().fetchMasterCardAtlas();
         if (masterCardAtlas == null) {
-            FXGL.getNotificationService().pushNotification("Failed to fetch Master Card Atlas");
+            FXGL.getNotificationService().pushNotification("Failed to connect to server");
         } else {
             FXGL.getNotificationService().pushNotification("Loaded Master Card Atlas");
             this.masterCardAtlas = masterCardAtlas;
@@ -108,5 +103,10 @@ public class Model {
 
     public boolean isCardImplemented(CardType selectedCardType, String id) {
         return this.masterCardAtlas.contains(selectedCardType, id);
+    }
+
+    public void clearRecentCommits() {
+        recentCommits.clear();
+        AppBar.instance().setRecentCommits(recentCommits);
     }
 }

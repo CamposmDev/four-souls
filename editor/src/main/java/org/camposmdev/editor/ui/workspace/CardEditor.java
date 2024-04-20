@@ -3,7 +3,7 @@ package org.camposmdev.editor.ui.workspace;
 import javafx.scene.Node;
 import org.camposmdev.model.atlas.ImageInfo;
 
-public interface IEditor {
+public interface CardEditor {
     String id();
     void setId(String id);
     ImageInfo image();

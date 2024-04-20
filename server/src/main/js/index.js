@@ -21,6 +21,7 @@ fs.readFile(FILE, (err, data) => {
 
 /* Try to save {model} to {FILE} when program terminates */
 process.on('SIGINT', async () => {
+    console.log('Stopping server...')
     /* save the current state of model to file */
     function waitForFile() {
         return new Promise((resolve, reject) => {
