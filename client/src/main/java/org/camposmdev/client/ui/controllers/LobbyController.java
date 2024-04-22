@@ -16,7 +16,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-import org.camposmdev.client.game.UserContext;
+import org.camposmdev.client.model.Model;
 import org.camposmdev.client.net.API;
 import org.camposmdev.client.ui.controllers.sprite.BubbleController;
 import org.camposmdev.model.net.BusEvent;
@@ -43,12 +43,12 @@ public class LobbyController extends FXController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         bubbleController.setOnFinished(event -> showChat());
         updateTextGameId();
-        updatePlayerBox(UserContext.get().getCurrentLobby().getPlayerNames());
+        updatePlayerBox(Model.instance().getCurrentLobby().getPlayerNames());
         API.get().subscribeTo(BusEvent.UPDATE_LOBBY).handler(msg -> {
             var obj = (JsonObject) msg.body();
             System.out.println(obj);
-            var outliar = UserContext.get().setCurrentLobby(obj);
-            var names = UserContext.get().getCurrentLobby().getPlayerNames();
+            var outliar = Model.instance().setCurrentLobby(obj);
+            var names = Model.instance().getCurrentLobby().getPlayerNames();
             Platform.runLater(() -> updatePlayerBox(names));
             Platform.runLater(() -> {
                 if (outliar != null)
@@ -57,14 +57,14 @@ public class LobbyController extends FXController implements Initializable {
             });
         });
         /* Remove start game button if the user is NOT the host */
-        if (!UserContext.get().isHosting()) {
+        if (!Model.instance().isHost()) {
             textStart.setDisable(true);
             textStart.setVisible(false);
         }
     }
 
     private void updateTextGameId() {
-        textGameId.setText(UserContext.get().getCurrentLobby().getId());
+        textGameId.setText(Model.instance().getCurrentLobby().getId());
     }
 
     private void updatePlayerBox(String[] names) {
@@ -112,7 +112,7 @@ public class LobbyController extends FXController implements Initializable {
     }
 
     public void leaveGame() {
-        API.get().leaveLobby(UserContext.get().getCurrentLobby().getId());
+        API.get().leaveLobby(Model.instance().getCurrentLobby().getId());
     }
 
     public void copyGameId(MouseEvent event) {

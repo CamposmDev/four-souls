@@ -12,7 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
-import org.camposmdev.client.game.json.NightmareSpriteAtlas;
+import org.camposmdev.client.entity.sprite.NightmareSpriteAtlas;
 import org.camposmdev.util.FXUtil;
 import org.camposmdev.util.FXController;
 
@@ -67,9 +67,7 @@ public class NightmareController extends FXController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         var spritesheet = getAssetLoader().loadTexture("spritesheets/nightmare.png");
-        var result = getAssetLoader().loadJSON("json/spritesheets/nightmare.json", NightmareSpriteAtlas.class);
-        assert result.isPresent() : "Failed to parse JSON";
-        var data = result.get();
+        var data = FXUtil.loadJSON("json/spritesheets/nightmare.json", NightmareSpriteAtlas.class);
         var floorIndex = (int)(Math.random()*data.floors().length);
         renderFloor(spritesheet, data, floorIndex);
         var boyList = data.isaacs().keySet().toArray();

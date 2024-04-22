@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.StackPane;
-import org.camposmdev.client.game.json.NightmareSpriteAtlas;
+import org.camposmdev.client.entity.sprite.NightmareSpriteAtlas;
 import org.camposmdev.util.FXUtil;
 import org.camposmdev.util.FXController;
 
@@ -25,9 +25,8 @@ public class BubbleController extends FXController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         var spritesheet = getAssetLoader().loadTexture("spritesheets/nightmare.png");
-        var result = getAssetLoader().loadJSON("json/spritesheets/nightmare.json", NightmareSpriteAtlas.class);
-        assert result.isPresent() : "Failed to parse JSON";
-        var bubbles = result.get().bubbles();
+        var result = FXUtil.loadJSON("spritesheets/nightmare.json", NightmareSpriteAtlas.class);
+        var bubbles = result.bubbles();
         var big = spritesheet.subTexture(bubbles.get("big").toR2D());
         var medium = spritesheet.subTexture(bubbles.get("medium").toR2D());
         var small = spritesheet.subTexture(bubbles.get("small").toR2D());

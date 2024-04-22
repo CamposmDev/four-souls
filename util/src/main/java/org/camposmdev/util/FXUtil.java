@@ -1,5 +1,6 @@
 package org.camposmdev.util;
 
+import com.almasb.fxgl.core.asset.AssetType;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.texture.Texture;
 import com.almasb.fxgl.ui.UI;
@@ -24,6 +25,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.web.WebView;
 import javafx.util.Duration;
+import org.camposmdev.model.atlas.MasterCardAtlas;
 
 import java.io.IOException;
 import java.net.URL;
@@ -32,6 +34,7 @@ public class FXUtil {
     private static final String UI_DIR = "assets/ui/";
     private static final String WEB_DIR = "assets/ui/web/";
     private static final String SFX_DIR = "assets/sounds/";
+    private static final String JSON_DIR = "json/";
 
     /**
      * Loads the FXML file and returns the view and controller
@@ -71,10 +74,21 @@ public class FXUtil {
         return null;
     }
 
+    @SuppressWarnings("unchecked")
     public static <T> T loadJSON(String src, Class<T> type) {
-        var result = FXGL.getAssetLoader().loadJSON(src, type);
-        assert result.isPresent() : "Failed to find " + src;
-        return result.get();
+        if (type != MasterCardAtlas.class) {
+            var result = FXGL.getAssetLoader().loadJSON((JSON_DIR + src), type);
+            assert result.isPresent();
+            return result.get();
+        }
+        try (var input = FXUtil.class.getClassLoader().getResourceAsStream(("assets/" + JSON_DIR + src))) {
+            assert input != null : ("Failed to load " + src);
+            var bytes = input.readAllBytes();
+            var atlas = MasterCardAtlas.deserialize(bytes);
+            return (T) atlas;
+        } catch (IOException ex) {
+            return null;
+        }
     }
 
     public static Texture loadCard(String src) {

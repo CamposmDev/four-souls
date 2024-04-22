@@ -6,8 +6,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.*;
-import org.camposmdev.client.game.ErrorRunnable;
-import org.camposmdev.client.game.UserContext;
+import org.camposmdev.client.model.Model;
 import org.camposmdev.client.net.API;
 import org.camposmdev.util.FXUtil;
 import org.camposmdev.util.FXController;
@@ -50,20 +49,20 @@ public class MainMenuController extends FXController implements Initializable {
             root.getChildren().remove(lobby.getRoot());
             this.lobby = null;
             hideLogo(false);
-            UserContext.get().setCurrentLobby(null);
+            Model.instance().setCurrentLobby(null);
         };
         singleplayerMenuController.setCancelCallback(cancelCallback);
         multiplayerMenuController.setCancelCallback(cancelCallback);
         optionsMenuController.setBackCallback(cancelCallback);
         API.get().subscribeTo(BusEvent.SHOW_LOBBY).handler(msg -> {
-            UserContext.get().setCurrentLobby((JsonObject) msg.body());
+            Model.instance().setCurrentLobby((JsonObject) msg.body());
             Platform.runLater(showLobby);
         });
         Log.debug("Subscribed to " + BusEvent.SHOW_LOBBY);
         API.get().subscribeTo(BusEvent.REMOVE_LOBBY).handler(msg -> {
             var obj = (JsonObject) msg.body();
             if (obj.containsKey("message"))
-                Platform.runLater(new ErrorRunnable(obj.getString("message")));
+                Platform.runLater(() -> getDialogService().showMessageBox(obj.getString("message")));
             Platform.runLater(removeLobby);
         });
         Log.debug("Subscribed to " + BusEvent.REMOVE_LOBBY);

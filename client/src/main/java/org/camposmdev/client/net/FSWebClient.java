@@ -5,7 +5,7 @@ import io.vertx.core.Promise;
 import io.vertx.core.Vertx;
 import io.vertx.core.http.*;
 import io.vertx.core.json.JsonObject;
-import org.camposmdev.client.game.UserContext;
+import org.camposmdev.client.model.Model;
 
 class FSWebClient {
     private final HttpClient client;
@@ -28,7 +28,7 @@ class FSWebClient {
                             var authCookie = res.cookies().getFirst();
                             API.get().setAuthCookie(authCookie);
                             promise.complete();
-                            UserContext.get().setParams(obj);
+                            Model.instance().setUser(obj);
                             /* connect to websocket server */
                             API.get().initWS();
                         } else {
@@ -75,7 +75,8 @@ class FSWebClient {
     @Deprecated
     public Future<JsonObject> joinGame(String gameId) {
         Promise<JsonObject> promise = Promise.promise();
-        var payload = JsonObject.of("gameId", gameId).put("userId", UserContext.get().getId());
+        var userId = Model.instance().getUser().getId();
+        var payload = JsonObject.of("gameId", gameId, "userId", userId);
         client.request(HttpMethod.POST, "/api/game/join").onSuccess(req -> {
             req.headers().add(HttpHeaders.COOKIE, API.get().getAuthCookie());
             req.send(payload.toString()).onSuccess(res -> res.body().onSuccess(data -> {
@@ -92,7 +93,8 @@ class FSWebClient {
     @Deprecated
     public Future<Void> leaveGame(String gameId) {
         Promise<Void> promise = Promise.promise();
-        var payload = JsonObject.of("gameId", gameId).put("userId", UserContext.get().getId());
+        var userId = Model.instance().getUser().getId();
+        var payload = JsonObject.of("gameId", gameId).put("userId", userId);
         client.request(HttpMethod.POST, "/api/game/leave").onSuccess(req -> {
             req.headers().add(HttpHeaders.COOKIE, API.get().getAuthCookie());
             req.send(payload.toString()).onSuccess(res -> {

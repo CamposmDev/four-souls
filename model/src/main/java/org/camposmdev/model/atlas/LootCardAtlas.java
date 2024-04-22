@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LootCardAtlas implements CardAtlas<LootCard> {
-    /* TODO - Implement card map*/
     protected Map<String, BatteryCard> batteries;
     protected Map<String, BlackHeartCard> bheart;
     protected Map<String, BombCard> bomb;

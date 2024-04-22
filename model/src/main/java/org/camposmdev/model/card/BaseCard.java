@@ -6,7 +6,7 @@ import org.camposmdev.model.atlas.ImageInfo;
 import org.camposmdev.model.card.attribute.CardSet;
 import org.camposmdev.model.card.attribute.CardType;
 
-public abstract class BaseCard {
+public abstract class BaseCard implements Comparable<BaseCard> {
     private String id;
     private ImageInfo image;
     private CardType cardType;
@@ -55,5 +55,16 @@ public abstract class BaseCard {
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof BaseCard card)) return false;
+        return id.equals(card.id);
+    }
+
+    @Override
+    public int compareTo(BaseCard o) {
+        return id.compareTo(o.id);
     }
 }

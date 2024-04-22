@@ -4,5 +4,6 @@ module util {
     requires javafx.web;
     requires javafx.media;
     requires com.almasb.fxgl.all;
+    requires model;
     exports org.camposmdev.util;
 }

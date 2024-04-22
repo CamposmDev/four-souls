@@ -7,7 +7,7 @@ import io.vertx.core.http.HttpHeaders;
 import io.vertx.core.http.WebSocketConnectOptions;
 import io.vertx.core.json.DecodeException;
 import io.vertx.core.json.JsonObject;
-import org.camposmdev.client.game.UserContext;
+import org.camposmdev.client.model.Model;
 import org.camposmdev.model.net.BusEvent;
 import org.camposmdev.model.net.MType;
 
@@ -87,17 +87,20 @@ class FSWebSocket {
         }
     }
 
-    public void sendGlobalMessage(String s) {
-        var payload = JsonObject.of("username", UserContext.get().getUsername()).put("message", s);
+    public void sendGlobalMessage(String message) {
+        var username = Model.instance().getUser().getUsername();
+        var payload = JsonObject.of("username", username, "message", message);
         var obj = JsonObject.of(MType.G_CHAT.name(), payload);
         ws.writeTextMessage(obj.toString());
     }
 
-    public void sendLobbyMessage(String s) {
+    public void sendLobbyMessage(String message) {
+        var gameId = Model.instance().getCurrentLobby().getId();
+        var userId = Model.instance().getUser().getId();
         var payload = JsonObject.of(
-                "gameId", UserContext.get().getCurrentLobby().getId(),
-                "userId", UserContext.get().getId(),
-                "message", s);
+                "gameId", gameId,
+                "userId", userId,
+                "message", message);
         var obj = JsonObject.of(MType.L_CHAT.name(), payload);
         ws.writeTextMessage(obj.toString());
     }
@@ -108,17 +111,19 @@ class FSWebSocket {
     }
 
     public void joinLobby(String gameId) {
+        var userId = Model.instance().getUser().getId();
         var payload = JsonObject.of(
                 "gameId", gameId,
-                "userId", UserContext.get().getId());
+                "userId", userId);
         var msg = JsonObject.of(MType.JOIN_LOBBY.name(), payload);
         ws.writeTextMessage(msg.toString());
     }
 
     public void leaveLobby(String gameId) {
+        var userId = Model.instance().getUser().getId();
         var payload = JsonObject.of(
                 "gameId", gameId,
-                "userId", UserContext.get().getId());
+                "userId", userId);
         var msg = JsonObject.of(MType.LEAVE_LOBBY.name(), payload);
         ws.writeTextMessage(msg.toString());
     }

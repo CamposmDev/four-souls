@@ -7,6 +7,7 @@ module model {
     exports org.camposmdev.model.atlas;
     opens org.camposmdev.model.atlas to com.fasterxml.jackson.databind;
     exports org.camposmdev.model.game.player;
+    exports org.camposmdev.model.game.deck;
     exports org.camposmdev.model.net;
     exports org.camposmdev.model.card.attribute;
     opens org.camposmdev.model.card.attribute to com.fasterxml.jackson.databind;
