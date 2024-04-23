@@ -28,6 +28,14 @@ public class Deck<T extends BaseCard> {
         return cards.removeFirst();
     }
 
+    public List<T> draw(int n) {
+        List<T> lst = new LinkedList<>();
+        for (int i = 0; i < n; i++) {
+            lst.add(cards.removeFirst());
+        }
+        return lst;
+    }
+
     public void push(T card) {
         cards.addFirst(card);
     }
@@ -43,9 +51,21 @@ public class Deck<T extends BaseCard> {
         return false;
     }
 
+    public T get(Predicate<T> p) {
+        for (int i = 0; i < cards.size(); i++) {
+            if (p.test(cards.get(i)))
+                return cards.remove(i);
+        }
+        return null;
+    }
+
     public List<T> peek(int amount) {
         if (amount > cards.size())
             return cards;
         return cards.subList(0, amount);
+    }
+
+    public List<T> cards() {
+        return cards;
     }
 }

@@ -4,8 +4,8 @@ import com.almasb.fxgl.core.EngineService;
 import com.almasb.fxgl.entity.Entity;
 
 public class EntityService extends EngineService {
-    EntityAnimator animator;
-    EntityMapper mapper;
+    private EntityAnimator animator;
+    private EntityMapper mapper;
 
     @Override
     public void onInit() {

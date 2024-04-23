@@ -4,6 +4,8 @@ import org.camposmdev.model.card.attribute.CardType;
 import org.camposmdev.model.card.eternal.*;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 public class EternalCardAtlas implements CardAtlas<EternalCard> {
@@ -39,5 +41,15 @@ public class EternalCardAtlas implements CardAtlas<EternalCard> {
             case SETERNAL -> seternal.containsKey(id);
             default -> false;
         };
+    }
+
+    @Override
+    public List<EternalCard> cards() {
+        List<EternalCard> lst = new LinkedList<>();
+        lst.addAll(aeternal.values());
+        lst.addAll(paideternal.values());
+        lst.addAll(peternal.values());
+        lst.addAll(seternal.values());
+        return lst;
     }
 }

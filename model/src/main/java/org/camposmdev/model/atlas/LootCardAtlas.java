@@ -4,6 +4,8 @@ import org.camposmdev.model.card.attribute.CardType;
 import org.camposmdev.model.card.loot.*;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 public class LootCardAtlas implements CardAtlas<LootCard> {
@@ -82,5 +84,28 @@ public class LootCardAtlas implements CardAtlas<LootCard> {
             case MONEY1C, MONEY2C, MONEY3C, MONEY4C, MONEY5C, MONEY10C -> money.contains(cardType, id);
             default -> false;
         };
+    }
+
+    @Override
+    public List<LootCard> cards() {
+        List<LootCard> lst = new LinkedList<>();
+        // Add values from each map to the list
+        lst.addAll(batteries.values());
+        lst.addAll(bheart.values());
+        lst.addAll(bomb.values());
+        lst.addAll(butter.values());
+        lst.addAll(cards.values());
+        lst.addAll(dice.values());
+        lst.addAll(key.values());
+        lst.addAll(lsoul.values());
+        lst.addAll(pill.values());
+        lst.addAll(rune.values());
+        lst.addAll(sack.values());
+        lst.addAll(sheart.values());
+        lst.addAll(trinket.values());
+        lst.addAll(wild.values());
+        // Add money cards
+        lst.addAll(money.cards());
+        return lst;
     }
 }

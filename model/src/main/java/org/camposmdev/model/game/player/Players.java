@@ -1,12 +1,12 @@
 package org.camposmdev.model.game.player;
 
 public class Players {
-    Node head;
-    protected Node curr;
+    Node<Player> head;
+    protected Node<Player> curr;
     protected int size;
 
     public Players() {
-        this.head = new Node();
+        this.head = new Node<>();
         this.head.next = head;
         this.head.prev = head;
         this.curr = head;
@@ -20,7 +20,7 @@ public class Players {
      */
     public boolean isPlayerTurn(Player p) {
         if (curr == head) return false;
-        return (curr.p.compareTo(p)) == 0;
+        return (curr.data.compareTo(p)) == 0;
     }
 
     /**
@@ -29,8 +29,8 @@ public class Players {
      */
     public Player left() {
         if (size <= 1) return null;
-        if (curr.prev == head) return curr.prev.prev.p;
-        return curr.prev.p;
+        if (curr.prev == head) return curr.prev.prev.data;
+        return curr.prev.data;
     }
 
     /**
@@ -39,30 +39,29 @@ public class Players {
      */
     public Player right() {
         if (size <= 1) return null;
-        if (curr.next == head) return curr.next.next.p;
-        return curr.next.p;
+        if (curr.next == head) return curr.next.next.data;
+        return curr.next.data;
     }
 
     /**
-     * Returns the next player whose in line for their turn
-     * @return Player if the list is not empty
+     * Returns the next player whose next to take their turn
+     * @return Player object if the list is not empty. Null if the list is empty. If the list size is 1, then {@link Players#curr}
      */
     public Player next() {
         if (isEmpty()) return null;
-        if (curr == head) return (curr = curr.next).p;
-        return (curr = curr.next).p;
+        if (curr == head) return (curr = curr.next).data;
+        return (curr = curr.next).data;
     }
 
     /**
-     * Returns the current player's turn
-     * @return Player object stored in the current node
+     * @return Player object stored in {@link Players#curr}
      */
     public Player peek() {
-        return curr.p;
+        return curr.data;
     }
 
-    public void addPlayer(Player p) {
-        var node = new Node(p);
+    public void add(Player p) {
+        var node = new Node<>(p);
         if (isEmpty()) {
             head.next = node;
             head.prev = node;
@@ -93,7 +92,7 @@ public class Players {
         var sb = new StringBuilder("[");
         var node = head.next;
         while (node != head) {
-            sb.append(node.p.getId());
+            sb.append(node.data.getId());
             node = node.next;
             if (node != head) {
                 sb.append(", ");

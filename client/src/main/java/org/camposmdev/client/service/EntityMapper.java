@@ -5,7 +5,7 @@ import javafx.scene.image.ImageView;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 
-class EntityMapper {
+public class EntityMapper {
     static final int INLINE_MARGIN = 16;
     static final int BLOCK_MARGIN = 16;
     static final int CENTER_OFFSET = 12;

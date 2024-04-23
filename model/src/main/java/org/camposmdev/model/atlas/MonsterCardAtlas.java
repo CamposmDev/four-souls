@@ -4,6 +4,8 @@ import org.camposmdev.model.card.attribute.CardType;
 import org.camposmdev.model.card.monster.*;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 public class MonsterCardAtlas implements CardAtlas<BaseMonsterCard> {
@@ -59,5 +61,20 @@ public class MonsterCardAtlas implements CardAtlas<BaseMonsterCard> {
             case EPIC -> epic.containsKey(id);
             default -> false;
         };
+    }
+
+    @Override
+    public List<BaseMonsterCard> cards() {
+        List<BaseMonsterCard> lst = new LinkedList<>();
+        lst.addAll(bmonster.values());
+        lst.addAll(cmonster.values());
+        lst.addAll(hmonster.values());
+        lst.addAll(chamonster.values());
+        lst.addAll(gevent.values());
+        lst.addAll(bevent.values());
+        lst.addAll(curse.values());
+        lst.addAll(boss.values());
+        lst.addAll(epic.values());
+        return lst;
     }
 }

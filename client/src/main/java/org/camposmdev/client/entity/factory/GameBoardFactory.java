@@ -6,6 +6,7 @@ import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.Spawns;
 import org.camposmdev.client.entity.component.PlayerComponent;
 import org.camposmdev.client.entity.component.D6Component;
+import org.camposmdev.model.card.character.CharacterCard;
 import org.camposmdev.util.FXUtil;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
@@ -47,11 +48,12 @@ public class GameBoardFactory implements EntityFactory {
     }
 
     @Spawns("player")
-    public Entity newPlayer(SpawnData data) {
-        var texture = FXUtil.loadCard("cards/character/b-isaac.png");
+    public Entity player(SpawnData data) {
+        var characterCard = (CharacterCard) data.get("character");
+        if (characterCard == null)
+            throw new RuntimeException("Missing character data field");
         return entityBuilder(data)
-                .with(new PlayerComponent())
-                .view(texture)
+                .with(new PlayerComponent(characterCard))
                 .build();
     }
 }

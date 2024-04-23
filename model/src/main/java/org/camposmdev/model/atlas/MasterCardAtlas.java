@@ -13,6 +13,7 @@ import org.camposmdev.model.card.eternal.*;
 import org.camposmdev.model.card.extra.OutsideCard;
 import org.camposmdev.model.card.loot.*;
 import org.camposmdev.model.card.monster.BaseMonsterCard;
+import org.camposmdev.model.card.monster.MonsterCard;
 import org.camposmdev.model.card.room.RoomCard;
 import org.camposmdev.model.card.treasure.TreasureCard;
 
@@ -40,6 +41,34 @@ public class MasterCardAtlas implements CardAtlas<BaseCard> {
         this.loot = new LootCardAtlas();
         this.room = new HashMap<>();
         this.outside = new HashMap<>();
+    }
+
+    public List<CharacterCard> characters() {
+        return character.values().stream().toList();
+    }
+
+    public List<EternalCard> eternals() {
+        return eternal.cards();
+    }
+
+    public List<TreasureCard> treasures() {
+        return treasure.cards();
+    }
+
+    public List<BaseMonsterCard> monsters() {
+        return monster.cards();
+    }
+
+    public List<LootCard> loot() {
+        return loot.cards();
+    }
+
+    public List<RoomCard> rooms() {
+        return room.values().stream().toList();
+    }
+
+    public List<OutsideCard> outsides() {
+        return outside.values().stream().toList();
     }
 
     @Override
@@ -76,6 +105,19 @@ public class MasterCardAtlas implements CardAtlas<BaseCard> {
                 outside.containsKey(key);
             default -> false;
         };
+    }
+
+    @Override
+    public List<BaseCard> cards() {
+        List<BaseCard> lst = new LinkedList<>();
+        lst.addAll(characters());
+        lst.addAll(eternals());
+        lst.addAll(treasures());
+        lst.addAll(monsters());
+        lst.addAll(loot());
+        lst.addAll(rooms());
+        lst.addAll(outsides());
+        return lst;
     }
 
     @Override

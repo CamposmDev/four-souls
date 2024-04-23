@@ -4,6 +4,8 @@ import org.camposmdev.model.card.attribute.CardType;
 import org.camposmdev.model.card.loot.MoneyCard;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 public class MoneyCardAtlas implements CardAtlas<MoneyCard> {
@@ -46,5 +48,18 @@ public class MoneyCardAtlas implements CardAtlas<MoneyCard> {
             case MONEY10C -> money10c.containsKey(id);
             default -> false;
         };
+    }
+
+    @Override
+    public List<MoneyCard> cards() {
+        List<MoneyCard> lst = new LinkedList<>();
+        // Add values from each map to the list
+        lst.addAll(money1c.values());
+        lst.addAll(money2c.values());
+        lst.addAll(money3c.values());
+        lst.addAll(money4c.values());
+        lst.addAll(money5c.values());
+        lst.addAll(money10c.values());
+        return lst;
     }
 }

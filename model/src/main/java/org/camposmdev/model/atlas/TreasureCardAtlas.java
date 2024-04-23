@@ -4,6 +4,8 @@ import org.camposmdev.model.card.attribute.CardType;
 import org.camposmdev.model.card.treasure.*;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 public class TreasureCardAtlas implements CardAtlas<TreasureCard> {
@@ -42,5 +44,16 @@ public class TreasureCardAtlas implements CardAtlas<TreasureCard> {
             case STREASURE -> streasure.containsKey(id);
             default -> false;
         };
+    }
+
+    @Override
+    public List<TreasureCard> cards() {
+        List<TreasureCard> lst = new LinkedList<>();
+        lst.addAll(atreasure.values());
+        lst.addAll(otreasure.values());
+        lst.addAll(paidtreasure.values());
+        lst.addAll(ptreasure.values());
+        lst.addAll(streasure.values());
+        return lst;
     }
 }

@@ -7,20 +7,34 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javafx.util.Duration;
+import org.camposmdev.client.model.Game;
+import org.camposmdev.util.Log;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 
 public class TopDrawerView implements View {
     static final double WIDTH = getAppWidth();
     static final double HEIGHT = 100;
+    static final int SPACING = 8;
     private final VBox root;
     private boolean hidden;
 
     public TopDrawerView() {
-        var bt1 = getUIFactoryService().newButton("Button1");
-        var bt2 = getUIFactoryService().newButton("Button2");
-        HBox box = new HBox(8, bt1, bt2);
-        box.setAlignment(Pos.CENTER_LEFT);
+        var bt1 = getUIFactoryService().newButton("Draw");
+        bt1.setOnAction(event -> {
+            var game = (Game) geto("game");
+            Log.info(game.deck().loot().draw().toString());
+        });
+        var bt2 = getUIFactoryService().newButton("Play");
+        bt2.setOnAction(event -> {
+            Log.info("play card");
+        });
+        var bt3 = getUIFactoryService().newButton("End Turn");
+        bt3.setOnAction(event -> {
+            Log.info("end turn");
+        });
+        HBox box = new HBox(SPACING, bt1, bt2, bt3);
+        box.setAlignment(Pos.CENTER);
         box.setStyle("-fx-background-color: rgba(0,0,0,0.5);");
         box.setPrefWidth(WIDTH);
         box.setPrefHeight(HEIGHT);

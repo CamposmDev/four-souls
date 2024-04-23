@@ -1,16 +1,16 @@
 package org.camposmdev.model.game.player;
 
-public class Node {
-    Player p;
-    Node next;
-    Node prev;
+public class Node<T> {
+    T data;
+    Node<T> next;
+    Node<T> prev;
 
     public Node() {
         this(null);
     }
 
-    public Node(Player p) {
-        this.p = p;
+    public Node(T data) {
+        this.data = data;
         this.next = null;
         this.prev = null;
     }

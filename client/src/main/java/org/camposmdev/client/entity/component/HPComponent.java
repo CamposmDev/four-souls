@@ -5,12 +5,14 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import org.camposmdev.util.Log;
 
-public class LifeComponent extends Component {
+public class HPComponent extends Component {
     private static final int DEFAULT_HP = 2;
-    public final IntegerProperty value;
+    public IntegerProperty max;
+    public final IntegerProperty current;
 
-    public LifeComponent() {
-        this.value = new SimpleIntegerProperty(DEFAULT_HP);
+    public HPComponent(int max) {
+        this.max = new SimpleIntegerProperty(max);
+        this.current = new SimpleIntegerProperty(max);
     }
 
     @Override
@@ -20,7 +22,7 @@ public class LifeComponent extends Component {
 
     @Override
     public void onUpdate(double tpf) {
-        if (value.get() <= 0) {
+        if (current.get() <= 0) {
             Log.info("player died");
         }
     }

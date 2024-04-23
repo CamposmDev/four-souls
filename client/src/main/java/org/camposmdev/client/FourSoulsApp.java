@@ -4,19 +4,22 @@ import com.almasb.fxgl.app.ApplicationMode;
 import com.almasb.fxgl.app.CursorInfo;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
+import com.almasb.fxgl.entity.Entity;
+import com.almasb.fxgl.entity.SpawnData;
 import javafx.animation.Interpolator;
 import javafx.animation.RotateTransition;
 import javafx.scene.Node;
 import javafx.scene.paint.Color;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
+import org.camposmdev.client.entity.component.PlayerComponent;
+import org.camposmdev.client.model.Game;
 import org.camposmdev.client.service.EntityService;
 import org.camposmdev.client.ui.view.GameBoardView;
 import org.camposmdev.client.service.BoardPosition;
 import org.camposmdev.client.entity.factory.GameBoardFactory;
 import org.camposmdev.client.ui.scene.FSSceneFactory;
 import org.camposmdev.client.ui.view.TopDrawerView;
-import org.camposmdev.util.FXUtil;
 
 import java.util.Map;
 
@@ -68,57 +71,43 @@ public class FourSoulsApp extends GameApplication {
     }
 
     @Override
+    protected void initGameVars(Map<String, Object> vars) {
+        /* if the player chose singleplayer, create a game */
+        var game = Game.create();
+        vars.put("game", Game.create());
+        /* otherwise send request to server */
+    }
+
+    @Override
     protected void initGame() {
         loopBGM("The Binding of Isaac - 11 Repentant.mp3");
         getGameWorld().addEntityFactory(new GameBoardFactory());
         var es = getService(EntityService.class);
         var board = new GameBoardView(-500);
         board.render();
-
         /* add treasure deck to game world */
         var treasureEntity = getGameWorld().spawn("treasure_back");
         es.map(treasureEntity, BoardPosition.CENTER_LEFT);
-
         /* add loot deck to game world */
         var lootEntity = getGameWorld().spawn("loot_back");
         es.map(lootEntity, BoardPosition.CENTER);
-
         /* add monster deck to game world */
         var monsterEntity = getGameWorld().spawn("monster_back");
         es.map(monsterEntity, BoardPosition.CENTER_RIGHT);
-
         /* add player to game world */
-        var playerEntity = getGameWorld().spawn("player");
-        es.map(playerEntity, BoardPosition.BOTTOM_LEFT);
-
-        var d6 = getGameWorld().spawn("d6");
-        es.map(d6, BoardPosition.BOTTOM_RIGHT);
-        /* add butter bean to game world */
-//        var butterBean = loadCard("cards/loot/butter/b2-butter_bean.png");
-//        var beanEntity = new EntityBuilder().view(butterBean).build();
-//        mapper.map(beanEntity, BoardPosition.CENTER);
+        var player = spawn_player("b-isaac");
+        es.map(player, BoardPosition.BOTTOM_LEFT);
+        /* add d6 to game world */
+//        var d6 = getGameWorld().spawn("d6");
+//        es.map(d6, BoardPosition.BOTTOM_RIGHT);
     }
 
-    @Deprecated
-    private RotateTransition rotateOut(Node card) {
-        RotateTransition rotator = new RotateTransition(Duration.millis(500), card);
-        rotator.setAxis(Rotate.Y_AXIS);
-        rotator.setFromAngle(0);
-        rotator.setToAngle(90);
-        rotator.setInterpolator(Interpolator.LINEAR);
-        rotator.setCycleCount(1);
-        return rotator;
-    }
-
-    @Deprecated
-    private RotateTransition rotateIn(Node card) {
-        RotateTransition rotator = new RotateTransition(Duration.millis(500), card);
-        rotator.setAxis(Rotate.Y_AXIS);
-        rotator.setFromAngle(90);
-        rotator.setToAngle(0);
-        rotator.setInterpolator(Interpolator.LINEAR);
-        rotator.setCycleCount(1);
-        return rotator;
+    private Entity spawn_player(String characterId) {
+        var game = (Game) geto("game");
+        var data = new SpawnData();
+        data.put("character", game.deck().characters().get(x -> x.getId().equals(characterId)));
+        var player = getGameWorld().spawn("player", data);
+        return player;
     }
 }
 

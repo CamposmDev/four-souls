@@ -2,11 +2,16 @@ package org.camposmdev.client.service;
 
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.texture.Texture;
+import javafx.animation.Interpolator;
+import javafx.animation.RotateTransition;
+import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.transform.Rotate;
+import javafx.util.Duration;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
-class EntityAnimator {
+public class EntityAnimator {
     public void setOnMouseHover_Scale(Entity e, BoardPosition position) {
         var view = e.getViewComponent();
         if (view == null) return;
@@ -131,5 +136,27 @@ class EntityAnimator {
                 flag.set(!flag.get());
             });
         }
+    }
+
+    @Deprecated
+    public RotateTransition rotateOut(Node node) {
+        RotateTransition rotator = new RotateTransition(Duration.millis(500), node);
+        rotator.setAxis(Rotate.Y_AXIS);
+        rotator.setFromAngle(0);
+        rotator.setToAngle(90);
+        rotator.setInterpolator(Interpolator.LINEAR);
+        rotator.setCycleCount(1);
+        return rotator;
+    }
+
+    @Deprecated
+    public RotateTransition rotateIn(Node node) {
+        RotateTransition rotator = new RotateTransition(Duration.millis(500), node);
+        rotator.setAxis(Rotate.Y_AXIS);
+        rotator.setFromAngle(90);
+        rotator.setToAngle(0);
+        rotator.setInterpolator(Interpolator.LINEAR);
+        rotator.setCycleCount(1);
+        return rotator;
     }
 }

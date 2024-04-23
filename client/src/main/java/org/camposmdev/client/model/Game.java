@@ -1,36 +1,42 @@
 package org.camposmdev.client.model;
 
-import org.camposmdev.model.card.character.CharacterCard;
-import org.camposmdev.model.card.eternal.EternalCard;
-import org.camposmdev.model.card.extra.OutsideCard;
-import org.camposmdev.model.card.loot.LootCard;
-import org.camposmdev.model.card.monster.MonsterCard;
-import org.camposmdev.model.card.room.RoomCard;
-import org.camposmdev.model.card.treasure.TreasureCard;
-import org.camposmdev.model.game.deck.Deck;
+import org.camposmdev.model.atlas.MasterCardAtlas;
+import org.camposmdev.model.game.deck.DeckAtlas;
+import org.camposmdev.model.game.player.Players;
+import org.camposmdev.util.FXUtil;
+
+import java.util.Random;
 
 public class Game {
-    private Deck<CharacterCard> characters;
-    private Deck<EternalCard> eternals;
-    private Deck<TreasureCard> treasures;
-    private Deck<MonsterCard> monsters;
-    private Deck<LootCard> loot;
-    private Deck<RoomCard> rooms;
-    private Deck<OutsideCard> outside;
+    private final DeckAtlas deck;
+    private final Players players;
+    private final long seed;
+    private final Random rand;
 
     private Game() {
-        characters = new Deck<>();
-        eternals = new Deck<>();
-        treasures = new Deck<>();
-        monsters = new Deck<>();
-        loot = new Deck<>();
-        rooms = new Deck<>();
-        outside = new Deck<>();
+        deck = DeckAtlas.create(FXUtil.loadJSON("cards.json", MasterCardAtlas.class));
+        players = new Players();
+        seed = new Random().nextLong();
+        rand = new Random(seed);
     }
 
-    private static Game singleton;
-    public static Game instance() {
-        if (singleton == null) singleton = new Game();
-        return singleton;
+    public DeckAtlas deck() {
+        return deck;
+    }
+
+    public void shuffle() {
+        deck.shuffle(rand);
+    }
+
+    public Players players() {
+        return players;
+    }
+
+    public long seed() {
+        return seed;
+    }
+
+    public static Game create() {
+        return new Game();
     }
 }
