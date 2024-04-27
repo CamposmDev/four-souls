@@ -1,23 +1,42 @@
 package org.camposmdev.client.service;
 
 import com.almasb.fxgl.core.EngineService;
+import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
+import com.almasb.fxgl.entity.SpawnData;
+import org.camposmdev.client.model.Game;
+
+import static com.almasb.fxgl.dsl.FXGLForKtKt.getGameWorld;
+import static com.almasb.fxgl.dsl.FXGLForKtKt.geto;
 
 public class EntityService extends EngineService {
-    private EntityAnimator animator;
+    private EntityEvents events;
     private EntityMapper mapper;
 
     @Override
     public void onInit() {
-        animator = new EntityAnimator();
+        events = new EntityEvents();
         mapper = new EntityMapper();
     }
 
-    public EntityAnimator animate() {
-        return animator;
+    public EntityEvents events() {
+        return events;
     }
 
-    public void map(Entity entity, BoardPosition position) {
-        mapper.map(entity, position);
+    public EntityMapper mapper() {
+        return mapper;
+    }
+
+    public Entity spawnPlayer(String characterId) {
+        var game = (Game) geto("game");
+        var character = game.deck().characters().get(x -> x.getId().equals(characterId));
+        if (character == null) throw new RuntimeException("character is null");
+        var data = new SpawnData();
+        data.put("character", character);
+        return getGameWorld().spawn("player", data);
+    }
+
+    public static EntityService get() {
+        return FXGL.getService(EntityService.class);
     }
 }

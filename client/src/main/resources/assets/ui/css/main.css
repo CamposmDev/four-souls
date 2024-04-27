@@ -1,0 +1,7 @@
+#card-scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+#card-scroll-pane {
+    -fx-background-color: transparent;
+}

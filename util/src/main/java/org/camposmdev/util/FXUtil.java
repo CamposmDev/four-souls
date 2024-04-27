@@ -1,6 +1,5 @@
 package org.camposmdev.util;
 
-import com.almasb.fxgl.core.asset.AssetType;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.texture.Texture;
 import com.almasb.fxgl.ui.UI;
@@ -8,21 +7,19 @@ import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.SnapshotParameters;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.image.ImageView;
+import javafx.scene.image.Image;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.web.WebView;
 import javafx.util.Duration;
 import org.camposmdev.model.atlas.MasterCardAtlas;
@@ -31,6 +28,7 @@ import java.io.IOException;
 import java.net.URL;
 
 public class FXUtil {
+    private static final String TEXTURE_DIR = "assets/textures/";
     private static final String UI_DIR = "assets/ui/";
     private static final String WEB_DIR = "assets/ui/web/";
     private static final String SFX_DIR = "assets/sounds/";
@@ -92,42 +90,25 @@ public class FXUtil {
     }
 
     public static Texture loadCard(String src) {
-        final var FIT_WIDTH = 120;
-        final var FIT_HEIGHT = 176;
-        final var ARC_SIZE = 24;
-        var iv = FXGL.texture(src);
-        var img = iv.getImage();
-//        var clip = new Rectangle();
-//        clip.setArcWidth(ARC_SIZE);
-//        clip.setArcHeight(ARC_SIZE);
+        final var WIDTH_SZ = 95;
+        final var HEIGHT_SZ = 139;
+        Texture texture = FXGL.texture(src);
+        Image img = texture.getImage();
         if (img.getWidth() < img.getHeight()) {
-            iv.setFitWidth(FIT_WIDTH);
-            iv.setFitHeight(FIT_HEIGHT);
-//            clip.setWidth(img.getWidth());
-//            clip.setHeight(img.getHeight());
+            texture.setFitWidth(WIDTH_SZ);
+            texture.setFitHeight(HEIGHT_SZ);
         } else {
-            iv.setFitWidth(FIT_HEIGHT);
-            iv.setFitHeight(FIT_WIDTH);
-//            clip.setWidth(img.getHeight());
-//            clip.setHeight(img.getWidth());
+            texture.setFitWidth(HEIGHT_SZ);
+            texture.setFitHeight(WIDTH_SZ);
         }
-//        iv.setClip(clip);
-        Platform.runLater(() -> {
-//            SnapshotParameters parameters = new SnapshotParameters();
-//            parameters.setFill(Color.TRANSPARENT);
-//            var w_img = iv.snapshot(parameters, null);
-//            iv.setClip(null);
-//            iv.setImage(w_img);
-//            if (w_img.getWidth() < w_img.getHeight()) {
-//                iv.setFitWidth(FIT_WIDTH);
-//                iv.setFitHeight(FIT_HEIGHT);
-//            } else {
-//                iv.setFitWidth(FIT_HEIGHT);
-//                iv.setFitHeight(FIT_WIDTH);
-//            }
-            iv.setEffect(new DropShadow(12, 8, 12, Color.BLACK));
-        });
-        return iv;
+//        Rectangle clip = new Rectangle(texture.getFitWidth(), texture.getFitHeight());
+//        clip.setArcWidth(10);
+//        clip.setArcHeight(10);
+//        texture.setClip(clip);
+        var dropShadow = new DropShadow(BlurType.GAUSSIAN, Color.rgb(0,0,0,0.75), 12, 0.25, 4,4);
+        texture.setEffect(dropShadow);
+//        clip.setEffect(dropShadow);
+        return texture;
     }
 
     public static WebView loadSpace() {

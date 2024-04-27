@@ -8,11 +8,10 @@ import io.vertx.core.Promise;
 import javafx.animation.Animation;
 import javafx.animation.TranslateTransition;
 import javafx.scene.Node;
-import javafx.scene.image.Image;
 import javafx.util.Duration;
 import org.camposmdev.util.Log;
 
-import static com.almasb.fxgl.dsl.FXGL.*;
+import static com.almasb.fxgl.dsl.FXGL.image;
 
 public class D6Component extends Component {
     private static final int N_SIDES = 6;
@@ -25,7 +24,7 @@ public class D6Component extends Component {
 
     public D6Component() {
         /* load the spritesheet */
-        var ss = image("d6_red.png");
+        var ss = image("spritesheets/d6_red.png");
         /* init animations for each side of the die */
         sides = new AnimationChannel[N_SIDES];
         for (int i = 0; i < sides.length; i++) {

@@ -4,7 +4,6 @@ import com.almasb.fxgl.app.scene.FXGLMenu;
 import com.almasb.fxgl.app.scene.MenuType;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.texture.Texture;
-import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
@@ -19,10 +18,10 @@ import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
 import org.camposmdev.client.entity.sprite.SecretsSpriteAtlas;
 import org.camposmdev.util.FXUtil;
-import org.camposmdev.util.Log;
 import org.jetbrains.annotations.NotNull;
 
 import static com.almasb.fxgl.dsl.FXGL.getSettings;
+import static com.almasb.fxgl.dsl.FXGL.getUIFactoryService;
 
 public class FSGameMenu extends FXGLMenu {
     private static final int BLOCK_MARGIN = 32;
@@ -53,7 +52,8 @@ public class FSGameMenu extends FXGLMenu {
         cbFullScreen.setSelected(FXGL.getSettings().getFullScreen().getValue());
         cbFullScreen.setOnAction(e -> getSettings().getFullScreen().set(cbFullScreen.isSelected()));
         /* TODO - Fix volume sliders to match current sound and music volume
-        *   This class is initialized before invoking onPreInit() */
+        *   This class is initialized before invoking onPreInit()
+        *   Maybe, write the UI in FXML? Worked for main menu options. */
         /* init sfx slider */
         var sfxSlider = FXGL.getUIFactoryService().newSlider();
         sfxSlider.setMax(1d);
@@ -65,12 +65,12 @@ public class FSGameMenu extends FXGLMenu {
         musicSlider.valueProperty().addListener((ov, arg0, arg1) -> getSettings().setGlobalMusicVolume(arg1.doubleValue()));
         /* init controls container */
         var gridPane = new GridPane((BLOCK_MARGIN*3), BLOCK_MARGIN);
-        gridPane.addRow(0, initMenuLabel("Full Screen"), cbFullScreen);
-        gridPane.addRow(1, initMenuLabel("SFX Volume"), sfxSlider);
-        gridPane.addRow(2, initMenuLabel("Music Volume"), musicSlider);
+        gridPane.addRow(0, createText("Full Screen"), cbFullScreen);
+        gridPane.addRow(1, createText("SFX Volume"), sfxSlider);
+        gridPane.addRow(2, createText("Music Volume"), musicSlider);
         gridPane.setAlignment(Pos.CENTER);
         /* init back button */
-        var btBack = initMenuButton("Back", e -> {
+        var btBack = createButton("Back", e -> {
             root.getChildren().remove(optionBox);
             root.getChildren().add(menuBox);
         });
@@ -81,14 +81,14 @@ public class FSGameMenu extends FXGLMenu {
 
     private void initMenuBox() {
         /* init options menu */
-        var bt0 = initMenuButton("Options", e -> {
+        var bt0 = createButton("Options", e -> {
             root.getChildren().remove(menuBox);
             root.getChildren().add(optionBox);
         });
         /* init resume menu */
-        var bt1 = initMenuButton("Resume", e -> this.fireResume());
+        var bt1 = createButton("Resume", e -> this.fireResume());
         /* init exit game menu */
-        var bt2 = initMenuButton("Exit Game", e -> this.fireExitToMainMenu());
+        var bt2 = createButton("Exit Game", e -> this.fireExitToMainMenu());
         menuBox = new VBox((BLOCK_MARGIN), bt0, bt1, bt2);
         menuBox.setAlignment(Pos.CENTER);
     }
@@ -104,12 +104,8 @@ public class FSGameMenu extends FXGLMenu {
         return background;
     }
 
-    private Text initMenuButton(String content, EventHandler<MouseEvent> event) {
-        if (font == null)
-            font = FXGL.getAssetLoader().loadFont("EdmundMcMillen_v2.ttf").newFont(32);
-        Text node = new Text(content);
-        node.setFill(Color.BLACK);
-        node.setFont(font);
+    private Text createButton(String content, EventHandler<MouseEvent> event) {
+        Text node = getUIFactoryService().newText(content, Color.BLACK, 32);
         node.setTextAlignment(TextAlignment.CENTER);
         if (event == null) return node;
         node.setOnMouseClicked(event);
@@ -124,8 +120,8 @@ public class FSGameMenu extends FXGLMenu {
         return node;
     }
 
-    private Text initMenuLabel(String content) {
-        return initMenuButton(content, null);
+    private Text createText(String content) {
+        return createButton(content, null);
     }
 
     @Override
@@ -139,6 +135,7 @@ public class FSGameMenu extends FXGLMenu {
         if (!root.getChildren().contains(menuBox)) {
             root.getChildren().setAll(initBackground(), menuBox);
         }
-        FXUtil.animation().translate(root).to(new Point2D(0,getAppHeight())).duration(Duration.millis(200)).build().play();
+        root.setTranslateY(getAppHeight());
+//        FXUtil.animation().translate(root).to(new Point2D(0,getAppHeight())).duration(Duration.millis(200)).build().play();
     }
 }

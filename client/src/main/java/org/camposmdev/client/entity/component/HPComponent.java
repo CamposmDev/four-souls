@@ -5,25 +5,34 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import org.camposmdev.util.Log;
 
-public class HPComponent extends Component {
+/**
+ * How much HP does the entity have?
+ */
+public class HPComponent extends Component implements AttributeComponent<IntegerProperty> {
     private static final int DEFAULT_HP = 2;
-    public IntegerProperty max;
-    public final IntegerProperty current;
-
-    public HPComponent(int max) {
-        this.max = new SimpleIntegerProperty(max);
-        this.current = new SimpleIntegerProperty(max);
-    }
+    private IntegerProperty max;
+    private IntegerProperty current;
 
     @Override
     public void onAdded() {
-        System.out.println("life added");
+        this.max = new SimpleIntegerProperty(DEFAULT_HP);
+        this.current = new SimpleIntegerProperty(DEFAULT_HP);
     }
 
     @Override
     public void onUpdate(double tpf) {
         if (current.get() <= 0) {
-            Log.info("player died");
+            Log.info("entity died");
         }
+    }
+
+    @Override
+    public IntegerProperty max() {
+        return max;
+    }
+
+    @Override
+    public IntegerProperty current() {
+        return current;
     }
 }

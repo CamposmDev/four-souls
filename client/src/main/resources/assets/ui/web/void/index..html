@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<head>
+  <title>I AM ERROR</title>
+
+  <link rel="stylesheet" href="main.css" type="text/css" media="screen">
+  <!-- <link rel="stylesheet" href="https://foursouls.com/wp-content/themes/foursouls/style.css?v=0.39" type="text/css" media="screen"> -->
+  <!-- <link rel="stylesheet" href="https://foursouls.com/wp-content/themes/foursouls/responsive-style.css" type="text/css" media="screen"> -->
+  <!-- <link rel="stylesheet" id="wp-block-library-css" href="https://foursouls.com/wp-includes/css/dist/block-library/style.css?ver=1.0" type="text/css" media="all"> -->
+  <!-- <link rel="stylesheet" id="responsive-lightbox-swipebox-css" href="https://foursouls.com/wp-content/plugins/responsive-lightbox/assets/swipebox/swipebox.css?ver=1.0" type="text/css" media="all"> -->
+  <!-- <link rel="stylesheet" id="dflip-style-css" href="https://foursouls.com/wp-content/plugins/3d-flipbook-dflip-lite/assets/css/dflip.min.css?ver=1.0" type="text/css" media="all"> -->
+  <!-- <link rel="stylesheet" id="moove_gdpr_frontend-css" href="https://foursouls.com/wp-content/plugins/gdpr-cookie-compliance/dist/styles/gdpr-main-nf.css?ver=1.0" type="text/css" media="all"> -->
+</head>
+
+<body class="error404">
+  <div class="container" id="PageContent">
+    <div class="menu-main-menu-container">
+      <ul id="menu-main-menu" class="menu">
+        <li id="menu-item-132" class="goldchest menu-item menu-item-type-post_type menu-item-object-page menu-item-132">
+          <a href="https://foursouls.com/cards/">Cards</a>
+        </li>
+        <li id="menu-item-133" class="woodchest menu-item menu-item-type-post_type menu-item-object-page menu-item-133">
+          <a href="https://foursouls.com/rules/">Rules</a>
+        </li>
+        <li id="menu-item-140"
+          class="slotmachine menu-item menu-item-type-post_type menu-item-object-page menu-item-140"><a
+            href="https://foursouls.com/deckbuilder/">Deck Builder</a></li>
+        <li id="menu-item-135"
+          class="dirtychest menu-item menu-item-type-post_type menu-item-object-page menu-item-135"><a
+            href="https://foursouls.com/about-us/">About</a></li>
+        <li id="menu-item-134" class="holychest menu-item menu-item-type-post_type menu-item-object-page menu-item-134">
+          <a href="https://foursouls.com/contact-us/">Contact</a>
+        </li>
+      </ul>
+    </div>
+    <table style="margin: auto"><tbody><tr><td><div class="animatedFire blueFire">
+    </td>
+    <td>
+      <div id="IAMERROR" style="background-position: 0px 0px;"></div>
+    </td>
+    <td>
+      <div class="animatedFire blueFire"></div>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+    <h1>I AM ERROR</h1>
+    <footer class="container">
+      <div class="menu-footer-menu-container">
+        <ul id="menu-footer-menu" class="menu">
+          <li id="menu-item-2948"
+            class="home menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-2948"><a
+              href="https://foursouls.com/">Home</a></li>
+          <li id="menu-item-13986"
+            class="cookiepolicy menu-item menu-item-type-post_type menu-item-object-page menu-item-13986"><a
+              href="https://foursouls.com/cookie-policy/">Cookie<br>Policy</a></li>
+          <li id="menu-item-15460"
+            class="accessibility menu-item menu-item-type-post_type menu-item-object-page menu-item-15460"><a
+              href="https://foursouls.com/accessibility/">Accessibility</a></li>
+          <li id="menu-item-2956" class="sitemap menu-item menu-item-type-post_type menu-item-object-page menu-item-2956">
+            <a href="https://foursouls.com/sitemap/">Sitemap</a>
+          </li>
+        </ul>
+      </div>
+    </footer>
+  </div>
+  <script>
+    function IAMERROR() {
+      var resetmax = 4, glitchmax = 20, keeperAniProgress = 1;
+      var glitchrand = 20 - (Math.floor((Math.random() * glitchmax) + 1));
+      var resetrand = Math.floor((Math.random() * 5) + 1) * 1000;
+      function IAMERRORGLITCH() {
+        if (keeperAniProgress <= glitchrand) {
+          keeperAniProgress++;
+          var keeperposmax = 3;
+          keeperpos = (Math.floor((Math.random() * keeperposmax) + 1) * 122);
+          document.getElementById("IAMERROR").style.backgroundPosition = "-" + keeperpos + "px 0px";
+
+          setTimeout(IAMERRORGLITCH, 40);
+        }
+        else {
+          document.getElementById("IAMERROR").style.backgroundPosition = "0px 0px";
+          setTimeout(IAMERROR, resetrand);
+        }
+      }
+      IAMERRORGLITCH();
+    }
+    setTimeout(IAMERROR, 2);
+  </script>
+</body>
+<html>

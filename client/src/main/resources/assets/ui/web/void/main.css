@@ -1,0 +1,300 @@
+@charset "utf-8";
+/*
+  Theme Name: Four Souls Theme
+  Theme URI: https://foursouls.com/
+  Author: Sean Roberts of APTEK Media
+  Author URI: https://aptek-media.com/
+  Description: This theme is designed for exclusive use to the Four Souls website.
+  License: Creative Commons Attribution 4.0 International License
+  License URI: http://creativecommons.org/licenses/by/4.0/
+  Version: 1.0
+*/
+body {
+	margin: 0px;
+	padding: 0px;
+	text-align: left;
+	font: 18px 'Roboto', Helvetica, sans-serif;
+	color: #FFF;
+	background-color: #000;
+	font-family: 'Roboto', Helvetica, sans-serif;
+	position:relative;
+  background-image: url('res/FourSoulsBackgroundStarLayer05.png'), url('res/FourSoulsBackgroundStarLayer04.png'), url('res/FourSoulsBackgroundStarLayer03.png'), url('res/FourSoulsBackgroundStarLayer02.png'), url('res/FourSoulsBackgroundStarLayer01.png'), url('res/FourSoulsBackground.png');
+  animation: planetariumBackground 120s linear infinite;
+  background-size: 600px 400px,600px 400px,600px 400px,600px 400px,600px 400px,1200px 800px;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+@keyframes planetariumBackground {
+	from { background-position: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%; }
+	to { background-position: -7200px 4800px, -6000px 4000px, -4800px 3200px, -3600px 2400px, -2400px 1600px, -1200px 800px; }
+}
+body.error404 {
+  background-image: url('res/FourSoulsBackground404.png');
+  animation: planetariumBackground 300s linear infinite;
+}
+@keyframes errorBackground {
+	from { background-position: 0% 0%; }
+	to { background-position: -3600px 2400px; }
+}
+
+@font-face {font-family: FourSoulsMain; src: url('res/EdmundMcMillen_v2.ttf'); }
+
+.pixelify, #PageContent .pixelify {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+a[role="link"] {color:#0094FF; text-decoration:underline; cursor:pointer;}      /* cookie link */
+a:link {color:#0094FF;}      /* unvisited link */
+a:visited {color:#0094FF;}  /* visited link */
+a:hover {color:#00CCFF;}  /* mouse over link */
+a:active {color:#00FFFF;}  /* selected link */ 
+
+h1, h2, h3, h4, h5, h6 {
+  text-transform: uppercase;
+  font: FourSoulsMain, Helvetica, sans-serif;
+  font-family: FourSoulsMain, Helvetica, sans-serif;
+}
+
+h1 {
+  text-align:center;
+  font-size:250%;
+  letter-spacing:2px;
+}
+
+.container {
+	display: block; 
+	height:auto;
+	margin-left:auto;
+	margin-right:auto;
+	width: 1024px;
+	position:relative;
+}
+
+#PageContent {
+  border-image-source: url('res/FourSoulsPageBorderV5.png');
+  border-image-width: 156px 104px;
+  border-image-repeat: stretch repeat;
+  border-image-slice: 156 104 156 fill;
+  padding: 50px 128px 124px 128px;
+  box-sizing: border-box;
+  overflow: hidden;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  margin-bottom:80px;
+}
+#PageContent img {
+  image-rendering: initial;
+}
+#PageContent img.borderStitchimgTop, #PageContent img.borderStitchimgBottom {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+#HomeContent {
+  overflow:hidden;
+}
+main {
+  position:relative;
+  overflow: hidden;
+}
+body.error404 #PageContent {
+  border-image-source: url('res/FourSouls404PageBorder.png');
+  border-image-repeat: stretch stretch;
+}
+#menu-main-menu {
+  display:flex;
+  text-transform:uppercase;
+  padding:0;
+  margin-bottom:80px;
+  font: FourSoulsMain, Helvetica, sans-serif;
+  font-family: FourSoulsMain, Helvetica, sans-serif;
+}
+#menu-main-menu li {
+  display:block;
+  flex-grow:1;
+  text-align:center;
+  position:relative;
+  font-size:24px;
+  line-height:48px;
+}
+#menu-main-menu li::before {
+  display:block;
+  width:100px;
+  height:100px;
+  content: "";
+  margin: 0 auto;
+  background-repeat:no-repeat;
+  background-size:200px 100px;
+}
+#menu-main-menu li.slotmachine {
+  line-height:24px;
+}
+#menu-main-menu li.goldchest::before {
+  background-image:url('res/gold_chest.png');
+}
+#menu-main-menu li.woodchest::before {
+  background-image:url('res/wooden_chest.png');
+}
+#menu-main-menu li.redchest::before {
+  background-image:url('res/red_chest.png');
+}
+#menu-main-menu li.slotmachine::before {
+  background-image:url('res/Menu_Deckbuilding.png');
+  background-size:300px 100px;
+  background-position: 0 0;
+  animation: menuslotmachinebackwards 0.35s steps(2, end);
+}
+#menu-main-menu li.dirtychest::before {
+  background-image:url('res/dirty_chest.png');
+}
+#menu-main-menu li.holychest::before {
+  background-image:url('res/holy_chest.png');
+}
+#menu-main-menu li:hover::before {
+  background-position:-100px 0;
+}
+#menu-main-menu li.slotmachine:hover::before {
+  background-position: -200px 0;
+  animation: menuslotmachineforwards 0.35s steps(2, end);
+}
+@keyframes menuslotmachineforwards {
+	from { background-position: 0 0; }
+	to { background-position: -200px 0; }
+}
+@keyframes menuslotmachinebackwards {
+	from { background-position: -200px 0; }
+	to { background-position: 0 0; }
+}
+#menu-main-menu li.redchest::after {
+display: block;
+position: absolute;
+font-size: 40%;
+top: 130px;
+width: 100%;
+  content:'(not yet done!)';
+}
+#menu-main-menu li a {
+  display: block;
+  height:48px;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding-top: 100px;
+  text-decoration:none;
+}
+#menu-main-menu li a:link {color:#FFF;}      /* unvisited link */
+#menu-main-menu li a:visited {color:#FFF;}  /* visited link */
+#menu-main-menu li a:hover {color:#EEE; font-weight:900;}  /* mouse over link */
+#menu-main-menu li a:active {color:#FFF; font-weight:900;}  /* selected link */ 
+
+#IAMERROR {
+  width:122px;
+  height:122px;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  background-image: url('res/404Keeper.png');
+  background-size: 488px 122px;
+  background-position: 0 0;
+  background-repeat:no-repeat;
+  display:block;
+  margin:5px auto;
+}
+.animatedFire {
+  width:96px;
+  height:96px;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  background-image: url('res/FireSprites.png');
+  background-size: 576px 576px;
+  animation: animatedfire 0.5s steps(5, end) infinite;
+}
+@keyframes animatedfire {
+	from { background-position-x: 0; }
+	to { background-position-x: -480px; }
+}
+.redFire {
+  background-position-y: -96px;
+}
+.blueFire {
+  background-position-y: -192px;
+}
+.purpleFire {
+  background-position-y: -288px;
+}
+.whiteFire {
+  background-position-y: -384px;
+}
+.megaFire {
+  background-position-y: -480px;
+}
+
+footer.container {
+  width:100%;
+}
+#menu-footer-menu {
+  display:flex;
+  text-transform:uppercase;
+  padding:0;
+  width:100%;
+  justify-content:space-between;
+  font: FourSoulsMain, Helvetica, sans-serif;
+  font-family: FourSoulsMain, Helvetica, sans-serif;
+}
+
+#menu-footer-menu li {
+  display:block;
+  text-align:center;
+  position:relative;
+  font-size:18px;
+  line-height:20px;
+  padding:0 10px;
+  image-rendering: initial;
+}
+#menu-footer-menu li:first-child {
+  margin-left: -20px;
+}
+#menu-footer-menu li::before {
+  display:block;
+  width:50px;
+  height:50px;
+  content: "";
+  margin: 0 auto;
+  background-repeat:no-repeat;
+  background-size:50px 50px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  pointer-events:none;
+}
+#menu-footer-menu li.home::before {
+  background-image:url('res/FooterHomeIcon.png');
+}
+#menu-footer-menu li.sitemap::before {
+  background-image:url('res/FooterSitemapIcon.png');
+}
+#menu-footer-menu li.cookiepolicy::before {
+  background-image:url('res/FooterCookiesIcon.png');
+}
+#menu-footer-menu li.accessibility::before {
+  background-image:url('res/FooterAccessibilityIcon.png');
+}
+#menu-footer-menu li.hide {
+  display:none;
+}
+#menu-footer-menu li a {
+  display: block;
+  height:20px;
+  width: 100%;
+  padding-top: 55px;
+  text-decoration:none;
+}
+#menu-footer-menu li a:link {color:#FFF;}      /* unvisited link */
+#menu-footer-menu li a:visited {color:#FFF;}  /* visited link */
+#menu-footer-menu li a:hover {color:#EEE; text-shadow:0px 0px 1px #FFF;}  /* mouse over link */
+#menu-footer-menu li a:active {color:#FFF; text-shadow:0px 0px 1px #FFF;}  /* selected link */

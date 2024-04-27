@@ -9,4 +9,7 @@ open module org.camposmdev.client {
     requires model;
     requires util;
     requires kotlin.stdlib;
+    requires java.smartcardio;
+	requires java.desktop;
+    requires org.junit.jupiter.api;
 }

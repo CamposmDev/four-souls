@@ -22,7 +22,13 @@ public class DeckAtlas {
     private Deck<OutsideCard> outsides;
 
     public DeckAtlas(MasterCardAtlas atlas) {
-        init(atlas);
+        this.characters = new Deck<>(atlas.characters());
+        this.eternals = new Deck<>(atlas.eternals());
+        this.treasures = new Deck<>(atlas.treasures());
+        this.monsters = new Deck<>(atlas.monsters());
+        this.loot = new Deck<>(atlas.loot());
+        this.rooms = new Deck<>(atlas.rooms());
+        this.outsides = new Deck<>(atlas.outsides());
     }
 
     public Deck<CharacterCard> characters() {
@@ -79,16 +85,6 @@ public class DeckAtlas {
             case LOOT -> loot.shuffle(rand);
             case ROOM -> rooms.shuffle(rand);
         }
-    }
-
-    private void init(MasterCardAtlas atlas) {
-        this.characters = new Deck<>(atlas.characters());
-        this.eternals = new Deck<>(atlas.eternals());
-        this.treasures = new Deck<>(atlas.treasures());
-        this.monsters = new Deck<>(atlas.monsters());
-        this.loot = new Deck<>(atlas.loot());
-        this.rooms = new Deck<>(atlas.rooms());
-        this.outsides = new Deck<>(atlas.outsides());
     }
 
     public static DeckAtlas create(MasterCardAtlas atlas) {

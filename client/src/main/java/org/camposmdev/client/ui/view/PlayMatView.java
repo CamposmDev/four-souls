@@ -3,11 +3,16 @@ package org.camposmdev.client.ui.view;
 import com.almasb.fxgl.app.scene.GameView;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.texture.Texture;
+import javafx.scene.Node;
 
-public class GameBoardView implements View {
+/**
+ * The background of the tabletop game
+ */
+public class PlayMatView implements View {
     private final GameView view;
 
-    public GameBoardView(int zIndex) {
+    public PlayMatView(int zIndex) {
+        /* TODO - maybe one day I can find the holy and tainted version */
         Texture texture = FXGL.texture("board.jpg");
         texture.setFitWidth(FXGL.getAppWidth());
         texture.setFitHeight(FXGL.getAppHeight());
@@ -22,5 +27,10 @@ public class GameBoardView implements View {
     @Override
     public void dispose() {
         FXGL.getGameScene().removeGameView(view);
+    }
+
+    @Override
+    public Node content() {
+        return view.getNode();
     }
 }

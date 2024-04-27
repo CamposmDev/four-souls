@@ -9,10 +9,12 @@ import java.util.Random;
 import java.util.function.Predicate;
 
 public class Deck<T extends BaseCard> {
-    private List<T> cards;
+    private final List<T> cards;
+    private List<T> discards;
 
     public Deck() {
         this.cards = new LinkedList<>();
+        this.discards = new LinkedList<>();
     }
 
     public Deck(List<T> lst) {
@@ -67,5 +69,9 @@ public class Deck<T extends BaseCard> {
 
     public List<T> cards() {
         return cards;
+    }
+
+    public void discard(T card) {
+        discards.addFirst(card);
     }
 }
