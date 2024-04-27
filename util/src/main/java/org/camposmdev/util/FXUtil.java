@@ -148,7 +148,7 @@ public class FXUtil {
         final var NUM_OF_FILES = 3;
         /* fetch a random file in the folder */
         var i = (int)(Math.random() * NUM_OF_FILES) + 1;
-        var src = "death/death" + i + ".wav";
+        var src = "player/death" + i + ".wav";
         playSFX(src, onEnd);
     }
 

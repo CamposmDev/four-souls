@@ -43,6 +43,9 @@ public class PlayerHUDComponent extends Component {
 							var es = FXGL.getService(EntityService.class);
 							es.events().onMouseHover_Preview(loot);
 							es.events().onMouseHover_Highlight(loot);
+							loot.texture().setOnMouseClicked(event -> {
+								comp.loot().remove(loot);
+							});
 							hud.loot().add(loot.texture());
 						});
 					} else if (change.wasRemoved()) {

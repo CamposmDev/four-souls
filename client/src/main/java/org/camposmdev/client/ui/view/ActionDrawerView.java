@@ -43,6 +43,7 @@ public class ActionDrawerView implements View {
                 Log.infof("Player draws %s", card.getId());
                 var player = (Entity) geto("player");
                 player.getComponent(PlayerLootComponent.class).add(card);
+                play("feedback/book page turn.wav");
             } else {
                 /* shuffle the loot deck from its discard pile  */
                 Log.infof("Shuffle the loot deck");

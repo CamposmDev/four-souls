@@ -7,17 +7,19 @@ import com.almasb.fxgl.texture.Texture;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
 import org.camposmdev.client.entity.sprite.SecretsSpriteAtlas;
 import org.camposmdev.util.FXUtil;
+import org.camposmdev.util.Log;
 import org.jetbrains.annotations.NotNull;
 
 import static com.almasb.fxgl.dsl.FXGL.getSettings;
@@ -28,10 +30,12 @@ public class FSGameMenu extends FXGLMenu {
     private final StackPane root;
     private VBox menuBox;
     private VBox optionBox;
-    private Font font;
+    private CheckBox cbFullScreen;
+    private Slider sfxSlider, musicSlider;
 
     public FSGameMenu(@NotNull MenuType type) {
         super(type);
+        Log.info("initialized game menu");
         /* init background */
         Texture background = initBackground();
         /* init option box */
@@ -48,34 +52,30 @@ public class FSGameMenu extends FXGLMenu {
 
     private void initOptionBox() {
         /* init full screen control */
-        var cbFullScreen = FXGL.getUIFactoryService().newCheckBox();
-        cbFullScreen.setSelected(FXGL.getSettings().getFullScreen().getValue());
+        cbFullScreen = FXGL.getUIFactoryService().newCheckBox();
         cbFullScreen.setOnAction(e -> getSettings().getFullScreen().set(cbFullScreen.isSelected()));
-        /* TODO - Fix volume sliders to match current sound and music volume
-        *   This class is initialized before invoking onPreInit()
-        *   Maybe, write the UI in FXML? Worked for main menu options. */
         /* init sfx slider */
-        var sfxSlider = FXGL.getUIFactoryService().newSlider();
+        sfxSlider = FXGL.getUIFactoryService().newSlider();
         sfxSlider.setMax(1d);
         sfxSlider.valueProperty().addListener((ov, arg0, arg1) -> getSettings().setGlobalSoundVolume(arg1.doubleValue()));
         sfxSlider.setOnMouseReleased(e -> FXUtil.playDeathSFX((null)));
         /* init music slider */
-        var musicSlider = FXGL.getUIFactoryService().newSlider();
+        musicSlider = FXGL.getUIFactoryService().newSlider();
         musicSlider.setMax(1d);
         musicSlider.valueProperty().addListener((ov, arg0, arg1) -> getSettings().setGlobalMusicVolume(arg1.doubleValue()));
         /* init controls container */
-        var gridPane = new GridPane((BLOCK_MARGIN*3), BLOCK_MARGIN);
-        gridPane.addRow(0, createText("Full Screen"), cbFullScreen);
-        gridPane.addRow(1, createText("SFX Volume"), sfxSlider);
-        gridPane.addRow(2, createText("Music Volume"), musicSlider);
-        gridPane.setAlignment(Pos.CENTER);
+        var controlsBox = new GridPane((BLOCK_MARGIN*3), BLOCK_MARGIN);
+        controlsBox.addRow(0, createText("Full Screen"), cbFullScreen);
+        controlsBox.addRow(1, createText("SFX Volume"), sfxSlider);
+        controlsBox.addRow(2, createText("Music Volume"), musicSlider);
+        controlsBox.setAlignment(Pos.CENTER);
         /* init back button */
         var btBack = createButton("Back", e -> {
             root.getChildren().remove(optionBox);
             root.getChildren().add(menuBox);
         });
         /* init option container */
-        optionBox = new VBox(BLOCK_MARGIN, gridPane, btBack);
+        optionBox = new VBox(BLOCK_MARGIN, controlsBox, btBack);
         optionBox.setAlignment(Pos.CENTER);
     }
 
@@ -126,6 +126,9 @@ public class FSGameMenu extends FXGLMenu {
 
     @Override
     public void onCreate() {
+        cbFullScreen.setSelected(getSettings().getFullScreen().getValue());
+        sfxSlider.setValue(getSettings().getGlobalSoundVolume());
+        musicSlider.setValue(getSettings().getGlobalMusicVolume());
         FXUtil.animation().translate(root).to(new Point2D(0,0)).duration(Duration.millis(200)).build().play();
     }
 

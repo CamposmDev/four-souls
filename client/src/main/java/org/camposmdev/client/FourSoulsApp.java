@@ -57,6 +57,7 @@ public class FourSoulsApp extends GameApplication {
         getSettings().setGlobalSoundVolume(VOLUME);
         getNotificationService().setBackgroundColor(Color.web("#2D2D30"));
         getNotificationService().setTextColor(Color.WHITE);
+        /* load texture and store in cache */
         getAssetLoader().loadTexture("board.jpg");
     }
 
@@ -94,7 +95,7 @@ public class FourSoulsApp extends GameApplication {
         var monsterEntity = getGameWorld().spawn("monster_deck");
         es.mapper().set(monsterEntity, BoardPosition.CENTER_RIGHT);
         /* add player to game world */
-        var player = es.spawnPlayer("b-maggy");
+        var player = es.spawnPlayer("b-isaac");
 //        es.mapper().set(player, BoardPosition.BOTTOM_RIGHT);
 //        es.events().onMouseHover_Scale(player, BoardPosition.BOTTOM_RIGHT);
 //        es.events().onMouseClick_View(player);
@@ -103,6 +104,7 @@ public class FourSoulsApp extends GameApplication {
 
     @Override
     protected void initInput() {
+        /* set key listener to fullscreen game */
         onKeyDown(KeyCode.F11, () -> {
             var fullScreen = getSettings().getFullScreen().get();
             getSettings().getFullScreen().set(!fullScreen);
