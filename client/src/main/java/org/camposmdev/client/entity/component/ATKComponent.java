@@ -7,7 +7,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 /**
  * How much attack damage does the entity do?
  */
-public class ATKComponent extends Component implements AttributeComponent<IntegerProperty> {
+public class ATKComponent extends Component implements IAttribute<IntegerProperty> {
 	private static final int DEFAULT_ATK = 1;
 	private IntegerProperty max;
 	private IntegerProperty current;

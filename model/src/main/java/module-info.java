@@ -33,4 +33,5 @@ module model {
     exports org.camposmdev.model.card.extra;
     exports org.camposmdev.model.card.attribute.outside.OutsideType;
     exports org.camposmdev.model.card.attribute.loot.MoneyEffect;
+	exports org.camposmdev.model.game;
 }

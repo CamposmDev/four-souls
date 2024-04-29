@@ -95,11 +95,7 @@ public class FourSoulsApp extends GameApplication {
         var monsterEntity = getGameWorld().spawn("monster_deck");
         es.mapper().set(monsterEntity, BoardPosition.CENTER_RIGHT);
         /* add player to game world */
-        var player = es.spawnPlayer("b-isaac");
-//        es.mapper().set(player, BoardPosition.BOTTOM_RIGHT);
-//        es.events().onMouseHover_Scale(player, BoardPosition.BOTTOM_RIGHT);
-//        es.events().onMouseClick_View(player);
-        set("player", player);
+        es.spawnPlayer("b-isaac");
     }
 
     @Override

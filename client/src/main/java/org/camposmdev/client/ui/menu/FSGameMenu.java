@@ -19,7 +19,6 @@ import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
 import org.camposmdev.client.entity.sprite.SecretsSpriteAtlas;
 import org.camposmdev.util.FXUtil;
-import org.camposmdev.util.Log;
 import org.jetbrains.annotations.NotNull;
 
 import static com.almasb.fxgl.dsl.FXGL.getSettings;
@@ -35,9 +34,8 @@ public class FSGameMenu extends FXGLMenu {
 
     public FSGameMenu(@NotNull MenuType type) {
         super(type);
-        Log.info("initialized game menu");
         /* init background */
-        Texture background = initBackground();
+        var background = initBackground();
         /* init option box */
         initOptionBox();
         /* init menu box */

@@ -4,6 +4,7 @@ import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.EntityFactory;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.Spawns;
+import org.camposmdev.client.entity.EntityType;
 import org.camposmdev.client.entity.component.*;
 import org.camposmdev.client.entity.component.card.CardComponent;
 import org.camposmdev.client.entity.component.card.LootCardComponent;
@@ -73,17 +74,16 @@ public class FSEntityFactory implements EntityFactory {
     @Spawns("player")
     public Entity player(SpawnData data) {
         CharacterCard character = data.get("character");
-        if (character == null)
-            throw new RuntimeException("missing character data field");
         var game = (Game) geto("game");
-        var eternal = game.deck().eternals().get(x -> x.getId().equals(character.getEternalId()));
+        var eternal = game.deck().eternals().find(x -> x.getId().equals(character.getEternalId()));
         if (eternal == null)
             throw new IllegalArgumentException("character's eternalId value cannot be found in eternal deck");
         return entityBuilder(data)
+                .type(EntityType.PLAYER)
                 .with(new HPComponent())
                 .with(new ATKComponent())
                 .with(new MoneyComponent())
-                .with(new PlayerSoulComponent())
+                .with(new ScoreComponent())
                 .with(new CharacterComponent(character))
                 .with(new EternalItemComponent(eternal))
                 .with(new PlayerLootComponent())

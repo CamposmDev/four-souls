@@ -21,18 +21,24 @@ import java.util.concurrent.atomic.AtomicReference;
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 
 public class EntityEvents {
+    /**
+     * Adds an event mouse hover handler to preview a card's higher
+     * quality image version using {@link CardViewer} to display it
+     * @param arg0
+     */
     public void onMouseHover_Preview(CardComponent arg0) {
         Texture texture = arg0.source1();
 		AtomicReference<TimerAction> timer = new AtomicReference<>();
         arg0.texture().addEventHandler(MouseEvent.MOUSE_ENTERED, event -> {
+            System.out.println("mouse entered");
             timer.set(getGameTimer().runOnceAfter(() -> {
                 CardViewer.instance().setTexture(texture);
                 CardViewer.instance().render();
             }, Duration.millis(750)));
         });
         arg0.texture().addEventHandler(MouseEvent.MOUSE_EXITED, event -> {
-            if (timer.get() != null)
-                timer.get().expire();
+            System.out.println("mouse exited");
+            timer.get().expire();
             CardViewer.instance().dispose();
         });
     }

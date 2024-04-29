@@ -2,6 +2,7 @@ package org.camposmdev.client.entity.component.card;
 
 import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.texture.Texture;
+import org.camposmdev.client.service.EntityService;
 import org.camposmdev.model.card.BaseCard;
 import org.camposmdev.util.FXUtil;
 
@@ -9,8 +10,8 @@ import org.camposmdev.util.FXUtil;
  * The entity is a card
  */
 public class CardComponent extends Component {
-	private BaseCard card;
-	private Texture texture;
+	protected BaseCard card;
+	protected Texture texture;
 
 	public CardComponent(BaseCard card) {
 		this.card = card;
@@ -18,8 +19,10 @@ public class CardComponent extends Component {
 
 	@Override
 	public void onAdded() {
+		var es = EntityService.get();
 		texture = FXUtil.loadCard(card.getImage().source2());
 		entity.getViewComponent().addChild(texture);
+		es.events().onMouseHover_Preview(this);
 	}
 
 	public BaseCard card() {

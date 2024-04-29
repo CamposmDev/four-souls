@@ -1,11 +1,11 @@
 package org.camposmdev.client.entity.component.player;
 
 import org.camposmdev.client.entity.component.card.CardComponent;
-import org.camposmdev.client.entity.component.PlayableComponent;
+import org.camposmdev.client.entity.component.Playable;
 import org.camposmdev.client.service.EntityService;
 import org.camposmdev.model.card.eternal.*;
 
-public class EternalItemComponent extends CardComponent implements PlayableComponent {
+public class EternalItemComponent extends CardComponent implements Playable {
 	public EternalItemComponent(EternalCard card) {
 		super(card);
 	}
@@ -23,7 +23,6 @@ public class EternalItemComponent extends CardComponent implements PlayableCompo
 		texture().setOnMouseClicked(event -> {
 			texture().setRotate(texture().getRotate() + 90);
 		});
-		EntityService.get().events().onMouseHover_Preview(this);
 		EntityService.get().events().onMouseHover_Highlight(this);
 	}
 

@@ -7,29 +7,38 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import org.camposmdev.client.entity.component.card.LootCardComponent;
-import org.camposmdev.model.card.loot.LootCard;
+import org.camposmdev.client.model.Game;
+
+import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 
 public class PlayerLootComponent extends Component {
-	private ObservableList<LootCardComponent> loot;
+	private ObservableList<LootCardComponent> inventory;
 
 	@Override
 	public void onAdded() {
-		loot = FXCollections.observableArrayList();
+		inventory = FXCollections.observableArrayList();
 	}
 
-	public ObservableList<LootCardComponent> loot() {
-		return loot;
+	public ObservableList<LootCardComponent> inventory() {
+		return inventory;
 	}
 
 	public void addListener(ListChangeListener<LootCardComponent> change) {
-		loot.addListener(change);
+		inventory.addListener(change);
 	}
 
-	public void add(LootCard card) {
+	public void draw() {
+		Game game = FXGL.geto("game");
+		var card = game.deck().loot().draw();
+		if (card == null) {
+			getNotificationService().pushNotification("Shuffle Loot Deck");
+			return;
+		}
 		var data = new SpawnData().put("loot", card);
-		var entity = FXGL.getGameWorld().spawn("loot", data);
+		var entity = getGameWorld().spawn("loot", data);
 		entity.getComponentOptional(LootCardComponent.class).ifPresent(comp -> {
-			loot.add(comp);
+			inventory.add(comp);
+			play("feedback/book page turn.wav");
 		});
 	}
 }

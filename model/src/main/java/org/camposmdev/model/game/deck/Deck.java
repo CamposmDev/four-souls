@@ -53,7 +53,7 @@ public class Deck<T extends BaseCard> {
         return false;
     }
 
-    public T get(Predicate<T> p) {
+    public T find(Predicate<T> p) {
         for (int i = 0; i < cards.size(); i++) {
             if (p.test(cards.get(i)))
                 return cards.remove(i);

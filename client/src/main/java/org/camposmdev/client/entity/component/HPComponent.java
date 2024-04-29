@@ -3,12 +3,15 @@ package org.camposmdev.client.entity.component;
 import com.almasb.fxgl.entity.component.Component;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import org.camposmdev.util.Log;
+
+import static com.almasb.fxgl.dsl.FXGL.getDialogService;
+import static com.almasb.fxgl.dsl.FXGL.getGameController;
+
 
 /**
  * How much HP does the entity have?
  */
-public class HPComponent extends Component implements AttributeComponent<IntegerProperty> {
+public class HPComponent extends Component implements IAttribute<IntegerProperty> {
     private static final int DEFAULT_HP = 2;
     private IntegerProperty max;
     private IntegerProperty current;
@@ -22,7 +25,9 @@ public class HPComponent extends Component implements AttributeComponent<Integer
     @Override
     public void onUpdate(double tpf) {
         if (current.get() <= 0) {
-            Log.info("entity died");
+            getDialogService().showMessageBox("You died", () -> {
+                getGameController().exit();
+            });
         }
     }
 

@@ -2,7 +2,6 @@ package org.camposmdev.client.service;
 
 import com.almasb.fxgl.core.EngineService;
 import com.almasb.fxgl.dsl.FXGL;
-import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.SpawnData;
 import org.camposmdev.client.model.Game;
 
@@ -27,13 +26,13 @@ public class EntityService extends EngineService {
         return mapper;
     }
 
-    public Entity spawnPlayer(String characterId) {
+    public void spawnPlayer(String characterId) {
         var game = (Game) geto("game");
-        var character = game.deck().characters().get(x -> x.getId().equals(characterId));
+        var character = game.deck().characters().find(x -> x.getId().equals(characterId));
         if (character == null) throw new RuntimeException("character is null");
         var data = new SpawnData();
         data.put("character", character);
-        return getGameWorld().spawn("player", data);
+        getGameWorld().spawn("player", data);
     }
 
     public static EntityService get() {

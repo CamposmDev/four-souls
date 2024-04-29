@@ -10,7 +10,7 @@ import org.camposmdev.model.card.loot.LostSoulCard;
 import org.camposmdev.model.card.monster.MonsterCard;
 import org.camposmdev.util.Log;
 
-public class PlayerSoulComponent extends Component {
+public class ScoreComponent extends Component {
 	private ObservableList<BaseCard> souls;
 
 	@Override
@@ -32,7 +32,7 @@ public class PlayerSoulComponent extends Component {
 		souls.remove(card);
 	}
 
-	public Integer souls() {
+	public Integer count() {
 		int sum = 0;
 		for (BaseCard card : souls) {
 			if (card instanceof LostSoulCard || card instanceof BonusSoulCard)

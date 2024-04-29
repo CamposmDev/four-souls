@@ -1,6 +1,5 @@
 package org.camposmdev.client.ui.view;
 
-import com.almasb.fxgl.entity.Entity;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
@@ -17,9 +16,8 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.shape.StrokeLineCap;
 import javafx.scene.shape.StrokeLineJoin;
 import javafx.util.Duration;
+import org.camposmdev.client.entity.EntityType;
 import org.camposmdev.client.entity.component.player.PlayerLootComponent;
-import org.camposmdev.client.model.Game;
-import org.camposmdev.util.Log;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 
@@ -37,17 +35,23 @@ public class ActionDrawerView implements View {
 
     public ActionDrawerView() {
         btDraw = createButton("Draw", event -> {
-            var game = (Game) geto("game");
-            var card = game.deck().loot().draw();
-            if (card != null) {
-                Log.infof("Player draws %s", card.getId());
-                var player = (Entity) geto("player");
-                player.getComponent(PlayerLootComponent.class).add(card);
-                play("feedback/book page turn.wav");
-            } else {
-                /* shuffle the loot deck from its discard pile  */
-                Log.infof("Shuffle the loot deck");
-            }
+            var entity = getGameWorld().getSingleton(EntityType.PLAYER);
+            entity.getComponentOptional(PlayerLootComponent.class)
+                    .ifPresent(PlayerLootComponent::draw);
+//            entity.getComponentOptional(PlayerComponent.class).ifPresent(comp -> {
+//
+//            });
+//            var game = (Game) geto("game");
+//            var card = game.deck().loot().draw();
+//            if (card != null) {
+//                Log.infof("Player draws %s", card.getId());
+//                var player = (Entity) geto("player");
+//                player.getComponent(PlayerLootComponent.class).add(card);
+//                play("feedback/book page turn.wav");
+//            } else {
+//                /* shuffle the loot deck from its discard pile  */
+//                Log.infof("Shuffle the loot deck");
+//            }
         });
         btShop = createButton("Shop", event -> {
             /* TODO - Implement shop system */
@@ -73,6 +77,10 @@ public class ActionDrawerView implements View {
         });
         btEndTurn = createButton("End Turn", event -> {
             /* TODO - Implement turn system */
+//            var entity = getGameWorld().getSingleton(EntityType.PLAYER);
+//            entity.getComponentOptional(CharacterComponent.class).ifPresent(comp -> {
+//                comp.damage(1);
+//            });
         });
         /* init button box container */
         btBox = new HBox(SPACING, btDraw, btShop, btAttack, btEndTurn);
