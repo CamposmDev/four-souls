@@ -3,13 +3,9 @@ package org.camposmdev.client.service;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.texture.Texture;
 import com.almasb.fxgl.time.TimerAction;
-import javafx.animation.Interpolator;
-import javafx.animation.RotateTransition;
 import javafx.geometry.Point2D;
-import javafx.scene.Node;
 import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 import org.camposmdev.client.entity.component.card.CardComponent;
 import org.camposmdev.client.ui.view.CardViewer;
@@ -30,22 +26,26 @@ public class EntityEvents {
         Texture texture = arg0.source1();
 		AtomicReference<TimerAction> timer = new AtomicReference<>();
         arg0.texture().addEventHandler(MouseEvent.MOUSE_ENTERED, event -> {
-            System.out.println("mouse entered");
             timer.set(getGameTimer().runOnceAfter(() -> {
                 CardViewer.instance().setTexture(texture);
                 CardViewer.instance().render();
             }, Duration.millis(750)));
         });
         arg0.texture().addEventHandler(MouseEvent.MOUSE_EXITED, event -> {
-            System.out.println("mouse exited");
             timer.get().expire();
             CardViewer.instance().dispose();
         });
     }
 
+    /**
+     * Adds an event mouse hover handler to highlight a card by scaling
+     * the card a little to give the user feedback
+     * @param arg0
+     */
     public void onMouseHover_Highlight(CardComponent arg0) {
         var width = arg0.texture().getFitWidth();
         var height = arg0.texture().getFitHeight();
+        /* scale the card by 5% */
         final var SCALE = 1.05;
         var modX = (width / 2d) * SCALE - width / 2d;
         var modY = (height / 2d) * SCALE - height / 2d;
@@ -223,52 +223,5 @@ public class EntityEvents {
                 });
             }
         }
-    }
-
-    @Deprecated
-    public void setOnClick_Scale(Entity entity, BoardPosition position) {
-        if (!entity.hasComponent(CardComponent.class)) {
-            Log.warnf("Entity %s is missing CardComponent", entity);
-            return;
-        }
-        var t = entity.getComponent(CardComponent.class).source2();
-        var view = entity.getViewComponent();
-        var width = t.getFitWidth();
-        var height = t.getFitHeight();
-        var flag = new AtomicBoolean(true);
-        switch (position) {
-            case BOTTOM_LEFT -> view.addOnClickHandler(event -> {
-                if (flag.get()) {
-                    entity.setY(entity.getY() - height);
-                    entity.setScaleUniform(2);
-                } else {
-                    entity.setY(entity.getY() + height);
-                    entity.setScaleUniform(1);
-                }
-                flag.set(!flag.get());
-            });
-        }
-    }
-
-    @Deprecated
-    public RotateTransition rotateOut(Node node) {
-        RotateTransition rotator = new RotateTransition(Duration.millis(500), node);
-        rotator.setAxis(Rotate.Y_AXIS);
-        rotator.setFromAngle(0);
-        rotator.setToAngle(90);
-        rotator.setInterpolator(Interpolator.LINEAR);
-        rotator.setCycleCount(1);
-        return rotator;
-    }
-
-    @Deprecated
-    public RotateTransition rotateIn(Node node) {
-        RotateTransition rotator = new RotateTransition(Duration.millis(500), node);
-        rotator.setAxis(Rotate.Y_AXIS);
-        rotator.setFromAngle(90);
-        rotator.setToAngle(0);
-        rotator.setInterpolator(Interpolator.LINEAR);
-        rotator.setCycleCount(1);
-        return rotator;
     }
 }

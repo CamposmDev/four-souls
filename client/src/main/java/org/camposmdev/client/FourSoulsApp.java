@@ -23,6 +23,7 @@ public class FourSoulsApp extends GameApplication {
         launch(args);
     }
     private static final int APP_WIDTH = 1600, APP_HEIGHT = 900;
+
     @Override
     protected void initSettings(GameSettings options) {
         options.setApplicationMode(ApplicationMode.DEVELOPER);
@@ -77,8 +78,10 @@ public class FourSoulsApp extends GameApplication {
 
     @Override
     protected void initGame() {
+        /* play game music */
+//        loopBGM("03 The Binding of Isaac.mp3");
         /* start the music */
-//        loopBGM("The Binding of Isaac - 11 Repentant.mp3");
+        loopBGM("The Binding of Isaac - 11 Repentant.mp3");
         /* add the four souls entity factory to spawn the game entities */
         getGameWorld().addEntityFactory(new FSEntityFactory());
         var es = getService(EntityService.class);
@@ -95,7 +98,8 @@ public class FourSoulsApp extends GameApplication {
         var monsterEntity = getGameWorld().spawn("monster_deck");
         es.mapper().set(monsterEntity, BoardPosition.CENTER_RIGHT);
         /* add player to game world */
-        es.spawnPlayer("b-isaac");
+        es.spawn_player("b-isaac");
+        es.spawn_monster();
     }
 
     @Override

@@ -1,10 +1,14 @@
 package org.camposmdev.client.entity.component.player;
 
 import com.almasb.fxgl.entity.component.Component;
+import javafx.geometry.Point3D;
 import javafx.scene.input.MouseEvent;
+import javafx.util.Duration;
 import org.camposmdev.client.entity.component.ATKComponent;
 import org.camposmdev.client.entity.component.HPComponent;
 import org.camposmdev.client.ui.view.PlayerHUDView;
+
+import static com.almasb.fxgl.dsl.FXGLForKtKt.animationBuilder;
 
 
 public class PlayerHUDComponent extends Component {
@@ -36,9 +40,24 @@ public class PlayerHUDComponent extends Component {
 			while (change.next()) {
 				if (change.wasAdded()) {
 					change.getAddedSubList().forEach(x -> {
-						x.texture().addEventHandler(MouseEvent.MOUSE_CLICKED, event ->
-								loot.inventory().remove(x));
+						x.texture().addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+							loot.inventory().remove(x);
+						});
 						hud.loot().add(x.texture());
+						animationBuilder()
+								.duration(Duration.millis(250))
+								.rotate(x.texture())
+								.origin(new Point3D(0, 1, 0))
+//								.origin(new Point2D(0,1))
+								.from(new Point3D(0,90,0))
+								.to(new Point3D(0,0,0))
+//								.from(90)
+//								.to(0)
+								.buildAndPlay();
+
+//						var anim = EntityService.get().events().rotateIn(x.texture());
+//						anim.setOnFinished(e -> {  });
+//						anim.play();
 					});
 				} else if (change.wasRemoved()) {
 					change.getRemoved().forEach(x -> {

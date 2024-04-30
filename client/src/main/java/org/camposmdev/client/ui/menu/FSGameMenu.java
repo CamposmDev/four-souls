@@ -21,8 +21,7 @@ import org.camposmdev.client.entity.sprite.SecretsSpriteAtlas;
 import org.camposmdev.util.FXUtil;
 import org.jetbrains.annotations.NotNull;
 
-import static com.almasb.fxgl.dsl.FXGL.getSettings;
-import static com.almasb.fxgl.dsl.FXGL.getUIFactoryService;
+import static com.almasb.fxgl.dsl.FXGL.*;
 
 public class FSGameMenu extends FXGLMenu {
     private static final int BLOCK_MARGIN = 32;
@@ -128,6 +127,7 @@ public class FSGameMenu extends FXGLMenu {
         sfxSlider.setValue(getSettings().getGlobalSoundVolume());
         musicSlider.setValue(getSettings().getGlobalMusicVolume());
         FXUtil.animation().translate(root).to(new Point2D(0,0)).duration(Duration.millis(200)).build().play();
+        play("feedback/book page turn.wav");
     }
 
     @Override

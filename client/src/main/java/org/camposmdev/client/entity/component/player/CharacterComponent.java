@@ -1,6 +1,6 @@
 package org.camposmdev.client.entity.component.player;
 
-import javafx.scene.layout.StackPane;
+import com.almasb.fxgl.dsl.FXGL;
 import javafx.util.Duration;
 import org.camposmdev.client.entity.component.ATKComponent;
 import org.camposmdev.client.entity.component.HPComponent;
@@ -25,6 +25,20 @@ public class CharacterComponent extends CardComponent implements Playable, Attac
 		super.onAdded();
 		hp.max().set(card().getHp());
 		hp.current().set(card().getHp());
+		hp.current().addListener((o, arg0, arg1) -> {
+			if (arg1.intValue() <= 0) {
+				/* play death sound */
+				int i = (int) (Math.random() * 3) + 1;
+				FXGL.play(String.format("player/death%d.wav", i));
+				getDialogService().showMessageBox("You died", () -> {
+					getGameController().startNewGame();
+				});
+			} else if (arg1.intValue() < arg0.intValue()) {
+				/* play hurt sound */
+				int i = (int) (Math.random() * 3) + 1;
+				FXGL.play(String.format("player/hurt%d.wav", i));
+			}
+		});
 		atk.max().set(card().getAtk());
 		atk.current().set(card().getAtk());
 		texture().setOnMouseClicked(event -> {
@@ -45,14 +59,10 @@ public class CharacterComponent extends CardComponent implements Playable, Attac
 
 	@Override
 	public void damage(int arg0) {
-		getNotificationService().pushNotification("Damage incoming!", new StackPane(getUIFactoryService().newButton("Do something")));
+		getNotificationService().pushNotification("Damage incoming!");
 		hp.current().set(hp.current().get() - arg0);
-		animationBuilder().onFinished(() -> {
-			animationBuilder()
-					.duration(Duration.millis(50))
-					.fadeIn(texture())
-					.build();
-		}).duration(Duration.millis(50))
+		animationBuilder()
+				.duration(Duration.millis(50))
 				.repeat(10)
 				.autoReverse(true)
 				.fadeOut(texture())

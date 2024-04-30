@@ -17,6 +17,7 @@ import javafx.scene.shape.StrokeLineCap;
 import javafx.scene.shape.StrokeLineJoin;
 import javafx.util.Duration;
 import org.camposmdev.client.entity.EntityType;
+import org.camposmdev.client.entity.component.player.CharacterComponent;
 import org.camposmdev.client.entity.component.player.PlayerLootComponent;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
@@ -38,20 +39,6 @@ public class ActionDrawerView implements View {
             var entity = getGameWorld().getSingleton(EntityType.PLAYER);
             entity.getComponentOptional(PlayerLootComponent.class)
                     .ifPresent(PlayerLootComponent::draw);
-//            entity.getComponentOptional(PlayerComponent.class).ifPresent(comp -> {
-//
-//            });
-//            var game = (Game) geto("game");
-//            var card = game.deck().loot().draw();
-//            if (card != null) {
-//                Log.infof("Player draws %s", card.getId());
-//                var player = (Entity) geto("player");
-//                player.getComponent(PlayerLootComponent.class).add(card);
-//                play("feedback/book page turn.wav");
-//            } else {
-//                /* shuffle the loot deck from its discard pile  */
-//                Log.infof("Shuffle the loot deck");
-//            }
         });
         btShop = createButton("Shop", event -> {
             /* TODO - Implement shop system */
@@ -61,8 +48,8 @@ public class ActionDrawerView implements View {
             });
             btBox.getChildren().clear();
             btBox.getChildren().add(btCancel);
+            getNotificationService().pushNotification("Coming soon!");
         });
-        btShop.setDisable(true);
         btAttack = createButton("Attack", event -> {
             /* TODO - Implement combat system */
             getGameScene().setCursor(new ImageCursor(image("cursor_sword.png")));
@@ -74,13 +61,14 @@ public class ActionDrawerView implements View {
             });
             btBox.getChildren().clear();
             btBox.getChildren().add(btCancel);
+            getNotificationService().pushNotification("Coming soon!");
         });
         btEndTurn = createButton("End Turn", event -> {
             /* TODO - Implement turn system */
-//            var entity = getGameWorld().getSingleton(EntityType.PLAYER);
-//            entity.getComponentOptional(CharacterComponent.class).ifPresent(comp -> {
-//                comp.damage(1);
-//            });
+            var entity = getGameWorld().getSingleton(EntityType.PLAYER);
+            entity.getComponentOptional(CharacterComponent.class).ifPresent(comp -> {
+                comp.damage(1);
+            });
         });
         /* init button box container */
         btBox = new HBox(SPACING, btDraw, btShop, btAttack, btEndTurn);
