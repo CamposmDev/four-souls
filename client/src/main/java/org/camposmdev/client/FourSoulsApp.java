@@ -99,7 +99,15 @@ public class FourSoulsApp extends GameApplication {
         es.mapper().set(monsterEntity, BoardPosition.CENTER_RIGHT);
         /* add player to game world */
         es.spawn_player("b-isaac");
-        es.spawn_monster();
+
+//        ItemShopView itemShop = new ItemShopView();
+//        itemShop.render();
+//        var m1 = es.spawn_monster();
+//        var c = m1.getComponent(MonsterCardComponent.class);
+//        var root = (TilePane) itemShop.content();
+//        root.setTranslateX(getAppWidth()/4d - root.getPrefWidth()/2d);
+//        root.setTranslateY(getAppHeight()/2d - root.getPrefHeight()/2d);
+//        root.getChildren().add(c.texture());
     }
 
     @Override
