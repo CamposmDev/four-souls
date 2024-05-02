@@ -6,6 +6,7 @@ import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
+import org.camposmdev.client.entity.D6Entity;
 import org.camposmdev.client.entity.factory.FSEntityFactory;
 import org.camposmdev.client.model.Game;
 import org.camposmdev.client.service.BoardPosition;
@@ -100,6 +101,9 @@ public class FourSoulsApp extends GameApplication {
         /* add player to game world */
         es.spawn_player("b-isaac");
 
+        var e = new D6Entity();
+        getGameWorld().addEntity(e);
+        e.roll();
 //        ItemShopView itemShop = new ItemShopView();
 //        itemShop.render();
 //        var m1 = es.spawn_monster();
