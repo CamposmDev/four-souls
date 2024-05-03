@@ -11,13 +11,13 @@ import javafx.geometry.Pos;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
-import javafx.scene.web.WebView;
 import javafx.util.Duration;
 import org.camposmdev.client.entity.sprite.SecretsSpriteAtlas;
 import org.camposmdev.util.FXUtil;
@@ -29,25 +29,23 @@ import static com.almasb.fxgl.dsl.FXGL.*;
 public class FSGameMenu extends FXGLMenu {
     private static final int BLOCK_MARGIN = 32;
     private final StackPane root;
+	private Texture background;
     private VBox menuBox;
     private VBox optionBox;
     private CheckBox cbFullScreen;
     private Slider sfxSlider, musicSlider;
-    private WebView booklet;
+	private AnchorPane bookletPane;
 
     public FSGameMenu(@NotNull MenuType type) {
         super(type);
         /* init background */
-        var background = initBackground();
+        initBackground();
         /* init option box */
         initOptionBox();
         /* init menu box */
         initMenuBox();
         /* init booklet */
-        Platform.runLater(() -> {
-            booklet = FXUtil.loadBooklet();
-            booklet.setPrefSize(getAppWidth(), getAppHeight());
-        });
+        initGameplayBox();
         /* init root container */
         root = new StackPane(background, menuBox);
         root.setPrefWidth(getAppWidth());
@@ -72,13 +70,28 @@ public class FSGameMenu extends FXGLMenu {
 	@Override
 	public void onDestroy() {
 		/* return to the menu box */
-		if (!root.getChildren().contains(menuBox)) {
-			root.getChildren().setAll(initBackground(), menuBox);
-		}
-		removeChild(booklet);
+		root.getChildren().setAll(background, menuBox);
+		/* remove gameplay view if present */
+		removeChild(bookletPane);
 		root.setTranslateY(getAppHeight());
 	}
 
+	/**
+	 * Initializes the background for the main menu.
+	 */
+	private void initBackground() {
+		var texture = FXGL.texture("spritesheets/secrets.png");
+		SecretsSpriteAtlas atlas = FXUtil.loadJSON("spritesheets/secrets.json", SecretsSpriteAtlas.class);
+		assert atlas != null;
+		background = texture.subTexture(atlas.background().toR2D());
+		background.setSmooth(false);
+		background.setScaleX(2.5);
+		background.setScaleY(2.5);
+	}
+
+	/**
+	 * Initializes the options view to adjust game settings
+	 */
     private void initOptionBox() {
         /* init full screen control */
         cbFullScreen = FXGL.getUIFactoryService().newCheckBox();
@@ -109,44 +122,50 @@ public class FSGameMenu extends FXGLMenu {
     }
 
 	/**
+	 * Initializes the gameplay view that teaches the player how the game works
+	 */
+	private void initGameplayBox() {
+		Platform.runLater(() -> {
+			var booklet = FXUtil.loadBooklet();
+			booklet.setPrefSize(getAppWidth(), getAppHeight());
+			bookletPane = new AnchorPane(booklet);
+			bookletPane.setPrefSize(getAppWidth(), getAppHeight());
+			var bt = createButton("Back", event -> removeChild(bookletPane));
+			var container = new StackPane(bt);
+			container.setPrefSize(100, 50);
+			bookletPane.getChildren().add(container);
+			AnchorPane.setLeftAnchor(container, 0d);
+			AnchorPane.setRightAnchor(container, 0d);
+			AnchorPane.setBottomAnchor(container, 8d);
+		});
+	}
+
+	/**
 	 * Initializes the main menu that displays when user pauses the game.
 	 */
 	private void initMenuBox() {
-        /* init options menu */
-        var btOptions = createButton("Options", e -> {
-            root.getChildren().remove(menuBox);
-            root.getChildren().add(optionBox);
-        });
+		/* init resume menu */
+		var btResume = createButton("Resume", e -> this.fireResume());
+		/* init gameplay menu */
+		var btBook = createButton("Gameplay", e -> {
+			addChild(bookletPane);
+		});
+		/* init controls menu */
         var btControls = createButton("Controls", e -> {
             Log.info("Implement me!");
             /* TODO - Implement controls menu if any controls available for the player to play the game
             *   besides point and click. Maybe key binds for shortcuts with the user interface
             *   like in RTS games. Make their gameplay more efficient. */
         });
-        var btBook = createButton("How to Play", e -> {
-            addChild(booklet);
-        });
-        /* init resume menu */
-        var btResume = createButton("Resume", e -> this.fireResume());
-        /* init exit game menu */
+		/* init options menu */
+		var btOptions = createButton("Options", e -> {
+			root.getChildren().remove(menuBox);
+			root.getChildren().add(optionBox);
+		});
+        /* init exit menu */
         var btExit = createButton("Exit Game", e -> this.fireExitToMainMenu());
         menuBox = new VBox((BLOCK_MARGIN), btResume, btBook, btControls, btOptions, btExit);
         menuBox.setAlignment(Pos.CENTER);
-    }
-
-	/**
-	 * Initializes the background for the main menu.
-	 * @return texture of game board
-	 */
-	private Texture initBackground() {
-        var texture = FXGL.texture("spritesheets/secrets.png");
-        SecretsSpriteAtlas atlas = FXUtil.loadJSON("spritesheets/secrets.json", SecretsSpriteAtlas.class);
-        assert atlas != null;
-        var background = texture.subTexture(atlas.background().toR2D());
-        background.setSmooth(false);
-        background.setScaleX(2.5);
-        background.setScaleY(2.5);
-        return background;
     }
 
 	/**
@@ -156,7 +175,8 @@ public class FSGameMenu extends FXGLMenu {
 	 * @return
 	 */
 	private Text createButton(String content, EventHandler<MouseEvent> event) {
-		Text node = getUIFactoryService().newText(content, Color.BLACK, 32);
+		final var FONT_SZ = 28;
+		Text node = getUIFactoryService().newText(content, Color.BLACK, FONT_SZ);
 		node.setTextAlignment(TextAlignment.CENTER);
 		if (event == null) return node;
 		node.setOnMouseClicked(event);
@@ -179,5 +199,4 @@ public class FSGameMenu extends FXGLMenu {
 	private Text createText(String content) {
 		return createButton(content, null);
 	}
-
 }
