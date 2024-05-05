@@ -15,11 +15,11 @@ public class DCComponent extends Component implements IAttribute<SimpleIntegerPr
 
 	@Override
 	public SimpleIntegerProperty max() {
-		return null;
+		return max;
 	}
 
 	@Override
 	public SimpleIntegerProperty current() {
-		return null;
+		return current;
 	}
 }
