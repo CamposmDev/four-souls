@@ -6,6 +6,9 @@ import org.camposmdev.client.entity.component.card.CardComponent;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 
+/**
+ * Maps entities position in the game world
+ */
 public class EntityMapper {
     static final int INLINE_MARGIN = 10;
     static final int BLOCK_MARGIN = 10;

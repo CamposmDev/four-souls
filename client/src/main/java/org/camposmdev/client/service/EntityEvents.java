@@ -16,6 +16,9 @@ import java.util.concurrent.atomic.AtomicReference;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 
+/**
+ * Adds event handlers to entities
+ */
 public class EntityEvents {
     /**
      * Adds an event mouse hover handler to preview a card's higher

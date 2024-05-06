@@ -14,6 +14,9 @@ import org.camposmdev.model.card.treasure.TreasureCard;
 import static com.almasb.fxgl.dsl.FXGLForKtKt.getGameWorld;
 import static com.almasb.fxgl.dsl.FXGLForKtKt.geto;
 
+/**
+ * Service tool for manipulating and creating entities
+ */
 public class EntityService extends EngineService {
     private EntityEvents events;
     private EntityMapper mapper;
