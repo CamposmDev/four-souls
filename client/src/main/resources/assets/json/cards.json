@@ -3,9 +3,9 @@
     "r-soul_of_lust" : {
       "id" : "r-soul_of_lust",
       "image" : {
-        "origin" : "https://foursouls.com/cards/r-soul_of_lust/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-soul_of_lust.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-soul_of_lust-308x420.png",
+        "url" : "https://foursouls.com/cards/r-soul_of_lust/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-soul_of_lust.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-soul_of_lust-308x420.png",
         "dir" : "cards/bsoul/"
       },
       "cardType" : "BSOUL",
@@ -23,9 +23,9 @@
     "b2-soul_of_greed" : {
       "id" : "b2-soul_of_greed",
       "image" : {
-        "origin" : "https://foursouls.com/cards/b2-soul_of_greed/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/b2-soul_of_greed.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/b2-soul_of_greed-308x420.png",
+        "url" : "https://foursouls.com/cards/b2-soul_of_greed/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/b2-soul_of_greed.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/b2-soul_of_greed-308x420.png",
         "dir" : "cards/bsoul/"
       },
       "cardType" : "BSOUL",
@@ -43,9 +43,9 @@
     "r-soul_of_pride" : {
       "id" : "r-soul_of_pride",
       "image" : {
-        "origin" : "https://foursouls.com/cards/r-soul_of_pride/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-soul_of_pride.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-soul_of_pride-308x420.png",
+        "url" : "https://foursouls.com/cards/r-soul_of_pride/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-soul_of_pride.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-soul_of_pride-308x420.png",
         "dir" : "cards/bsoul/"
       },
       "cardType" : "BSOUL",
@@ -63,9 +63,9 @@
     "r-soul_of_wrath" : {
       "id" : "r-soul_of_wrath",
       "image" : {
-        "origin" : "https://foursouls.com/cards/r-soul_of_wrath/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-soul_of_wrath.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-soul_of_wrath-308x420.png",
+        "url" : "https://foursouls.com/cards/r-soul_of_wrath/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-soul_of_wrath.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-soul_of_wrath-308x420.png",
         "dir" : "cards/bsoul/"
       },
       "cardType" : "BSOUL",
@@ -83,9 +83,9 @@
     "b-soul_of_guppy" : {
       "id" : "b-soul_of_guppy",
       "image" : {
-        "origin" : "https://foursouls.com/cards/b-soul_of_guppy/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-soul_of_guppy.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-soul_of_guppy-308x420.png",
+        "url" : "https://foursouls.com/cards/b-soul_of_guppy/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-soul_of_guppy.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-soul_of_guppy-308x420.png",
         "dir" : "cards/bsoul/"
       },
       "cardType" : "BSOUL",
@@ -103,9 +103,9 @@
     "b2-soul_of_guppy" : {
       "id" : "b2-soul_of_guppy",
       "image" : {
-        "origin" : "https://foursouls.com/cards/b2-soul_of_guppy/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/b2-soul_of_guppy.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/b2-soul_of_guppy-308x420.png",
+        "url" : "https://foursouls.com/cards/b2-soul_of_guppy/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/b2-soul_of_guppy.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/b2-soul_of_guppy-308x420.png",
         "dir" : "cards/bsoul/"
       },
       "cardType" : "BSOUL",
@@ -123,9 +123,9 @@
     "rwz-strawberry" : {
       "id" : "rwz-strawberry",
       "image" : {
-        "origin" : "https://foursouls.com/cards/rwz-strawberry/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/rwz-strawberry.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/rwz-strawberry-308x420.png",
+        "url" : "https://foursouls.com/cards/rwz-strawberry/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/rwz-strawberry.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/rwz-strawberry-308x420.png",
         "dir" : "cards/bsoul/"
       },
       "cardType" : "BSOUL",
@@ -143,9 +143,9 @@
     "b2-soul_of_gluttony" : {
       "id" : "b2-soul_of_gluttony",
       "image" : {
-        "origin" : "https://foursouls.com/cards/b2-soul_of_gluttony/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/b2-soul_of_gluttony.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/b2-soul_of_gluttony-308x420.png",
+        "url" : "https://foursouls.com/cards/b2-soul_of_gluttony/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/b2-soul_of_gluttony.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/b2-soul_of_gluttony-308x420.png",
         "dir" : "cards/bsoul/"
       },
       "cardType" : "BSOUL",
@@ -163,9 +163,9 @@
     "b-soul_of_gluttony" : {
       "id" : "b-soul_of_gluttony",
       "image" : {
-        "origin" : "https://foursouls.com/cards/b-soul_of_gluttony/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-soul_of_gluttony.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-soul_of_gluttony-308x420.png",
+        "url" : "https://foursouls.com/cards/b-soul_of_gluttony/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-soul_of_gluttony.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-soul_of_gluttony-308x420.png",
         "dir" : "cards/bsoul/"
       },
       "cardType" : "BSOUL",
@@ -183,9 +183,9 @@
     "b-soul_of_greed" : {
       "id" : "b-soul_of_greed",
       "image" : {
-        "origin" : "https://foursouls.com/cards/b-soul_of_greed/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-soul_of_greed.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-soul_of_greed-308x420.png",
+        "url" : "https://foursouls.com/cards/b-soul_of_greed/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-soul_of_greed.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-soul_of_greed-308x420.png",
         "dir" : "cards/bsoul/"
       },
       "cardType" : "BSOUL",
@@ -203,9 +203,9 @@
     "r-soul_of_envy" : {
       "id" : "r-soul_of_envy",
       "image" : {
-        "origin" : "https://foursouls.com/cards/r-soul_of_envy/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-soul_of_envy.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-soul_of_envy-308x420.png",
+        "url" : "https://foursouls.com/cards/r-soul_of_envy/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-soul_of_envy.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-soul_of_envy-308x420.png",
         "dir" : "cards/bsoul/"
       },
       "cardType" : "BSOUL",
@@ -223,9 +223,9 @@
     "r-soul_of_sloth" : {
       "id" : "r-soul_of_sloth",
       "image" : {
-        "origin" : "https://foursouls.com/cards/r-soul_of_sloth/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-soul_of_sloth.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-soul_of_sloth-308x420.png",
+        "url" : "https://foursouls.com/cards/r-soul_of_sloth/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-soul_of_sloth.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-soul_of_sloth-308x420.png",
         "dir" : "cards/bsoul/"
       },
       "cardType" : "BSOUL",
@@ -245,9 +245,9 @@
     "r-the_curdled" : {
       "id" : "r-the_curdled",
       "image" : {
-        "origin" : "https://foursouls.com/cards/r-the_curdled/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_curdled.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_curdled-308x420.png",
+        "url" : "https://foursouls.com/cards/r-the_curdled/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_curdled.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_curdled-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -260,9 +260,9 @@
     "g-azazel" : {
       "id" : "g-azazel",
       "image" : {
-        "origin" : "https://foursouls.com/cards/g-azazel/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/g-azazel.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/g-azazel-308x420.png",
+        "url" : "https://foursouls.com/cards/g-azazel/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/g-azazel.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/g-azazel-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -275,9 +275,9 @@
     "b2-eve" : {
       "id" : "b2-eve",
       "image" : {
-        "origin" : "https://foursouls.com/cards/b2-eve/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/b2-eve.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/b2-eve-308x420.png",
+        "url" : "https://foursouls.com/cards/b2-eve/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/b2-eve.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/b2-eve-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -290,9 +290,9 @@
     "b-lilith" : {
       "id" : "b-lilith",
       "image" : {
-        "origin" : "https://foursouls.com/cards/b-lilith/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-lilith.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-lilith-308x420.png",
+        "url" : "https://foursouls.com/cards/b-lilith/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-lilith.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-lilith-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -305,9 +305,9 @@
     "fsp-guppy" : {
       "id" : "fsp-guppy",
       "image" : {
-        "origin" : "https://foursouls.com/cards/fsp-guppy/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/fsp-guppy.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/fsp-guppy-308x420.png",
+        "url" : "https://foursouls.com/cards/fsp-guppy/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/fsp-guppy.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/fsp-guppy-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -320,9 +320,9 @@
     "b-eve" : {
       "id" : "b-eve",
       "image" : {
-        "origin" : "https://foursouls.com/cards/b-eve/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-eve.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-eve-308x420.png",
+        "url" : "https://foursouls.com/cards/b-eve/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-eve.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-eve-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -335,9 +335,9 @@
     "r-the_soiled" : {
       "id" : "r-the_soiled",
       "image" : {
-        "origin" : "https://foursouls.com/cards/r-the_soiled/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_soiled.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_soiled-308x420.png",
+        "url" : "https://foursouls.com/cards/r-the_soiled/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_soiled.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_soiled-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -350,9 +350,9 @@
     "r-the_savage" : {
       "id" : "r-the_savage",
       "image" : {
-        "origin" : "https://foursouls.com/cards/r-the_savage/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_savage.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_savage-308x420.png",
+        "url" : "https://foursouls.com/cards/r-the_savage/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_savage.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_savage-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -365,9 +365,9 @@
     "r-the_empty" : {
       "id" : "r-the_empty",
       "image" : {
-        "origin" : "https://foursouls.com/cards/r-the_empty/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_empty.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_empty-308x420.png",
+        "url" : "https://foursouls.com/cards/r-the_empty/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_empty.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_empty-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -380,9 +380,9 @@
     "b-lazarus" : {
       "id" : "b-lazarus",
       "image" : {
-        "origin" : "https://foursouls.com/cards/b-lazarus/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-lazarus.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-lazarus-308x420.png",
+        "url" : "https://foursouls.com/cards/b-lazarus/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-lazarus.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-lazarus-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -395,9 +395,9 @@
     "r-the_benighted" : {
       "id" : "r-the_benighted",
       "image" : {
-        "origin" : "https://foursouls.com/cards/r-the_benighted/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_benighted.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_benighted-308x420.png",
+        "url" : "https://foursouls.com/cards/r-the_benighted/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_benighted.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_benighted-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -410,9 +410,9 @@
     "b-the_forgotten" : {
       "id" : "b-the_forgotten",
       "image" : {
-        "origin" : "https://foursouls.com/cards/b-the_forgotten/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-the_forgotten.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-the_forgotten-308x420.png",
+        "url" : "https://foursouls.com/cards/b-the_forgotten/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-the_forgotten.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-the_forgotten-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -425,9 +425,9 @@
     "g2-apollyon" : {
       "id" : "g2-apollyon",
       "image" : {
-        "origin" : "https://foursouls.com/cards/g2-apollyon/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/g2-apollyon.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/g2-apollyon-308x420.png",
+        "url" : "https://foursouls.com/cards/g2-apollyon/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/g2-apollyon.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/g2-apollyon-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -440,9 +440,9 @@
     "fsp-bum_bo" : {
       "id" : "fsp-bum_bo",
       "image" : {
-        "origin" : "https://foursouls.com/cards/fsp-bum_bo/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/fsp-bum_bo.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/fsp-bum_bo-308x420.png",
+        "url" : "https://foursouls.com/cards/fsp-bum_bo/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/fsp-bum_bo.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/fsp-bum_bo-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -455,9 +455,9 @@
     "r-bethany" : {
       "id" : "r-bethany",
       "image" : {
-        "origin" : "https://foursouls.com/cards/r-bethany/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-bethany.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-bethany-308x420.png",
+        "url" : "https://foursouls.com/cards/r-bethany/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-bethany.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-bethany-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -470,9 +470,9 @@
     "b2-maggy" : {
       "id" : "b2-maggy",
       "image" : {
-        "origin" : "https://foursouls.com/cards/b2-maggy/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/b2-maggy.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/b2-maggy-308x420.png",
+        "url" : "https://foursouls.com/cards/b2-maggy/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/b2-maggy.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/b2-maggy-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -485,9 +485,9 @@
     "fsp-whore_of_babylon" : {
       "id" : "fsp-whore_of_babylon",
       "image" : {
-        "origin" : "https://foursouls.com/cards/fsp-whore_of_babylon/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/fsp-whore_of_babylon.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/fsp-whore_of_babylon-308x420.png",
+        "url" : "https://foursouls.com/cards/fsp-whore_of_babylon/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/fsp-whore_of_babylon.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/fsp-whore_of_babylon-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -500,9 +500,9 @@
     "b2-isaac" : {
       "id" : "b2-isaac",
       "image" : {
-        "origin" : "https://foursouls.com/cards/b2-isaac/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/b2-isaac.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/b2-isaac-308x420.png",
+        "url" : "https://foursouls.com/cards/b2-isaac/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/b2-isaac.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/b2-isaac-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -515,9 +515,9 @@
     "g2-the_lost" : {
       "id" : "g2-the_lost",
       "image" : {
-        "origin" : "https://foursouls.com/cards/g2-the_lost/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/g2-the_lost.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/g2-the_lost-308x420.png",
+        "url" : "https://foursouls.com/cards/g2-the_lost/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/g2-the_lost.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/g2-the_lost-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -530,9 +530,9 @@
     "fsp2-dark_judas" : {
       "id" : "fsp2-dark_judas",
       "image" : {
-        "origin" : "https://foursouls.com/cards/fsp2-dark_judas/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/fsp2-dark_judas.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/fsp2-dark_judas-308x420.png",
+        "url" : "https://foursouls.com/cards/fsp2-dark_judas/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/fsp2-dark_judas.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/fsp2-dark_judas-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -545,9 +545,9 @@
     "g2-the_keeper" : {
       "id" : "g2-the_keeper",
       "image" : {
-        "origin" : "https://foursouls.com/cards/g2-the_keeper/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/g2-the_keeper.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/g2-the_keeper-308x420.png",
+        "url" : "https://foursouls.com/cards/g2-the_keeper/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/g2-the_keeper.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/g2-the_keeper-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -560,9 +560,9 @@
     "fsp2-bum_bo" : {
       "id" : "fsp2-bum_bo",
       "image" : {
-        "origin" : "https://foursouls.com/cards/fsp2-bum_bo/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/fsp2-bum_bo.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/fsp2-bum_bo-308x420.png",
+        "url" : "https://foursouls.com/cards/fsp2-bum_bo/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/fsp2-bum_bo.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/fsp2-bum_bo-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -575,9 +575,9 @@
     "g-apollyon" : {
       "id" : "g-apollyon",
       "image" : {
-        "origin" : "https://foursouls.com/cards/g-apollyon/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/g-apollyon.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/g-apollyon-308x420.png",
+        "url" : "https://foursouls.com/cards/g-apollyon/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/g-apollyon.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/g-apollyon-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -590,9 +590,9 @@
     "g-the_lost" : {
       "id" : "g-the_lost",
       "image" : {
-        "origin" : "https://foursouls.com/cards/g-the_lost/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/g-the_lost.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/g-the_lost-308x420.png",
+        "url" : "https://foursouls.com/cards/g-the_lost/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/g-the_lost.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/g-the_lost-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -605,9 +605,9 @@
     "r-the_fettered" : {
       "id" : "r-the_fettered",
       "image" : {
-        "origin" : "https://foursouls.com/cards/r-the_fettered/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_fettered.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_fettered-308x420.png",
+        "url" : "https://foursouls.com/cards/r-the_fettered/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_fettered.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_fettered-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -620,9 +620,9 @@
     "b-judas" : {
       "id" : "b-judas",
       "image" : {
-        "origin" : "https://foursouls.com/cards/b-judas/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-judas.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-judas-308x420.png",
+        "url" : "https://foursouls.com/cards/b-judas/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-judas.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-judas-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -635,9 +635,9 @@
     "b2-eden" : {
       "id" : "b2-eden",
       "image" : {
-        "origin" : "https://foursouls.com/cards/b2-eden/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/b2-eden.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/b2-eden-308x420.png",
+        "url" : "https://foursouls.com/cards/b2-eden/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/b2-eden.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/b2-eden-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -650,9 +650,9 @@
     "r-the_miser" : {
       "id" : "r-the_miser",
       "image" : {
-        "origin" : "https://foursouls.com/cards/r-the_miser/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_miser.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_miser-308x420.png",
+        "url" : "https://foursouls.com/cards/r-the_miser/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_miser.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_miser-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -665,9 +665,9 @@
     "b2-cain" : {
       "id" : "b2-cain",
       "image" : {
-        "origin" : "https://foursouls.com/cards/b2-cain/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/b2-cain.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/b2-cain-308x420.png",
+        "url" : "https://foursouls.com/cards/b2-cain/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/b2-cain.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/b2-cain-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -680,9 +680,9 @@
     "r-the_baleful" : {
       "id" : "r-the_baleful",
       "image" : {
-        "origin" : "https://foursouls.com/cards/r-the_baleful/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_baleful.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_baleful-308x420.png",
+        "url" : "https://foursouls.com/cards/r-the_baleful/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_baleful.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_baleful-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -695,9 +695,9 @@
     "b-maggy" : {
       "id" : "b-maggy",
       "image" : {
-        "origin" : "https://foursouls.com/cards/b-maggy/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-maggy.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-maggy-308x420.png",
+        "url" : "https://foursouls.com/cards/b-maggy/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-maggy.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-maggy-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -710,9 +710,9 @@
     "fsp-dark_judas" : {
       "id" : "fsp-dark_judas",
       "image" : {
-        "origin" : "https://foursouls.com/cards/fsp-dark_judas/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/fsp-dark_judas.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/fsp-dark_judas-308x420.png",
+        "url" : "https://foursouls.com/cards/fsp-dark_judas/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/fsp-dark_judas.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/fsp-dark_judas-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -725,9 +725,9 @@
     "r-the_broken" : {
       "id" : "r-the_broken",
       "image" : {
-        "origin" : "https://foursouls.com/cards/r-the_broken/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_broken.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_broken-308x420.png",
+        "url" : "https://foursouls.com/cards/r-the_broken/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_broken.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_broken-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -740,9 +740,9 @@
     "b-isaac" : {
       "id" : "b-isaac",
       "image" : {
-        "origin" : "https://foursouls.com/cards/b-isaac/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-isaac.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-isaac-308x420.png",
+        "url" : "https://foursouls.com/cards/b-isaac/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-isaac.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-isaac-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -755,9 +755,9 @@
     "r-the_dauntless" : {
       "id" : "r-the_dauntless",
       "image" : {
-        "origin" : "https://foursouls.com/cards/r-the_dauntless/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_dauntless.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_dauntless-308x420.png",
+        "url" : "https://foursouls.com/cards/r-the_dauntless/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_dauntless.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_dauntless-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -770,9 +770,9 @@
     "r-jacob_and_esau" : {
       "id" : "r-jacob_and_esau",
       "image" : {
-        "origin" : "https://foursouls.com/cards/r-jacob_and_esau/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-jacob_and_esau.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-jacob_and_esau-308x420.png",
+        "url" : "https://foursouls.com/cards/r-jacob_and_esau/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-jacob_and_esau.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-jacob_and_esau-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -785,9 +785,9 @@
     "r-the_deceiver" : {
       "id" : "r-the_deceiver",
       "image" : {
-        "origin" : "https://foursouls.com/cards/r-the_deceiver/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_deceiver.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_deceiver-308x420.png",
+        "url" : "https://foursouls.com/cards/r-the_deceiver/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_deceiver.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_deceiver-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -800,9 +800,9 @@
     "r-the_harlot" : {
       "id" : "r-the_harlot",
       "image" : {
-        "origin" : "https://foursouls.com/cards/r-the_harlot/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_harlot.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_harlot-308x420.png",
+        "url" : "https://foursouls.com/cards/r-the_harlot/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_harlot.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_harlot-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -815,9 +815,9 @@
     "b-blue_baby" : {
       "id" : "b-blue_baby",
       "image" : {
-        "origin" : "https://foursouls.com/cards/b-blue_baby/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-blue_baby.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-blue_baby-308x420.png",
+        "url" : "https://foursouls.com/cards/b-blue_baby/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-blue_baby.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-blue_baby-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -830,9 +830,9 @@
     "r-the_zealot" : {
       "id" : "r-the_zealot",
       "image" : {
-        "origin" : "https://foursouls.com/cards/r-the_zealot/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_zealot.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_zealot-308x420.png",
+        "url" : "https://foursouls.com/cards/r-the_zealot/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_zealot.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_zealot-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -845,9 +845,9 @@
     "r-the_deserter" : {
       "id" : "r-the_deserter",
       "image" : {
-        "origin" : "https://foursouls.com/cards/r-the_deserter/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_deserter.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_deserter-308x420.png",
+        "url" : "https://foursouls.com/cards/r-the_deserter/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_deserter.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_deserter-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -860,9 +860,9 @@
     "g2-azazel" : {
       "id" : "g2-azazel",
       "image" : {
-        "origin" : "https://foursouls.com/cards/g2-azazel/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/g2-azazel.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/g2-azazel-308x420.png",
+        "url" : "https://foursouls.com/cards/g2-azazel/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/g2-azazel.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/g2-azazel-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -875,9 +875,9 @@
     "b2-samson" : {
       "id" : "b2-samson",
       "image" : {
-        "origin" : "https://foursouls.com/cards/b2-samson/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/b2-samson.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/b2-samson-308x420.png",
+        "url" : "https://foursouls.com/cards/b2-samson/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/b2-samson.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/b2-samson-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -890,9 +890,9 @@
     "b2-blue_baby" : {
       "id" : "b2-blue_baby",
       "image" : {
-        "origin" : "https://foursouls.com/cards/b2-blue_baby/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/b2-blue_baby.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/b2-blue_baby-308x420.png",
+        "url" : "https://foursouls.com/cards/b2-blue_baby/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/b2-blue_baby.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/b2-blue_baby-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -905,9 +905,9 @@
     "b2-lilith" : {
       "id" : "b2-lilith",
       "image" : {
-        "origin" : "https://foursouls.com/cards/b2-lilith/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/b2-lilith.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/b2-lilith-308x420.png",
+        "url" : "https://foursouls.com/cards/b2-lilith/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/b2-lilith.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/b2-lilith-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -920,9 +920,9 @@
     "r-the_capricious" : {
       "id" : "r-the_capricious",
       "image" : {
-        "origin" : "https://foursouls.com/cards/r-the_capricious/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_capricious.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_capricious-308x420.png",
+        "url" : "https://foursouls.com/cards/r-the_capricious/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_capricious.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_capricious-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -935,9 +935,9 @@
     "fsp2-guppy" : {
       "id" : "fsp2-guppy",
       "image" : {
-        "origin" : "https://foursouls.com/cards/fsp2-guppy/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/fsp2-guppy.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/fsp2-guppy-308x420.png",
+        "url" : "https://foursouls.com/cards/fsp2-guppy/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/fsp2-guppy.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/fsp2-guppy-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -950,9 +950,9 @@
     "r-the_enigma" : {
       "id" : "r-the_enigma",
       "image" : {
-        "origin" : "https://foursouls.com/cards/r-the_enigma/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_enigma.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_enigma-308x420.png",
+        "url" : "https://foursouls.com/cards/r-the_enigma/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_enigma.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_enigma-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -965,9 +965,9 @@
     "r-the_hoarder" : {
       "id" : "r-the_hoarder",
       "image" : {
-        "origin" : "https://foursouls.com/cards/r-the_hoarder/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_hoarder.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_hoarder-308x420.png",
+        "url" : "https://foursouls.com/cards/r-the_hoarder/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_hoarder.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_hoarder-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -980,9 +980,9 @@
     "b2-lazarus" : {
       "id" : "b2-lazarus",
       "image" : {
-        "origin" : "https://foursouls.com/cards/b2-lazarus/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/b2-lazarus.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/b2-lazarus-308x420.png",
+        "url" : "https://foursouls.com/cards/b2-lazarus/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/b2-lazarus.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/b2-lazarus-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -995,9 +995,9 @@
     "b-cain" : {
       "id" : "b-cain",
       "image" : {
-        "origin" : "https://foursouls.com/cards/b-cain/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-cain.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-cain-308x420.png",
+        "url" : "https://foursouls.com/cards/b-cain/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-cain.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-cain-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -1010,9 +1010,9 @@
     "b-samson" : {
       "id" : "b-samson",
       "image" : {
-        "origin" : "https://foursouls.com/cards/b-samson/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-samson.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-samson-308x420.png",
+        "url" : "https://foursouls.com/cards/b-samson/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-samson.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-samson-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -1025,9 +1025,9 @@
     "b2-judas" : {
       "id" : "b2-judas",
       "image" : {
-        "origin" : "https://foursouls.com/cards/b2-judas/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/b2-judas.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/b2-judas-308x420.png",
+        "url" : "https://foursouls.com/cards/b2-judas/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/b2-judas.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/b2-judas-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -1040,9 +1040,9 @@
     "r-the_enigma_back" : {
       "id" : "r-the_enigma_back",
       "image" : {
-        "origin" : "https://foursouls.com/cards/r-the_enigma/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_enigma_back.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_enigma_back-308x420.png",
+        "url" : "https://foursouls.com/cards/r-the_enigma/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_enigma_back.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-the_enigma_back-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -1055,9 +1055,9 @@
     "b-eden" : {
       "id" : "b-eden",
       "image" : {
-        "origin" : "https://foursouls.com/cards/b-eden/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-eden.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-eden-308x420.png",
+        "url" : "https://foursouls.com/cards/b-eden/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-eden.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-eden-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -1070,9 +1070,9 @@
     "b2-the_forgotten" : {
       "id" : "b2-the_forgotten",
       "image" : {
-        "origin" : "https://foursouls.com/cards/b2-the_forgotten/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/b2-the_forgotten.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/b2-the_forgotten-308x420.png",
+        "url" : "https://foursouls.com/cards/b2-the_forgotten/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/b2-the_forgotten.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/b2-the_forgotten-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -1085,9 +1085,9 @@
     "g-the_keeper" : {
       "id" : "g-the_keeper",
       "image" : {
-        "origin" : "https://foursouls.com/cards/g-the_keeper/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/g-the_keeper.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/g-the_keeper-308x420.png",
+        "url" : "https://foursouls.com/cards/g-the_keeper/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/g-the_keeper.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/g-the_keeper-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -1100,9 +1100,9 @@
     "fsp2-whore_of_babylon" : {
       "id" : "fsp2-whore_of_babylon",
       "image" : {
-        "origin" : "https://foursouls.com/cards/fsp2-whore_of_babylon/",
-        "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/fsp2-whore_of_babylon.png",
-        "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/fsp2-whore_of_babylon-308x420.png",
+        "url" : "https://foursouls.com/cards/fsp2-whore_of_babylon/",
+        "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/fsp2-whore_of_babylon.png",
+        "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/fsp2-whore_of_babylon-308x420.png",
         "dir" : "cards/character/"
       },
       "cardType" : "CHARACTER",
@@ -1118,9 +1118,9 @@
       "b-book_of_belial" : {
         "id" : "b-book_of_belial",
         "image" : {
-          "origin" : "https://foursouls.com/cards/b-book_of_belial/",
-          "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-book_of_belial.png",
-          "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-book_of_belial-308x420.png",
+          "url" : "https://foursouls.com/cards/b-book_of_belial/",
+          "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-book_of_belial.png",
+          "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-book_of_belial-308x420.png",
           "dir" : "cards/eternal/aeternal/"
         },
         "cardType" : "AETERNAL",
@@ -1130,9 +1130,9 @@
       "b-sleight_of_hand" : {
         "id" : "b-sleight_of_hand",
         "image" : {
-          "origin" : "https://foursouls.com/cards/b-sleight_of_hand/",
-          "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-sleight_of_hand.png",
-          "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-sleight_of_hand-308x420.png",
+          "url" : "https://foursouls.com/cards/b-sleight_of_hand/",
+          "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-sleight_of_hand.png",
+          "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-sleight_of_hand-308x420.png",
           "dir" : "cards/eternal/aeternal/"
         },
         "cardType" : "AETERNAL",
@@ -1142,9 +1142,9 @@
       "b-the_d6" : {
         "id" : "b-the_d6",
         "image" : {
-          "origin" : "https://foursouls.com/cards/b-the_d6/",
-          "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-the_d6.png",
-          "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-the_d6-308x420.png",
+          "url" : "https://foursouls.com/cards/b-the_d6/",
+          "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-the_d6.png",
+          "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-the_d6-308x420.png",
           "dir" : "cards/eternal/aeternal/"
         },
         "cardType" : "AETERNAL",
@@ -1154,9 +1154,9 @@
       "b-yum_heart" : {
         "id" : "b-yum_heart",
         "image" : {
-          "origin" : "https://foursouls.com/cards/b-yum_heart/",
-          "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-yum_heart.png",
-          "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-yum_heart-308x420.png",
+          "url" : "https://foursouls.com/cards/b-yum_heart/",
+          "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-yum_heart.png",
+          "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-yum_heart-308x420.png",
           "dir" : "cards/eternal/aeternal/"
         },
         "cardType" : "AETERNAL",
@@ -1180,9 +1180,9 @@
       "r-key" : {
         "id" : "r-key",
         "image" : {
-          "origin" : "https://foursouls.com/cards/r-key/",
-          "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-key.png",
-          "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-key-308x420.png",
+          "url" : "https://foursouls.com/cards/r-key/",
+          "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-key.png",
+          "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-key-308x420.png",
           "dir" : "cards/loot/keys/"
         },
         "cardType" : "KEYS",
@@ -1192,9 +1192,9 @@
       "fsp-gold_key" : {
         "id" : "fsp-gold_key",
         "image" : {
-          "origin" : "https://foursouls.com/cards/fsp-gold_key/",
-          "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/fsp-gold_key.png",
-          "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/fsp-gold_key-308x420.png",
+          "url" : "https://foursouls.com/cards/fsp-gold_key/",
+          "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/fsp-gold_key.png",
+          "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/fsp-gold_key-308x420.png",
           "dir" : "cards/loot/keys/"
         },
         "cardType" : "KEYS",
@@ -1204,9 +1204,9 @@
       "fsp2-gold_key" : {
         "id" : "fsp2-gold_key",
         "image" : {
-          "origin" : "https://foursouls.com/cards/fsp2-gold_key/",
-          "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/fsp2-gold_key.png",
-          "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/fsp2-gold_key-308x420.png",
+          "url" : "https://foursouls.com/cards/fsp2-gold_key/",
+          "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/fsp2-gold_key.png",
+          "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/fsp2-gold_key-308x420.png",
           "dir" : "cards/loot/keys/"
         },
         "cardType" : "KEYS",
@@ -1221,9 +1221,9 @@
       "g-a_sack" : {
         "id" : "g-a_sack",
         "image" : {
-          "origin" : "https://foursouls.com/cards/g-a_sack/",
-          "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/g-a_sack.png",
-          "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/g-a_sack-308x420.png",
+          "url" : "https://foursouls.com/cards/g-a_sack/",
+          "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/g-a_sack.png",
+          "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/g-a_sack-308x420.png",
           "dir" : "cards/loot/sack/"
         },
         "cardType" : "SACK",
@@ -1233,9 +1233,9 @@
       "g2-a_sack" : {
         "id" : "g2-a_sack",
         "image" : {
-          "origin" : "https://foursouls.com/cards/g2-a_sack/",
-          "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/g2-a_sack.png",
-          "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/g2-a_sack-308x420.png",
+          "url" : "https://foursouls.com/cards/g2-a_sack/",
+          "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/g2-a_sack.png",
+          "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/g2-a_sack-308x420.png",
           "dir" : "cards/loot/sack/"
         },
         "cardType" : "SACK",
@@ -1245,9 +1245,9 @@
       "r-a_sack" : {
         "id" : "r-a_sack",
         "image" : {
-          "origin" : "https://foursouls.com/cards/r-a_sack/",
-          "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-a_sack.png",
-          "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/r-a_sack-308x420.png",
+          "url" : "https://foursouls.com/cards/r-a_sack/",
+          "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-a_sack.png",
+          "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/r-a_sack-308x420.png",
           "dir" : "cards/loot/sack/"
         },
         "cardType" : "SACK",
@@ -1263,9 +1263,9 @@
         "b-a_penny" : {
           "id" : "b-a_penny",
           "image" : {
-            "origin" : "https://foursouls.com/cards/b-a_penny/",
-            "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_penny.png",
-            "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_penny-308x420.png",
+            "url" : "https://foursouls.com/cards/b-a_penny/",
+            "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_penny.png",
+            "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_penny-308x420.png",
             "dir" : "cards/loot/money/1c/"
           },
           "cardType" : "MONEY1C",
@@ -1276,9 +1276,9 @@
         "b-a_penny_2" : {
           "id" : "b-a_penny_2",
           "image" : {
-            "origin" : "https://foursouls.com/cards/b-a_penny_2/",
-            "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_penny_2.png",
-            "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_penny_2-308x420.png",
+            "url" : "https://foursouls.com/cards/b-a_penny_2/",
+            "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_penny_2.png",
+            "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_penny_2-308x420.png",
             "dir" : "cards/loot/money/1c/"
           },
           "cardType" : "MONEY1C",
@@ -1289,9 +1289,9 @@
         "b-a_penny_3" : {
           "id" : "b-a_penny_3",
           "image" : {
-            "origin" : "https://foursouls.com/cards/b-a_penny_3/",
-            "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_penny_3.png",
-            "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_penny_3-308x420.png",
+            "url" : "https://foursouls.com/cards/b-a_penny_3/",
+            "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_penny_3.png",
+            "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_penny_3-308x420.png",
             "dir" : "cards/loot/money/1c/"
           },
           "cardType" : "MONEY1C",
@@ -1302,9 +1302,9 @@
         "b-a_penny_4" : {
           "id" : "b-a_penny_4",
           "image" : {
-            "origin" : "https://foursouls.com/cards/b-a_penny_4/",
-            "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_penny_4.png",
-            "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_penny_4-308x420.png",
+            "url" : "https://foursouls.com/cards/b-a_penny_4/",
+            "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_penny_4.png",
+            "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_penny_4-308x420.png",
             "dir" : "cards/loot/money/1c/"
           },
           "cardType" : "MONEY1C",
@@ -1315,9 +1315,9 @@
         "b-a_penny_5" : {
           "id" : "b-a_penny_5",
           "image" : {
-            "origin" : "https://foursouls.com/cards/b-a_penny_5/",
-            "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_penny_5.png",
-            "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_penny_5-308x420.png",
+            "url" : "https://foursouls.com/cards/b-a_penny_5/",
+            "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_penny_5.png",
+            "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_penny_5-308x420.png",
             "dir" : "cards/loot/money/1c/"
           },
           "cardType" : "MONEY1C",
@@ -1328,9 +1328,9 @@
         "b-a_penny_6" : {
           "id" : "b-a_penny_6",
           "image" : {
-            "origin" : "https://foursouls.com/cards/b-a_penny_6/",
-            "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_penny_6.png",
-            "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_penny_6-308x420.png",
+            "url" : "https://foursouls.com/cards/b-a_penny_6/",
+            "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_penny_6.png",
+            "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_penny_6-308x420.png",
             "dir" : "cards/loot/money/1c/"
           },
           "cardType" : "MONEY1C",
@@ -1343,9 +1343,9 @@
         "b-two_cents_3" : {
           "id" : "b-two_cents_3",
           "image" : {
-            "origin" : "https://foursouls.com/cards/b-two_cents_3/",
-            "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-two_cents_3.png",
-            "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-two_cents_3-308x420.png",
+            "url" : "https://foursouls.com/cards/b-two_cents_3/",
+            "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-two_cents_3.png",
+            "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-two_cents_3-308x420.png",
             "dir" : "cards/loot/money/2c/"
           },
           "cardType" : "MONEY2C",
@@ -1356,9 +1356,9 @@
         "b-two_cents_2" : {
           "id" : "b-two_cents_2",
           "image" : {
-            "origin" : "https://foursouls.com/cards/b-two_cents_2/",
-            "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-two_cents_2.png",
-            "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-two_cents_2-308x420.png",
+            "url" : "https://foursouls.com/cards/b-two_cents_2/",
+            "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-two_cents_2.png",
+            "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-two_cents_2-308x420.png",
             "dir" : "cards/loot/money/2c/"
           },
           "cardType" : "MONEY2C",
@@ -1369,9 +1369,9 @@
         "b-two_cents_5" : {
           "id" : "b-two_cents_5",
           "image" : {
-            "origin" : "https://foursouls.com/cards/b-two_cents_5/",
-            "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-two_cents_5.png",
-            "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-two_cents_5-308x420.png",
+            "url" : "https://foursouls.com/cards/b-two_cents_5/",
+            "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-two_cents_5.png",
+            "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-two_cents_5-308x420.png",
             "dir" : "cards/loot/money/2c/"
           },
           "cardType" : "MONEY2C",
@@ -1382,9 +1382,9 @@
         "b-two_cents" : {
           "id" : "b-two_cents",
           "image" : {
-            "origin" : "https://foursouls.com/cards/b-two_cents/",
-            "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-two_cents.png",
-            "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-two_cents-308x420.png",
+            "url" : "https://foursouls.com/cards/b-two_cents/",
+            "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-two_cents.png",
+            "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-two_cents-308x420.png",
             "dir" : "cards/loot/money/2c/"
           },
           "cardType" : "MONEY2C",
@@ -1395,9 +1395,9 @@
         "b-two_cents_4" : {
           "id" : "b-two_cents_4",
           "image" : {
-            "origin" : "https://foursouls.com/cards/b-two_cents_4/",
-            "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-two_cents_4.png",
-            "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-two_cents_4-308x420.png",
+            "url" : "https://foursouls.com/cards/b-two_cents_4/",
+            "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-two_cents_4.png",
+            "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-two_cents_4-308x420.png",
             "dir" : "cards/loot/money/2c/"
           },
           "cardType" : "MONEY2C",
@@ -1410,9 +1410,9 @@
         "b-three_cents" : {
           "id" : "b-three_cents",
           "image" : {
-            "origin" : "https://foursouls.com/cards/b-three_cents/",
-            "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-three_cents.png",
-            "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-three_cents-308x420.png",
+            "url" : "https://foursouls.com/cards/b-three_cents/",
+            "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-three_cents.png",
+            "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-three_cents-308x420.png",
             "dir" : "cards/loot/money/3c/"
           },
           "cardType" : "MONEY3C",
@@ -1423,9 +1423,9 @@
         "b-three_cents_4" : {
           "id" : "b-three_cents_4",
           "image" : {
-            "origin" : "https://foursouls.com/cards/b-three_cents_4/",
-            "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-three_cents_4.png",
-            "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-three_cents_4-308x420.png",
+            "url" : "https://foursouls.com/cards/b-three_cents_4/",
+            "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-three_cents_4.png",
+            "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-three_cents_4-308x420.png",
             "dir" : "cards/loot/money/3c/"
           },
           "cardType" : "MONEY3C",
@@ -1436,9 +1436,9 @@
         "b-three_cents_5" : {
           "id" : "b-three_cents_5",
           "image" : {
-            "origin" : "https://foursouls.com/cards/b-three_cents_5/",
-            "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-three_cents_5.png",
-            "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-three_cents_5-308x420.png",
+            "url" : "https://foursouls.com/cards/b-three_cents_5/",
+            "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-three_cents_5.png",
+            "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-three_cents_5-308x420.png",
             "dir" : "cards/loot/money/3c/"
           },
           "cardType" : "MONEY3C",
@@ -1449,9 +1449,9 @@
         "b-three_cents_6" : {
           "id" : "b-three_cents_6",
           "image" : {
-            "origin" : "https://foursouls.com/cards/b-three_cents_6/",
-            "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-three_cents_6.png",
-            "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-three_cents_6-308x420.png",
+            "url" : "https://foursouls.com/cards/b-three_cents_6/",
+            "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-three_cents_6.png",
+            "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-three_cents_6-308x420.png",
             "dir" : "cards/loot/money/3c/"
           },
           "cardType" : "MONEY3C",
@@ -1462,9 +1462,9 @@
         "b-three_cents_2" : {
           "id" : "b-three_cents_2",
           "image" : {
-            "origin" : "https://foursouls.com/cards/b-three_cents_2/",
-            "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-three_cents_2.png",
-            "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-three_cents_2-308x420.png",
+            "url" : "https://foursouls.com/cards/b-three_cents_2/",
+            "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-three_cents_2.png",
+            "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-three_cents_2-308x420.png",
             "dir" : "cards/loot/money/3c/"
           },
           "cardType" : "MONEY3C",
@@ -1475,9 +1475,9 @@
         "b-three_cents_3" : {
           "id" : "b-three_cents_3",
           "image" : {
-            "origin" : "https://foursouls.com/cards/b-three_cents_3/",
-            "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-three_cents_3.png",
-            "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-three_cents_3-308x420.png",
+            "url" : "https://foursouls.com/cards/b-three_cents_3/",
+            "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-three_cents_3.png",
+            "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-three_cents_3-308x420.png",
             "dir" : "cards/loot/money/3c/"
           },
           "cardType" : "MONEY3C",
@@ -1490,9 +1490,9 @@
         "b-four_cents_3" : {
           "id" : "b-four_cents_3",
           "image" : {
-            "origin" : "https://foursouls.com/cards/b-four_cents_3/",
-            "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-four_cents_3.png",
-            "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-four_cents_3-308x420.png",
+            "url" : "https://foursouls.com/cards/b-four_cents_3/",
+            "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-four_cents_3.png",
+            "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-four_cents_3-308x420.png",
             "dir" : "cards/loot/money/4c/"
           },
           "cardType" : "MONEY4C",
@@ -1503,9 +1503,9 @@
         "b-four_cents_2" : {
           "id" : "b-four_cents_2",
           "image" : {
-            "origin" : "https://foursouls.com/cards/b-four_cents_2/",
-            "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-four_cents_2.png",
-            "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-four_cents_2-308x420.png",
+            "url" : "https://foursouls.com/cards/b-four_cents_2/",
+            "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-four_cents_2.png",
+            "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-four_cents_2-308x420.png",
             "dir" : "cards/loot/money/4c/"
           },
           "cardType" : "MONEY4C",
@@ -1516,9 +1516,9 @@
         "b-four_cents_5" : {
           "id" : "b-four_cents_5",
           "image" : {
-            "origin" : "https://foursouls.com/cards/b-four_cents_5/",
-            "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-four_cents_5.png",
-            "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-four_cents_5-308x420.png",
+            "url" : "https://foursouls.com/cards/b-four_cents_5/",
+            "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-four_cents_5.png",
+            "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-four_cents_5-308x420.png",
             "dir" : "cards/loot/money/4c/"
           },
           "cardType" : "MONEY4C",
@@ -1529,9 +1529,9 @@
         "b-four_cents_4" : {
           "id" : "b-four_cents_4",
           "image" : {
-            "origin" : "https://foursouls.com/cards/b-four_cents_4/",
-            "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-four_cents_4.png",
-            "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-four_cents_4-308x420.png",
+            "url" : "https://foursouls.com/cards/b-four_cents_4/",
+            "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-four_cents_4.png",
+            "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-four_cents_4-308x420.png",
             "dir" : "cards/loot/money/4c/"
           },
           "cardType" : "MONEY4C",
@@ -1542,9 +1542,9 @@
         "b-four_cents" : {
           "id" : "b-four_cents",
           "image" : {
-            "origin" : "https://foursouls.com/cards/b-four_cents/",
-            "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-four_cents.png",
-            "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-four_cents-308x420.png",
+            "url" : "https://foursouls.com/cards/b-four_cents/",
+            "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-four_cents.png",
+            "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-four_cents-308x420.png",
             "dir" : "cards/loot/money/4c/"
           },
           "cardType" : "MONEY4C",
@@ -1557,9 +1557,9 @@
         "b-a_nickel" : {
           "id" : "b-a_nickel",
           "image" : {
-            "origin" : "https://foursouls.com/cards/b-a_nickel/",
-            "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_nickel.png",
-            "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_nickel-308x420.png",
+            "url" : "https://foursouls.com/cards/b-a_nickel/",
+            "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_nickel.png",
+            "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_nickel-308x420.png",
             "dir" : "cards/loot/money/5c/"
           },
           "cardType" : "MONEY5C",
@@ -1570,9 +1570,9 @@
         "b-a_nickel_2" : {
           "id" : "b-a_nickel_2",
           "image" : {
-            "origin" : "https://foursouls.com/cards/b-a_nickel_2/",
-            "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_nickel_2.png",
-            "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_nickel_2-308x420.png",
+            "url" : "https://foursouls.com/cards/b-a_nickel_2/",
+            "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_nickel_2.png",
+            "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_nickel_2-308x420.png",
             "dir" : "cards/loot/money/5c/"
           },
           "cardType" : "MONEY5C",
@@ -1583,9 +1583,9 @@
         "b-a_nickel_3" : {
           "id" : "b-a_nickel_3",
           "image" : {
-            "origin" : "https://foursouls.com/cards/b-a_nickel_3/",
-            "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_nickel_3.png",
-            "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_nickel_3-308x420.png",
+            "url" : "https://foursouls.com/cards/b-a_nickel_3/",
+            "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_nickel_3.png",
+            "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_nickel_3-308x420.png",
             "dir" : "cards/loot/money/5c/"
           },
           "cardType" : "MONEY5C",
@@ -1596,9 +1596,9 @@
         "b-a_nickel_4" : {
           "id" : "b-a_nickel_4",
           "image" : {
-            "origin" : "https://foursouls.com/cards/b-a_nickel_4/",
-            "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_nickel_4.png",
-            "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_nickel_4-308x420.png",
+            "url" : "https://foursouls.com/cards/b-a_nickel_4/",
+            "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_nickel_4.png",
+            "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_nickel_4-308x420.png",
             "dir" : "cards/loot/money/5c/"
           },
           "cardType" : "MONEY5C",
@@ -1609,9 +1609,9 @@
         "b-a_nickel_5" : {
           "id" : "b-a_nickel_5",
           "image" : {
-            "origin" : "https://foursouls.com/cards/b-a_nickel_5/",
-            "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_nickel_5.png",
-            "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_nickel_5-308x420.png",
+            "url" : "https://foursouls.com/cards/b-a_nickel_5/",
+            "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_nickel_5.png",
+            "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_nickel_5-308x420.png",
             "dir" : "cards/loot/money/5c/"
           },
           "cardType" : "MONEY5C",
@@ -1624,9 +1624,9 @@
         "b-a_dime" : {
           "id" : "b-a_dime",
           "image" : {
-            "origin" : "https://foursouls.com/cards/b-a_dime/",
-            "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_dime.png",
-            "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_dime-308x420.png",
+            "url" : "https://foursouls.com/cards/b-a_dime/",
+            "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_dime.png",
+            "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-a_dime-308x420.png",
             "dir" : "cards/loot/money/10c/"
           },
           "cardType" : "MONEY10C",
@@ -1637,9 +1637,9 @@
         "b2-a_dime" : {
           "id" : "b2-a_dime",
           "image" : {
-            "origin" : "https://foursouls.com/cards/b2-a_dime/",
-            "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/b2-a_dime.png",
-            "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/b2-a_dime-308x420.png",
+            "url" : "https://foursouls.com/cards/b2-a_dime/",
+            "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/b2-a_dime.png",
+            "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/b2-a_dime-308x420.png",
             "dir" : "cards/loot/money/10c/"
           },
           "cardType" : "MONEY10C",
@@ -1655,9 +1655,9 @@
       "b-fly" : {
         "id" : "b-fly",
         "image" : {
-          "origin" : "https://foursouls.com/cards/b-fly/",
-          "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-fly.png",
-          "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-fly-308x420.png",
+          "url" : "https://foursouls.com/cards/b-fly/",
+          "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-fly.png",
+          "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-fly-308x420.png",
           "dir" : "cards/monster/bmonster/"
         },
         "cardType" : "BMONSTER",
@@ -1862,9 +1862,9 @@
       "b-squirt" : {
         "id" : "b-squirt",
         "image" : {
-          "origin" : "https://foursouls.com/cards/b-squirt/",
-          "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-squirt.png",
-          "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-squirt-308x420.png",
+          "url" : "https://foursouls.com/cards/b-squirt/",
+          "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-squirt.png",
+          "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-squirt-308x420.png",
           "dir" : "cards/monster/bmonster/"
         },
         "cardType" : "BMONSTER",
@@ -2069,9 +2069,9 @@
       "b-black_bony" : {
         "id" : "b-black_bony",
         "image" : {
-          "origin" : "https://foursouls.com/cards/b-black_bony/",
-          "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-black_bony.png",
-          "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-black_bony-308x420.png",
+          "url" : "https://foursouls.com/cards/b-black_bony/",
+          "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-black_bony.png",
+          "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-black_bony-308x420.png",
           "dir" : "cards/monster/bmonster/"
         },
         "cardType" : "BMONSTER",
@@ -2268,9 +2268,9 @@
       "b-boom_fly" : {
         "id" : "b-boom_fly",
         "image" : {
-          "origin" : "https://foursouls.com/cards/b-boom_fly/",
-          "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-boom_fly.png",
-          "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-boom_fly-308x420.png",
+          "url" : "https://foursouls.com/cards/b-boom_fly/",
+          "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-boom_fly.png",
+          "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-boom_fly-308x420.png",
           "dir" : "cards/monster/bmonster/"
         },
         "cardType" : "BMONSTER",
@@ -2475,9 +2475,9 @@
       "b-big_spider" : {
         "id" : "b-big_spider",
         "image" : {
-          "origin" : "https://foursouls.com/cards/b-big_spider/",
-          "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-big_spider.png",
-          "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-big_spider-308x420.png",
+          "url" : "https://foursouls.com/cards/b-big_spider/",
+          "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-big_spider.png",
+          "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-big_spider-308x420.png",
           "dir" : "cards/monster/bmonster/"
         },
         "cardType" : "BMONSTER",
@@ -2674,9 +2674,9 @@
       "b2-dip" : {
         "id" : "b2-dip",
         "image" : {
-          "origin" : "https://foursouls.com/cards/b2-dip/",
-          "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/b2-dip.png",
-          "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/b2-dip-308x420.png",
+          "url" : "https://foursouls.com/cards/b2-dip/",
+          "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/b2-dip.png",
+          "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/b2-dip-308x420.png",
           "dir" : "cards/monster/bmonster/"
         },
         "cardType" : "BMONSTER",
@@ -2880,9 +2880,9 @@
       "g2-the_cage" : {
         "id" : "g2-the_cage",
         "image" : {
-          "origin" : "https://foursouls.com/cards/g2-the_cage/",
-          "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/g2-the_cage.png",
-          "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/01/g2-the_cage-308x420.png",
+          "url" : "https://foursouls.com/cards/g2-the_cage/",
+          "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/g2-the_cage.png",
+          "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/01/g2-the_cage-308x420.png",
           "dir" : "cards/monster/boss/"
         },
         "cardType" : "BOSS",
@@ -3085,9 +3085,9 @@
       "b-mystery_sack" : {
         "id" : "b-mystery_sack",
         "image" : {
-          "origin" : "https://foursouls.com/cards/b-mystery_sack/",
-          "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-mystery_sack.png",
-          "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-mystery_sack-308x420.png",
+          "url" : "https://foursouls.com/cards/b-mystery_sack/",
+          "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-mystery_sack.png",
+          "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-mystery_sack-308x420.png",
           "dir" : "cards/treasure/atreasure/"
         },
         "cardType" : "ATREASURE",
@@ -3097,9 +3097,9 @@
       "b-godhead" : {
         "id" : "b-godhead",
         "image" : {
-          "origin" : "https://foursouls.com/cards/b-godhead/",
-          "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-godhead.png",
-          "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-godhead-308x420.png",
+          "url" : "https://foursouls.com/cards/b-godhead/",
+          "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-godhead.png",
+          "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-godhead-308x420.png",
           "dir" : "cards/treasure/atreasure/"
         },
         "cardType" : "ATREASURE",
@@ -3109,9 +3109,9 @@
       "b-blank_card" : {
         "id" : "b-blank_card",
         "image" : {
-          "origin" : "https://foursouls.com/cards/b-blank_card/",
-          "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-blank_card.png",
-          "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-blank_card-308x420.png",
+          "url" : "https://foursouls.com/cards/b-blank_card/",
+          "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-blank_card.png",
+          "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-blank_card-308x420.png",
           "dir" : "cards/treasure/atreasure/"
         },
         "cardType" : "ATREASURE",
@@ -3121,9 +3121,9 @@
       "b-mr_boom" : {
         "id" : "b-mr_boom",
         "image" : {
-          "origin" : "https://foursouls.com/cards/b-mr_boom/",
-          "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-mr_boom.png",
-          "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-mr_boom-308x420.png",
+          "url" : "https://foursouls.com/cards/b-mr_boom/",
+          "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-mr_boom.png",
+          "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-mr_boom-308x420.png",
           "dir" : "cards/treasure/atreasure/"
         },
         "cardType" : "ATREASURE",
@@ -3133,9 +3133,9 @@
       "b-book_of_sin" : {
         "id" : "b-book_of_sin",
         "image" : {
-          "origin" : "https://foursouls.com/cards/b-book_of_sin/",
-          "highResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-book_of_sin.png",
-          "lowResImgURL" : "https://foursouls.com/wp-content/uploads/2022/02/b-book_of_sin-308x420.png",
+          "url" : "https://foursouls.com/cards/b-book_of_sin/",
+          "hiResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-book_of_sin.png",
+          "loResUrl" : "https://foursouls.com/wp-content/uploads/2022/02/b-book_of_sin-308x420.png",
           "dir" : "cards/treasure/atreasure/"
         },
         "cardType" : "ATREASURE",

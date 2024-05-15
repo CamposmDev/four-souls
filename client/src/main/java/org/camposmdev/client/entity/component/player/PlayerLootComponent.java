@@ -15,6 +15,13 @@ public class PlayerLootComponent extends Component {
 	@Override
 	public void onAdded() {
 		inventory = FXCollections.observableArrayList();
+		addListener(change -> {
+			while (change.next()) {
+				if (change.wasAdded()) {
+					play("feedback/book page turn.wav");
+				}
+			}
+		});
 	}
 
 	public ObservableList<LootCardComponent> inventory() {
@@ -26,11 +33,9 @@ public class PlayerLootComponent extends Component {
 	}
 
 	public void draw() {
-		var es = EntityService.get();
-		var entity = es.spawn_loot();
+		var entity = EntityService.get().spawn().loot();
 		entity.getComponentOptional(LootCardComponent.class).ifPresent(comp -> {
 			inventory.add(comp);
-			play("feedback/book page turn.wav");
 		});
 	}
 }

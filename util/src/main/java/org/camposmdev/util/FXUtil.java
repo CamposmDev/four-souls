@@ -74,12 +74,15 @@ public class FXUtil {
 
     @SuppressWarnings("unchecked")
     public static <T> T loadJSON(String src, Class<T> type) {
+        /* if the class type is not MasterCardAtlas, then deserialize like a normal JSON */
         if (type != MasterCardAtlas.class) {
             var result = FXGL.getAssetLoader().loadJSON((JSON_DIR + src), type);
             assert result.isPresent();
             return result.get();
         }
-        try (var input = FXUtil.class.getClassLoader().getResourceAsStream(("assets/" + JSON_DIR + src))) {
+        /* otherwise use the custom deserializer from MasterCardAtlas */
+        final var name = "assets/" + JSON_DIR + src;
+        try (var input = FXUtil.class.getClassLoader().getResourceAsStream(name)) {
             assert input != null : ("Failed to load " + src);
             var bytes = input.readAllBytes();
             var atlas = MasterCardAtlas.deserialize(bytes);
@@ -90,7 +93,7 @@ public class FXUtil {
     }
 
     public static Texture loadCard(String src) {
-        final var WIDTH_SZ = 95;
+        final var WIDTH_SZ = 96;
         final var HEIGHT_SZ = 139;
         Texture texture = FXGL.texture(src);
         Image img = texture.getImage();

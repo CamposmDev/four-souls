@@ -3,15 +3,15 @@ package org.camposmdev.model.atlas;
 import java.util.List;
 
 /**
- * @param origin URL of where additional information about the image
- * @param highResImgURL High quality version URL resource of the image
- * @param lowResImgURL Low quality version URL resource of the image
+ * @param url URL of where additional information about the image
+ * @param hiResUrl High quality version URL resource of the image
+ * @param loResUrl Low quality version URL resource of the image
  * @param dir THe path to the image's parent directory
  */
 public record ImageInfo (
-        String origin,
-        String highResImgURL,
-        String lowResImgURL,
+        String url,
+        String hiResUrl,
+        String loResUrl,
         String dir
 ) {
     private static final List<String> OUTLIARS = List.of("DeliriousDukeOfFlies", "DeliriousMonstro");
@@ -35,10 +35,10 @@ public record ImageInfo (
      * @return Name of the slug which is the specific part of a resource after the forward slash
      */
     public String slugName() {
-        /* split {origin} by forward slash */
-        String[] tokens = origin.split("/");
+        /* split {url} by forward slash */
+        String[] tokens = url.split("/");
 //        System.out.println(Arrays.toString(tokens));
-        /* if for some reason there no tokens, then something is wrong with {origin} */
+        /* if for some reason there no tokens, then something is wrong with {url} */
         if (tokens.length == 0) return null;
         /* otherwise, return the last token */
         return tokens[tokens.length-1];
@@ -48,7 +48,7 @@ public record ImageInfo (
      * @return Name of the higher quality image file including its file extensions
      */
     public String highResImgName() {
-        return highResImgURL.substring(highResImgURL.lastIndexOf('/') + 1);
+        return hiResUrl.substring(hiResUrl.lastIndexOf('/') + 1);
     }
 
     /**
@@ -56,7 +56,7 @@ public record ImageInfo (
      * @return
      */
     public String lowResImgName() {
-        return lowResImgURL.substring(lowResImgURL.lastIndexOf('/') + 1);
+        return loResUrl.substring(loResUrl.lastIndexOf('/') + 1);
     }
 
     /**

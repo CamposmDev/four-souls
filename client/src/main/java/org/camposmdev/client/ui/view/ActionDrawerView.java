@@ -18,7 +18,6 @@ import javafx.scene.shape.StrokeLineJoin;
 import javafx.util.Duration;
 import org.camposmdev.client.entity.EntityType;
 import org.camposmdev.client.entity.component.player.CharacterComponent;
-import org.camposmdev.client.entity.component.player.PlayerLootComponent;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 
@@ -31,20 +30,14 @@ public class ActionDrawerView implements View {
     private boolean hidden;
     private final VBox root;
     private HBox btBox;
-    private final Button btDraw;
     private Button btShop, btAttack, btEndTurn;
 
     public ActionDrawerView() {
-        btDraw = createButton("Draw", event -> {
-            var entity = getGameWorld().getSingleton(EntityType.PLAYER);
-            entity.getComponentOptional(PlayerLootComponent.class)
-                    .ifPresent(PlayerLootComponent::draw);
-        });
         btShop = createButton("Shop", event -> {
             /* TODO - Implement shop system */
             var btCancel = createButton("Cancel", event1 -> {
                 btBox.getChildren().clear();
-                btBox.getChildren().addAll(btDraw, btShop, btAttack, btEndTurn);
+                btBox.getChildren().addAll(btShop, btAttack, btEndTurn);
             });
             btBox.getChildren().clear();
             btBox.getChildren().add(btCancel);
@@ -55,7 +48,7 @@ public class ActionDrawerView implements View {
             getGameScene().setCursor(new ImageCursor(image("cursor_sword.png")));
             var btCancel = createButton("Cancel", event1 -> {
                 btBox.getChildren().clear();
-                btBox.getChildren().addAll(btDraw, btShop, btAttack, btEndTurn);
+                btBox.getChildren().addAll(btShop, btAttack, btEndTurn);
                 var image = image(getSettings().getDefaultCursor().getImageName());
                 getGameScene().setCursor(new ImageCursor(image));
             });
@@ -71,7 +64,7 @@ public class ActionDrawerView implements View {
             });
         });
         /* init button box container */
-        btBox = new HBox(SPACING, btDraw, btShop, btAttack, btEndTurn);
+        btBox = new HBox(SPACING, btShop, btAttack, btEndTurn);
         btBox.setAlignment(Pos.CENTER);
         btBox.setStyle(String.format("-fx-background-color: rgba(0,0,0,%f);", OPACITY));
         btBox.setPrefWidth(BT_BOX_WIDTH);

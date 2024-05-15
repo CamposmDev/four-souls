@@ -1,4 +1,4 @@
-package org.camposmdev.res_soup;
+package org.camposmdev.miser;
 
 import org.camposmdev.model.Timex;
 import org.camposmdev.model.atlas.ImageInfo;
@@ -10,7 +10,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
-import static org.camposmdev.res_soup.Util.*;
+import static org.camposmdev.miser.Util.*;
 
 public class Program implements Constants {
     static final int N_THREADS = (int) (Runtime.getRuntime().availableProcessors() * 0.75d);
@@ -30,8 +30,8 @@ public class Program implements Constants {
         downloadCards(MONSTER_DIR, "monster/", MONSTER_URLS);
         downloadCards(LOOT_DIR, "loot/", LOOT_URLS);
         downloadCards(MONEY_DIR, "money/", MONEY_URLS);
-        downloadCards(ROOM_DIR, "room/", ROOM_CARDS_URL);
-        downloadCards(OUTSIDE_DIR, "outside/", OUTSIDE_CARDS_URL);
+        downloadCards(ROOM_DIR, "room/", ROOM_URL);
+        downloadCards(OUTSIDE_DIR, "outside/", OUTSIDE_URL);
         saveTheObject();
         System.out.printf("Finished Raiding (%s)\n", timer.stop());
     }
@@ -42,7 +42,7 @@ public class Program implements Constants {
      */
     public static void mkdirs() {
         /* create the root folders */
-        for (var x : DIRS) mkdir(x);
+        for (var x : Directories) mkdir(x);
         /* create the sub-folders */
         for (var x : ETERNAL_URLS) mkdir(ETERNAL_DIR + parseURLtoDIR(x));
         for (var x : TREASURE_URLS) mkdir(TREASURE_DIR + parseURLtoDIR(x));
@@ -52,33 +52,32 @@ public class Program implements Constants {
     }
 
     /**
-     * Downloads the back of cards of base types available in the tabletop game: Four Souls
-     * @param dir The destination folder where the image file will be saved in
+     * Downloads the back of cards of base types available in the game: Four Souls
+     * @param des Destination directory to save the images in
      */
-    public static void downloadCardBacks(String dir) {
+    public static void downloadCardBacks(String des) {
         /* download base backs */
-        final var ORIGIN = "https://foursouls.com/cards/";
-        var conn = Jsoup.connect(ORIGIN);
+        final var url = "https://foursouls.com/cards/";
+        var conn = Jsoup.connect(url);
         try {
             var doc = conn.get();
-            var divList = doc.getElementsByClass("CardTypeHover");
-            for (var div : divList) {
-                var list = div.getElementsByTag("img");
-                for (var imgTag : list) {
+            var divs = doc.getElementsByClass("CardTypeHover");
+            for (var div : divs) {
+                var imgTags = div.getElementsByTag("img");
+                for (var imgTag : imgTags) {
                     if (!imgTag.attributes().get("src").startsWith("data:image")) {
                         var src = imgTag.attributes().get("src");
                         final var REGEX = "-110x150|-150x110";
                         var pattern = Pattern.compile(REGEX);
-                        var lowResURL = ORIGIN.substring(0, ORIGIN.indexOf("/cards/")) + src;
-                        var highResURL = ORIGIN.substring(0, ORIGIN.indexOf("/cards/")) + pattern.matcher(src).replaceAll("");
-                        var record = new ImageInfo(ORIGIN, highResURL, lowResURL, dir.substring(dir.indexOf("cards/")));
-                        var r = new ImageFetcherRunnable(dir, record);
-                        r.run();
+                        var lowResURL = url.substring(0, url.indexOf("/cards/")) + src;
+                        var highResURL = url.substring(0, url.indexOf("/cards/")) + pattern.matcher(src).replaceAll("");
+                        var info = new ImageInfo(url, highResURL, lowResURL, des.substring(des.indexOf("cards/")));
+                        new ImagePillagerRunnable(des, info).run();
                     }
                 }
             }
         } catch (IOException ex) {
-            System.err.println(ex.getCause().toString());
+            System.out.println(ex);
         }
     }
 
@@ -121,7 +120,7 @@ public class Program implements Constants {
     public static void downloadImages(String dir_img, List<ImageInfo> list) {
         var exe = Executors.newFixedThreadPool(N_THREADS);
         for (var x : list) {
-            var r = new ImageFetcherRunnable(dir_img, x);
+            var r = new ImagePillagerRunnable(dir_img, x);
             exe.execute(r);
         }
         try {

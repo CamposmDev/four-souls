@@ -18,6 +18,7 @@ body {
         url(res/FourSoulsBackground.png);
     animation: planetariumBackground 120s linear infinite;
     background-size: 600px 400px, 600px 400px, 600px 400px, 600px 400px, 600px 400px, 1200px 800px;
+    background-repeat: repeat;
     -webkit-font-smoothing: subpixel-antialiased;
 }
 

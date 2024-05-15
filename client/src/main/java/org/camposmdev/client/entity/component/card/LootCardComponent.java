@@ -23,7 +23,7 @@ public class LootCardComponent extends CardComponent implements Playable {
 	public void onAdded() {
 		super.onAdded();
 		var es = EntityService.get();
-		es.events().onMouseHover_Highlight(this);
+		es.events().add_onMouseHover_Feedback(this);
 		texture().addEventHandler(MouseEvent.MOUSE_CLICKED, event -> play());
 	}
 

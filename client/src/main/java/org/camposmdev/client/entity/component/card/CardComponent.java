@@ -7,7 +7,7 @@ import org.camposmdev.model.card.BaseCard;
 import org.camposmdev.util.FXUtil;
 
 /**
- * The entity is a card
+ * Attach to entities that have a card.
  */
 public class CardComponent extends Component {
 	protected BaseCard card;
@@ -22,7 +22,7 @@ public class CardComponent extends Component {
 		var es = EntityService.get();
 		texture = FXUtil.loadCard(card.getImage().source2());
 		entity.getViewComponent().addChild(texture);
-		es.events().onMouseHover_Preview(this);
+		es.events().add_onMouseHover_Preview(this);
 	}
 
 	public BaseCard card() {

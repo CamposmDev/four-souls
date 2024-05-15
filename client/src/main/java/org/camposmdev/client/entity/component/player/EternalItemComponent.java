@@ -23,7 +23,7 @@ public class EternalItemComponent extends CardComponent implements Playable {
 		texture().setOnMouseClicked(event -> {
 			texture().setRotate(texture().getRotate() + 90);
 		});
-		EntityService.get().events().onMouseHover_Highlight(this);
+		EntityService.get().events().add_onMouseHover_Feedback(this);
 	}
 
 	@Override

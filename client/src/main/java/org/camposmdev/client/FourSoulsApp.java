@@ -7,7 +7,7 @@ import com.almasb.fxgl.app.GameSettings;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import org.camposmdev.client.entity.factory.FSEntityFactory;
-import org.camposmdev.client.model.Game;
+import org.camposmdev.client.model.LocalGameManager;
 import org.camposmdev.client.service.BoardPosition;
 import org.camposmdev.client.service.EntityService;
 import org.camposmdev.client.ui.scene.FSSceneFactory;
@@ -70,7 +70,7 @@ public class FourSoulsApp extends GameApplication {
     @Override
     protected void initGameVars(Map<String, Object> vars) {
         /* if the player chose singleplayer, create a game var */
-        var game = Game.create();
+        LocalGameManager game = LocalGameManager.create();
         game.shuffle();
         vars.put("game", game);
         /* otherwise send request to server */
@@ -79,24 +79,24 @@ public class FourSoulsApp extends GameApplication {
     @Override
     protected void initGame() {
         /* start the music */
-        loopBGM("The Binding of Isaac - 11 Repentant.mp3");
+        // loopBGM("The Binding of Isaac - 11 Repentant.mp3");
         /* add the four souls entity factory to spawn the game entities */
         getGameWorld().addEntityFactory(new FSEntityFactory());
-        var es = getService(EntityService.class);
+        var es = EntityService.get();
         /* render in the play mat */
         var playMat = new PlayMatView(-500);
         playMat.render();
         /* add treasure deck to game world */
-        var treasureEntity = getGameWorld().spawn("treasure_deck");
-        es.mapper().set(treasureEntity, BoardPosition.CENTER_LEFT);
+        var treasureDeck = es.spawn().treasure_deck();
+        es.mapper().set(treasureDeck, BoardPosition.CENTER_LEFT);
         /* add loot deck to game world */
-        var lootEntity = getGameWorld().spawn("loot_deck");
-        es.mapper().set(lootEntity, BoardPosition.CENTER);
+        var lootDeck = es.spawn().loot_deck();
+        es.mapper().set(lootDeck, BoardPosition.CENTER);
         /* add monster deck to game world */
-        var monsterEntity = getGameWorld().spawn("monster_deck");
-        es.mapper().set(monsterEntity, BoardPosition.CENTER_RIGHT);
+        var monsterDeck = es.spawn().monster_deck();
+        es.mapper().set(monsterDeck, BoardPosition.CENTER_RIGHT);
         /* add player to game world */
-        es.spawn_player("b-isaac");
+        es.spawn().player("b-isaac");
 //        ItemShopView itemShop = new ItemShopView();
 //        itemShop.render();
 //        var m1 = es.spawn_monster();

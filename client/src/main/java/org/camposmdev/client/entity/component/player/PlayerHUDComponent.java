@@ -48,7 +48,7 @@ public class PlayerHUDComponent extends Component {
 								.duration(Duration.millis(250))
 								.rotate(x.texture())
 								.origin(new Point3D(0, 1, 0))
-//								.origin(new Point2D(0,1))
+//								.url(new Point2D(0,1))
 								.from(new Point3D(0,90,0))
 								.to(new Point3D(0,0,0))
 //								.from(90)

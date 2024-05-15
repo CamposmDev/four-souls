@@ -1,4 +1,4 @@
-package org.camposmdev.res_soup;
+package org.camposmdev.miser;
 
 import io.vertx.core.json.JsonObject;
 import org.camposmdev.model.atlas.ImageInfo;
@@ -9,10 +9,13 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-import static org.camposmdev.res_soup.Constants.JSON_DIR;
+import static org.camposmdev.miser.Constants.JSON_DIR;
 
 public class Util {
-    static JsonObject theObject = new JsonObject();
+    /**
+     * Stores the locations of other json files
+     */
+    private final static JsonObject theObject = new JsonObject();
 
     /**
      * Writes {theObject} as a JSON file to JSON_DIR as cards.json
@@ -46,24 +49,24 @@ public class Util {
             var obj = JsonObject.of("images", map);
             for (ImageInfo x : list) {
                 var name = x.id();
-                var value = JsonObject.of("origin", x.origin(),
-                        "highRestImgURL", x.highResImgURL(),
-                        "lowResImgURL", x.lowResImgURL(),
+                var value = JsonObject.of("url", x.url(),
+                        "hiResUrl", x.hiResUrl(),
+                        "loResUrl", x.loResUrl(),
                         "dir", x.dir());
                 if (map.containsKey(name)) {
                     /* if this occurs, then we got a problem */
                     System.err.println("OVERWRITING\n" + name);
                     map.put(name, JsonObject.of(
-                            "origin", x.origin(),
-                            "highResImgURL", x.highResImgURL(),
-                            "lowResImgURL", x.lowResImgURL(),
+                            "url", x.url(),
+                            "hiResUrl", x.hiResUrl(),
+                            "loResUrl", x.loResUrl(),
                             "dir", x.dir()
                     ));
                 } else {
                     map.put(name, JsonObject.of(
-                            "origin", x.origin(),
-                            "highResImgURL", x.highResImgURL(),
-                            "lowResImgURL", x.lowResImgURL(),
+                            "url", x.url(),
+                            "hiResUrl", x.hiResUrl(),
+                            "loResUrl", x.loResUrl(),
                             "dir", x.dir()
                     ));
                 }

@@ -84,6 +84,7 @@ public class DeckAtlas {
             case MONSTER -> monsters.shuffle(rand);
             case LOOT -> loot.shuffle(rand);
             case ROOM -> rooms.shuffle(rand);
+            default -> {}
         }
     }
 

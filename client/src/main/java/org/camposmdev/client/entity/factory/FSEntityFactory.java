@@ -4,24 +4,21 @@ import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.EntityFactory;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.Spawns;
+import org.camposmdev.client.entity.TextureButtonEntity;
 import org.camposmdev.client.entity.EntityType;
-import org.camposmdev.client.entity.component.ATKComponent;
-import org.camposmdev.client.entity.component.D6Component;
-import org.camposmdev.client.entity.component.DCComponent;
-import org.camposmdev.client.entity.component.HPComponent;
+import org.camposmdev.client.entity.component.*;
 import org.camposmdev.client.entity.component.card.CardComponent;
 import org.camposmdev.client.entity.component.card.LootCardComponent;
 import org.camposmdev.client.entity.component.card.MonsterCardComponent;
 import org.camposmdev.client.entity.component.card.TreasureCardComponent;
 import org.camposmdev.client.entity.component.player.*;
-import org.camposmdev.client.model.Game;
+import org.camposmdev.client.model.LocalGameManager;
 import org.camposmdev.model.card.BaseCard;
 import org.camposmdev.model.card.character.CharacterCard;
 import org.camposmdev.model.card.loot.LootCard;
 import org.camposmdev.model.card.monster.BaseMonsterCard;
 import org.camposmdev.model.card.room.RoomCard;
 import org.camposmdev.model.card.treasure.TreasureCard;
-import org.camposmdev.util.FXUtil;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.entityBuilder;
 import static com.almasb.fxgl.dsl.FXGLForKtKt.geto;
@@ -45,10 +42,7 @@ public class FSEntityFactory implements EntityFactory {
      */
     @Spawns("loot_deck")
     public Entity loot_back(SpawnData data) {
-        var texture = FXUtil.loadCard("cards/LootCardBack.png");
-        return entityBuilder(data)
-                .view(texture)
-                .build();
+		return new TextureButtonEntity("cards/LootCardBack.png");
     }
 
     /**
@@ -58,10 +52,7 @@ public class FSEntityFactory implements EntityFactory {
      */
     @Spawns("treasure_deck")
     public Entity treasure_back(SpawnData data) {
-        var texture = FXUtil.loadCard("cards/TreasureCardBack.png");
-        return entityBuilder(data)
-                .view(texture)
-                .build();
+		return new TextureButtonEntity("cards/TreasureCardBack.png");
     }
 
     /**
@@ -71,20 +62,17 @@ public class FSEntityFactory implements EntityFactory {
      */
     @Spawns("monster_deck")
     public Entity monster_back(SpawnData data) {
-        var texture = FXUtil.loadCard("cards/MonsterCardBack.png");
-        return entityBuilder(data)
-                .view(texture)
-                .build();
+		return new TextureButtonEntity("cards/MonsterCardBack.png");
     }
 
     @Spawns("player")
     public Entity player(SpawnData data) {
         CharacterCard character = data.get("character");
-        var game = (Game) geto("game");
+        var game = (LocalGameManager) geto("game");
         var eternal = game.deck().eternals().find(x -> x.getId().equals(character.getEternalId()));
         if (eternal == null)
             throw new IllegalArgumentException("character's eternalId value cannot be found in eternal deck");
-        return entityBuilder(data)
+        return entityBuilder()
                 .type(EntityType.PLAYER)
                 .with(new HPComponent())
                 .with(new ATKComponent())

@@ -12,7 +12,7 @@ public class MonsterCardComponent extends CardComponent {
 	public void onAdded() {
 		super.onAdded();
 		var es = EntityService.get();
-		es.events().onMouseHover_Highlight(this);
+		es.events().add_onMouseHover_Feedback(this);
 	}
 
 	@Override

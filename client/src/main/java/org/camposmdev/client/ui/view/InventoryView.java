@@ -9,7 +9,6 @@ import javafx.scene.layout.TilePane;
 public abstract class InventoryView implements View {
 	protected static final int WIDTH = 600;
 	protected static final int HEIGHT = 300;
-	protected static final int MARGIN = 4;
 
 	protected final BorderPane parent;
 	protected final ScrollPane root;
