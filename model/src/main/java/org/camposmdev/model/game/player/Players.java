@@ -2,6 +2,7 @@ package org.camposmdev.model.game.player;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.function.Predicate;
 
 /**
  * The {@code Players} class represents a circular doubly linked list of player with a sentinel node
@@ -48,14 +49,53 @@ public class Players {
         }
     }
 
-    public List<String> getAllPlayerIds() {
+    /**
+     * Returns players that match given predicate.
+     * @param p Predicate to filter out players
+     * @return List of player ids
+     */
+    public List<String> get(Predicate<Player> p) {
         List<String> lst = new LinkedList<>();
-        Node<Player> tmp = sentinel.next;
+        var tmp = sentinel.next;
         while (tmp != sentinel) {
-            lst.add(tmp.data.id());
+            if (p.test(tmp.data))
+                lst.add(tmp.data.id());
             tmp = tmp.next;
         }
         return lst;
+    }
+
+    /**
+     * Returns all the players
+     * @return List of player ids
+     */
+    public List<String> get() {
+        return get(p -> true);
+    }
+
+    /**
+     * Set the player who goes first by their id
+     * @param id ID of player to go first
+     */
+    public void setFirstPlayer(String id) {
+        if (isEmpty()) return;
+        var tmp = sentinel.next;
+        while (tmp != sentinel) {
+            if (tmp.data.id().equals(id)) {
+                /* remove sentinel node  */
+                sentinel.next.prev = sentinel.prev;
+                sentinel.prev.next = sentinel.next;
+                /* insert sentinel node */
+                sentinel.prev = tmp.prev;
+                tmp.prev.next = sentinel;
+                sentinel.next = tmp;
+                tmp.prev = sentinel;
+                /* update current */
+                current = tmp;
+                break;
+            }
+            tmp = tmp.next;
+        }
     }
 
     /**

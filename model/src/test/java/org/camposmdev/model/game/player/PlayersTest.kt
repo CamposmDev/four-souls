@@ -86,18 +86,53 @@ class PlayersTest {
     }
 
     @Test
-    fun testGetAllPlayerIds() {
+    fun testGet() {
         val lst = Players()
         val p1 = Player()
         val p2 = Player()
         val p3 = Player()
         lst.add(p1, p2, p3)
-        val ids = lst.allPlayerIds
+        val ids = lst.get()
         /* ensure ids size is 3 */
         assertEquals(3, ids.size)
         /* ensure indexes in ids matches all player ids */
         assertEquals(p1.id(), ids[0])
         assertEquals(p2.id(), ids[1])
         assertEquals(p3.id(), ids[2])
+    }
+
+    @Test
+    fun testGetPredicate() {
+        val lst = Players()
+        val p1 = Player()
+        val p2 = Player()
+        val p3 = Player()
+        lst.add(p1, p2, p3)
+        var id1 = p1.id();
+        /* get all players that is not equal to id1 */
+        val filterLst = lst.get { p -> !p.id().equals(id1) }
+        assertEquals(2, filterLst.size)
+    }
+
+    @Test
+    fun testSetFirstPlayer() {
+        val lst = Players()
+        val p1 = Player()
+        val p2 = Player()
+        val p3 = Player()
+        lst.add(p1, p2, p3)
+        assert(p1 == lst.peek())
+        /* update first player p2 */
+        lst.setFirstPlayer(p2.id())
+        /* ensure first player updates are made correctly */
+        assert(p2 == lst.peek())
+        assert(p1 == lst.left())
+        assert(p3 == lst.right())
+        /* update first player to p3 */
+        lst.setFirstPlayer(p3.id())
+        /* ensure first player updates are made correctly */
+        assert(p3 == lst.peek())
+        assert(p2 == lst.left())
+        assert(p1 == lst.right())
     }
 }
