@@ -1,100 +1,159 @@
 package org.camposmdev.model.game.player;
 
+import java.util.LinkedList;
+import java.util.List;
+
+/**
+ * The {@code Players} class represents a circular doubly linked list of player with a sentinel node
+ * to simplify list operations. It provides methods for adding players, checking turns, and navigating
+ * through the players.
+ */
 public class Players {
-    Node<Player> head;
-    protected Node<Player> curr;
+    protected Node<Player> sentinel;
+    protected Node<Player> current;
+    protected int turns;
     protected int size;
 
     public Players() {
-        this.head = new Node<>();
-        this.head.next = head;
-        this.head.prev = head;
-        this.curr = head;
+        this.sentinel = new Node<>();
+        this.sentinel.next = sentinel;
+        this.sentinel.prev = sentinel;
+        this.current = sentinel;
+        this.turns = 1;
         this.size = 0;
+    }
+
+    public void add(Player p) {
+        Node<Player> node = new Node<>(p);
+        if (isEmpty()) { /* add a player for the first time */
+            sentinel.next = node;
+            sentinel.prev = node;
+            node.next = sentinel;
+            node.prev = sentinel;
+            current = node;
+        } else {
+            /* update pointers */
+            var tmp = sentinel.prev;
+            tmp.next = node;
+            sentinel.prev = node;
+            node.prev = tmp;
+            node.next = sentinel;
+        }
+        size++;
+    }
+
+    public void add(Player... players) {
+        for (Player p : players) {
+            add(p);
+        }
+    }
+
+    public List<String> getAllPlayerIds() {
+        List<String> lst = new LinkedList<>();
+        Node<Player> tmp = sentinel.next;
+        while (tmp != sentinel) {
+            lst.add(tmp.data.id());
+            tmp = tmp.next;
+        }
+        return lst;
+    }
+
+    /**
+     * Removes a player from the list by their id.
+     * @param id Player ID to be removed.
+     * @return true if player is removed. Otherwise, false.
+     */
+    public boolean remove(String id) {
+        if (isEmpty()) return false;
+        for (var tmp = sentinel.next; tmp != sentinel; tmp = tmp.next) {
+            if (tmp.data.id().equals(id)) {
+                /* update pointers, size, and curr */
+                tmp.prev.next = tmp.next;
+                tmp.next.prev = tmp.prev;
+                /* if the current is tmp, then set curr to tmp.next */
+                if (tmp == current)
+                    current = tmp.next;
+                size--;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Returns the current player without advancing
+     * @return Player object stored in {@link Players#current}
+     */
+    public Player peek() {
+        return current.data;
     }
 
     /**
      * Checks if a player turn is in progress
-     * @param p Checks if given player turn is ready
+     * @param id Checks if given player id is their turn
      * @return true if the Player ids match, otherwise false
      */
-    public boolean isPlayerTurn(Player p) {
-        if (curr == head) return false;
-        return (curr.data.compareTo(p)) == 0;
+    public boolean isTheirTurn(String id) {
+        if (current == sentinel) return false;
+        return (current.data.id().equals(id));
     }
 
     /**
      * Returns the player whose on the left of the current player
-     * @return Player if the size of the list > 1, otherwise null
+     * @return Player object if the size is greater than 1, otherwise null
      */
     public Player left() {
         if (size <= 1) return null;
-        if (curr.prev == head) return curr.prev.prev.data;
-        return curr.prev.data;
+        if (current.prev == sentinel) return current.prev.prev.data;
+        return current.prev.data;
     }
 
     /**
      * Returns the player whose on the right of the current player
-     * @return Player if the size of the list > 1, otherwise null
+     * @return Player object if the size is greater than 1, otherwise null.
      */
     public Player right() {
+        /* if it's only one player, then return null. */
         if (size <= 1) return null;
-        if (curr.next == head) return curr.next.next.data;
-        return curr.next.data;
+        /* if the {curr.next} is the sentinel node, then return the sentinel's next */
+        if (current.next == sentinel) return current.next.next.data;
+        return current.next.data;
     }
 
     /**
-     * Returns the next player whose next to take their turn
-     * @return Player object if the list is not empty. Null if the list is empty. If the list size is 1, then {@link Players#curr}
+     * Returns the next player whose next to take their turn. If everyone has had a turn, then the turn
+     * counter is incremented by 1.
+     * @return Player object if the list is not empty. Null if the list is empty. If the list size is 1, then {@link Players#current}
      */
     public Player next() {
         if (isEmpty()) return null;
-        if (curr == head) return (curr = curr.next).data;
-        return (curr = curr.next).data;
-    }
-
-    /**
-     * @return Player object stored in {@link Players#curr}
-     */
-    public Player peek() {
-        return curr.data;
-    }
-
-    public void add(Player p) {
-        var node = new Node<>(p);
-        if (isEmpty()) {
-            head.next = node;
-            head.prev = node;
-            node.next = head;
-            node.prev = head;
-            curr = node;
-        } else {
-            /* find the last node of the list that points to {head} */
-            var nodeX = head;
-            while (nodeX.next != head) {
-                nodeX = nodeX.next;
-            }
-            /* update pointers */
-            nodeX.next = node;
-            node.prev = nodeX;
-            node.next = head;
-            head.prev = node;
+        if (current.next == sentinel) {
+            turns++;
+            return (current = current.next.next).data;
         }
-        this.size++;
+        return (current = current.next).data;
+    }
+
+    public int turns() {
+        return turns;
     }
 
     public boolean isEmpty() {
-        return this.size <= 0;
+        return size <= 0;
+    }
+
+    public int size() {
+        return size;
     }
 
     @Override
     public String toString() {
         var sb = new StringBuilder("[");
-        var node = head.next;
-        while (node != head) {
-            sb.append(node.data.getId());
+        var node = sentinel.next;
+        while (node != sentinel) {
+            sb.append(node.data);
             node = node.next;
-            if (node != head) {
+            if (node != sentinel) {
                 sb.append(", ");
             }
         }

@@ -12,7 +12,7 @@ import org.camposmdev.model.card.treasure.TreasureCard;
 
 import java.util.Random;
 
-public class DeckAtlas {
+public class DeckManager {
     private Deck<CharacterCard> characters;
     private Deck<EternalCard> eternals;
     private Deck<TreasureCard> treasures;
@@ -21,7 +21,7 @@ public class DeckAtlas {
     private Deck<RoomCard> rooms;
     private Deck<OutsideCard> outsides;
 
-    public DeckAtlas(MasterCardAtlas atlas) {
+    public DeckManager(MasterCardAtlas atlas) {
         this.characters = new Deck<>(atlas.characters());
         this.eternals = new Deck<>(atlas.eternals());
         this.treasures = new Deck<>(atlas.treasures());
@@ -88,7 +88,7 @@ public class DeckAtlas {
         }
     }
 
-    public static DeckAtlas create(MasterCardAtlas atlas) {
-        return new DeckAtlas(atlas);
+    public static DeckManager create(MasterCardAtlas atlas) {
+        return new DeckManager(atlas);
     }
 }

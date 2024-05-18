@@ -1,9 +1,9 @@
 package org.camposmdev.model.game.player;
 
 public class Node<T> {
-    T data;
-    Node<T> next;
-    Node<T> prev;
+    protected T data;
+    protected Node<T> next;
+    protected Node<T> prev;
 
     public Node() {
         this(null);

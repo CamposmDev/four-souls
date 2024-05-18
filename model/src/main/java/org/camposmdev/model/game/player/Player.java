@@ -1,35 +1,37 @@
 package org.camposmdev.model.game.player;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.camposmdev.model.card.BaseCard;
 import org.camposmdev.model.card.character.CharacterCard;
 import org.camposmdev.model.card.eternal.EternalCard;
 import org.camposmdev.model.card.loot.LootCard;
 import org.camposmdev.model.card.treasure.TreasureCard;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.UUID;
 
 public class Player implements Comparable<Player> {
+    private final static int DEFAULT_CENTS = 3;
     private final UUID id;
     private CharacterCard character;
     private EternalCard eternal;
-    private List<LootCard> loot;
-    private List<TreasureCard> treasure;
-    private List<BaseCard> souls;
-    private Integer cents;
+    private ObservableList<LootCard> loot;
+    private ObservableList<TreasureCard> treasure;
+    private ObservableList<BaseCard> souls;
+    private SimpleIntegerProperty cents;
 
     public Player() {
         this.id = UUID.randomUUID();
         this.character = null;
         this.eternal = null;
-        this.loot = new LinkedList<>();
-        this.treasure = new LinkedList<>();
-        this.souls = new LinkedList<>();
-        this.cents = 0;
+        this.loot = FXCollections.observableArrayList();
+        this.treasure = FXCollections.observableArrayList();
+        this.souls = FXCollections.observableArrayList();
+        this.cents = new SimpleIntegerProperty(DEFAULT_CENTS);
     }
 
-    public String getId() {
+    public String id() {
         return id.toString();
     }
 
@@ -49,28 +51,32 @@ public class Player implements Comparable<Player> {
         this.eternal = eternal;
     }
 
-    public List<LootCard> loot() {
+    public ObservableList<LootCard> loot() {
         return loot;
     }
 
-    public List<BaseCard> souls() {
+    public ObservableList<TreasureCard> treasure() {
+        return treasure;
+    }
+
+    public ObservableList<BaseCard> souls() {
         return souls;
     }
 
-    public Integer cents() {
+    public SimpleIntegerProperty cents() {
         return cents;
-    }
-
-    public void setCents(Integer cents) {
-        this.cents = cents;
-    }
-
-    public List<TreasureCard> treasure() {
-        return treasure;
     }
 
     @Override
     public int compareTo(Player p) {
         return id.compareTo(p.id);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Player p) {
+            return id.equals(p.id);
+        }
+        return super.equals(obj);
     }
 }

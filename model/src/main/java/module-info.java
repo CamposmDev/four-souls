@@ -1,6 +1,7 @@
 module model {
     requires com.fasterxml.jackson.core;
     requires com.fasterxml.jackson.databind;
+    requires javafx.base;
     exports org.camposmdev.model;
     exports org.camposmdev.model.card;
     opens org.camposmdev.model.card to com.fasterxml.jackson.databind;

@@ -54,11 +54,7 @@ public class Deck<T extends BaseCard> {
     }
 
     public T find(Predicate<T> p) {
-        for (int i = 0; i < cards.size(); i++) {
-            if (p.test(cards.get(i)))
-                return cards.remove(i);
-        }
-        return null;
+        return cards.stream().filter(p).findFirst().orElse(null);
     }
 
     public List<T> peek(int amount) {
