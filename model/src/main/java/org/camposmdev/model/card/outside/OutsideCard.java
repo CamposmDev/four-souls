@@ -1,4 +1,4 @@
-package org.camposmdev.model.card.extra;
+package org.camposmdev.model.card.outside;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

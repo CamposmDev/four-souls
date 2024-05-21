@@ -2,7 +2,7 @@ package org.camposmdev.client.ui.controllers.menu;
 
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
-import org.camposmdev.client.net.API;
+import org.camposmdev.client.api.API;
 import org.camposmdev.util.FXController;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.getDialogService;

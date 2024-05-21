@@ -10,6 +10,7 @@ import org.camposmdev.client.service.EntityService;
 import static com.almasb.fxgl.dsl.FXGLForKtKt.play;
 
 public class PlayerLootComponent extends Component {
+	private PlayerComponent player;
 	private ObservableList<LootCardComponent> inventory;
 
 	@Override

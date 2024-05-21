@@ -10,10 +10,9 @@ import org.camposmdev.model.card.attribute.CardType;
 import org.camposmdev.model.card.bsoul.BonusSoulCard;
 import org.camposmdev.model.card.character.CharacterCard;
 import org.camposmdev.model.card.eternal.*;
-import org.camposmdev.model.card.extra.OutsideCard;
+import org.camposmdev.model.card.outside.OutsideCard;
 import org.camposmdev.model.card.loot.*;
 import org.camposmdev.model.card.monster.BaseMonsterCard;
-import org.camposmdev.model.card.monster.MonsterCard;
 import org.camposmdev.model.card.room.RoomCard;
 import org.camposmdev.model.card.treasure.TreasureCard;
 

@@ -13,8 +13,7 @@ import org.camposmdev.model.game.Attackable;
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 
 public class CharacterComponent extends CardComponent implements Playable, Attackable {
-	private HPComponent hp; /* this component is injected automatically */
-	private ATKComponent atk; /* this component is injected automatically */
+	private PlayerComponent player; /* this component is injected automatically */
 
 	public CharacterComponent(CharacterCard card) {
 		super(card);
@@ -22,9 +21,6 @@ public class CharacterComponent extends CardComponent implements Playable, Attac
 
 	@Override
 	public void onAdded() {
-		super.onAdded();
-		hp.max().set(card().getHp());
-		hp.current().set(card().getHp());
 		hp.current().addListener((o, arg0, arg1) -> {
 			if (arg1.intValue() <= 0) {
 				/* play death sound */
@@ -39,8 +35,6 @@ public class CharacterComponent extends CardComponent implements Playable, Attac
 				FXGL.play(String.format("player/hurt%d.wav", i));
 			}
 		});
-		atk.max().set(card().getAtk());
-		atk.current().set(card().getAtk());
 		texture().setOnMouseClicked(event -> {
 			texture().setRotate(texture().getRotate() + 90);
 		});
@@ -59,7 +53,6 @@ public class CharacterComponent extends CardComponent implements Playable, Attac
 
 	@Override
 	public void damage(int arg0) {
-		getNotificationService().pushNotification("Damage incoming!");
 		hp.current().set(hp.current().get() - arg0);
 		animationBuilder()
 				.duration(Duration.millis(50))

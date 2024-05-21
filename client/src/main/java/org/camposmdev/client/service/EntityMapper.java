@@ -14,7 +14,7 @@ public class EntityMapper {
     static final int BLOCK_MARGIN = 10;
     static final int CENTER_OFFSET = 12;
 
-    public void set(Entity entity, BoardPosition position) {
+    public void position(Entity entity, BoardPosition position) {
         var view = entity.getViewComponent();
         if (view == null || view.getChildren().isEmpty())
             return;

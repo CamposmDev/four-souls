@@ -17,7 +17,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import org.camposmdev.client.model.Model;
-import org.camposmdev.client.net.API;
+import org.camposmdev.client.api.API;
 import org.camposmdev.client.ui.controllers.sprite.BubbleController;
 import org.camposmdev.model.net.BusEvent;
 import org.camposmdev.util.FXController;

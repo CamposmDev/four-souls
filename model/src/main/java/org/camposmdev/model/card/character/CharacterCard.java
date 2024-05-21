@@ -7,8 +7,8 @@ import org.camposmdev.model.card.attribute.CardType;
 import org.camposmdev.model.card.attribute.character.SpecialType;
 
 public class CharacterCard extends BaseCard {
-    private byte hp;
-    private byte atk;
+    private int hp;
+    private int atk;
     private String eternalId;
     private SpecialType special;
 
@@ -17,20 +17,20 @@ public class CharacterCard extends BaseCard {
         this.special = SpecialType.DEFAULT;
     }
 
-    public byte getHp() {
+    public Integer getHp() {
         return hp;
     }
 
-    public CharacterCard setHp(byte hp) {
+    public CharacterCard setHp(int hp) {
         this.hp = hp;
         return this;
     }
 
-    public byte getAtk() {
+    public Integer getAtk() {
         return atk;
     }
 
-    public CharacterCard setAtk(byte atk) {
+    public CharacterCard setAtk(int atk) {
         this.atk = atk;
         return this;
     }

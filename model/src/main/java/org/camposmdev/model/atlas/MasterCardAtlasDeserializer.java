@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import org.camposmdev.model.card.bsoul.BonusSoulCard;
 import org.camposmdev.model.card.character.CharacterCard;
-import org.camposmdev.model.card.extra.OutsideCard;
+import org.camposmdev.model.card.outside.OutsideCard;
 import org.camposmdev.model.card.room.RoomCard;
 
 import java.io.IOException;

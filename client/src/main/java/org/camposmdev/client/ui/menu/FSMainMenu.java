@@ -6,7 +6,7 @@ import com.almasb.fxgl.dsl.FXGL;
 import javafx.application.Platform;
 import javafx.scene.layout.StackPane;
 import org.camposmdev.client.ui.controllers.LoginController;
-import org.camposmdev.client.net.API;
+import org.camposmdev.client.api.API;
 import org.camposmdev.util.FXUtil;
 
 

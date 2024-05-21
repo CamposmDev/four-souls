@@ -21,14 +21,14 @@ public class PlayerHUDView implements View {
 
 	public PlayerHUDView(Entity entity) {
 		this.entity = entity;
-		root = new BorderPane();
-		root.setPrefSize(WIDTH, HEIGHT);
-		statusView = new PlayerStatusView(entity, root);
-		statusView.render();
-		lootView = new PlayerLootView(root);
-		lootView.render();
-		itemsView = new PlayerItemsView(root);
-		itemsView.render();
+		this.root = new BorderPane();
+		this.root.setPrefSize(WIDTH, HEIGHT);
+		this.statusView = new PlayerStatusView(entity, root);
+		this.statusView.render();
+		this.lootView = new PlayerLootView(root);
+		this.lootView.render();
+		this.itemsView = new PlayerItemsView(root);
+		this.itemsView.render();
 	}
 
 	public PlayerStatusView status() {

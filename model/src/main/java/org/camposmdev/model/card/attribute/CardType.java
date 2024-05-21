@@ -1,14 +1,5 @@
 package org.camposmdev.model.card.attribute;
 
-import org.camposmdev.model.card.bsoul.BonusSoulCard;
-import org.camposmdev.model.card.character.CharacterCard;
-import org.camposmdev.model.card.eternal.EternalCard;
-import org.camposmdev.model.card.extra.OutsideCard;
-import org.camposmdev.model.card.loot.LootCard;
-import org.camposmdev.model.card.monster.MonsterCard;
-import org.camposmdev.model.card.room.RoomCard;
-import org.camposmdev.model.card.treasure.TreasureCard;
-
 import java.util.List;
 
 public enum CardType{

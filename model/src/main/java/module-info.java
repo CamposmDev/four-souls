@@ -1,8 +1,10 @@
 module model {
+    requires org.jetbrains.annotations;
+    requires kotlin.stdlib;
     requires com.fasterxml.jackson.core;
     requires com.fasterxml.jackson.databind;
     requires javafx.base;
-    exports org.camposmdev.model;
+	exports org.camposmdev.model;
     exports org.camposmdev.model.card;
     opens org.camposmdev.model.card to com.fasterxml.jackson.databind;
     exports org.camposmdev.model.atlas;
@@ -31,9 +33,10 @@ module model {
     exports org.camposmdev.model.card.treasure;
     exports org.camposmdev.model.card.attribute.treasure;
     exports org.camposmdev.model.card.room;
-    exports org.camposmdev.model.card.extra;
+    exports org.camposmdev.model.card.outside;
     exports org.camposmdev.model.card.attribute.outside.OutsideType;
     exports org.camposmdev.model.card.attribute.loot.MoneyEffect;
 	exports org.camposmdev.model.game;
 	exports org.camposmdev.model.db;
+	opens org.camposmdev.model.game.player to com.fasterxml.jackson.databind;
 }

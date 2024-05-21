@@ -7,6 +7,8 @@ public interface GameManager {
     /* Returns the seed of the game */
     long seed();
     
-    /* Shuffles all the decks. Should be invokved after creating a GameManager.  */
+    /* Shuffles all the decks.  */
     void shuffle();
+
+    PlayerManager players();
 }

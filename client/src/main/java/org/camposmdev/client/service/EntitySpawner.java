@@ -2,11 +2,10 @@ package org.camposmdev.client.service;
 
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.SpawnData;
-import org.camposmdev.client.entity.TextureButtonEntity;
 import org.camposmdev.client.entity.EntityType;
+import org.camposmdev.client.entity.TextureButtonEntity;
 import org.camposmdev.client.entity.component.player.PlayerLootComponent;
 import org.camposmdev.client.model.LocalGameManager;
-import org.camposmdev.model.card.character.CharacterCard;
 import org.camposmdev.model.card.loot.LootCard;
 import org.camposmdev.model.card.monster.BaseMonsterCard;
 import org.camposmdev.model.card.room.RoomCard;
@@ -44,9 +43,7 @@ public class EntitySpawner {
 	}
 
 	public Entity player(String characterId) {
-		LocalGameManager game = geto("game");
-		CharacterCard character = game.deck().characters().find(x -> x.getId().equals(characterId));
-		var data = new SpawnData().put("character", character);
+		var data = new SpawnData().put("characterId", characterId);
 		return getGameWorld().spawn("player", data);
 	}
 

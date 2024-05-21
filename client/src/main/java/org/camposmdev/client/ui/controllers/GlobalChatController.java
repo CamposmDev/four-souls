@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import org.camposmdev.client.net.API;
+import org.camposmdev.client.api.API;
 import org.camposmdev.model.net.BusEvent;
 
 @Deprecated

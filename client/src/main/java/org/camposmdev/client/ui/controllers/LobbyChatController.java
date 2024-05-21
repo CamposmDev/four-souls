@@ -6,7 +6,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import org.camposmdev.client.net.API;
+import org.camposmdev.client.api.API;
 import org.camposmdev.model.net.BusEvent;
 import org.camposmdev.util.FXController;
 

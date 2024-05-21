@@ -4,9 +4,9 @@ import org.camposmdev.model.atlas.MasterCardAtlas;
 import org.camposmdev.model.card.attribute.CardType;
 import org.camposmdev.model.card.character.CharacterCard;
 import org.camposmdev.model.card.eternal.EternalCard;
-import org.camposmdev.model.card.extra.OutsideCard;
 import org.camposmdev.model.card.loot.LootCard;
 import org.camposmdev.model.card.monster.BaseMonsterCard;
+import org.camposmdev.model.card.outside.OutsideCard;
 import org.camposmdev.model.card.room.RoomCard;
 import org.camposmdev.model.card.treasure.TreasureCard;
 
@@ -86,9 +86,5 @@ public class DeckManager {
             case ROOM -> rooms.shuffle(rand);
             default -> {}
         }
-    }
-
-    public static DeckManager create(MasterCardAtlas atlas) {
-        return new DeckManager(atlas);
     }
 }

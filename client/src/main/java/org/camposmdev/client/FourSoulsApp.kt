@@ -1,103 +1,105 @@
-package org.camposmdev.client;
+package org.camposmdev.client
 
-import com.almasb.fxgl.app.ApplicationMode;
-import com.almasb.fxgl.app.CursorInfo;
-import com.almasb.fxgl.app.GameApplication;
-import com.almasb.fxgl.app.GameSettings;
-import javafx.scene.input.KeyCode;
-import javafx.scene.paint.Color;
-import org.camposmdev.client.entity.factory.FSEntityFactory;
-import org.camposmdev.client.model.LocalGameManager;
-import org.camposmdev.client.service.BoardPosition;
-import org.camposmdev.client.service.EntityService;
-import org.camposmdev.client.ui.scene.FSSceneFactory;
-import org.camposmdev.client.ui.view.ActionDrawerView;
-import org.camposmdev.client.ui.view.PlayMatView;
+import com.almasb.fxgl.app.ApplicationMode
+import com.almasb.fxgl.app.CursorInfo
+import com.almasb.fxgl.app.GameApplication
+import com.almasb.fxgl.app.GameSettings
+import com.almasb.fxgl.dsl.*
+import javafx.scene.input.KeyCode
+import javafx.scene.paint.Color
+import org.camposmdev.client.entity.factory.FSEntityFactory
+import org.camposmdev.client.model.LocalGameManager
+import org.camposmdev.client.service.BoardPosition
+import org.camposmdev.client.service.EntityService
+import org.camposmdev.client.ui.scene.FSSceneFactory
+import org.camposmdev.client.ui.view.ActionDrawerView
+import org.camposmdev.client.ui.view.PlayMatView
+import org.camposmdev.model.atlas.MasterCardAtlas
+import org.camposmdev.util.FXUtil
 
-import java.util.Map;
+class FourSoulsApp : GameApplication() {
+    companion object {
+        private const val TITLE = "Four Souls"
+        private const val VERSION = "1.0.0-alpha"
+        private const val APP_WIDTH = 1600
+        private const val APP_HEIGHT = 900
 
-import static com.almasb.fxgl.dsl.FXGL.*;
-
-public class FourSoulsApp extends GameApplication {
-    public static void main(String[] args) {
-        launch(args);
-    }
-    private static final int APP_WIDTH = 1600, APP_HEIGHT = 900;
-
-    @Override
-    protected void initSettings(GameSettings options) {
-        options.setApplicationMode(ApplicationMode.DEVELOPER);
-        options.setTitle("Four Souls");
-        options.setVersion("1.0.0-alpha");
-        options.setAppIcon("icons/soul_circle.png");
-        options.setWidth(APP_WIDTH);
-        options.setHeight(APP_HEIGHT);
-        options.setPreserveResizeRatio(true);
-        options.setScaleAffectedOnResize(true);
-        if (options.getApplicationMode() == ApplicationMode.RELEASE) {
-            options.setIntroEnabled(true);
-            options.setMainMenuEnabled(true);
+        @JvmStatic
+        fun main(args: Array<String>) {
+            launch(FourSoulsApp::class.java, args)
         }
-        options.setGameMenuEnabled(true);
-        options.setSceneFactory(new FSSceneFactory());
-        options.setManualResizeEnabled(true);
-        options.setFullScreenAllowed(true);
-        options.setPauseMusicWhenMinimized(true);
-        options.setDefaultCursor(new CursorInfo("cursor.png", 0, 0));
-        options.setFontGame("EdmundMcMillen_v2.ttf");
-        options.setFontUI("EdmundMcMillen_v2.ttf");
-        options.setFontText("EdmundMcMillen_v2.ttf");
-        options.getCSSList().add("main.css");
-        options.addEngineService(EntityService.class);
     }
 
-    @Override
-    protected void onPreInit() {
-        final double VOLUME = 0.1;
-        getSettings().setGlobalMusicVolume(VOLUME);
-        getSettings().setGlobalSoundVolume(VOLUME);
-        getNotificationService().setBackgroundColor(Color.web("#2D2D30"));
-        getNotificationService().setTextColor(Color.WHITE);
+    override fun initSettings(settings: GameSettings) {
+        settings.title = TITLE
+        settings.version = VERSION
+        settings.width = APP_WIDTH
+        settings.height = APP_HEIGHT
+        settings.appIcon = "icons/soul_circle.png"
+        settings.isPreserveResizeRatio = true
+        settings.isScaleAffectedOnResize = true
+        settings.isIntroEnabled = false
+        settings.isMainMenuEnabled = false
+        settings.isGameMenuEnabled = true
+        settings.sceneFactory = FSSceneFactory()
+        settings.isManualResizeEnabled = true
+        settings.isFullScreenAllowed = true
+        settings.isPauseMusicWhenMinimized = true
+        settings.defaultCursor = CursorInfo("cursor.png", 0.0, 0.0)
+        settings.fontGame = "EdmundMcMillen_v2.ttf"
+        settings.fontUI = "EdmundMcMillen_v2.ttf"
+        settings.fontText = "EdmundMcMillen_v2.ttf"
+        settings.cssList += "main.css"
+        settings.applicationMode = ApplicationMode.DEVELOPER
+        settings.addEngineService(EntityService::class.java)
+    }
+
+    override fun onPreInit() {
+        val volume = 0.1
+        getSettings().globalMusicVolume = volume
+        getSettings().globalSoundVolume = volume
+        getNotificationService().backgroundColor = Color.web("#2D2D30")
+        getNotificationService().textColor = Color.WHITE
         /* load texture and store in cache */
-        getAssetLoader().loadTexture("board.jpg");
+        getAssetLoader().loadTexture("board.jpg")
     }
 
-    @Override
-    protected void initUI() {
-        ActionDrawerView.instance().render();
+    override fun initUI() {
+        ActionDrawerView.instance().render()
     }
 
-    @Override
-    protected void initGameVars(Map<String, Object> vars) {
-        /* if the player chose singleplayer, create a game var */
-        LocalGameManager game = LocalGameManager.create();
-        game.shuffle();
-        vars.put("game", game);
+    override fun initGameVars(vars: MutableMap<String, Any>) {
+        val atlas = FXUtil.loadJSON("cards.json", MasterCardAtlas::class.java)
+        val game = LocalGameManager(atlas)
+        /* shuffle the cards */
+        game.shuffle()
+        /* add the game to game variables*/
+        vars["game"] = game
         /* otherwise send request to server */
     }
 
-    @Override
-    protected void initGame() {
+    override fun initGame() {
         /* start the music */
         // loopBGM("The Binding of Isaac - 11 Repentant.mp3");
         /* add the four souls entity factory to spawn the game entities */
-        getGameWorld().addEntityFactory(new FSEntityFactory());
-        var es = EntityService.get();
-        /* render in the play mat */
-        var playMat = new PlayMatView(-500);
-        playMat.render();
+        getGameWorld().addEntityFactory(FSEntityFactory())
+        val es = EntityService.get()
+        /* render in the play mat (background) */
+        val playMat = PlayMatView(-500)
+        playMat.render()
         /* add treasure deck to game world */
-        var treasureDeck = es.spawn().treasure_deck();
-        es.mapper().set(treasureDeck, BoardPosition.CENTER_LEFT);
+        val treasureDeck = es.spawn().treasure_deck()
+        es.mapper().position(treasureDeck, BoardPosition.CENTER_LEFT)
         /* add loot deck to game world */
-        var lootDeck = es.spawn().loot_deck();
-        es.mapper().set(lootDeck, BoardPosition.CENTER);
+        val lootDeck = es.spawn().loot_deck()
+        es.mapper().position(lootDeck, BoardPosition.CENTER)
         /* add monster deck to game world */
-        var monsterDeck = es.spawn().monster_deck();
-        es.mapper().set(monsterDeck, BoardPosition.CENTER_RIGHT);
+        val monsterDeck = es.spawn().monster_deck()
+        es.mapper().position(monsterDeck, BoardPosition.CENTER_RIGHT)
         /* add player to game world */
-        es.spawn().player("b-isaac");
-//        ItemShopView itemShop = new ItemShopView();
+        val characterId = "b-isaac"
+        es.spawn().player(characterId)
+        //        ItemShopView itemShop = new ItemShopView();
 //        itemShop.render();
 //        var m1 = es.spawn_monster();
 //        var c = m1.getComponent(MonsterCardComponent.class);
@@ -107,13 +109,12 @@ public class FourSoulsApp extends GameApplication {
 //        root.getChildren().add(c.texture());
     }
 
-    @Override
-    protected void initInput() {
+    override fun initInput() {
         /* set key listener to fullscreen game */
-        onKeyDown(KeyCode.F11, () -> {
-            var fullScreen = getSettings().getFullScreen().get();
-            getSettings().getFullScreen().set(!fullScreen);
-        });
+        onKeyDown(KeyCode.F11) {
+            val fullScreen: Boolean = getSettings().fullScreen.get()
+            getSettings().fullScreen.set(!fullScreen)
+        }
     }
 }
 

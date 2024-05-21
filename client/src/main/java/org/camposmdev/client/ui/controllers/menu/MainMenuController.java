@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.*;
 import org.camposmdev.client.model.Model;
-import org.camposmdev.client.net.API;
+import org.camposmdev.client.api.API;
 import org.camposmdev.util.FXUtil;
 import org.camposmdev.util.FXController;
 import org.camposmdev.model.net.BusEvent;

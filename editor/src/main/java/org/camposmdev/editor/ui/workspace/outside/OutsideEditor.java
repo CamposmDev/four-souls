@@ -11,7 +11,7 @@ import org.camposmdev.editor.ui.factory.DialogFactory;
 import org.camposmdev.editor.ui.workspace.BaseEditor;
 import org.camposmdev.model.card.attribute.CardSet;
 import org.camposmdev.model.card.attribute.outside.OutsideType.OutsideType;
-import org.camposmdev.model.card.extra.OutsideCard;
+import org.camposmdev.model.card.outside.OutsideCard;
 
 public class OutsideEditor extends BaseEditor {
     private final GridPane root;

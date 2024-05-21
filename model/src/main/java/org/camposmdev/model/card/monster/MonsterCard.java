@@ -137,6 +137,10 @@ public class MonsterCard extends BaseMonsterCard {
         return this;
     }
 
+    public boolean hasSouls() {
+        return soul > 0;
+    }
+
     @Override
     public String toString() {
         try {

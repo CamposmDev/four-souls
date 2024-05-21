@@ -1,4 +1,4 @@
-package org.camposmdev.client.net;
+package org.camposmdev.client.api;
 
 import io.vertx.core.Vertx;
 import io.vertx.core.eventbus.MessageConsumer;

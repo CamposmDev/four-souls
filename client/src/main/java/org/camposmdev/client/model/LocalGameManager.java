@@ -2,9 +2,10 @@ package org.camposmdev.client.model;
 
 import org.camposmdev.model.atlas.MasterCardAtlas;
 import org.camposmdev.model.game.GameManager;
+import org.camposmdev.model.game.LocalPlayerManager;
+import org.camposmdev.model.game.PlayerManager;
 import org.camposmdev.model.game.deck.DeckManager;
-import org.camposmdev.model.game.player.Players;
-import org.camposmdev.util.FXUtil;
+import org.camposmdev.model.game.deck.DiscardPileManager;
 
 import java.util.Random;
 
@@ -15,46 +16,45 @@ import java.util.Random;
 public class LocalGameManager implements GameManager {
     private final long seed;
     private final Random rand;
-    private final DeckManager deck;
-    private final Players players;
+    private final LocalPlayerManager playerManager;
+    private final DeckManager deckManager;
+    private final DiscardPileManager discardPileManager;
 
-
-    private LocalGameManager() {
+    public LocalGameManager(MasterCardAtlas atlas) {
         this.seed = new Random().nextLong();
         this.rand = new Random(seed);
-        this.deck = DeckManager.create(FXUtil.loadJSON("cards.json", MasterCardAtlas.class));
-        this.players = new Players();
+        this.playerManager = new LocalPlayerManager();
+        this.deckManager = new DeckManager(atlas);
+        this.discardPileManager = new DiscardPileManager();
     }
 
-    private LocalGameManager(long seed) {
+    public LocalGameManager(long seed, MasterCardAtlas atlas) {
         this.seed = seed;
         this.rand = new Random(seed);
-        this.deck = DeckManager.create(FXUtil.loadJSON("cards.json", MasterCardAtlas.class));
-        this.players = new Players();
+        this.playerManager = new LocalPlayerManager();
+        this.deckManager = new DeckManager(atlas);
+        this.discardPileManager = new DiscardPileManager();
+    }
+
+    @Override
+    public PlayerManager players() {
+        return playerManager;
     }
 
     public DeckManager deck() {
-        return deck;
+        return deckManager;
+    }
+
+    public DiscardPileManager discards() {
+        return discardPileManager;
     }
 
     public void shuffle() {
-        deck.shuffle(rand);
-    }
-
-    public Players players() {
-        return players;
+        deckManager.shuffle(rand);
     }
 
     @Override
     public long seed() {
         return seed;
-    }
-
-    public static LocalGameManager create() {
-        return new LocalGameManager();
-    }
-
-    public static LocalGameManager create(long seed) {
-        return new LocalGameManager(seed);
     }
 }
