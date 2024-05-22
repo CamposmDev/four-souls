@@ -18,7 +18,7 @@ public record ImageInfo (
     /* Gets the id of the image */
     public String id() {
         /* get the file name of the higher quality image */
-        var name = highResImgName();
+        var name = hiResImgName();
         /*  */
         final var extension1 = ".jpg";
         final var extension2 = ".png";
@@ -47,7 +47,7 @@ public record ImageInfo (
     /**
      * @return Name of the higher quality image file including its file extensions
      */
-    public String highResImgName() {
+    public String hiResImgName() {
         return hiResUrl.substring(hiResUrl.lastIndexOf('/') + 1);
     }
 
@@ -55,21 +55,21 @@ public record ImageInfo (
      * Name of the lower quality image file including its file extensions
      * @return
      */
-    public String lowResImgName() {
+    public String loResImgName() {
         return loResUrl.substring(loResUrl.lastIndexOf('/') + 1);
     }
 
     /**
      * @return Location of the high quality version of the image
      */
-    public String source1() {
-        return dir + highResImgName();
+    public String hiResSrc() {
+        return dir + hiResImgName();
     }
 
     /**
      * @return Location of the low quality version of the image
      */
-    public String source2() {
-        return dir + lowResImgName();
+    public String loResSrc() {
+        return dir + loResImgName();
     }
 }

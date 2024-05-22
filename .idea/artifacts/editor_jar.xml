@@ -2,7 +2,7 @@
   <artifact type="jar" name="editor:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/editor_jar</output-path>
     <root id="archive" name="editor.jar">
-      <element id="module-output" name="editor" />
+      <element id="module-output" name="editor-app" />
       <element id="module-output" name="model" />
       <element id="module-output" name="util" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/github/almasb/fxgl/21/fxgl-21.jar" path-in-jar="/" />

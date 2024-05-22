@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/editor/editor.iml" filepath="$PROJECT_DIR$/editor/editor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/auth-server.iml" filepath="$PROJECT_DIR$/auth-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/client/client-app.iml" filepath="$PROJECT_DIR$/client/client-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/editor/editor-app.iml" filepath="$PROJECT_DIR$/editor/editor-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/four-souls-online.iml" filepath="$PROJECT_DIR$/four-souls-online.iml" />
     </modules>
   </component>

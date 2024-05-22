@@ -9,12 +9,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="server" />
-        <module name="client" />
-        <module name="editor" />
-        <module name="model" />
+        <module name="game-server" />
         <module name="util" />
-        <module name="miser" />
+        <module name="auth-server" />
+        <module name="editor-app" />
+        <module name="miser-app" />
+        <module name="model" />
+        <module name="client-app" />
+        <module name="old-server" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

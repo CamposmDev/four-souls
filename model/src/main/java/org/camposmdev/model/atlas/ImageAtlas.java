@@ -6,11 +6,11 @@ public record ImageAtlas(
         Map<String, ImageInfo> images
 ) {
     public String source1(String key) {
-        return images.get(key).source1();
+        return images.get(key).hiResSrc();
     }
 
     public String source2(String key) {
-        return images.get(key).source2();
+        return images.get(key).loResSrc();
     }
 
     public boolean contains(String key) {

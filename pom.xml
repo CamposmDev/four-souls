@@ -15,14 +15,8 @@
     <dependencies>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-stdlib-jdk8</artifactId>
+            <artifactId>kotlin-stdlib</artifactId>
             <version>${kotlin.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-test</artifactId>
-            <version>${kotlin.version}</version>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -60,10 +54,11 @@
     <version>1.0.0</version>
     <modules>
         <module>model</module>
-        <module>miser</module>
+        <module>miser-app</module>
         <module>util</module>
-        <module>client</module>
+        <module>client-app</module>
+        <module>old-server</module>
+        <module>editor-app</module>
         <module>server</module>
-        <module>editor</module>
     </modules>
 </project>

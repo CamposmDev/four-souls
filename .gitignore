@@ -32,19 +32,18 @@ build/
 ### Mac OS ###
 .DS_Store
 
-# Output Files
+### Output Files ###
 out/
 target/
 logs/
 system/
 
-### DAT Files
+### DAT Files ###
 *.dat
 
 #### Node Modules ###
-server/src/main/js/node_modules
-server/src/main/js/cards.json
-server/src/main/js/package-lock.json
+old-server/src/main/js/node_modules
+old-server/src/main/js/cards.json
 
 ### VS Code ###
 .vscode/
