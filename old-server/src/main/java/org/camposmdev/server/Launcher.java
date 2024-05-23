@@ -8,11 +8,11 @@ import io.vertx.ext.web.handler.BodyHandler;
 import org.camposmdev.server.middleware.Auth;
 import org.camposmdev.server.model.WSAgent;
 import org.camposmdev.server.model.ClientRegistry;
-import org.camposmdev.server.router.GameRouter;
 import org.camposmdev.server.router.UserRouter;
 
 public class Launcher {
     static final int PORT = 4000;
+
     public static void main(String[] args) {
         Vertx v = Vertx.vertx();
         HttpServerOptions options = new HttpServerOptions();
@@ -34,6 +34,8 @@ public class Launcher {
                 c.request().toWebSocket().onSuccess(ws -> {
             var client = new WSAgent(userId, ws);
             ClientRegistry.get().add(client);
-        }));
+        })).onFailure(e ->{
+            c.response().setStatusCode(400).send();
+        });
     }
 }

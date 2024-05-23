@@ -8,7 +8,7 @@ import com.almasb.fxgl.dsl.*
 import javafx.scene.input.KeyCode
 import javafx.scene.paint.Color
 import org.camposmdev.client.entity.factory.FSEntityFactory
-import org.camposmdev.client.model.LocalGameManager
+import org.camposmdev.model.LocalGameManager
 import org.camposmdev.client.service.BoardPosition
 import org.camposmdev.client.service.EntityService
 import org.camposmdev.client.ui.scene.FSSceneFactory

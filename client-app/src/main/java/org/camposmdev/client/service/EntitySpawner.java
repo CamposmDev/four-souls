@@ -5,7 +5,7 @@ import com.almasb.fxgl.entity.SpawnData;
 import org.camposmdev.client.entity.EntityType;
 import org.camposmdev.client.entity.TextureButtonEntity;
 import org.camposmdev.client.entity.component.player.PlayerLootComponent;
-import org.camposmdev.client.model.LocalGameManager;
+import org.camposmdev.model.game.LocalGameManager;
 import org.camposmdev.model.card.loot.LootCard;
 import org.camposmdev.model.card.monster.BaseMonsterCard;
 import org.camposmdev.model.card.room.RoomCard;

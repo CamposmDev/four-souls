@@ -6,11 +6,12 @@ import javafx.util.Duration;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 
-public class CardViewer implements View {
+public class CardPreviewer implements View {
 	private static final float SCALE = 2.75f;
+	private static final float FADE_DURATION = 200;
 	private Texture texture;
 
-	private CardViewer() {
+	private CardPreviewer() {
 		texture = null;
 	}
 
@@ -27,7 +28,7 @@ public class CardViewer implements View {
 		var y = getAppHeight()/2d - texture.getFitHeight()/2d;
 		addUINode(texture, x, y);
 		animationBuilder()
-				.duration(Duration.millis(200))
+				.duration(Duration.millis(FADE_DURATION))
 				.fadeIn(texture)
 				.buildAndPlay();
 	}
@@ -37,7 +38,7 @@ public class CardViewer implements View {
 		if (texture != null) {
 			animationBuilder()
 					.onFinished(() -> removeUINode(texture))
-					.duration(Duration.millis(200))
+					.duration(Duration.millis(FADE_DURATION))
 					.fadeOut(texture)
 					.buildAndPlay();
 		}
@@ -48,10 +49,10 @@ public class CardViewer implements View {
 		return texture;
 	}
 
-	private static CardViewer singleton;
+	private static CardPreviewer singleton;
 
-	public static CardViewer instance() {
-		if (singleton == null) singleton = new CardViewer();
+	public static CardPreviewer instance() {
+		if (singleton == null) singleton = new CardPreviewer();
 		return singleton;
 	}
 }

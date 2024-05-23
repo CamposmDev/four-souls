@@ -5,7 +5,7 @@ import com.almasb.fxgl.time.TimerAction;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 import org.camposmdev.client.entity.component.card.CardRenderer;
-import org.camposmdev.client.ui.view.CardViewer;
+import org.camposmdev.client.ui.view.CardPreviewer;
 import org.camposmdev.model.card.BaseCard;
 
 import java.util.concurrent.atomic.AtomicReference;
@@ -23,21 +23,22 @@ public class EntityEvents {
 
     /**
      * Adds an event mouse hover handler to preview a card's higher
-     * quality image version using {@link CardViewer} to display it.
+     * quality image version using {@link CardPreviewer} to display it.
      * @param arg0 The card to preview its higher quality image.
      */
     public <T extends BaseCard> void add_onMouseHover_Preview(CardRenderer<T> arg0) {
         Texture texture = arg0.hiResTexture();
 		AtomicReference<TimerAction> timer = new AtomicReference<>();
+        final var HOVER_DURATION = 550;
         arg0.texture().addEventHandler(MouseEvent.MOUSE_ENTERED, event -> {
             timer.set(getGameTimer().runOnceAfter(() -> {
-                CardViewer.instance().setTexture(texture);
-                CardViewer.instance().render();
-            }, Duration.millis(750)));
+                CardPreviewer.instance().setTexture(texture);
+                CardPreviewer.instance().render();
+            }, Duration.millis(HOVER_DURATION)));
         });
         arg0.texture().addEventHandler(MouseEvent.MOUSE_EXITED, event -> {
             timer.get().expire();
-            CardViewer.instance().dispose();
+            CardPreviewer.instance().dispose();
         });
     }
 

@@ -3,7 +3,7 @@ package org.camposmdev.client.entity.component.player;
 import com.almasb.fxgl.entity.component.Component;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.ObservableList;
-import org.camposmdev.client.model.LocalGameManager;
+import org.camposmdev.model.game.LocalGameManager;
 import org.camposmdev.model.card.character.CharacterCard;
 import org.camposmdev.model.card.eternal.EternalCard;
 import org.camposmdev.model.card.loot.LootCard;
