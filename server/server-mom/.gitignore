@@ -1,0 +1,24 @@
+### VSCode ###
+.vscode/*
+
+### Yarn ###
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+### Yarn Cache ###
+.pnp.*
+
+### Environment Variables ###
+.env
+
+node_modules
+dist
+out
+.DS_Store
+*.log*
+volumes
+coverage
