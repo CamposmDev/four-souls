@@ -5,7 +5,7 @@ import * as dotenv from "dotenv"
 dotenv.config()
 
 /* initialize port */
-const PORT: number = process.env.PORT ? Number(process.env.PORT) : 4000
+const PORT: number = process.env.API_PORT ? Number(process.env.API_PORT) : 4000
 
 /* initialize server */
 const server = build()

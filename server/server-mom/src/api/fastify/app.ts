@@ -21,6 +21,7 @@ export default function build(): FastifyInstance {
             },
             crlf: false,
         },
+        
         disableRequestLogging: true,
         caseSensitive: true
     })

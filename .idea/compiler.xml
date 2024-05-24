@@ -12,7 +12,6 @@
         <module name="util" />
         <module name="editor-app" />
         <module name="miser-app" />
-        <module name="server-mom" />
         <module name="model" />
         <module name="client-app" />
         <module name="server-basement" />
@@ -25,6 +24,7 @@
       <module name="core-lib" target="17" />
       <module name="game-server" target="21" />
       <module name="res-raiders" target="17" />
+      <module name="server-mom" target="21" />
     </bytecodeTargetLevel>
   </component>
 </project>

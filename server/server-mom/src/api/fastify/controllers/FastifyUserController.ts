@@ -18,13 +18,17 @@ export default class FastifyUserController {
             username: body.username,
             password: passwordHash
         })
-        const token = auth.signJWT({userId: 'hellothere'})
-        res.setCookie('token', token, {
-            path: '/',
-            secure: true,
-            httpOnly: true,
-            sameSite: true
-        }).send({result: user})
+        if (user) {
+            const token = auth.signJWT({userId: user.id})
+            res.setCookie('token', token, {
+                path: '/',
+                secure: true,
+                httpOnly: true,
+                sameSite: true
+            }).send({result: user})
+        } else {
+            res.status(500).send()
+        }
     }
 
     public async getById(

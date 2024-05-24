@@ -20,5 +20,6 @@ export default class UserRequestValidator {
         if (await db.user.isUsernameTaken(body.username))
             return res.status(400).send({message: `Email '${body.username}' is already taken`})
         done()
+        return res
     }
 }
