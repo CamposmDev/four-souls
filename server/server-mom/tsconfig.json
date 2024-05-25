@@ -14,8 +14,7 @@
         "skipLibCheck": true,
         "baseUrl": "./src",
         "paths": {
-            "types/*": ["api/types/*"],
-            "helper/*": ["api/util/*"]
+            "types/*": ["api/types/*"]
         }
     },
     "include": ["src/**/*.ts"],

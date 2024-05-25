@@ -10,11 +10,33 @@ datasource db {
 }
 
 model User {
-    id          String  @id @default(auto()) @map("_id") @db.ObjectId
-    email       String  @db.String
-    username    String  @db.String
-    password    String  @db.String
+    id          String      @id @default(auto()) @map("_id") @db.ObjectId
+    email       String      @db.String
+    username    String      @db.String
+    password    String      @db.String
+    createdAt   DateTime    @default(now()) @db.Date
+    updatedAt   DateTime    @updatedAt      @db.Date
     @@map("users")
-    @@unique([email, username], map: "emailUsername")
+    @@unique([email, username])
     @@index([username])
+}
+
+model Basement {
+    id          String      @id @default(auto()) @map("_id") @db.ObjectId
+    floor       String      @db.String
+    level       String      @db.String
+    occupied    Boolean     @db.Bool @default(false)
+    createdAt   DateTime    @default(now()) @db.Date
+    @@map("basements")
+    @@unique([floor, level])
+}
+
+model Chest {
+    id          String      @id @default(auto()) @map("_id") @db.ObjectId
+    location    String      @db.String
+    gate        String      @db.String
+    locked      Boolean     @db.Bool @default(false)
+    createdAt   DateTime    @default(now()) @db.Date
+    @@map("chests")
+    @@unique([location, gate])
 }

@@ -1,13 +1,10 @@
 import FastifyJWTAuth from "./FastifyJWTAuth";
-import BcryptUtil from "./BcryptUtil";
-import { RequestValidator } from "./validator";
+import { RequestValidator } from "./validate";
 
 const auth = new FastifyJWTAuth()
-const validator = new RequestValidator()
-const crypt = new BcryptUtil()
+const validate = new RequestValidator()
 
 export {
     auth,
-    validator,
-    crypt
+    validate
 }

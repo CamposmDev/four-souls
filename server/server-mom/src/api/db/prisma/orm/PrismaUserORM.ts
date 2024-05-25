@@ -15,6 +15,22 @@ export default class PrismaUserORM implements UserORM {
         return user
     }
 
+    public async getById(id: string): Promise<User> {
+        const user = await this._prisma.user.findUniqueOrThrow({
+            where: { id : id }
+        })
+        return user
+    }
+
+    public async getByUsername(username: string): Promise<User> {
+        const user = await this._prisma.user.findFirstOrThrow({
+            where: {
+                username: username
+            }
+        })
+        return user
+    }
+
     public async isEmailTaken(email: string): Promise<Boolean> {
         const user = await this._prisma.user.findFirst({
             where: {
