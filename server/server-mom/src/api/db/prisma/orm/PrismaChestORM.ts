@@ -20,6 +20,33 @@ export default class PrismaChestORM implements ChestORM {
         return chest
     }
 
+    public async exists(chestId: string): Promise<Boolean> {
+        const chest: Chest | null = await this.prisma.chest.findUnique({
+            where: {
+                id: chestId
+            }
+        })
+        return Boolean(chest)
+    }
+
+    public async unlock(chestId: string, key: string): Promise<Boolean> {
+        /* throws exception if record not found */
+        try {
+            await this.prisma.chest.update({
+                where: {
+                    id: chestId,
+                    key: key
+                },
+                data: {
+                    locked: false
+                }
+            })
+            return true
+        } catch (err: any) {
+            return false
+        }
+    }
+
     public async host(): Promise<Chest | null> {
         /* find a chest that is not locked */
         const chest: Chest | null = await this.prisma.chest.findFirst({
@@ -37,8 +64,8 @@ export default class PrismaChestORM implements ChestORM {
         return chest
     }
 
-    public async join(chestId: string): Promise<Chest | null> {
-        const chest = await this.prisma.chest.findUnique({
+    public async join(chestId: string): Promise<Chest> {
+        const chest = await this.prisma.chest.findUniqueOrThrow({
             where: {
                 id: chestId
             }

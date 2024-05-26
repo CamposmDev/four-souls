@@ -1,4 +1,4 @@
-import { $Enums, Prisma } from "@prisma/client"
+import { $Enums } from "@prisma/client"
 
 export type CreateUserBodyRes = {
     id: string,

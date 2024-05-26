@@ -1,119 +1,40 @@
 import { FastifyInstance, LightMyRequestResponse } from "fastify"
 import build from "../fastify/app"
 import { $Enums, PrismaClient, User } from "@prisma/client"
-import { CreateUserBodyRes, HostBasementBodyRes, LoginUserBodyRes } from "types/response"
-import { execPath } from "process"
+import { CreateUserBodyRes, HostBasementBodyRes, JoinBasementBodyRes, LoginUserBodyRes } from "types/response"
+import AppDecorator from "./util/AppDecorator"
+import PrismaDecorator from "./util/PrismaDecorator"
 
-let api: FastifyInstance
-let prisma: PrismaClient
+let app: AppDecorator
+let prisma: PrismaDecorator
 
 const testEmail0 = "example@email.com"
 const testUsername0 = "Camposm"
 const testPassword0 = "supersecret"
-const testEmail1 = "sample@email.com"
+const testEmail1 = "dozer@email.com"
 const testUsername1 = "Dozer"
 const testPassword1 = "supersecret"
-const JWT: string = 'token'
+const JWT = 'token'
 const testBasementIp1 = "localhost"
 const testBasementPort0 = 3000
 
-export async function createUser(email: string, username: string, password: string): Promise<LightMyRequestResponse> {
-    const res = await api.inject({
-        method: "POST",
-        url: "/api/user",
-        body: {
-            email: email,
-            username: username,
-            password: password
-        }
-    })
-    return res
-}
-
 async function createUser0(): Promise<LightMyRequestResponse> {
-    return await createUser(testEmail0, testUsername0, testPassword0)
+    return await app.createUser(testEmail0, testUsername0, testPassword0)
 }
 
-async function setUserAdmin(userId: string): Promise<User> {
-    const user: User = await prisma.user.update({
-        where: {
-            id: userId
-        },
-        data: {
-            role: $Enums.Role.ADMIN
-        }
-    })
-    return user
-}
-
-async function loginUser(username: string, password: string): Promise<LightMyRequestResponse> {
-    const res = await api.inject({
-        method: "POST",
-        url: "/api/user/login",
-        body: {
-            username: username,
-            password: password
-        }
-    })
-    return res
-}
-
-async function deleteUserByUsername(username: string) {
-    await prisma.user.deleteMany({
-        where: {
-            username: username
-        }
-    })
-}
-
-async function createBasement(ip: string, port: number, token: string): Promise<LightMyRequestResponse> {
-    const res = await api.inject({
-        method: "POST",
-        url: "/api/basement",
-        body: {
-            ip: ip,
-            port: port
-        },
-        headers: {
-            cookie: `token=${token}`
-        }
-    })
-    return res
-}
-
-async function hostBasement(token: string): Promise<LightMyRequestResponse> {
-    const res = await api.inject({
-        method: "POST",
-        url: "/api/basement/host",
-        headers: {
-            cookie: `token=${token}`
-        }
-    })
-    return res
-}
-
-async function deleteBasementByIpAndPort(ip: string, port: number) {
-    await prisma.basement.deleteMany({
-        where:{
-            floor: ip,
-            level: port
-        }
-    })
+async function createUser1() {
+    return await app.createUser(testEmail1, testUsername1, testPassword1)
 }
 
 beforeAll(async () => {
-    api = build("silent")
-    prisma = new PrismaClient()
+    app = new AppDecorator(build("silent"))
+    prisma = new PrismaDecorator(new PrismaClient())
 })
 
 describe("User Module", () => {    
     describe("Create User End Point", () => {
         afterEach(async () => {
-            await prisma.user.deleteMany({
-                where: {
-                    username: testUsername0
-                }
-            })
+            await prisma.deleteUserByUsername(testUsername0)
         })
         test("Correct Result", async () => {
             const res = await createUser0()
@@ -126,7 +47,7 @@ describe("User Module", () => {
 
         test("Duplicate Email", async() => {
             await createUser0()
-            const res = await createUser(testEmail0, "Camposm1", testPassword0)
+            const res = await app.createUser(testEmail0, "Camposm1", testPassword0)
             expect(res.statusCode).toBe(400)
             const body = JSON.parse(res.body)
             expect(body).toBeDefined()
@@ -135,7 +56,7 @@ describe("User Module", () => {
 
         test("Duplicate Username", async () => {
             await createUser0()
-            const res = await createUser("example1@email.com", testUsername0, testPassword0)
+            const res = await app.createUser("example1@email.com", testUsername0, testPassword0)
             expect(res.statusCode).toBe(400)
             const body = JSON.parse(res.body)
             expect(body).toBeDefined()
@@ -143,7 +64,7 @@ describe("User Module", () => {
         })
 
         test("Invalid Password", async () => {
-            const res = await createUser(testEmail0, testUsername0, "secret")
+            const res = await app.createUser(testEmail0, testUsername0, "secret")
             expect(res.statusCode).toBe(400)
             const body = JSON.parse(res.body)
             expect(body).toBeDefined()
@@ -153,11 +74,11 @@ describe("User Module", () => {
 
     describe("Login User End Point", () => {
         afterEach(async () => {
-            await deleteUserByUsername(testUsername0)
+            await prisma.deleteUserByUsername(testUsername0)
         })
         test("Correct Result", async () => {
             await createUser0()
-            const res = await loginUser(testUsername0, testPassword0)
+            const res = await app.loginUser(testUsername0, testPassword0)
             expect(res.statusCode).toBe(200)
             const body = JSON.parse(res.body) as LoginUserBodyRes
             expect(body).toBeDefined()
@@ -171,31 +92,35 @@ describe("User Module", () => {
     })
 
     describe("Logout User End Point", () => {
-
+        /* TODO - implement me */
     })
 })
 
 describe("Basement Module", () => {
     beforeAll(async () => {
+        /* create user 0 and set as admin */
         const res = await createUser0();
         const body = JSON.parse(res.body)
-        await setUserAdmin(body.id)
+        await prisma.setUserAdmin(body.id)
+        /* create user 1 */
+        await createUser1()
     })
 
     afterAll(async () => {
-        await deleteUserByUsername(testUsername0)
-    })
-
-    afterEach(async () => {
-        await deleteBasementByIpAndPort(testBasementIp1, testBasementPort0)
+        await prisma.deleteUserByUsername(testUsername0)
+        await prisma.deleteUserByUsername(testUsername1)
     })
     
     describe("Create Basement End Point", () => {
+        afterEach(async () => {
+            /* delete basement after each test */
+            await prisma.deleteBasementByIpPort(testBasementIp1, testBasementPort0)
+        })
         test("Correct Result", async () => {
-            const loginRes = await loginUser(testUsername0, testPassword0)
+            const loginRes = await app.loginUser(testUsername0, testPassword0)
             const token = loginRes.cookies.find(x => x.name === JWT)
             if (!token) throw Error("Missing JWT")
-            const res = await createBasement(testBasementIp1, testBasementPort0, token.value)
+            const res = await app.createBasement(testBasementIp1, testBasementPort0, token.value)
             expect(res.statusCode).toBe(201)
             const body = JSON.parse(res.body)
             expect(body).toBeDefined()
@@ -204,12 +129,16 @@ describe("Basement Module", () => {
     })
 
     describe("Host Basement End Point", () => {
+        afterEach(async () => {
+            /* delete basement after each test */
+            await prisma.deleteBasementByIpPort(testBasementIp1, testBasementPort0)
+        })
         test("Correct Result", async () => {
-            const loginRes = await loginUser(testUsername0, testPassword0)
+            const loginRes = await app.loginUser(testUsername0, testPassword0)
             const token = loginRes.cookies.find(x => x.name === JWT)
             if (!token) throw Error("Missing JWT")
-            await createBasement(testBasementIp1, testBasementPort0, token.value)
-            const res = await hostBasement(token.value);
+            await app.createBasement(testBasementIp1, testBasementPort0, token.value)
+            const res = await app.hostBasement(token.value);
             expect(res.statusCode).toBe(200)
             const body = JSON.parse(res.body) as HostBasementBodyRes
             expect(body).toBeDefined()
@@ -222,6 +151,41 @@ describe("Basement Module", () => {
     
 
     describe("Join Basement End Point", () => {
+        beforeAll(async () => {
+            /* create basement */
+            const loginRes = await app.loginUser(testUsername0, testPassword0)
+            const token = loginRes.cookies.find(x => x.name === JWT)
+            if (!token) throw new Error("Missing JWT")
+            await app.createBasement(testBasementIp1, testBasementPort0, token.value)
+        })
 
+        afterAll(async () => {
+            /* delete basement */
+            await prisma.deleteBasementByIpPort(testBasementIp1, testBasementPort0)
+        })
+
+        test("Correct Result", async() => {
+            /* login as user0 */
+            const loginRes0 = await app.loginUser(testUsername0, testPassword0)
+            const token0 = loginRes0.cookies.find(x => x.name === JWT)
+            if (!token0) throw Error("Missing JWT")
+            /* request to host a basement */
+            const hostRes0 = await app.hostBasement(token0.value)
+            const hostBody0 = JSON.parse(hostRes0.body) as HostBasementBodyRes
+            /* acquire basementId */
+            const basementId = hostBody0.id
+            /* login as user1 */
+            const loginRes1 = await app.loginUser(testUsername1, testPassword1)
+            const token1 = loginRes1.cookies.find(x => x.name === JWT)
+            if (!token1) throw Error("Missing JWT")
+            /* request to join a basement */
+            const joinRes1 = await app.joinBasement(basementId, token1.value)
+            expect(joinRes1.statusCode).toBe(200)
+            const joinBody1 = JSON.parse(joinRes1.body) as JoinBasementBodyRes
+            expect(joinBody1).toBeDefined()
+            expect(joinBody1.id).toBeDefined()
+            expect(joinBody1.floor).toBeDefined()
+            expect(joinBody1.level).toBeDefined()
+        })
     })
 })

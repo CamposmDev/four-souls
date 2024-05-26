@@ -1,3 +1,3 @@
-export * from "./user"
-export * from "./basement"
-export * from "./chest"
+export * from "./UserResponse"
+export * from "./BasementResponse"
+export * from "./ChestResponse"

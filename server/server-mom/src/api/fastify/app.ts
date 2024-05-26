@@ -2,7 +2,6 @@ import fastify, { FastifyInstance } from "fastify";
 import { ApiPlugin } from "./plugins";
 import { db } from "../db/prisma";
 
-
 export default function build(level: string): FastifyInstance {
     const app = fastify({
         logger: {
