@@ -2,7 +2,7 @@ import { FastifyReply, FastifyRequest } from "fastify";
 import { CreateUserBodyReq, LoginUserBodyReq } from "types/requests";
 import { auth } from "../hooks";
 import { bcrypt } from "../../util";
-import db from "../../db";
+import { db } from "../../db/prisma";
 import { CreateUserBodyRes, GetUserByIdBodyRes, LoginUserBodyRes } from "types/response";
 
 export default class FastifyUserController {
@@ -28,8 +28,9 @@ export default class FastifyUserController {
             path: '/',
             secure: true,
             httpOnly: true,
-            sameSite: true
-        }).send(json)
+            sameSite: true,
+            maxAge: (60*60*24*3)
+        }).status(201).send(json)
     }
 
     public async getById(
@@ -38,13 +39,16 @@ export default class FastifyUserController {
     ) {
         const params = req.params as {id: string}
         const user = await db.user.getById(params.id)
-        const json: GetUserByIdBodyRes = {
-            id: user.id,
-            username: user.username,
-            createdAt: user.createdAt,
-            updatedAt: user.updatedAt
-        }
-        res.send(json)
+        if (user) {
+            const json: GetUserByIdBodyRes = {
+                id: user.id,
+                username: user.username,
+                role: user.role,
+                createdAt: user.createdAt,
+                updatedAt: user.updatedAt
+            }
+            res.send(json)
+        } else res.status(404).send({message: "User not found"})
     }
 
     public async login(
@@ -69,5 +73,9 @@ export default class FastifyUserController {
         } else {
             res.status(400).send({message: "Incorrect password. Please try again."})
         }
+    }
+
+    public async logout(req: FastifyRequest, res: FastifyReply) {
+        res.clearCookie('token')
     }
 }

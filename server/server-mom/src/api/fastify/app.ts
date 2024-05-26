@@ -1,13 +1,12 @@
 import fastify, { FastifyInstance } from "fastify";
 import { ApiPlugin } from "./plugins";
-import fastifyRequestLogger from "@mgcrea/fastify-request-logger";
-import db from "../db";
+import { db } from "../db/prisma";
 
 
-export default function build(): FastifyInstance {
+export default function build(level: string): FastifyInstance {
     const app = fastify({
         logger: {
-            level: "debug",
+            level: level,
             timestamp: true,
             transport: {
                 target: "@mgcrea/pino-pretty-compact",
@@ -21,13 +20,10 @@ export default function build(): FastifyInstance {
             },
             crlf: false,
         },
-        
         disableRequestLogging: true,
         caseSensitive: true
     })
-    
-    app.register(fastifyRequestLogger)
-    app.register(ApiPlugin)
+    app.register(ApiPlugin, {prefix: "/api"})
     app.addHook("onClose", async(it) => {
         db.disconnect()
     })

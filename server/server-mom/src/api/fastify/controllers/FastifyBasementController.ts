@@ -1,22 +1,30 @@
 import { FastifyReply, FastifyRequest } from "fastify";
-import { auth } from "../hooks";
-import db from "../../db";
-import { cipher } from "../../util";
+import { db } from "../../db/prisma";
 import { HostBasementBodyRes, JoinBasementBodyRes } from "types/response/basement";
 
-export default class FastifyLobbyController {
+export default class FastifyBasementController {
+    public async create(req: FastifyRequest, res: FastifyReply) {
+        const body = req.body as { ip: string, port: number }
+        const basement = await db.basement.create(body.ip, body.port)
+        if (basement) {
+            res.status(201).send({message: "Created Basement"})
+        } else {
+            throw new Error("Create Basement: Failed")
+        }
+    }
+
     public async host(req: FastifyRequest, res: FastifyReply) {
-        const token = await req.jwtDecode() as {userId: string}
         const basement = await db.basement.host()
         if (basement) {
             const json: HostBasementBodyRes = {
                 id: basement.id,
-                floor: cipher.decrypt(basement.floor),
-                level: cipher.decrypt(basement.level)
+                key: basement.key,
+                floor: basement.floor,
+                level: basement.level
             }
             res.status(200).send(json)
         } else {
-            res.status(503).send({messge: "No Available Basements"})
+            res.status(503).send({message: "No Available Basements"})
         }
     }
 
@@ -26,8 +34,8 @@ export default class FastifyLobbyController {
         if (basement) {
             const json: JoinBasementBodyRes = {
                 id: basement.id,
-                floor: cipher.decrypt(basement.floor),
-                level: cipher.decrypt(basement.level)
+                floor: basement.floor,
+                level: basement.level
             }
             res.status(200).send(json)
         } else {

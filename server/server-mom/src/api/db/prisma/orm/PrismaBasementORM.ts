@@ -1,23 +1,28 @@
-import { Basement, Prisma, PrismaClient } from "@prisma/client";
+import { Basement, PrismaClient } from "@prisma/client";
+import { cipher } from "../../../util";
 import { BasementORM } from "types/database";
 
 export default class PrismaBasementORM implements BasementORM {
-    private _prisma: PrismaClient
+    private prisma: PrismaClient
 
     constructor(prisma: PrismaClient) {
-        this._prisma = prisma
+        this.prisma = prisma
     }
 
-    public async create(data: Prisma.BasementCreateInput): Promise<Basement> {
-        const basement = await this._prisma.basement.create({
-            data: data
+    public async create(floor: string, level: number): Promise<Basement> {
+        const basement = await this.prisma.basement.create({
+            data: {
+                key: cipher.generate(),
+                floor: floor,
+                level: level
+            }
         })
         return basement
     }
 
     public async host(): Promise<Basement | null> {
         /* find a basement that is not occupied */
-        const basement: Basement | null = await this._prisma.basement.findFirst({
+        const basement: Basement | null = await this.prisma.basement.findFirst({
             where: {
                 occupied: false
             }
@@ -25,18 +30,15 @@ export default class PrismaBasementORM implements BasementORM {
         /* if such a basement exists, delete it and create a new basement with its fields */
         if (basement) {
             await this.deleteById(basement.id)
-            const basementNew = await this.create({
-                floor: basement.floor,
-                level: basement.level,
-                occupied: true
-            })
+            const basementNew = await this.create(basement.floor, basement.level)
             return basementNew
         }
-        return null
+        /* otherwise no basements are available */
+        return basement
     }
 
     public async join(basementId: string): Promise<Basement | null> {
-        const basement: Basement | null = await this._prisma.basement.findUnique({
+        const basement: Basement | null = await this.prisma.basement.findUnique({
             where: {
                 id: basementId
             }
@@ -45,7 +47,7 @@ export default class PrismaBasementORM implements BasementORM {
     }
 
     public async deleteById(basementId: string): Promise<Basement | null> {
-        const basement: Basement | null = await this._prisma.basement.delete({
+        const basement: Basement | null = await this.prisma.basement.delete({
             where: {
                 id: basementId
             }

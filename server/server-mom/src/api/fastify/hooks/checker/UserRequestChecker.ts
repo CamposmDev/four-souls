@@ -1,10 +1,11 @@
 import { CreateUserBodyReq, LoginUserBodyReq } from "types/requests";
-import db from "../../../db";
+import { db } from "../../../db/prisma";
 import { FastifyReply, FastifyRequest } from "fastify";
+import { ObjectId } from "mongodb";
 
 const PWD_LEN = 7
 
-export default class UserRequestValidator {
+export default class UserRequestChecker {
     public async create(req: FastifyRequest, res: FastifyReply, done: (err?: Error | undefined) => void) {
         const body = req.body as CreateUserBodyReq
         if (!body.email)
@@ -36,6 +37,16 @@ export default class UserRequestValidator {
         if (!(await db.user.isUsernameTaken(body.username))) {
             return res.status(400).send({message: `Username not found. Please check and try again.`})
         }
+        done()
+        return res
+    }
+
+    public async getById(req: FastifyRequest, res: FastifyReply, done: (err?: Error | undefined) => void) {
+        const params = req.params as { id: string }
+        if (!params.id)
+            return res.status(400).send({message: "Missing 'id' param"})
+        if (!ObjectId.isValid(params.id))
+            return res.status(400).send({message: "Invalid 'id' param"})
         done()
         return res
     }

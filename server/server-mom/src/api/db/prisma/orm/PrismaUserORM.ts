@@ -2,28 +2,28 @@ import { Prisma, PrismaClient, User } from "@prisma/client";
 import { UserORM } from "api/types";
 
 export default class PrismaUserORM implements UserORM {
-    private _prisma: PrismaClient
+    private prisma: PrismaClient
 
     constructor(prisma: PrismaClient) {
-        this._prisma = prisma
+        this.prisma = prisma
     }
 
     public async create(data: Prisma.UserCreateInput): Promise<User> {
-        const user = await this._prisma.user.create({
+        const user = await this.prisma.user.create({
             data: data
         })
         return user
     }
 
-    public async getById(id: string): Promise<User> {
-        const user = await this._prisma.user.findUniqueOrThrow({
+    public async getById(id: string): Promise<User | null> {
+        const user = await this.prisma.user.findUnique({
             where: { id : id }
         })
         return user
     }
 
     public async getByUsername(username: string): Promise<User> {
-        const user = await this._prisma.user.findFirstOrThrow({
+        const user = await this.prisma.user.findFirstOrThrow({
             where: {
                 username: username
             }
@@ -32,7 +32,7 @@ export default class PrismaUserORM implements UserORM {
     }
 
     public async isEmailTaken(email: string): Promise<Boolean> {
-        const user = await this._prisma.user.findFirst({
+        const user = await this.prisma.user.findFirst({
             where: {
                 email: email
             }
@@ -41,11 +41,29 @@ export default class PrismaUserORM implements UserORM {
     }
 
     public async isUsernameTaken(username: string): Promise<Boolean> {
-        const user = await this._prisma.user.findFirst({
+        const user = await this.prisma.user.findFirst({
             where: {
                 username: username
             }
         })
         return Boolean(user)
+    }
+
+    public async deleteById(userId: string): Promise<User | null> {
+        const user: User | null = await this.prisma.user.delete({
+            where: {
+                id: userId
+            }
+        })
+        return user
+    }
+
+    public async deleteByUsername(username: string): Promise<User | null> {
+        const user: User | null = await this.prisma.user.delete({
+            where: {
+                username: username
+            }
+        })
+        return user
     }
 }

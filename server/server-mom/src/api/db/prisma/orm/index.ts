@@ -1,5 +1,9 @@
 import PrismaUserORM from "./PrismaUserORM";
+import PrismaBasementORM from "./PrismaBasementORM";
+import PrismaChestORM from "./PrismaChestORM";
 
 export {
-    PrismaUserORM
+    PrismaUserORM,
+    PrismaBasementORM,
+    PrismaChestORM
 }

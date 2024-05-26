@@ -1,10 +1,10 @@
 import FastifyJWTAuth from "./FastifyJWTAuth";
-import { RequestValidator } from "./validate";
+import { RequestChecker } from "./checker";
 
 const auth = new FastifyJWTAuth()
-const validate = new RequestValidator()
+const checker = new RequestChecker()
 
 export {
     auth,
-    validate
+    checker
 }

@@ -14,17 +14,19 @@ model User {
     email       String      @db.String
     username    String      @db.String
     password    String      @db.String
+    role        Role        @default(USER)
     createdAt   DateTime    @default(now()) @db.Date
     updatedAt   DateTime    @updatedAt      @db.Date
     @@map("users")
-    @@unique([email, username])
-    @@index([username])
+    @@unique([email])
+    @@unique([username])
 }
 
 model Basement {
     id          String      @id @default(auto()) @map("_id") @db.ObjectId
+    key         String      
     floor       String      @db.String
-    level       String      @db.String
+    level       Int         @db.Int
     occupied    Boolean     @db.Bool @default(false)
     createdAt   DateTime    @default(now()) @db.Date
     @@map("basements")
@@ -33,10 +35,16 @@ model Basement {
 
 model Chest {
     id          String      @id @default(auto()) @map("_id") @db.ObjectId
+    key         String      
     location    String      @db.String
-    gate        String      @db.String
+    gate        Int         @db.Int
     locked      Boolean     @db.Bool @default(false)
     createdAt   DateTime    @default(now()) @db.Date
     @@map("chests")
     @@unique([location, gate])
+}
+
+enum Role {
+    USER
+    ADMIN
 }

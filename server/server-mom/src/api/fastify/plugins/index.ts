@@ -1,9 +1,12 @@
 import ApiPlugin from "./ApiPlugin";
 import UserPlugin from "./UserPlugin";
-import MiddlewarePlugin from "./MiddlewarePlugin";
+import BasementPlugin from "./BasementPlugin";
+import ChestPlugin from "./ChestPlugin";
 
 export {
     ApiPlugin,
     UserPlugin,
-    MiddlewarePlugin
+    BasementPlugin,
+    ChestPlugin,
+
 }
