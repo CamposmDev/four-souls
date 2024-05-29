@@ -10,6 +10,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="util" />
+        <module name="server-chest" />
         <module name="editor-app" />
         <module name="miser-app" />
         <module name="model" />

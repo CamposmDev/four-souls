@@ -9,7 +9,7 @@ import io.vertx.core.json.DecodeException;
 import io.vertx.core.json.JsonObject;
 import org.camposmdev.client.model.Model;
 import org.camposmdev.model.net.BusEvent;
-import org.camposmdev.model.net.MType;
+import org.camposmdev.model.net.message.MType;
 
 class FSWebSocket {
     private static final String WS_ROUTE = "/ws";

@@ -1,14 +1,15 @@
-package org.camposmdev.server.game
+package org.camposmdev.server.basement
 
 import io.vertx.core.Vertx
 import io.vertx.core.http.HttpServerOptions
-import org.camposmdev.server.game.model.ClientRegistry
-import org.camposmdev.server.game.vertx.WSClient
+import org.camposmdev.server.basement.model.LobbyClient
+import org.camposmdev.server.basement.model.LobbyRegistry
 
-class GameServerApp {
+class BasementServerApp {
     companion object {
-        private const val PORT = 5000
+        private const val PORT = 7000
         private const val N_CLIENTS = 4
+
         @JvmStatic
         fun main(args: Array<String>) {
             val vertx = Vertx.vertx()
@@ -16,11 +17,17 @@ class GameServerApp {
             options.port = PORT
             val server = vertx.createHttpServer(options)
             server.webSocketHandler {
-                if (ClientRegistry.size() > N_CLIENTS) {
+                if (LobbyRegistry.isEmpty()) {
+                    /* mark client as host */
+                    val client = LobbyClient(it, true)
+                    LobbyRegistry.add(client)
+                    LobbyRegistry.hostId = client.id()
+                    println("Updated Host: ${LobbyRegistry.hostId}")
+                } else if (LobbyRegistry.size() > N_CLIENTS) {
                     it.reject()
                 } else {
-                    val client = WSClient(it)
-                    ClientRegistry.add(client)
+                    val client = LobbyClient(it)
+                    LobbyRegistry.add(client)
                 }
             }
             server.listen().onSuccess {

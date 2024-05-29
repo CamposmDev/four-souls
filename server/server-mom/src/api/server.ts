@@ -5,7 +5,8 @@ import * as dotenv from "dotenv"
 dotenv.config()
 
 /* initialize port */
-const PORT: number = process.env.API_PORT ? Number(process.env.API_PORT) : 4000
+const DEFAULT_PORT = 5000
+const PORT: number = process.env.API_PORT ? Number(process.env.API_PORT) : DEFAULT_PORT
 
 /* initialize server */
 const LEVEL = "debug"
