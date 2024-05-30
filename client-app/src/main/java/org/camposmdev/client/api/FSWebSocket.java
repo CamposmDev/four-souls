@@ -56,8 +56,8 @@ class FSWebSocket {
             this.notifySubscribers(BusEvent.GLOBAL_CHAT, payload);
         }
         /* notify lobby controller */
-        else if (arg.containsKey(MType.L_CHAT.name())) {
-            var msg = arg.getJsonObject(MType.L_CHAT.name());
+        else if (arg.containsKey(MType.LOCAL_CHAT.name())) {
+            var msg = arg.getJsonObject(MType.LOCAL_CHAT.name());
             var username = msg.getString("username");
             var message = msg.getString("message");
             var payload = String.format("[%s]: %s\n", username, message);
@@ -101,7 +101,7 @@ class FSWebSocket {
                 "gameId", gameId,
                 "userId", userId,
                 "message", message);
-        var obj = JsonObject.of(MType.L_CHAT.name(), payload);
+        var obj = JsonObject.of(MType.LOCAL_CHAT.name(), payload);
         ws.writeTextMessage(obj.toString());
     }
 

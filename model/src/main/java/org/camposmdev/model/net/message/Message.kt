@@ -9,7 +9,8 @@ object Message {
         return JsonObject.of("mtype", MType.ERROR, "payload", payload).toString()
     }
 
-    fun localChat(message: String): String {
-        throw Exception()
+    fun localChat(userId: String, message: String): String {
+        val payload = Payload.local_chat(userId, message)
+        return JsonObject.of("mtype", MType.LOCAL_CHAT,"payload", payload).toString()
     }
 }

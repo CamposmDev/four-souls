@@ -5,9 +5,9 @@ import org.camposmdev.model.net.ClientRegistry
 object LobbyRegistry : ClientRegistry<LobbyClient>() {
     var hostId: String? = null
 
-    fun sendChatMessage() {
+    fun sendLocalChatMessageToAll(message: String) {
         clients.forEach {
-            it.sendChatMessage()
+            it.sendLocalChatMessage(message)
         }
     }
 }

@@ -54,15 +54,22 @@ class LobbyClient(private val ws: ServerWebSocket, host: Boolean = false) : WSCl
     private fun decodeMessage(mtype: MType, payload: JsonObject) {
         println(mtype)
         when (mtype) {
+            /* TODO - set name utilizing server-mom GET request? */
             MType.DISPLAY_NAME -> {
                 /* update display name */
             }
-            MType.L_CHAT -> {
+            MType.LOCAL_CHAT -> {
                 /* send message to lobby */
+                val message = payload.getString("message")
+                LobbyRegistry.sendLocalChatMessageToAll(message)
             }
             else -> {
                 ws.writeTextMessage(Message.error("Invalid MType"))
             }
         }
+    }
+
+    fun sendLocalChatMessage(message: String) {
+        ws.writeTextMessage(Message.localChat(id, message))
     }
 }

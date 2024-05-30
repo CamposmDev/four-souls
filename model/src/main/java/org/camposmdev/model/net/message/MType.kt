@@ -6,7 +6,7 @@ package org.camposmdev.model.net.message
  * the server in the context of websockets
  */
 enum class MType {
-    G_CHAT, L_CHAT, HOST_GAME, JOIN_LOBBY, UPDATE_LOBBY, LEAVE_LOBBY, LOBBY_CLOSED, ERROR,
+    G_CHAT, LOCAL_CHAT, HOST_GAME, JOIN_LOBBY, UPDATE_LOBBY, LEAVE_LOBBY, LOBBY_CLOSED, ERROR,
     GREETING, DISPLAY_NAME
 }
 
