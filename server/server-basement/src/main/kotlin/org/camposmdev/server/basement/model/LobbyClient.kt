@@ -9,16 +9,14 @@ import org.camposmdev.model.net.message.MType
 import org.camposmdev.model.net.message.Message
 import java.util.*
 
-class LobbyClient(private val ws: ServerWebSocket, host: Boolean = false) : WSClient {
-    private val id: String = UUID.randomUUID().toString()
-    private var displayName: String? = null
+class LobbyClient(private val ws: ServerWebSocket, val userId: String) : WSClient {
+    private val id: String = UUID.randomUUID().toString()   /* ID of the client */
 
     init {
         ws.binaryMessageHandler(this::binaryMessageHandler)
         ws.textMessageHandler(this::textMessageHandler)
         ws.closeHandler(this::closeHandler)
-        ws.writeTextMessage(JsonObject.of("mtype", MType.GREETING.name,
-            "payload", JsonObject.of("id", id, "host", host)).toString())
+        ws.writeTextMessage(Message.greeting())
     }
 
     override fun id(): String {
@@ -34,15 +32,15 @@ class LobbyClient(private val ws: ServerWebSocket, host: Boolean = false) : WSCl
         try {
             /* try to parse {text} as JsonObject */
             val obj = JsonObject(text)
-            val mtype = MType.valueOf(obj.getString("mtype"))
+            val mtype = MType.parse(obj)
             val payload = obj.getJsonObject("payload") ?: throw IllegalArgumentException()
             decodeMessage(mtype, payload)
         } catch (err: DecodeException) {
-            ws.writeTextMessage(Message.error("Invalid JSON"))
+            ws.writeTextMessage(Message.err("Invalid JSON"))
         } catch (err: NullPointerException) {
-            ws.writeTextMessage(Message.error("Invalid MType"))
+            ws.writeTextMessage(Message.err("Invalid MType"))
         } catch (err: IllegalArgumentException) {
-            ws.writeTextMessage(Message.error("Missing 'payload' field"))
+            ws.writeTextMessage(Message.err("Missing 'payload' field"))
         }
     }
 
@@ -55,21 +53,22 @@ class LobbyClient(private val ws: ServerWebSocket, host: Boolean = false) : WSCl
         println(mtype)
         when (mtype) {
             /* TODO - set name utilizing server-mom GET request? */
-            MType.DISPLAY_NAME -> {
-                /* update display name */
-            }
             MType.LOCAL_CHAT -> {
                 /* send message to lobby */
                 val message = payload.getString("message")
                 LobbyRegistry.sendLocalChatMessageToAll(message)
             }
             else -> {
-                ws.writeTextMessage(Message.error("Invalid MType"))
+                ws.writeTextMessage(Message.err("Invalid MType"))
             }
         }
     }
 
     fun sendLocalChatMessage(message: String) {
         ws.writeTextMessage(Message.localChat(id, message))
+    }
+
+    fun sendHostMessage() {
+        ws.writeTextMessage(Message.host())
     }
 }
