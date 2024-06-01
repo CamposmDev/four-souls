@@ -1,4 +1,4 @@
-import { $Enums, Deck, Prisma, PrismaClient } from "@prisma/client";
+import { Deck, PrismaClient } from "@prisma/client";
 import { CardType, DeckType } from "../../../util";
 import { DeckORM } from "types/database";
 import { JsonObject, JsonValue } from "@prisma/client/runtime/library";
@@ -11,7 +11,7 @@ export default class PrismaDeckORM implements DeckORM {
     }
 
     public async create(name: keyof DeckType): Promise<Deck> {
-        let cards = DeckType[name] as Prisma.JsonObject
+        let cards = DeckType[name] as JsonObject
         const deck = await this.prisma.deck.create({
             data: {
                 name: name,
@@ -31,7 +31,7 @@ export default class PrismaDeckORM implements DeckORM {
         return deck
     }
 
-    public async getAll(): Promise<{name: string, cards: Prisma.JsonValue}[]> {
+    public async getAll(): Promise<{name: string, cards: JsonValue}[]> {
         const decks = await this.prisma.deck.findMany({
             select: {
                 name: true,

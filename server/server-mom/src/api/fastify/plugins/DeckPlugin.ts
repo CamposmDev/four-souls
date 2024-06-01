@@ -6,7 +6,7 @@ import { db } from "../../db/prisma";
 const DeckPlugin: FastifyPluginAsync = async (app: FastifyInstance) => {
     app.get("/", DeckController.getAll)
     app.get("/:name", DeckController.getByName)
-    app.post("/:name", {onRequest: [], preHandler: checker.deck.append}, DeckController.append)
+    app.post("/:name", {onRequest: [auth.verifyJWT, auth.isAdmin], preHandler: checker.deck.append}, DeckController.append)
 }
 
 export default DeckPlugin
