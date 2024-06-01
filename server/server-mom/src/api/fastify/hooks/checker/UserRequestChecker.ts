@@ -1,7 +1,7 @@
 import { CreateUserBodyReq, LoginUserBodyReq } from "types/requests";
 import { db } from "../../../db/prisma";
 import { FastifyReply, FastifyRequest } from "fastify";
-import { ObjectId } from "mongodb";
+import { ObjectId } from "bson";
 
 const PWD_LEN = 7
 

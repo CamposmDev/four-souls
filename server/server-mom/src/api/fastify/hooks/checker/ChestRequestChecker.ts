@@ -1,6 +1,6 @@
 import { db } from "../../../db/prisma";
 import { FastifyReply, FastifyRequest } from "fastify";
-import { ObjectId } from "mongodb";
+import { ObjectId } from "bson";
 import { UnlockChestBodyReq, UnlockChestParams, JoinChestParams } from "types/requests";
 
 export default class ChestRequestChecker {

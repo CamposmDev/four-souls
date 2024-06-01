@@ -11,9 +11,10 @@
         "strict": true,
         "noImplicitAny": true,
         "skipLibCheck": true,
-        "baseUrl": "src",
+        "baseUrl": "src/",
         "paths": {
             "types/*": ["api/types/*"],
+            "helper/*": ["api/util/*"]
         }
     },
     "include": ["src/**/*.ts"],

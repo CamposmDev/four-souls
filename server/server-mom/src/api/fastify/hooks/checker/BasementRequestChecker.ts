@@ -1,6 +1,6 @@
 import { db } from "../../../db/prisma";
 import { FastifyReply, FastifyRequest } from "fastify";
-import { ObjectId } from "mongodb";
+import { ObjectId } from "bson";
 import { FreeBasementBodyReq, FreeBasementParams, JoinBasementParams } from "types/requests";
 
 export default class BasementRequestChecker {
