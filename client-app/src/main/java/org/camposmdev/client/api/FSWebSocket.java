@@ -67,20 +67,20 @@ class FSWebSocket {
             var msg = arg.getJsonObject(MType.HOST_GAME.name());
             this.notifySubscribers(BusEvent.SHOW_LOBBY, msg);
         }
-        else if (arg.containsKey(MType.JOIN_LOBBY.name())) {
-            var msg = arg.getJsonObject(MType.JOIN_LOBBY.name());
+        else if (arg.containsKey(MType.BASEMENT_JOIN.name())) {
+            var msg = arg.getJsonObject(MType.BASEMENT_JOIN.name());
             this.notifySubscribers(BusEvent.SHOW_LOBBY, msg);
         }
-        else if (arg.containsKey(MType.UPDATE_LOBBY.name())) {
-            var msg = arg.getJsonObject(MType.UPDATE_LOBBY.name());
+        else if (arg.containsKey(MType.BASEMENT_UPDATE_PLAYERS.name())) {
+            var msg = arg.getJsonObject(MType.BASEMENT_UPDATE_PLAYERS.name());
             this.notifySubscribers(BusEvent.UPDATE_LOBBY, msg);
         }
-        else if (arg.containsKey(MType.LEAVE_LOBBY.name())) {
-            var msg = arg.getJsonObject(MType.LEAVE_LOBBY.name());
+        else if (arg.containsKey(MType.BASEMENT_LEAVE.name())) {
+            var msg = arg.getJsonObject(MType.BASEMENT_LEAVE.name());
             this.notifySubscribers(BusEvent.REMOVE_LOBBY, msg);
         }
-        else if (arg.containsKey(MType.LOBBY_CLOSED.name())) {
-            var msg = arg.getJsonObject(MType.LOBBY_CLOSED.name());
+        else if (arg.containsKey(MType.BASEMENT_CLOSED.name())) {
+            var msg = arg.getJsonObject(MType.BASEMENT_CLOSED.name());
             this.notifySubscribers(BusEvent.REMOVE_LOBBY, msg);
         } else {
             System.out.println(arg);
@@ -115,7 +115,7 @@ class FSWebSocket {
         var payload = JsonObject.of(
                 "gameId", gameId,
                 "userId", userId);
-        var msg = JsonObject.of(MType.JOIN_LOBBY.name(), payload);
+        var msg = JsonObject.of(MType.BASEMENT_JOIN.name(), payload);
         ws.writeTextMessage(msg.toString());
     }
 
@@ -124,7 +124,7 @@ class FSWebSocket {
         var payload = JsonObject.of(
                 "gameId", gameId,
                 "userId", userId);
-        var msg = JsonObject.of(MType.LEAVE_LOBBY.name(), payload);
+        var msg = JsonObject.of(MType.BASEMENT_LEAVE.name(), payload);
         ws.writeTextMessage(msg.toString());
     }
 

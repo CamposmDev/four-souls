@@ -1,4 +1,4 @@
-package org.camposmdev.model.api
+package org.camposmdev.model.net.api
 
 import io.vertx.core.Future
 import io.vertx.core.buffer.Buffer
@@ -8,7 +8,7 @@ import org.camposmdev.model.card.BaseCard
 interface MomHttpClient {
     fun registerUser(email: String, username: String, password: String): Future<HttpResponse<Buffer>>
     fun loginUser(username: String, password: String): Future<HttpResponse<Buffer>>
-    fun logoutUser(jwt: String): Future<HttpResponse<Buffer>>
+    fun logoutUser(): Future<HttpResponse<Buffer>>
     fun getUserById(id: String): Future<HttpResponse<Buffer>>
     fun hostBasement(): Future<HttpResponse<Buffer>>
     fun joinBasement(basementId: String): Future<HttpResponse<Buffer>>

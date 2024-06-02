@@ -1,4 +1,4 @@
-package org.camposmdev.model.store;
+package org.camposmdev.model.context.store;
 
 import io.vertx.core.Vertx;
 import io.vertx.junit5.VertxExtension;
@@ -40,6 +40,7 @@ public class MomStoreTest {
 			/* register a user assuming credentials are not taken */
 			store.registerUser(testEmail, testUsername, testPassword).onComplete(ar -> {
 				if (ar.succeeded()) {
+
 					assertNotEquals(S_NIL, ar.result().getId());
 					assertNotEquals(S_NIL, ar.result().getUsername());
 					assertNotNull(store.getJwt());

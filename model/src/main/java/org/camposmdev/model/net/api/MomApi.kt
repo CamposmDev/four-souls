@@ -1,4 +1,4 @@
-package org.camposmdev.model.api
+package org.camposmdev.model.net.api
 
 import io.vertx.core.Future
 import io.vertx.core.Promise
@@ -13,8 +13,12 @@ import org.camposmdev.model.net.request.CreateUserBodyReq
 import org.camposmdev.model.net.request.LoginUserBodyReq
 
 class MomApi(v: Vertx, hostName: String, port: Int) : MomHttpClient {
+    private companion object {
+        private const val TOKEN_FIELD = "token"
+    }
     private val UA = "Four-Souls/1.0.0"
     private var wc: WebClient? = null
+    var jwt: String? = null
 
     init {
         val options = WebClientOptions()
@@ -32,9 +36,10 @@ class MomApi(v: Vertx, hostName: String, port: Int) : MomHttpClient {
             this.password = password
         }
         wc!!.post("/api/user/").sendJson(payload).onComplete {
-            if (it.succeeded())
+            if (it.succeeded()) {
+                jwt = it.result().cookies().find { x -> x.startsWith(TOKEN_FIELD) }
                 promise.complete(it.result())
-            else promise.fail(it.cause())
+            } else promise.fail(it.cause())
         }
         return promise.future()
     }
@@ -46,21 +51,23 @@ class MomApi(v: Vertx, hostName: String, port: Int) : MomHttpClient {
             this.password = password
         }
         wc!!.post("/api/user/login").sendJson(payload).onComplete {
-            if (it.succeeded())
+            if (it.succeeded()) {
+                jwt = it.result().cookies().find { x -> x.startsWith(TOKEN_FIELD) }
                 promise.complete(it.result())
-            else promise.fail(it.cause())
+            } else promise.fail(it.cause())
         }
         return promise.future()
     }
 
-    override fun logoutUser(jwt: String): Future<HttpResponse<Buffer>> {
+    override fun logoutUser(): Future<HttpResponse<Buffer>> {
         val promise = Promise.promise<HttpResponse<Buffer>>()
         wc!!.post("/api/user/logout")
             .putHeader(HttpHeaders.COOKIE.toString(), jwt)
             .send().onComplete {
-                if (it.succeeded())
+                if (it.succeeded()) {
+                    jwt = null
                     promise.complete(it.result())
-                else promise.fail(it.cause())
+                } else promise.fail(it.cause())
             }
         return promise.future();
     }

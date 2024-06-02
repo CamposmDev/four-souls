@@ -36,7 +36,6 @@ class BasementServerApp {
                     val client = LobbyClient(it, userId.value)
                     if (LobbyRegistry.isEmpty()) {
                         LobbyRegistry.hostId = client.id()
-                        LobbyRegistry.sendHostMessage(client)
                     }
                     LobbyRegistry.add(client)
                 }

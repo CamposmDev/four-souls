@@ -7,10 +7,13 @@ import io.vertx.core.json.JsonObject
 import org.camposmdev.model.net.WSClient
 import org.camposmdev.model.net.message.MType
 import org.camposmdev.model.net.message.Message
+import org.camposmdev.model.net.message.payload.BasementChat
+import org.camposmdev.model.net.message.payload.Payload
 import java.util.*
 
-class LobbyClient(private val ws: ServerWebSocket, val userId: String) : WSClient {
+class LobbyClient(private val ws: ServerWebSocket, private val userId: String) : WSClient {
     private val id: String = UUID.randomUUID().toString()   /* ID of the client */
+    private var username: String? = null
 
     init {
         ws.binaryMessageHandler(this::binaryMessageHandler)
@@ -24,7 +27,7 @@ class LobbyClient(private val ws: ServerWebSocket, val userId: String) : WSClien
     }
 
     override fun binaryMessageHandler(data: Buffer) {
-        println("Client[$id]: Sends ${data.length()} bytes")
+        println("Client[$id]: Sends ${data.length()} bytes...")
     }
 
     override fun textMessageHandler(text: String) {
@@ -33,7 +36,7 @@ class LobbyClient(private val ws: ServerWebSocket, val userId: String) : WSClien
             /* try to parse {text} as JsonObject */
             val obj = JsonObject(text)
             val mtype = MType.parse(obj)
-            val payload = obj.getJsonObject("payload") ?: throw IllegalArgumentException()
+            val payload = Payload.parse(obj)
             decodeMessage(mtype, payload)
         } catch (err: DecodeException) {
             ws.writeTextMessage(Message.err("Invalid JSON"))
@@ -50,13 +53,11 @@ class LobbyClient(private val ws: ServerWebSocket, val userId: String) : WSClien
     }
 
     private fun decodeMessage(mtype: MType, payload: JsonObject) {
-        println(mtype)
         when (mtype) {
-            /* TODO - set name utilizing server-mom GET request? */
-            MType.LOCAL_CHAT -> {
+            MType.BASEMENT_CHAT -> {
                 /* send message to lobby */
-                val message = payload.getString("message")
-                LobbyRegistry.sendLocalChatMessageToAll(message)
+                val chat = payload.mapTo(BasementChat::class.java)
+                LobbyRegistry.sendChatMessageToAll(chat)
             }
             else -> {
                 ws.writeTextMessage(Message.err("Invalid MType"))
@@ -64,11 +65,7 @@ class LobbyClient(private val ws: ServerWebSocket, val userId: String) : WSClien
         }
     }
 
-    fun sendLocalChatMessage(message: String) {
-        ws.writeTextMessage(Message.localChat(id, message))
-    }
-
-    fun sendHostMessage() {
-        ws.writeTextMessage(Message.host())
+    fun sendBasementChatMessage(chat: BasementChat) {
+        ws.writeTextMessage(Message.basementChat(chat))
     }
 }
