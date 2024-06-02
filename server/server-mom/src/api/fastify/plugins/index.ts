@@ -8,5 +8,4 @@ export {
     UserPlugin,
     BasementPlugin,
     ChestPlugin,
-
 }

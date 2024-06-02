@@ -46,7 +46,7 @@ export default class UserRequestChecker {
         if (!params.id)
             return res.status(400).send({message: "Missing 'id' param"})
         if (!ObjectId.isValid(params.id))
-            return res.status(400).send({message: "Invalid 'id' param"})
+            return res.status(400).send({message: `Invalid 'id' param: '${params.id}'`})
         done()
         return res
     }

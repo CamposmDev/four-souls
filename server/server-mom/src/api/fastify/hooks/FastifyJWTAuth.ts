@@ -1,17 +1,17 @@
 import { $Enums } from "@prisma/client";
 import { db } from "../../db/prisma";
-import { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
+import { FastifyReply, FastifyRequest } from "fastify";
+import jwt from "jsonwebtoken"
+
+const JWT_SECRET: string = process.env.JWT_SECRET ? process.env.JWT_SECRET : "supersecret"
 
 export default class FastifyJWTAuth {
-    private app: FastifyInstance | null = null
-
-    public setAppInstance(app: FastifyInstance) {
-        this.app = app
-    }
-
     public async verifyJWT(req: FastifyRequest, res: FastifyReply, done: (err?: Error | undefined) => void) {
         try {
-            await req.jwtVerify()
+            let cookie: string | null | undefined = req.cookies.token
+            if (!cookie) throw Error()
+            jwt.verify(cookie, JWT_SECRET) as { userId: string }
+            /* token is valid */
             done()
         } catch (err: any) {
             res.status(401).send({message: "Unauthorized"})
@@ -20,19 +20,20 @@ export default class FastifyJWTAuth {
     }
 
     public async isAdmin(req: FastifyRequest, res: FastifyReply, done: (err?: Error | undefined) => void) {
-        const token = await req.jwtDecode() as {userId: string}
-        const user = await db.user.getById(token.userId)
-        if (user && user.role === $Enums.Role.ADMIN) {
+        try {
+            const cookie = req.cookies.token
+            if (!cookie) throw Error()
+            const token = jwt.verify(cookie, JWT_SECRET) as { userId: string }
+            const user = await db.user.getById(token.userId)
+            if (!user || user.role !== $Enums.Role.ADMIN) throw Error()
             done()
             return res
-        } else {
+        } catch (err: any) {
             return res.status(401).send({message: "Unauthorized"})
         }
     }
 
     public signJWT<T extends Object | string | Buffer>(data: T): string {
-        if (!this.app)
-            throw new Error("Fastify instance is not set.")
-        return this.app.jwt.sign(data)
+        return jwt.sign(data, JWT_SECRET)
     }
 }
