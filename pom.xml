@@ -19,7 +19,6 @@
         <module>miser-app</module>
         <module>util</module>
         <module>client-app</module>
-        <module>old-server</module>
         <module>editor-app</module>
         <module>server</module>
     </modules>
