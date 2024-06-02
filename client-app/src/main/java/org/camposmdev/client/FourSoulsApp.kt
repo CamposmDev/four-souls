@@ -8,13 +8,13 @@ import com.almasb.fxgl.dsl.*
 import javafx.scene.input.KeyCode
 import javafx.scene.paint.Color
 import org.camposmdev.client.entity.factory.FSEntityFactory
-import org.camposmdev.model.game.LocalGameManager
 import org.camposmdev.client.service.BoardPosition
 import org.camposmdev.client.service.EntityService
 import org.camposmdev.client.ui.scene.FSSceneFactory
 import org.camposmdev.client.ui.view.ActionDrawerView
 import org.camposmdev.client.ui.view.PlayMatView
 import org.camposmdev.model.atlas.MasterCardAtlas
+import org.camposmdev.model.game.LocalGameManager
 import org.camposmdev.util.FXUtil
 
 class FourSoulsApp : GameApplication() {

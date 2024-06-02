@@ -12,8 +12,8 @@ object Message {
         return JsonObject.of(MTYPE_FIELD, MType.ERROR, PAYLOAD_FIELD, payload).toString()
     }
 
-    fun localChat(userId: String, message: String): String {
-        val payload = Payload.localChat(userId, message)
+    fun localChat(username: String, message: String): String {
+        val payload = Payload.localChat(username, message)
         return JsonObject.of(MTYPE_FIELD, MType.LOCAL_CHAT, PAYLOAD_FIELD, payload).toString()
     }
 
