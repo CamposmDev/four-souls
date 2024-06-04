@@ -15,8 +15,8 @@
     </properties>
 
     <modules>
-        <module>app</module>
-        <module>model</module>
-        <module>server</module>
+        <module>fs-app</module>
+        <module>fs-model</module>
+        <module>fs-server</module>
     </modules>
 </project>

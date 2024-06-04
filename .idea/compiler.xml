@@ -9,17 +9,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="four-souls-model-util-base" />
-        <module name="server-chest" />
-        <module name="four-souls-model-card" />
-        <module name="four-souls-model-game" />
-        <module name="four-souls-model-atlas" />
-        <module name="four-souls-model-context" />
-        <module name="server-basement" />
-        <module name="app-game" />
-        <module name="four-souls-model-util-fx" />
-        <module name="app-editor" />
-        <module name="app-miser" />
+        <module name="fs-model-atlas" />
+        <module name="fs-model-card" />
+        <module name="fs-model-game" />
+        <module name="fs-app-game" />
+        <module name="fs-app-editor" />
+        <module name="fs-model-fx" />
+        <module name="fs-model-net" />
+        <module name="fs-model-util" />
+        <module name="fs-app-miser" />
+        <module name="fs-model-context" />
+        <module name="fs-server-basement" />
+        <module name="fs-server-chest" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

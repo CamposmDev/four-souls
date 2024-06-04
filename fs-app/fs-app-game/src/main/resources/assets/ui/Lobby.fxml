@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefWidth="1600.0"
+            prefHeight="900.0"
+            stylesheets="@css/menu.css"
+            xmlns="http://javafx.com/javafx/20.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="io.github.camposmdev.foursouls.app.game.ui.controllers.LobbyController">
+   <fx:include fx:id="nightmare" scaleX="2.5" scaleY="2.5" source="Nightmare.fxml" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" />
+   <fx:include fx:id="bubble" scaleX="3" scaleY="3" source="Bubble.fxml" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="300" />
+   <fx:include fx:id="chat" opacity="0.0" source="LobbyChat.fxml" AnchorPane.topAnchor="80" AnchorPane.leftAnchor="500" AnchorPane.rightAnchor="500" />
+   <TextField fx:id="tfMessage" onAction="#handleSendMessage" opacity="0.0" promptText="Send a message..." stylesheets="@css/lobby-chat.css" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="600.0" AnchorPane.rightAnchor="600.0" />
+   <VBox fx:id="playerBox" spacing="8" opacity="0.0" prefHeight="500.0" prefWidth="300.0" AnchorPane.bottomAnchor="240.0" AnchorPane.leftAnchor="64.0" AnchorPane.topAnchor="240.0" />
+   <Text fx:id="textLeave" onMouseClicked="#leaveGame" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="menu-button" text="Leave" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="64.0" />
+   <Text fx:id="textStart" onMouseClicked="#startGame" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="menu-button" text="Start Game" AnchorPane.bottomAnchor="32.0" AnchorPane.rightAnchor="64.0" />
+   <Text fx:id="textGameId" onMouseClicked="#copyGameId" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="menu-button-xs" text="c0a361ca-02e0-4266-af5e-3c9c04e2055b" textAlignment="RIGHT" AnchorPane.rightAnchor="64.0" AnchorPane.topAnchor="32.0" />
+</AnchorPane>

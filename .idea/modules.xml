@@ -3,10 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/four-souls.iml" filepath="$PROJECT_DIR$/four-souls.iml" />
-      <module fileurl="file://$PROJECT_DIR$/four-souls-model-atlas.iml" filepath="$PROJECT_DIR$/four-souls-model-atlas.iml" />
-      <module fileurl="file://$PROJECT_DIR$/four-souls-model-net.iml" filepath="$PROJECT_DIR$/four-souls-model-net.iml" />
-      <module fileurl="file://$PROJECT_DIR$/model/four-souls-model-util/four-souls-model-util.iml" filepath="$PROJECT_DIR$/model/four-souls-model-util/four-souls-model-util.iml" />
-      <module fileurl="file://$PROJECT_DIR$/model/model.iml" filepath="$PROJECT_DIR$/model/model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app-editor/fs-app-editor.iml" filepath="$PROJECT_DIR$/app/app-editor/fs-app-editor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app-game/fs-app-game.iml" filepath="$PROJECT_DIR$/app/app-game/fs-app-game.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fs-model-net.iml" filepath="$PROJECT_DIR$/fs-model-net.iml" />
     </modules>
   </component>
 </project>

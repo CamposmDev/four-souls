@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="root" prefWidth="1600.0" prefHeight="900.0" stylesheets="@css/menu.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.camposmdev.foursouls.app.game.ui.controllers.menu.MainMenuController">
+   <StackPane fx:id="logoPane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
+      <ImageView fitHeight="512.0" fitWidth="512.0" pickOnBounds="true" preserveRatio="true">
+         <Image url="@../textures/logo.png" />
+         <effect>
+            <DropShadow height="6.1" offsetX="10.0" offsetY="10.0" radius="2.49" spread="0.14" width="5.86" />
+         </effect>
+      </ImageView>
+   </StackPane>
+   <VBox fx:id="menuBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="400.0">
+      <Text onMouseClicked="#handleSP" styleClass="menu-button" text="Singleplayer" />
+      <Text onMouseClicked="#handleMP" styleClass="menu-button" text="Multiplayer" />
+      <Text onMouseClicked="#handleOptions" styleClass="menu-button" text="Options" />
+      <Text onMouseClicked="#handleExit" styleClass="menu-button" text="Exit" />
+   </VBox>
+   <fx:include fx:id="singleplayerMenu" source="SingleplayerMenu.fxml" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="400.0" />
+   <fx:include fx:id="multiplayerMenu" disable="true" source="MultiplayerMenu.fxml" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="400.0" />
+   <fx:include fx:id="optionsMenu" disable="true" source="OptionsMenu.fxml" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="400.0" />
+</AnchorPane>
