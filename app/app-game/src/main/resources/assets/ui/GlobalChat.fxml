@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="400.0" prefWidth="400.0" spacing="2.0" stylesheets="@css/global-chat.css"
+      xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="io.github.camposmdev.app.game.ui.controllers.GlobalChatController">
+   <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" prefHeight="350.0" styleClass="global-chat" vbarPolicy="NEVER">
+      <VBox fx:id="chatBox" spacing="2.0"/>
+   </ScrollPane>
+   <TextField onAction="#sendMessage" promptText="Enter message here..." styleClass="chat-field"/>
+</VBox>

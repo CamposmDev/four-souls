@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="root" stylesheets="@css/lobby-chat.css"
+      xmlns="http://javafx.com/javafx/20.0.1"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="io.github.camposmdev.app.game.ui.controllers.LobbyChatController"
+>
+    <Pane fx:id="dummy" />
+    <TextArea fx:id="ta" onMouseClicked="#taClicked"
+              editable="false"
+              wrapText="true"
+    />
+</VBox>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="4.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.camposmdev.foursouls.app.editor.ui.workspace.loot.RuneEventFormController">
+    <ListView fx:id="lv" />
+    <GridPane fx:id="root" hgap="4.0" vgap="4.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+        <Label text="values" />
+        <Label text="damage" GridPane.rowIndex="1" />
+        <Label text="damageTo" GridPane.rowIndex="2" />
+        <Label text="reward" GridPane.rowIndex="3" />
+        <Label text="rewardTo" GridPane.rowIndex="4" />
+        <Label text="destroyItemInPlayAndReplace" GridPane.rowIndex="5" />
+        <Label text="rerollAnyItem" GridPane.rowIndex="6" />
+        <Label text="discardHandThenLoot" GridPane.rowIndex="7" />
+        <TextField fx:id="tfValues" promptText="1,2,3,4,5,6" GridPane.columnIndex="1" />
+        <TextField fx:id="tfDamage" promptText="[0, 127]" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <ComboBox fx:id="cbDamageTo" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <ComboBox fx:id="cbRewardTo" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+        <CheckBox fx:id="cbDestroyItemInPlayAndReplace" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+        <CheckBox fx:id="cbRerollAnyItem" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+        <TextField fx:id="tfDiscardHandThenLoot" promptText="[0, 127]" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+         <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#commit" text="Commit" GridPane.rowIndex="8" />
+    </GridPane>
+</HBox>

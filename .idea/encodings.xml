@@ -1,17 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/client-app/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/client-app/src/main/kotlin" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/client-app/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/app-editor/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/app-editor/src/main/kotlin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/app-editor/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/app-game/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/app-game/src/main/kotlin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/app-game/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/app-miser/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/app-miser/src/main/kotlin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/app-miser/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/core-lib/editor/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/core-lib/editor/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/editor-app/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/editor-app/src/main/kotlin" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/editor-app/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/miser-app/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/miser-app/src/main/kotlin" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/miser-app/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/model/four-souls-model-atlas/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/model/four-souls-model-atlas/src/main/kotlin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/model/four-souls-model-atlas/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/model/four-souls-model-card/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/model/four-souls-model-card/src/main/kotlin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/model/four-souls-model-card/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/model/four-souls-model-context/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/model/four-souls-model-context/src/main/kotlin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/model/four-souls-model-context/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/model/four-souls-model-game/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/model/four-souls-model-game/src/main/kotlin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/model/four-souls-model-game/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/model/four-souls-model-net/four-souls-model-net-base/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/model/four-souls-model-net/four-souls-model-net-base/src/main/kotlin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/model/four-souls-model-net/four-souls-model-net-base/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/model/four-souls-model-net/four-souls-model-net-basement/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/model/four-souls-model-net/four-souls-model-net-basement/src/main/kotlin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/model/four-souls-model-net/four-souls-model-net-basement/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/model/four-souls-model-net/four-souls-model-net-chest/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/model/four-souls-model-net/four-souls-model-net-chest/src/main/kotlin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/model/four-souls-model-net/four-souls-model-net-chest/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/model/four-souls-model-net/four-souls-model-net-mom/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/model/four-souls-model-net/four-souls-model-net-mom/src/main/kotlin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/model/four-souls-model-net/four-souls-model-net-mom/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/model/four-souls-model-net/foursouls-model-net-base/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/model/four-souls-model-net/foursouls-model-net-base/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/model/four-souls-model-net/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/model/four-souls-model-net/src/main/kotlin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/model/four-souls-model-net/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/model/four-souls-model-util/four-souls-model-util-base/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/model/four-souls-model-util/four-souls-model-util-base/src/main/kotlin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/model/four-souls-model-util/four-souls-model-util-base/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/model/four-souls-model-util/four-souls-model-util-fx/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/model/four-souls-model-util/four-souls-model-util-fx/src/main/kotlin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/model/four-souls-model-util/four-souls-model-util-fx/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/model/four-souls-model-util/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/model/four-souls-model-util/src/main/kotlin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/model/four-souls-model-util/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/model/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/model/src/main/kotlin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/model/src/main/resources" charset="UTF-8" />
@@ -35,8 +75,5 @@
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/kotlin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/util/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/util/src/main/kotlin" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/util/src/main/resources" charset="UTF-8" />
   </component>
 </project>

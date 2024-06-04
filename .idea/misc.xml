@@ -17,6 +17,11 @@
       <set>
         <option value="$PROJECT_DIR$/core-lib/editor/pom.xml" />
         <option value="$PROJECT_DIR$/core-lib/pom.xml" />
+        <option value="$PROJECT_DIR$/four-souls-model/four-souls-model-net/foursouls-model-net-base/pom.xml" />
+        <option value="$PROJECT_DIR$/model/four-souls-model-net/four-souls-model-net-base/pom.xml" />
+        <option value="$PROJECT_DIR$/model/four-souls-model-net/four-souls-model-net-basement/pom.xml" />
+        <option value="$PROJECT_DIR$/model/four-souls-model-net/four-souls-model-net-chest/pom.xml" />
+        <option value="$PROJECT_DIR$/model/four-souls-model-net/four-souls-model-net-mom/pom.xml" />
         <option value="$PROJECT_DIR$/old-server/pom.xml" />
         <option value="$PROJECT_DIR$/res-raiders/pom.xml" />
         <option value="$PROJECT_DIR$/server/game-server/pom.xml" />

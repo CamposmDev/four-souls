@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane hgap="2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" vgap="2.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.camposmdev.foursouls.app.editor.ui.RollEventFormController">
+    <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <Label text="values" GridPane.columnIndex="1" />
+    <Label text="multReward" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    <Label text="multPlayersDamage" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+    <Label text="noMonsterDamage" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+    <Label text="modMonsterDamage" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+    <Label text="multMonsterDamage" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+    <Label text="endTurn" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+    <Label text="stealPlayerLoot" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+    <Label text="damage" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+    <Label text="damageTo" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+    <Label text="mayAttackAgain" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+    <Label text="forceAttackAgain" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+    <Label text="modPlayer" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+    <Label text="attackable" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+    <Label text="returnToDeck" GridPane.columnIndex="1" GridPane.rowIndex="14" />
+    <Label text="modMonstersDC" GridPane.columnIndex="1" GridPane.rowIndex="15" />
+    <Label text="modMonstersAttack" GridPane.columnIndex="1" GridPane.rowIndex="16" />
+    <Label text="healMonster" GridPane.columnIndex="1" GridPane.rowIndex="17" />
+    <Label text="endAttack" GridPane.columnIndex="1" GridPane.rowIndex="18" />
+    <Label text="expandMonster" GridPane.columnIndex="1" GridPane.rowIndex="19" />
+    <Label text="reward" GridPane.columnIndex="3" />
+    <Label text="discardLoot" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+    <Label text="discardCents" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+    <Label text="peekDeck" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+    <Label text="peekDeckAmount" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+    <Label text="peekDeckSort" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+    <Label text="soulHitPoints" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+    <Label text="soul" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+    <Label text="skipNextTurn" GridPane.columnIndex="3" GridPane.rowIndex="8" />
+    <Label text="heartItem" GridPane.columnIndex="3" GridPane.rowIndex="9" />
+    <Label text="rerollItem" GridPane.columnIndex="3" GridPane.rowIndex="10" />
+    <Label text="guppyItem" GridPane.columnIndex="3" GridPane.rowIndex="11" />
+    <Label text="kill" GridPane.columnIndex="3" GridPane.rowIndex="12" />
+    <Label text="modAllMonstersDC" GridPane.columnIndex="3" GridPane.rowIndex="13" />
+    <Label text="putOnTopOfMonsterDeck" GridPane.columnIndex="3" GridPane.rowIndex="14" />
+    <Label text="rollEvents" GridPane.columnIndex="3" GridPane.rowIndex="15" />
+    <Label text="damageLink" GridPane.columnIndex="3" GridPane.rowIndex="16" />
+    <Label text="discardRandomItem" GridPane.columnIndex="3" GridPane.rowIndex="17" />
+    <Label text="putOnMonsterSlot" GridPane.columnIndex="3" GridPane.rowIndex="18" />
+    <TextField fx:id="values" promptText="1,2,3,4,5,6" GridPane.columnIndex="2" />
+    <TextField fx:id="multReward" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+    <TextField fx:id="multPlayersDamage" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+    <CheckBox fx:id="noMonsterDamage" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+    <TextField fx:id="modMonstersDamage" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+    <TextField fx:id="multMonstersDamage" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+    <CheckBox fx:id="endTurn" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+    <CheckBox fx:id="stealPlayerLoot" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+    <TextField fx:id="damage" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+    <ComboBox fx:id="damageTo" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="9" />
+    <CheckBox fx:id="mayAttackAgain" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.rowIndex="10" />
+    <CheckBox fx:id="forceAttackAgain" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.rowIndex="11" />
+    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#modPlayer" text="Modify" GridPane.columnIndex="2" GridPane.rowIndex="12" />
+    <CheckBox fx:id="attackable" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.rowIndex="13" />
+    <CheckBox fx:id="returnToDeck" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.rowIndex="14" />
+    <TextField fx:id="modMonstersDC" GridPane.columnIndex="2" GridPane.rowIndex="15" />
+    <TextField fx:id="modMonstersAttack" GridPane.columnIndex="2" GridPane.rowIndex="16" />
+    <TextField GridPane.columnIndex="2" GridPane.rowIndex="6" />
+    <TextField fx:id="healMonster" GridPane.columnIndex="2" GridPane.rowIndex="17" />
+    <CheckBox fx:id="endAttack" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.rowIndex="18" />
+    <TextField fx:id="expandMonster" GridPane.columnIndex="2" GridPane.rowIndex="19" />
+    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#modReward" text="Modify" GridPane.columnIndex="4" />
+    <TextField fx:id="discardLoot" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+    <TextField fx:id="discardCents" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+    <ComboBox fx:id="peekDeck" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+    <TextField fx:id="peekDeckAmount" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+    <CheckBox fx:id="peekDeckSort" mnemonicParsing="false" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+    <TextField fx:id="soulHitPoints" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+    <CheckBox fx:id="soul" mnemonicParsing="false" GridPane.columnIndex="4" GridPane.rowIndex="7" />
+    <CheckBox fx:id="skipNextTurn" mnemonicParsing="false" GridPane.columnIndex="4" GridPane.rowIndex="8" />
+    <CheckBox fx:id="heartItem" mnemonicParsing="false" GridPane.columnIndex="4" GridPane.rowIndex="9" />
+    <TextField fx:id="rerollItem" GridPane.columnIndex="4" GridPane.rowIndex="10" />
+    <CheckBox fx:id="guppyItem" mnemonicParsing="false" GridPane.columnIndex="4" GridPane.rowIndex="11" />
+    <ComboBox fx:id="kill" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="12" />
+    <TextField fx:id="modAllMonstersDC" GridPane.columnIndex="4" GridPane.rowIndex="13" />
+    <CheckBox fx:id="putOnTopOfMonsterDeck" mnemonicParsing="false" GridPane.columnIndex="4" GridPane.rowIndex="14" />
+    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#modRollEvents" text="Modify" GridPane.columnIndex="4" GridPane.rowIndex="15" />
+    <CheckBox fx:id="damageLink" mnemonicParsing="false" GridPane.columnIndex="4" GridPane.rowIndex="16" />
+    <CheckBox fx:id="discardRandomItem" mnemonicParsing="false" GridPane.columnIndex="4" GridPane.rowIndex="17" />
+    <CheckBox fx:id="putOnMonsterSlot" mnemonicParsing="false" GridPane.columnIndex="4" GridPane.rowIndex="18" />
+   <ListView fx:id="lv" GridPane.rowSpan="21" />
+   <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#commit" text="Commit" GridPane.columnIndex="1" GridPane.rowIndex="20" />
+</GridPane>

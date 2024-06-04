@@ -2,9 +2,9 @@
   <artifact type="jar" name="editor:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/editor_jar</output-path>
     <root id="archive" name="editor.jar">
-      <element id="module-output" name="editor-app" />
+      <element id="module-output" name="app-editor" />
       <element id="module-output" name="model" />
-      <element id="module-output" name="util" />
+      <element id="module-output" name="four-souls-model-util" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/github/almasb/fxgl/21/fxgl-21.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/squareup/okio/okio/3.6.0/okio-3.6.0.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-base/21.0.2/javafx-base-21.0.2.jar" path-in-jar="/" />

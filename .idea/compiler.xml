@@ -9,19 +9,28 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="util" />
+        <module name="four-souls-model-util-base" />
         <module name="server-chest" />
-        <module name="editor-app" />
-        <module name="miser-app" />
-        <module name="model" />
-        <module name="client-app" />
+        <module name="four-souls-model-card" />
+        <module name="four-souls-model-game" />
+        <module name="four-souls-model-atlas" />
+        <module name="four-souls-model-context" />
         <module name="server-basement" />
+        <module name="app-game" />
+        <module name="four-souls-model-util-fx" />
+        <module name="app-editor" />
+        <module name="app-miser" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="client-" target="17" />
       <module name="common-lib" target="17" />
       <module name="core-lib" target="17" />
+      <module name="four-souls-model-net-base" target="21" />
+      <module name="four-souls-model-net-basement" target="21" />
+      <module name="four-souls-model-net-chest" target="21" />
+      <module name="four-souls-model-net-mom" target="21" />
+      <module name="foursouls-model-net-base" target="21" />
       <module name="game-server" target="21" />
       <module name="old-server" target="21" />
       <module name="res-raiders" target="17" />

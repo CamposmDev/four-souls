@@ -4,14 +4,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>four-souls-online</artifactId>
-        <groupId>org.camposmdev</groupId>
+        <groupId>io.github.camposmdev</groupId>
+        <artifactId>four-souls</artifactId>
         <version>1.0.0</version>
     </parent>
 
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
     <artifactId>model</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.0</version>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
@@ -20,6 +20,14 @@
         <kotlin.version>2.0.0</kotlin.version>
     </properties>
 
+    <modules>
+        <module>four-souls-model-util</module>
+        <module>four-souls-model-card</module>
+        <module>four-souls-model-game</module>
+        <module>four-souls-model-context</module>
+        <module>four-souls-model-net</module>
+        <module>four-souls-model-atlas</module>
+    </modules>
 
     <dependencies>
         <dependency>

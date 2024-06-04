@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.camposmdev</groupId>
+        <groupId>io.github.camposmdev</groupId>
         <artifactId>server</artifactId>
         <version>1.0.0</version>
     </parent>
@@ -26,7 +26,6 @@
 
     <build>
         <sourceDirectory>src/main/kotlin</sourceDirectory>
-        <testSourceDirectory>src/test/kotlin</testSourceDirectory>
         <plugins>
             <plugin>
                 <groupId>org.jetbrains.kotlin</groupId>
@@ -70,6 +69,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>io.github.camposmdev</groupId>
+            <artifactId>four-souls-model-net</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
             <groupId>io.vertx</groupId>
             <artifactId>vertx-core</artifactId>
             <version>4.5.7</version>
@@ -80,9 +84,9 @@
             <version>4.5.7</version>
         </dependency>
         <dependency>
-            <groupId>org.camposmdev</groupId>
+            <groupId>io.github.camposmdev</groupId>
             <artifactId>model</artifactId>
-            <version>1.0.1</version>
+            <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
