@@ -24,18 +24,24 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="client" target="21" />
       <module name="client-" target="17" />
       <module name="common-lib" target="17" />
       <module name="core-lib" target="17" />
+      <module name="editor" target="21" />
       <module name="four-souls-model-net-base" target="21" />
       <module name="four-souls-model-net-basement" target="21" />
       <module name="four-souls-model-net-chest" target="21" />
       <module name="four-souls-model-net-mom" target="21" />
       <module name="foursouls-model-net-base" target="21" />
       <module name="game-server" target="21" />
+      <module name="miser" target="21" />
+      <module name="model" target="21" />
       <module name="old-server" target="21" />
       <module name="res-raiders" target="17" />
+      <module name="server" target="21" />
       <module name="server-mom" target="21" />
+      <module name="util" target="21" />
     </bytecodeTargetLevel>
   </component>
 </project>

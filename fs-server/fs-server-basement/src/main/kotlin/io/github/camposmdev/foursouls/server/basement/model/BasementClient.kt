@@ -5,14 +5,17 @@ import io.vertx.core.http.ServerWebSocket
 import io.vertx.core.json.DecodeException
 import io.vertx.core.json.JsonObject
 import io.github.camposmdev.foursouls.model.net.BasementUser
+import io.github.camposmdev.foursouls.model.net.WSClient
 import io.github.camposmdev.foursouls.model.net.message.MType
 import io.github.camposmdev.foursouls.model.net.message.Message
 import io.github.camposmdev.foursouls.model.net.message.payload.BasementChat
 import io.github.camposmdev.foursouls.model.net.message.payload.PayloadBuilder
 
-class BasementClient(private val ws: ServerWebSocket, userId: String) :
-    io.github.camposmdev.foursouls.model.net.WSClient {
-    private val state = BasementUser()
+class BasementClient(private val ws: ServerWebSocket, userId: String, username: String) : WSClient {
+    val state = BasementUser().apply {
+        this.userId = userId
+        this.username = username
+    }
 
     init {
         state.userId = userId
