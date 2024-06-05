@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/four-souls.iml" filepath="$PROJECT_DIR$/four-souls.iml" />
-      <module fileurl="file://$PROJECT_DIR$/server/server-basement/fs-server-basement.iml" filepath="$PROJECT_DIR$/server/server-basement/fs-server-basement.iml" />
     </modules>
   </component>
 </project>

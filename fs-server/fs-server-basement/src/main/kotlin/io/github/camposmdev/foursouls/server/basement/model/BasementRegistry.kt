@@ -6,7 +6,7 @@ import io.github.camposmdev.foursouls.model.api.message.payload.BasementChat
 
 object BasementRegistry : ClientRegistry<BasementClientWS>() {
     private const val SZ = 4
-    var hostId: String? = null
+    private var hostId: String? = null
 
     fun sendChatMessageToAll(chat: BasementChat) {
         clients.forEach {
@@ -15,7 +15,7 @@ object BasementRegistry : ClientRegistry<BasementClientWS>() {
     }
 
     fun isFull(): Boolean {
-        return clients.size > SZ
+        return clients.size >= SZ
     }
 
     fun users(): List<BasementUser> {

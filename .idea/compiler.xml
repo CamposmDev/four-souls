@@ -34,6 +34,13 @@
       <module name="four-souls-model-net-chest" target="21" />
       <module name="four-souls-model-net-mom" target="21" />
       <module name="foursouls-model-net-base" target="21" />
+      <module name="fs-model-atlas" target="21" />
+      <module name="fs-model-card" target="21" />
+      <module name="fs-model-context" target="21" />
+      <module name="fs-model-fx" target="21" />
+      <module name="fs-model-game" target="21" />
+      <module name="fs-model-net" target="21" />
+      <module name="fs-model-util" target="21" />
       <module name="game-server" target="21" />
       <module name="miser" target="21" />
       <module name="model" target="21" />

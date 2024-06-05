@@ -1,10 +1,12 @@
 package io.github.camposmdev.foursouls.server.basement
 
+import io.github.camposmdev.foursouls.model.api.message.MessageFactory
 import io.github.camposmdev.foursouls.server.basement.model.BasementAuth
 import io.github.camposmdev.foursouls.server.basement.model.BasementClientWS
 import io.github.camposmdev.foursouls.server.basement.model.BasementOpts
 import io.github.camposmdev.foursouls.server.basement.model.BasementRegistry
 import io.vertx.core.Vertx
+import io.vertx.core.eventbus.Message
 import io.vertx.core.http.HttpMethod
 import io.vertx.core.http.HttpServerOptions
 import io.vertx.core.http.HttpServerRequest
@@ -25,7 +27,7 @@ object BasementServer {
         val options = HttpServerOptions()
         options.port = opts.basementPort
         val server = vertx.createHttpServer(options)
-        server.requestHandler(BasementServer::handleRequest)
+        server.requestHandler(BasementServer::reqHandler)
         server.listen().onSuccess {
             println("Basement Server listening on port ${opts.basementPort}")
         }.onFailure {
@@ -33,12 +35,7 @@ object BasementServer {
         }
     }
 
-    fun close() {
-        vertx.close()
-    }
-
-    private fun handleRequest(req: HttpServerRequest) {
-        /* fetch userId cookie */
+    private fun reqHandler(req: HttpServerRequest) {
         if (req.method() != HttpMethod.GET) {
             req.response().setStatusCode(405).end()
             return
@@ -49,14 +46,18 @@ object BasementServer {
             req.response().setStatusCode(400).end("Missing '$USER_ID_COOKIE' cookie")
             return
         }
+        if (BasementRegistry.isFull()) {
+            val payload = MessageFactory.err("Basement is Full")
+            req.response().setStatusCode(503).end(payload)
+            return
+        }
         /* upgrade to web socket */
-        req.toWebSocket().onSuccess {
-            /* if the lobby is full or userId is null, then close */
-            if (BasementRegistry.isFull()) {
-                it.close(503, "Basement is Full")
-            } else { /* register the client */
-                BasementClientWS(it, userId.value)
-            }
+        req.toWebSocket().onSuccess { ws -> BasementClientWS(ws, userId.value)
         }.onFailure { req.response().setStatusCode(500).send() }
     }
+
+    fun close() {
+        vertx.close()
+    }
+
 }

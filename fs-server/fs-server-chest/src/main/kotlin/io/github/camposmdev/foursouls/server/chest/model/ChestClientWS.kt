@@ -5,7 +5,7 @@ import io.vertx.core.buffer.Buffer
 import io.vertx.core.http.ServerWebSocket
 import java.util.*
 
-class GameClientWS(private val ws: ServerWebSocket) :
+class ChestClientWS(private val ws: ServerWebSocket) :
     ClientWS {
     private val id: String = UUID.randomUUID().toString()
 
