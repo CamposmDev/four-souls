@@ -162,9 +162,9 @@ class MomAPI(v: Vertx, host: String, port: Int) : MomHttpClient {
         return promise.future()
     }
 
-    override fun getAllDecks(): Future<HttpResponse<Buffer>> {
+    override fun getAllDecks(pretty: Boolean): Future<HttpResponse<Buffer>> {
         val promise = Promise.promise<HttpResponse<Buffer>>()
-        wc.get("/api/deck/").send().onComplete {
+        wc.get("/api/deck?pretty=$pretty").send().onComplete {
             if (it.succeeded())
                 promise.complete(it.result())
             else promise.fail(it.cause())
@@ -184,13 +184,22 @@ class MomAPI(v: Vertx, host: String, port: Int) : MomHttpClient {
 
     override fun appendDeck(name: String, card: BaseCard): Future<HttpResponse<Buffer>> {
         val promise = Promise.promise<HttpResponse<Buffer>>()
-        val payload = card.toString()
         wc.post("/api/deck/$name")
-            .putHeader(HttpHeaders.COOKIE.toString(), jwt).sendJson(payload).onComplete {
+            .putHeader(HttpHeaders.COOKIE.toString(), jwt).sendJson(card).onComplete {
                 if (it.succeeded())
                     promise.complete(it.result())
                 else promise.fail(it.cause())
             }
+        return promise.future()
+    }
+
+    override fun ping(): Future<HttpResponse<Buffer>> {
+        val promise = Promise.promise<HttpResponse<Buffer>>()
+        wc.get("/api/ping/").send().onComplete {
+            if (it.succeeded())
+                promise.complete(it.result())
+            else promise.fail(it.cause())
+        }
         return promise.future()
     }
 

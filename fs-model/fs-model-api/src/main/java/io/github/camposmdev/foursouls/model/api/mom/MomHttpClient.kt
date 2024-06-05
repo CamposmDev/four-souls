@@ -18,8 +18,9 @@ interface MomHttpClient {
     fun hostChest(): Future<HttpResponse<Buffer>>
     fun joinChest(chestId: String): Future<HttpResponse<Buffer>>
     fun unlockChest(chestId: String, chestKey: String): Future<HttpResponse<Buffer>>
-    fun getAllDecks(): Future<HttpResponse<Buffer>>
+    fun getAllDecks(pretty: Boolean): Future<HttpResponse<Buffer>>
     fun getDeckByName(name: String): Future<HttpResponse<Buffer>>
     fun appendDeck(name: String, card: BaseCard): Future<HttpResponse<Buffer>>
+    fun ping(): Future<HttpResponse<Buffer>>
     fun close()
 }
