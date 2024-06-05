@@ -1,15 +1,33 @@
 import { Deck } from "@prisma/client";
 import { db } from "../../db/prisma";
 import { FastifyReply, FastifyRequest } from "fastify";
+import { JsonValue } from "@prisma/client/runtime/library";
+import { CardType, DeckType } from "../../util";
+import { DeckAppendParams, DeckGetAllQuery, DeckGetByNameParams } from "types/requests";
+import { BaseCard } from "types/common";
 
 export default class FastifyDeckController {
     public async getAll(req: FastifyRequest, res: FastifyReply) {
-        const decks = await db.deck.getAll()
-        res.send({decks: decks})
+        const query = req.query as DeckGetAllQuery
+        const decks: {
+            name: string, 
+            cards: JsonValue
+        }[] = await db.deck.getAll()
+        if (query.pretty) {
+            /* reformat array to an object */
+            const cards: any = {}
+            Object.keys(DeckType).forEach(key => {
+                const deck = decks.find(x => x.name === key)
+                cards[key] = deck ? deck.cards : DeckType[key as keyof DeckType]
+            })
+            return cards
+        } else {
+            return decks
+        }
     }
 
     public async getByName(req: FastifyRequest, res: FastifyReply) {
-        const params = req.params as { name: string }
+        const params = req.params as DeckGetByNameParams
         const deck: Deck | null = await db.deck.getByName(params.name)
         if (deck)
             return res.send({[params.name]: deck.cards})
@@ -17,8 +35,9 @@ export default class FastifyDeckController {
     }
 
     public async append(req: FastifyRequest, res: FastifyReply) {
-        const params = req.params as { name: string }
-        await db.deck.append(params.name, req.body)
-        return res.send({message: `Created '${params.name}' card`})
+        const params = req.params as DeckAppendParams
+        const card = req.body as BaseCard
+        await db.deck.append(params.name, card)
+        return {message: `Created ${params.name} card`}
     }
 }

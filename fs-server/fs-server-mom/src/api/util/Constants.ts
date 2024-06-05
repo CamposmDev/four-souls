@@ -36,7 +36,7 @@ const DeckType: DeckType = {
         butter: {},
         cards: {},
         dice: {},
-        key: {},
+        keys: {},
         lsoul: {},
         pill: {},
         rune: {},
@@ -58,6 +58,7 @@ const DeckType: DeckType = {
 };
 
 enum CardType {
+    BSOUL = "BSOUL",
     CHARACTER = "CHARACTER",
     ETERNAL = "ETERNAL",
     PETERNAL = "PETERNAL",
@@ -103,7 +104,6 @@ enum CardType {
     MONEY4C = "MONEY4C",
     MONEY5C = "MONEY5C",
     MONEY10C = "MONEY10C",
-    BSOUL = "BSOUL",
     ROOM = "ROOM",
     OUTSIDE = "OUTSIDE"
 };

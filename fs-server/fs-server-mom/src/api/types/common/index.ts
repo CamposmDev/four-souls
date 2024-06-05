@@ -33,7 +33,7 @@ export type LootDeck = {
     butter: {};
     cards: {};
     dice: {};
-    key: {};
+    keys: {};
     lsoul: {};
     pill: {};
     rune: {};
@@ -53,11 +53,6 @@ export type MoneyDeck = {
     money10c: {};
 };
 
-
-
-
-
-
 // Define the DeckType using the type aliases
 export type DeckType = {
     bsoul: {};
@@ -69,3 +64,8 @@ export type DeckType = {
     room: {};
     outside: {};
 };
+
+export type BaseCard = {
+    id: string,
+    cardType: string
+}

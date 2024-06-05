@@ -2,6 +2,7 @@ import { Deck, PrismaClient } from "@prisma/client";
 import { CardType, DeckType } from "../../../util";
 import { DeckORM } from "types/database";
 import { JsonObject, JsonValue } from "@prisma/client/runtime/library";
+import { BaseCard } from "types/common";
 
 export default class PrismaDeckORM implements DeckORM {
     private prisma: PrismaClient
@@ -41,11 +42,11 @@ export default class PrismaDeckORM implements DeckORM {
         return decks
     }
 
-    public async append(name: string, card: any): Promise<Deck> {
+    public async append(name: string, card: BaseCard): Promise<Deck> {
         const deck = await this.getByName(name)
         if (!deck) throw Error(`Deck '${name}' does not exist`)
         const cards: any = deck.cards
-        const cardType: string = card.cardType
+        const cardType = card.cardType
         switch (cardType) {
             case CardType.BSOUL:
             case CardType.CHARACTER:
@@ -106,7 +107,7 @@ export default class PrismaDeckORM implements DeckORM {
                 const $key = cardType.toLowerCase()
                 cards.money[$key][card.id] = card
                 break
-            default: throw Error("Invalid Card Type")
+            default: throw Error("Invalid CardType")
         }
         const updatedDeck = await this.prisma.deck.update({
             where: {
