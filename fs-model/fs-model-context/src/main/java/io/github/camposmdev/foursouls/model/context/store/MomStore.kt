@@ -1,11 +1,10 @@
 package io.github.camposmdev.foursouls.model.context.store
 
 import io.github.camposmdev.foursouls.model.api.mom.MomAPI
-import io.github.camposmdev.foursouls.model.api.response.CreateUserRes
-import io.github.camposmdev.foursouls.model.api.response.GetUserByIdRes
-import io.github.camposmdev.foursouls.model.api.response.LoginUserRes
-import io.github.camposmdev.foursouls.model.api.response.MessageRes
+import io.github.camposmdev.foursouls.model.api.response.*
+import io.github.camposmdev.foursouls.model.card.BaseCard
 import io.github.camposmdev.foursouls.model.context.store.state.MomState
+import io.github.camposmdev.foursouls.model.util.Timex
 import io.vertx.core.Future
 import io.vertx.core.Promise
 import io.vertx.core.Vertx
@@ -78,6 +77,50 @@ class MomStore(v: Vertx, hostName: String, port: Int) : IStore<MomState> {
                 val body = job.mapTo(MessageRes::class.java)
                 promise.fail(body.message)
             }
+        }
+        return promise.future()
+    }
+
+    fun getAllDecks(pretty: Boolean = false): Future<ByteArray> {
+        val promise = Promise.promise<ByteArray>()
+        api.getAllDecks(pretty).onSuccess { res ->
+            if (res.statusCode() == 200) {
+                promise.complete(res.body().bytes)
+            } else {
+                val body = res.body().toJsonObject().mapTo(MessageRes::class.java)
+                promise.fail(body.message)
+            }
+        }
+        return promise.future()
+    }
+
+    fun appendDeck(name: String, card: BaseCard): Future<String> {
+        val promise = Promise.promise<String>()
+        api.appendDeck(name, card).onSuccess { res ->
+            if (res.statusCode() == 200) {
+                val body = res.bodyAsJson(MessageRes::class.java)
+                promise.complete(body.message)
+            } else if (res.statusCode() == 500) {
+                val body = res.bodyAsJson(Message500Res::class.java)
+                promise.fail(body.message)
+            } else {
+                val body = res.bodyAsJson(MessageRes::class.java)
+                promise.fail(body.message)
+            }
+        }
+        return promise.future()
+    }
+
+    fun ping(): Future<Long> {
+        val promise = Promise.promise<Long>()
+        val timex = Timex().start();
+        api.ping().onSuccess { res ->
+            if (res.statusCode() == 200) {
+                timex.stop()
+                promise.complete(timex.toMillis())
+            } else promise.complete(-1)
+        }.onFailure {
+            promise.complete(-1)
         }
         return promise.future()
     }
