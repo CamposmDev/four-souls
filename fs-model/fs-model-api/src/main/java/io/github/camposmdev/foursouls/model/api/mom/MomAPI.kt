@@ -1,9 +1,6 @@
 package io.github.camposmdev.foursouls.model.api.mom
 
-import io.github.camposmdev.foursouls.model.api.request.CreateUserReq
-import io.github.camposmdev.foursouls.model.api.request.FreeBasementReq
-import io.github.camposmdev.foursouls.model.api.request.FreeChestReq
-import io.github.camposmdev.foursouls.model.api.request.LoginUserReq
+import io.github.camposmdev.foursouls.model.api.request.*
 import io.github.camposmdev.foursouls.model.card.BaseCard
 import io.vertx.core.Future
 import io.vertx.core.Promise
@@ -15,10 +12,6 @@ import io.vertx.ext.web.client.WebClient
 import io.vertx.ext.web.client.WebClientOptions
 
 class MomAPI(v: Vertx, host: String, port: Int) : MomHttpClient {
-    private companion object {
-        private const val UA = "Four-Souls/1.0.0"
-        private const val TOKEN_FIELD = "token"
-    }
     private var wc: WebClient
     var jwt: String? = null
 
@@ -77,6 +70,18 @@ class MomAPI(v: Vertx, host: String, port: Int) : MomHttpClient {
         return promise.future()
     }
 
+    override fun addBasement(floor: String, level: Int): Future<HttpResponse<Buffer>> {
+        val promise = Promise.promise<HttpResponse<Buffer>>()
+        val payload = CreateBasementReq(floor, level)
+        wc.post("/api/basement/")
+            .putHeader(HttpHeaders.COOKIE.toString(), jwt).sendJson(payload).onComplete {
+            if (it.succeeded())
+                promise.complete()
+            else promise.fail(it.cause())
+        }
+        return promise.future()
+    }
+
     override fun hostBasement(): Future<HttpResponse<Buffer>> {
         val promise = Promise.promise<HttpResponse<Buffer>>()
         wc.post("/api/basement/host")
@@ -111,6 +116,18 @@ class MomAPI(v: Vertx, host: String, port: Int) : MomHttpClient {
         return promise.future()
     }
 
+    override fun addChest(location: String, gate: Int): Future<HttpResponse<Buffer>> {
+        val promise = Promise.promise<HttpResponse<Buffer>>()
+        val payload = CreateChestReq(location, gate)
+        wc.post("/api/chest/")
+            .putHeader(HttpHeaders.COOKIE.toString(), jwt).sendJson(payload).onComplete {
+                if (it.succeeded())
+                    promise.complete()
+                else promise.fail(it.cause())
+            }
+        return promise.future()
+    }
+
     override fun hostChest(): Future<HttpResponse<Buffer>> {
         val promise = Promise.promise<HttpResponse<Buffer>>()
         wc.post("/api/chest/host")
@@ -133,9 +150,9 @@ class MomAPI(v: Vertx, host: String, port: Int) : MomHttpClient {
         return promise.future()
     }
 
-    override fun freeChest(chestId: String, chestKey: String): Future<HttpResponse<Buffer>> {
+    override fun unlockChest(chestId: String, chestKey: String): Future<HttpResponse<Buffer>> {
         val promise = Promise.promise<HttpResponse<Buffer>>()
-        val payload = FreeChestReq(chestId, chestKey)
+        val payload = UnlockChestReq(chestId, chestKey)
         wc.post("/api/chest/$chestId/free")
             .putHeader(HttpHeaders.COOKIE.toString(), jwt).sendJson(payload).onComplete {
                 if (it.succeeded())
@@ -177,7 +194,12 @@ class MomAPI(v: Vertx, host: String, port: Int) : MomHttpClient {
         return promise.future()
     }
 
-    override fun disconnect() {
+    override fun close() {
         wc.close()
+    }
+
+    private companion object {
+        private const val UA = "Four-Souls/1.0.0"
+        private const val TOKEN_FIELD = "token"
     }
 }
