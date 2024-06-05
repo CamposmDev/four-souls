@@ -8,9 +8,10 @@ import io.vertx.core.Vertx
 /**
  * Verifies userId cookie is a valid userId
  */
-class BasementAuth(v: Vertx, hostName: String, port: Int) {
-    private val store = MomStore(v, hostName, port)
-    fun verifyUserId(userId: String): Future<String> {
+class BasementAuth(v: Vertx, host: String, port: Int) {
+    private val store: MomStore = MomStore(v, host, port)
+
+    fun verify(userId: String): Future<String> {
         val promise = Promise.promise<String>()
         store.getUserById(userId).onSuccess {
             promise.complete(it.username)

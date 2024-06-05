@@ -164,7 +164,7 @@
         </dependency>
         <dependency>
             <groupId>io.github.camposmdev</groupId>
-            <artifactId>fs-model-net</artifactId>
+            <artifactId>fs-model-api</artifactId>
             <version>1.0.0</version>
             <scope>compile</scope>
         </dependency>

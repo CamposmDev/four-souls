@@ -25,7 +25,7 @@
         <module>fs-model-context</module>
         <module>fs-model-fx</module>
         <module>fs-model-game</module>
-        <module>fs-model-net</module>
+        <module>fs-model-api</module>
         <module>fs-model-util</module>
     </modules>
 
@@ -76,6 +76,11 @@
             <artifactId>vertx-junit5</artifactId>
             <version>4.5.8</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-lang-kotlin</artifactId>
+            <version>4.5.8</version>
         </dependency>
     </dependencies>
 

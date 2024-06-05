@@ -10,7 +10,7 @@ import io.github.camposmdev.foursouls.app.game.model.Model;
 import io.github.camposmdev.foursouls.app.game.api.API;
 import io.github.camposmdev.foursouls.model.fx.FXUtil;
 import io.github.camposmdev.foursouls.model.fx.FXController;
-import io.github.camposmdev.foursouls.model.net.BusEvent;
+import io.github.camposmdev.foursouls.model.api.BusEvent;
 import io.github.camposmdev.foursouls.model.fx.Log;
 
 import java.net.URL;

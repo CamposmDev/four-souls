@@ -1,7 +1,7 @@
 package io.github.camposmdev.foursouls.server.chest.model
 
-import io.github.camposmdev.foursouls.model.net.ClientRegistry
+import io.github.camposmdev.foursouls.model.api.ClientRegistry
 
-object ChestRegistry : ClientRegistry<GameClient>() {
+object ChestRegistry : ClientRegistry<GameClientWS>() {
 
 }

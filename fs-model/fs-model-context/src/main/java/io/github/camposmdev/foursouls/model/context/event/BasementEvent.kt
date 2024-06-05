@@ -1,7 +1,7 @@
 package io.github.camposmdev.foursouls.model.context.event
 
-import io.github.camposmdev.foursouls.model.net.message.MType
-import io.github.camposmdev.foursouls.model.net.message.payload.BasementPayload
+import io.github.camposmdev.foursouls.model.api.message.MType
+import io.github.camposmdev.foursouls.model.api.message.payload.BasementPayload
 import javafx.event.Event
 import javafx.event.EventType
 

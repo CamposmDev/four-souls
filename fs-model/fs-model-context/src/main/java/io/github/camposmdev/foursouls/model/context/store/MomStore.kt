@@ -1,10 +1,10 @@
 package io.github.camposmdev.foursouls.model.context.store
 
 import io.github.camposmdev.foursouls.model.context.store.state.MomState
-import io.github.camposmdev.foursouls.model.net.api.MomAPI
-import io.github.camposmdev.foursouls.model.net.response.CreateUserRes
-import io.github.camposmdev.foursouls.model.net.response.GetUserByIdRes
-import io.github.camposmdev.foursouls.model.net.response.LoginUserRes
+import io.github.camposmdev.foursouls.model.api.mom.MomAPI
+import io.github.camposmdev.foursouls.model.api.response.CreateUserRes
+import io.github.camposmdev.foursouls.model.api.response.GetUserByIdRes
+import io.github.camposmdev.foursouls.model.api.response.LoginUserRes
 import io.vertx.core.Future
 import io.vertx.core.Promise
 import io.vertx.core.Vertx

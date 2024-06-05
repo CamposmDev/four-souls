@@ -9,7 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import io.github.camposmdev.foursouls.model.net.BusEvent;
+import io.github.camposmdev.foursouls.model.api.BusEvent;
 
 @Deprecated
 public class GlobalChatController {

@@ -12,10 +12,10 @@
         <module name="fs-model-atlas" />
         <module name="fs-model-card" />
         <module name="fs-model-game" />
+        <module name="fs-model-api" />
         <module name="fs-app-game" />
         <module name="fs-app-editor" />
         <module name="fs-model-fx" />
-        <module name="fs-model-net" />
         <module name="fs-model-util" />
         <module name="fs-app-miser" />
         <module name="fs-model-context" />
