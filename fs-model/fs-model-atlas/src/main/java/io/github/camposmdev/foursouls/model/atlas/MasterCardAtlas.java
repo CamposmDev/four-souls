@@ -9,10 +9,10 @@ import io.github.camposmdev.foursouls.model.card.BaseCard;
 import io.github.camposmdev.foursouls.model.card.attribute.CardType;
 import io.github.camposmdev.foursouls.model.card.bsoul.BonusSoulCard;
 import io.github.camposmdev.foursouls.model.card.character.CharacterCard;
-import io.github.camposmdev.foursouls.model.card.eternal.*;
-import io.github.camposmdev.foursouls.model.card.outside.OutsideCard;
-import io.github.camposmdev.foursouls.model.card.loot.*;
+import io.github.camposmdev.foursouls.model.card.eternal.EternalCard;
+import io.github.camposmdev.foursouls.model.card.loot.LootCard;
 import io.github.camposmdev.foursouls.model.card.monster.BaseMonsterCard;
+import io.github.camposmdev.foursouls.model.card.outside.OutsideCard;
 import io.github.camposmdev.foursouls.model.card.room.RoomCard;
 import io.github.camposmdev.foursouls.model.card.treasure.TreasureCard;
 

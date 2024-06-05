@@ -19,7 +19,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class DeserializerTest {
+public class AtlasDeserializerTest {
     private static ObjectMapper mapper;
     private static String bsoul_json;
     private static String gevent_json;

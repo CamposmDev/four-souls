@@ -25,7 +25,7 @@ public class LootCardAtlasDeserializer extends CardAtlasDeserializer<LootCardAtl
         var butter = node.get("butter");
         var cards = node.get("cards");
         var dice = node.get("dice");
-        var key = node.get("key");
+        var keys = node.get("keys");
         var lsoul = node.get("lsoul");
         var pill = node.get("pill");
         var rune = node.get("rune");
@@ -47,8 +47,8 @@ public class LootCardAtlasDeserializer extends CardAtlasDeserializer<LootCardAtl
             obj.cards = deserializeMap(cards, mapper, TarotCard.class);
         if (!isEmptyMap(dice))
             obj.dice = deserializeMap(dice, mapper, DiceShardCard.class);
-        if (!isEmptyMap(key))
-            obj.key = deserializeMap(key, mapper, KeyCard.class);
+        if (!isEmptyMap(keys))
+            obj.keys = deserializeMap(keys, mapper, KeyCard.class);
         if (!isEmptyMap(lsoul))
             obj.lsoul = deserializeMap(lsoul, mapper, LostSoulCard.class);
         if (!isEmptyMap(pill))

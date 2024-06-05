@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -28,7 +29,7 @@ public abstract class CardAtlasDeserializer<T> extends JsonDeserializer<T> {
         return map;
     }
 
-    public boolean isEmptyMap(JsonNode node) {
+    public boolean isEmptyMap(@NotNull JsonNode node) {
         if (node.isObject()) {
             return !node.fields().hasNext();
         }

@@ -15,7 +15,7 @@ public class LootCardAtlas implements CardAtlas<LootCard> {
     protected Map<String, ButterBeanCard> butter;
     protected Map<String, TarotCard> cards;
     protected Map<String, DiceShardCard> dice;
-    protected Map<String, KeyCard> key;
+    protected Map<String, KeyCard> keys;
     protected Map<String, LostSoulCard> lsoul;
     protected Map<String, PillCard> pill;
     protected Map<String, RuneCard> rune;
@@ -32,7 +32,7 @@ public class LootCardAtlas implements CardAtlas<LootCard> {
         this.butter = new HashMap<>();
         this.cards = new HashMap<>();
         this.dice = new HashMap<>();
-        this.key = new HashMap<>();
+        this.keys = new HashMap<>();
         this.lsoul = new HashMap<>();
         this.pill = new HashMap<>();
         this.rune = new HashMap<>();
@@ -52,7 +52,7 @@ public class LootCardAtlas implements CardAtlas<LootCard> {
             case BUTTER -> butter.put(card.getId(), (ButterBeanCard) card);
             case CARDS -> cards.put(card.getId(), (TarotCard) card);
             case DICE -> dice.put(card.getId(), (DiceShardCard) card);
-            case KEYS -> key.put(card.getId(), (KeyCard) card);
+            case KEYS -> keys.put(card.getId(), (KeyCard) card);
             case LSOUL -> lsoul.put(card.getId(), (LostSoulCard) card);
             case PILLS -> pill.put(card.getId(), (PillCard) card);
             case RUNES -> rune.put(card.getId(), (RuneCard) card);
@@ -73,7 +73,7 @@ public class LootCardAtlas implements CardAtlas<LootCard> {
             case BUTTER -> butter.containsKey(id);
             case CARDS -> cards.containsKey(id);
             case DICE -> dice.containsKey(id);
-            case KEYS -> key.containsKey(id);
+            case KEYS -> keys.containsKey(id);
             case LSOUL -> lsoul.containsKey(id);
             case PILLS -> pill.containsKey(id);
             case RUNES -> rune.containsKey(id);
@@ -96,7 +96,7 @@ public class LootCardAtlas implements CardAtlas<LootCard> {
         lst.addAll(butter.values());
         lst.addAll(cards.values());
         lst.addAll(dice.values());
-        lst.addAll(key.values());
+        lst.addAll(keys.values());
         lst.addAll(lsoul.values());
         lst.addAll(pill.values());
         lst.addAll(rune.values());

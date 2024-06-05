@@ -16,7 +16,7 @@ import java.lang.reflect.Field;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class SerializerTest {
+public class AtlasSerializerTest {
     private static ObjectMapper mapper;
     @BeforeAll
     static void init() {

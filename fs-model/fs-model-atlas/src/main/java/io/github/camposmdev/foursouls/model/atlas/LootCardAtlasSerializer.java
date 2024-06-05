@@ -16,7 +16,7 @@ public class LootCardAtlasSerializer extends JsonSerializer<LootCardAtlas> {
         gen.writeObjectField("butter", value.butter);
         gen.writeObjectField("cards", value.cards);
         gen.writeObjectField("dice", value.dice);
-        gen.writeObjectField("key", value.key);
+        gen.writeObjectField("keys", value.keys);
         gen.writeObjectField("lsoul", value.lsoul);
         gen.writeObjectField("pill", value.pill);
         gen.writeObjectField("rune", value.rune);
