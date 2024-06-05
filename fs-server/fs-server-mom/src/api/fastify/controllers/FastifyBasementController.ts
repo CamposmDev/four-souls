@@ -43,6 +43,6 @@ export default class FastifyBasementController {
         if (!freed)
             res.status(400).send({message: "Invalid key: the provided key does not match the expected key for this basement"})
         else
-            res.status(200).send()
+            res.status(200).send({message: "Freed Basement"})
     }
 }

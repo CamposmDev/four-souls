@@ -13,7 +13,7 @@ const LEVEL = "debug"
 const server = build(LEVEL)
 server.listen({port: PORT}, (err: Error | null, addr: string) => {
     if (err) {
-        server.log.error("Server", err)
+        server.log.error(err)
         process.exit(1)
     }
 })

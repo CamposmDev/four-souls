@@ -43,6 +43,6 @@ export default class FastifyChestController {
         if (!freed)
             res.status(400).send({message: "Invalid key: the provided key does not match the expected key for this chest"})
         else
-            res.status(200).send()
+            res.status(200).send({message: "Freed Chest"})
     }
 }

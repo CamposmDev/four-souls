@@ -29,7 +29,7 @@ export default class FastifyUserController {
             secure: true,
             httpOnly: true,
             sameSite: true,
-            maxAge: (60*60*24*3)
+            maxAge: (60*60*24*5) /* 5 days */
         }).status(201).send(json)
     }
 
@@ -77,5 +77,6 @@ export default class FastifyUserController {
 
     public async logout(req: FastifyRequest, res: FastifyReply) {
         res.clearCookie('token')
+        res.send({message: "Logged out"})
     }
 }
