@@ -4,12 +4,13 @@ import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.dsl.FXGLForKtKt;
 import io.github.camposmdev.foursouls.app.editor.ui.AppBar;
 import io.github.camposmdev.foursouls.app.editor.ui.factory.DialogFactory;
-import io.github.camposmdev.foursouls.app.editor.net.API;
+import io.github.camposmdev.foursouls.app.editor.api.API;
 import io.github.camposmdev.foursouls.model.atlas.ImageAtlas;
 import io.github.camposmdev.foursouls.model.atlas.MasterCardAtlas;
 import io.github.camposmdev.foursouls.model.atlas.MasterImageAtlas;
 import io.github.camposmdev.foursouls.model.card.BaseCard;
 import io.github.camposmdev.foursouls.model.card.attribute.CardType;
+import javafx.application.Platform;
 
 import java.util.List;
 import java.util.Stack;
@@ -55,7 +56,7 @@ public class Model {
         /* add the card to the local master card atlas */
         masterCardAtlas.add(card);
         /* then upload this card to the server if able */
-        API.instance().createCard(card);
+        API.instance().appendDeck(card);
         /* then add the card to recent commits */
         recentCommits.addFirst(card);
         /* update the app bar */
@@ -88,13 +89,12 @@ public class Model {
     }
 
     public void loadMasterCardAtlas() {
-        var masterCardAtlas = API.instance().fetchMasterCardAtlas();
-        if (masterCardAtlas == null) {
-            FXGL.getNotificationService().pushNotification("Failed to connect to server");
-        } else {
-            FXGL.getNotificationService().pushNotification("Loaded Master Card Atlas");
-            this.masterCardAtlas = masterCardAtlas;
-        }
+        API.instance().getAllDecks().onSuccess(it -> {
+           this.masterCardAtlas = it;
+            Platform.runLater(() ->
+                    FXGL.getNotificationService().pushNotification("Loaded Master Card Atlas"));
+        }).onFailure(err -> Platform.runLater(() ->
+				FXGL.getNotificationService().pushNotification("Failed to connect to server")));
     }
 
     public void saveMasterCardAtlas() {

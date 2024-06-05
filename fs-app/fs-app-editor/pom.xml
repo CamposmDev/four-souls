@@ -41,9 +41,9 @@
             <version>21</version>
         </dependency>
         <dependency>
-            <groupId>com.squareup.okhttp3</groupId>
-            <artifactId>okhttp</artifactId>
-            <version>4.12.0</version>
+            <groupId>io.github.camposmdev</groupId>
+            <artifactId>fs-model-context</artifactId>
+            <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>io.github.camposmdev</groupId>

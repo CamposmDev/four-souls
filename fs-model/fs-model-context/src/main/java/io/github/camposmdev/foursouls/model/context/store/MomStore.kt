@@ -113,7 +113,7 @@ class MomStore(v: Vertx, hostName: String, port: Int) : IStore<MomState> {
 
     fun ping(): Future<Long> {
         val promise = Promise.promise<Long>()
-        val timex = Timex().start();
+        val timex = Timex().start()
         api.ping().onSuccess { res ->
             if (res.statusCode() == 200) {
                 timex.stop()

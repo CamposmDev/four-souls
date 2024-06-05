@@ -4,7 +4,7 @@ import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.ui.UI;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.github.camposmdev.foursouls.app.editor.net.API;
+import io.github.camposmdev.foursouls.app.editor.api.API;
 import io.github.camposmdev.foursouls.app.editor.ui.AttributeModifierBox;
 import io.github.camposmdev.foursouls.app.editor.ui.NotificationBar;
 import io.github.camposmdev.foursouls.app.editor.ui.RewardBox;
@@ -22,6 +22,7 @@ import io.github.camposmdev.foursouls.model.card.attribute.loot.RuneEvent;
 import io.github.camposmdev.foursouls.model.card.attribute.monster.MonsterOptionEvent;
 import io.github.camposmdev.foursouls.model.fx.DialogBuilder;
 import io.github.camposmdev.foursouls.model.fx.FXUtil;
+import javafx.application.Platform;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
@@ -355,20 +356,38 @@ public class DialogFactory {
         var tfPort = new TextField(API.instance().port().toString());
         var btPing = new Button("Ping (...)");
         btPing.setMaxWidth(Integer.MAX_VALUE);
-        Runnable runnable = () -> {
+        var tfUsername = new TextField();
+        var tfPassword = new PasswordField();
+        var btLogin = new Button("Login");
+        btLogin.setMaxWidth(Integer.MAX_VALUE);
+        Runnable ping = () -> {
             try {
                 String host = tfHost.getText();
                 int port = Integer.parseInt(tfPort.getText());
                 API.instance().setHostAndPort(host, port);
-                btPing.setText(String.format("Ping (%d ms)", API.instance().ping()));
+                API.instance().ping().onComplete(it ->
+                        Platform.runLater(() ->
+                                btPing.setText(String.format("Ping (%d ms)", it.result()))));
             } catch (Exception ignored) {
             }
         };
-        btPing.setOnAction(e -> FXGL.runOnce(runnable, Duration.ONE));
+        Runnable login = () -> {
+            String username = tfUsername.getText();
+            String password = tfPassword.getText();
+            API.instance().login(username, password).onSuccess(e ->
+                    Platform.runLater(() -> FXGL.getNotificationService().pushNotification("Logged in as: " + username)))
+            .onFailure(err -> Platform.runLater(() ->
+                    FXGL.getNotificationService().pushNotification(err.getMessage())));
+        };
+        btPing.setOnAction(e -> FXGL.runOnce(ping, Duration.ONE));
+        btLogin.setOnAction(e -> FXGL.runOnce(login, Duration.ONE));
         root.addRow(0, new Label("Host"), tfHost);
         root.addRow(1, new Label("Port"), tfPort);
         root.add(btPing, 0, 2, 2, 1);
-        FXGL.runOnce(runnable, Duration.ONE);
+        root.addRow(3, new Label("Username"), tfUsername);
+        root.addRow(4, new Label("Password"), tfPassword);
+        root.add(btLogin, 0, 5, 2, 1);
+        FXGL.runOnce(ping, Duration.ONE);
         new DialogBuilder()
                 .setTitle("Preferences")
                 .setContent(root)
