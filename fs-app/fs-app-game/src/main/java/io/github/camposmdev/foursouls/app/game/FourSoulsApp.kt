@@ -15,7 +15,7 @@ import io.github.camposmdev.foursouls.app.game.ui.view.ActionDrawerView
 import io.github.camposmdev.foursouls.app.game.ui.view.PlayMatView
 import io.github.camposmdev.foursouls.model.atlas.MasterCardAtlas
 import io.github.camposmdev.foursouls.model.game.LocalGameManager
-import io.github.camposmdev.foursouls.model.fx.FXUtil
+import io.github.camposmdev.foursouls.model.ui.FXUtil
 
 class FourSoulsApp : GameApplication() {
     companion object {

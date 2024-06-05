@@ -3,7 +3,7 @@ package io.github.camposmdev.foursouls.app.game.ui.scene;
 import com.almasb.fxgl.app.scene.StartupScene;
 import javafx.scene.Cursor;
 import javafx.scene.layout.StackPane;
-import io.github.camposmdev.foursouls.model.fx.FXUtil;
+import io.github.camposmdev.foursouls.model.ui.FXUtil;
 
 public class FSStartupScene extends StartupScene {
 

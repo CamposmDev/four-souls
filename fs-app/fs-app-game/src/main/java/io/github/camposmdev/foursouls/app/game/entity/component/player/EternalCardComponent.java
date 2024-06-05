@@ -6,7 +6,7 @@ import io.github.camposmdev.foursouls.app.game.entity.component.Playable;
 import io.github.camposmdev.foursouls.app.game.entity.component.card.CardRenderer;
 import io.github.camposmdev.foursouls.app.game.service.EntityService;
 import io.github.camposmdev.foursouls.model.card.eternal.*;
-import io.github.camposmdev.foursouls.model.fx.FXUtil;
+import io.github.camposmdev.foursouls.model.ui.FXUtil;
 
 public class EternalCardComponent extends Component implements CardRenderer<EternalCard>, Playable {
 	private PlayerComponent player; /* this component is injected automatically */

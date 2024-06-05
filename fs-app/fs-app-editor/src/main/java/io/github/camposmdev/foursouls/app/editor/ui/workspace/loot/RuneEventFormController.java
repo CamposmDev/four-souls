@@ -8,8 +8,8 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import io.github.camposmdev.foursouls.model.card.attribute.EntityTarget;
 import io.github.camposmdev.foursouls.model.card.attribute.loot.RuneEvent;
-import io.github.camposmdev.foursouls.model.fx.FXUtil;
-import io.github.camposmdev.foursouls.model.fx.FormController;
+import io.github.camposmdev.foursouls.model.ui.FXUtil;
+import io.github.camposmdev.foursouls.model.ui.FormController;
 
 public class RuneEventFormController extends FormController<RuneEvent[]> {
     @FXML

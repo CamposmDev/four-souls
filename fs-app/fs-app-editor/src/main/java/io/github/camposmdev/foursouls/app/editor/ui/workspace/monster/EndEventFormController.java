@@ -4,8 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import io.github.camposmdev.foursouls.model.card.attribute.monster.EndEvent;
-import io.github.camposmdev.foursouls.model.fx.FXUtil;
-import io.github.camposmdev.foursouls.model.fx.FormController;
+import io.github.camposmdev.foursouls.model.ui.FXUtil;
+import io.github.camposmdev.foursouls.model.ui.FormController;
 
 public class EndEventFormController extends FormController<EndEvent> {
     /* Controls for End Event */

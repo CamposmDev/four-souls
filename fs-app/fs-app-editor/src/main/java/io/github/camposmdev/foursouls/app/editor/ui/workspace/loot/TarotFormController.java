@@ -5,7 +5,7 @@ import javafx.scene.control.ComboBox;
 import io.github.camposmdev.foursouls.model.card.attribute.CardSet;
 import io.github.camposmdev.foursouls.model.card.attribute.loot.CardKind;
 import io.github.camposmdev.foursouls.model.card.loot.TarotCard;
-import io.github.camposmdev.foursouls.model.fx.FormController;
+import io.github.camposmdev.foursouls.model.ui.FormController;
 
 public class TarotFormController extends FormController<TarotCard> {
     @FXML private ComboBox<CardSet> cardSet;

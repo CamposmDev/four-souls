@@ -5,7 +5,7 @@ import io.github.camposmdev.foursouls.model.atlas.MasterCardAtlas;
 import io.github.camposmdev.foursouls.model.card.BaseCard;
 import io.github.camposmdev.foursouls.model.card.attribute.CardType;
 import io.github.camposmdev.foursouls.model.context.store.MomStore;
-import io.github.camposmdev.foursouls.model.fx.Log;
+import io.github.camposmdev.foursouls.model.ui.Log;
 import io.vertx.core.Future;
 import io.vertx.core.Promise;
 import io.vertx.core.Vertx;

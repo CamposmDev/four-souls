@@ -12,7 +12,7 @@ import io.github.camposmdev.foursouls.model.card.attribute.CardSet;
 import io.github.camposmdev.foursouls.model.card.attribute.CardType;
 import io.github.camposmdev.foursouls.model.card.attribute.loot.MoneyEffect.MoneyEffect;
 import io.github.camposmdev.foursouls.model.card.loot.MoneyCard;
-import io.github.camposmdev.foursouls.model.fx.FXUtil;
+import io.github.camposmdev.foursouls.model.ui.FXUtil;
 
 public class MoneyEditor extends BaseEditor {
     private final GridPane root;

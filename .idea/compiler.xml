@@ -9,18 +9,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="fs-model-atlas" />
-        <module name="fs-model-card" />
-        <module name="fs-model-game" />
-        <module name="fs-model-api" />
+        <module name="fs-atlas" />
+        <module name="fs-game" />
+        <module name="fs-card" />
+        <module name="fs-context" />
+        <module name="fs-api" />
         <module name="fs-app-game" />
         <module name="fs-app-editor" />
-        <module name="fs-model-fx" />
-        <module name="fs-model-util" />
+        <module name="fs-util" />
         <module name="fs-app-miser" />
-        <module name="fs-model-context" />
         <module name="fs-server-basement" />
         <module name="fs-server-chest" />
+        <module name="fs-ui-framework" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

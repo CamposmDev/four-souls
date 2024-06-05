@@ -9,8 +9,8 @@ import io.github.camposmdev.foursouls.model.card.attribute.CardSet;
 import io.github.camposmdev.foursouls.model.card.attribute.monster.EndEvent;
 import io.github.camposmdev.foursouls.model.card.attribute.monster.StartEvent;
 import io.github.camposmdev.foursouls.model.card.monster.CurseCard;
-import io.github.camposmdev.foursouls.model.fx.FXUtil;
-import io.github.camposmdev.foursouls.model.fx.FormController;
+import io.github.camposmdev.foursouls.model.ui.FXUtil;
+import io.github.camposmdev.foursouls.model.ui.FormController;
 
 public class CurseFormController extends FormController<CurseCard> {
     @FXML private ComboBox<CardSet> cardSet;

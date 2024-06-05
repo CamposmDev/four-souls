@@ -9,8 +9,8 @@ import javafx.scene.layout.GridPane;
 import io.github.camposmdev.foursouls.model.card.attribute.*;
 import io.github.camposmdev.foursouls.model.card.attribute.monster.*;
 import io.github.camposmdev.foursouls.model.card.monster.MonsterCard;
-import io.github.camposmdev.foursouls.model.fx.FXUtil;
-import io.github.camposmdev.foursouls.model.fx.FormController;
+import io.github.camposmdev.foursouls.model.ui.FXUtil;
+import io.github.camposmdev.foursouls.model.ui.FormController;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

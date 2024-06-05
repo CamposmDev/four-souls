@@ -1,4 +1,4 @@
-package io.github.camposmdev.foursouls.model.fx;
+package io.github.camposmdev.foursouls.model.ui;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;

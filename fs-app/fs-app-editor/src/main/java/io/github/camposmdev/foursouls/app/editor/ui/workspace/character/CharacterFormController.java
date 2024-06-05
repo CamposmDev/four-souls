@@ -12,8 +12,8 @@ import io.github.camposmdev.foursouls.model.card.attribute.CardSet;
 import io.github.camposmdev.foursouls.model.card.attribute.CardType;
 import io.github.camposmdev.foursouls.model.card.attribute.character.SpecialType;
 import io.github.camposmdev.foursouls.model.card.character.CharacterCard;
-import io.github.camposmdev.foursouls.model.fx.FXUtil;
-import io.github.camposmdev.foursouls.model.fx.FormController;
+import io.github.camposmdev.foursouls.model.ui.FXUtil;
+import io.github.camposmdev.foursouls.model.ui.FormController;
 
 public class CharacterFormController extends FormController<CharacterCard> {
     @FXML private ComboBox<CardSet> cardSet;

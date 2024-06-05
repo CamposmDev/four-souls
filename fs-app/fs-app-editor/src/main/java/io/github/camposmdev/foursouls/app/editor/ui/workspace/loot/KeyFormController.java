@@ -5,7 +5,7 @@ import javafx.scene.control.ComboBox;
 import io.github.camposmdev.foursouls.model.card.attribute.CardSet;
 import io.github.camposmdev.foursouls.model.card.attribute.loot.CardKind;
 import io.github.camposmdev.foursouls.model.card.loot.KeyCard;
-import io.github.camposmdev.foursouls.model.fx.FormController;
+import io.github.camposmdev.foursouls.model.ui.FormController;
 
 public class KeyFormController extends FormController<KeyCard> {
     @FXML

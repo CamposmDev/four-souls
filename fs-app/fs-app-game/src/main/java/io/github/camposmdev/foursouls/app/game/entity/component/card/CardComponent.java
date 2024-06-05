@@ -4,7 +4,7 @@ import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.texture.Texture;
 import io.github.camposmdev.foursouls.app.game.service.EntityService;
 import io.github.camposmdev.foursouls.model.card.BaseCard;
-import io.github.camposmdev.foursouls.model.fx.FXUtil;
+import io.github.camposmdev.foursouls.model.ui.FXUtil;
 
 /**
  * Attach to entities that have a card.

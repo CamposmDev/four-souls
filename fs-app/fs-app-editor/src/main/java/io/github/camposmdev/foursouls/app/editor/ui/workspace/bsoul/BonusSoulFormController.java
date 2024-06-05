@@ -7,8 +7,8 @@ import javafx.scene.control.TextField;
 import io.github.camposmdev.foursouls.model.card.attribute.CardSet;
 import io.github.camposmdev.foursouls.model.card.bsoul.BonusSoulCard;
 import io.github.camposmdev.foursouls.model.card.attribute.CounterType;
-import io.github.camposmdev.foursouls.model.fx.FXUtil;
-import io.github.camposmdev.foursouls.model.fx.FormController;
+import io.github.camposmdev.foursouls.model.ui.FXUtil;
+import io.github.camposmdev.foursouls.model.ui.FormController;
 
 public class BonusSoulFormController extends FormController<BonusSoulCard> {
     @FXML ComboBox<CardSet> cbCardSet;

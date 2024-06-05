@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import io.github.camposmdev.foursouls.model.card.attribute.CardSet;
 import io.github.camposmdev.foursouls.model.card.loot.DiceShardCard;
-import io.github.camposmdev.foursouls.model.fx.FormController;
+import io.github.camposmdev.foursouls.model.ui.FormController;
 
 public class DiceShardFormController extends FormController<DiceShardCard> {
     @FXML

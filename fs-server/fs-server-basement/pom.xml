@@ -70,12 +70,12 @@
     <dependencies>
         <dependency>
             <groupId>io.github.camposmdev</groupId>
-            <artifactId>fs-model-context</artifactId>
+            <artifactId>fs-context</artifactId>
             <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>io.github.camposmdev</groupId>
-            <artifactId>fs-model-api</artifactId>
+            <artifactId>fs-api</artifactId>
             <version>1.0.0</version>
         </dependency>
         <dependency>

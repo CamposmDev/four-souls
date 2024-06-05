@@ -10,7 +10,7 @@ import io.github.camposmdev.foursouls.model.card.loot.LootCard;
 import io.github.camposmdev.foursouls.model.card.monster.BaseMonsterCard;
 import io.github.camposmdev.foursouls.model.card.room.RoomCard;
 import io.github.camposmdev.foursouls.model.card.treasure.TreasureCard;
-import io.github.camposmdev.foursouls.model.fx.Log;
+import io.github.camposmdev.foursouls.model.ui.Log;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.getGameWorld;
 import static com.almasb.fxgl.dsl.FXGLForKtKt.geto;

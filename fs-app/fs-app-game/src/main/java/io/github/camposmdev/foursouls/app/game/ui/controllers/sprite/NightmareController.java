@@ -13,8 +13,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
-import io.github.camposmdev.foursouls.model.fx.FXUtil;
-import io.github.camposmdev.foursouls.model.fx.FXController;
+import io.github.camposmdev.foursouls.model.ui.FXUtil;
+import io.github.camposmdev.foursouls.model.ui.FXController;
 
 import java.net.URL;
 import java.util.ResourceBundle;

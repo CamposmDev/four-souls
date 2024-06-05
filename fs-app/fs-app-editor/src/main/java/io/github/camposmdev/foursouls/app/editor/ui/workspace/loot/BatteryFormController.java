@@ -5,7 +5,7 @@ import javafx.scene.control.ComboBox;
 import io.github.camposmdev.foursouls.model.card.attribute.CardSet;
 import io.github.camposmdev.foursouls.model.card.attribute.loot.BatteryType;
 import io.github.camposmdev.foursouls.model.card.loot.BatteryCard;
-import io.github.camposmdev.foursouls.model.fx.FormController;
+import io.github.camposmdev.foursouls.model.ui.FormController;
 
 public class BatteryFormController extends FormController<BatteryCard> {
     @FXML

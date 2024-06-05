@@ -9,8 +9,8 @@ import io.github.camposmdev.foursouls.model.card.attribute.CardSet;
 import io.github.camposmdev.foursouls.model.card.attribute.EntityTarget;
 import io.github.camposmdev.foursouls.model.card.attribute.RollEvent;
 import io.github.camposmdev.foursouls.model.card.monster.BadEventCard;
-import io.github.camposmdev.foursouls.model.fx.FXUtil;
-import io.github.camposmdev.foursouls.model.fx.FormController;
+import io.github.camposmdev.foursouls.model.ui.FXUtil;
+import io.github.camposmdev.foursouls.model.ui.FormController;
 
 import java.util.LinkedList;
 import java.util.List;

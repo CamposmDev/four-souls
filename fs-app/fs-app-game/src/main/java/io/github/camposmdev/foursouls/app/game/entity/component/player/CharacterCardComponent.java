@@ -9,7 +9,7 @@ import io.github.camposmdev.foursouls.app.game.entity.component.card.CardRendere
 import io.github.camposmdev.foursouls.app.game.service.EntityService;
 import io.github.camposmdev.foursouls.model.card.character.CharacterCard;
 import io.github.camposmdev.foursouls.model.game.Attackable;
-import io.github.camposmdev.foursouls.model.fx.FXUtil;
+import io.github.camposmdev.foursouls.model.ui.FXUtil;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 

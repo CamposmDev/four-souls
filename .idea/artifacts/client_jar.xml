@@ -4,7 +4,7 @@
     <root id="archive" name="client.jar">
       <element id="module-output" name="fs-app-game" />
       <element id="module-output" name="fs-model" />
-      <element id="module-output" name="fs-model-util" />
+      <element id="module-output" name="fs-util" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/github/almasb/fxgl-io/21/fxgl-io-21.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/kotlin/kotlin-stdlib/1.8.10/kotlin-stdlib-1.8.10.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/junit/platform/junit-platform-commons/1.10.0/junit-platform-commons-1.10.0.jar" path-in-jar="/" />

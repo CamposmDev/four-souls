@@ -3,7 +3,7 @@ package io.github.camposmdev.foursouls.app.game.ui.controllers.menu;
 import io.github.camposmdev.foursouls.app.game.api.API;
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
-import io.github.camposmdev.foursouls.model.fx.FXController;
+import io.github.camposmdev.foursouls.model.ui.FXController;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.getDialogService;
 

@@ -5,7 +5,7 @@ import javafx.scene.control.ComboBox;
 import io.github.camposmdev.foursouls.model.card.attribute.CardSet;
 import io.github.camposmdev.foursouls.model.card.attribute.eternal.PaidItem;
 import io.github.camposmdev.foursouls.model.card.eternal.PaidEternalCard;
-import io.github.camposmdev.foursouls.model.fx.FormController;
+import io.github.camposmdev.foursouls.model.ui.FormController;
 
 public class PaidEternalFormController extends FormController<PaidEternalCard> {
     @FXML ComboBox<CardSet> cbCardSet;

@@ -6,7 +6,7 @@ import javafx.scene.control.ComboBox;
 import io.github.camposmdev.foursouls.model.card.attribute.CardSet;
 import io.github.camposmdev.foursouls.model.card.attribute.treasure.OneUseItem;
 import io.github.camposmdev.foursouls.model.card.treasure.OneUseTreasureCard;
-import io.github.camposmdev.foursouls.model.fx.FormController;
+import io.github.camposmdev.foursouls.model.ui.FormController;
 
 public class OneUseTreasureFormController extends FormController<OneUseTreasureCard> {
     @FXML

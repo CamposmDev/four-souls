@@ -23,7 +23,7 @@ class BasementServerTest {
 
         @JvmStatic
         @BeforeAll
-        fun setup(v: Vertx, ctx: VertxTestContext) {
+        fun setup(ctx: VertxTestContext) {
             BasementServer.main(arrayOf(
                 "--port", "$TEST_BASEMENT_PORT",
                 "--mom-host", TEST_MOM_HOST,

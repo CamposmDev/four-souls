@@ -9,8 +9,8 @@ import io.github.camposmdev.foursouls.app.editor.ui.NotificationBar;
 import io.github.camposmdev.foursouls.app.editor.ui.factory.DialogFactory;
 import io.github.camposmdev.foursouls.app.editor.ui.workspace.BaseEditor;
 import io.github.camposmdev.foursouls.model.card.bsoul.BonusSoulCard;
-import io.github.camposmdev.foursouls.model.fx.FXUtil;
-import io.github.camposmdev.foursouls.model.fx.FormController;
+import io.github.camposmdev.foursouls.model.ui.FXUtil;
+import io.github.camposmdev.foursouls.model.ui.FormController;
 
 public class BonusSoulEditor extends BaseEditor {
     private final GridPane root;

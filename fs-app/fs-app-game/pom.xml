@@ -146,31 +146,31 @@
         </dependency>
         <dependency>
             <groupId>io.github.camposmdev</groupId>
-            <artifactId>fs-model-atlas</artifactId>
+            <artifactId>fs-atlas</artifactId>
             <version>1.0.0</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>io.github.camposmdev</groupId>
-            <artifactId>fs-model-game</artifactId>
+            <artifactId>fs-game</artifactId>
             <version>1.0.0</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>io.github.camposmdev</groupId>
-            <artifactId>fs-model-fx</artifactId>
+            <artifactId>fs-ui-framework</artifactId>
             <version>1.0.0</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>io.github.camposmdev</groupId>
-            <artifactId>fs-model-api</artifactId>
+            <artifactId>fs-api</artifactId>
             <version>1.0.0</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>io.github.camposmdev</groupId>
-            <artifactId>fs-model-card</artifactId>
+            <artifactId>fs-card</artifactId>
             <version>1.0.0</version>
         </dependency>
         <dependency>

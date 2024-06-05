@@ -9,8 +9,8 @@ import javafx.scene.layout.GridPane;
 import io.github.camposmdev.foursouls.model.card.attribute.EntityTarget;
 import io.github.camposmdev.foursouls.model.card.attribute.loot.PillEvent;
 import io.github.camposmdev.foursouls.model.card.attribute.loot.PillItem;
-import io.github.camposmdev.foursouls.model.fx.FXUtil;
-import io.github.camposmdev.foursouls.model.fx.FormController;
+import io.github.camposmdev.foursouls.model.ui.FXUtil;
+import io.github.camposmdev.foursouls.model.ui.FormController;
 
 import java.util.ArrayList;
 import java.util.List;

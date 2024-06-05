@@ -4,7 +4,7 @@ import com.almasb.fxgl.dsl.FXGL;
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
-import io.github.camposmdev.foursouls.model.fx.FXController;
+import io.github.camposmdev.foursouls.model.ui.FXController;
 
 import java.awt.*;
 import java.io.IOException;

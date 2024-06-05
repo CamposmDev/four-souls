@@ -9,7 +9,7 @@ import javafx.animation.Animation;
 import javafx.animation.TranslateTransition;
 import javafx.scene.Node;
 import javafx.util.Duration;
-import io.github.camposmdev.foursouls.model.fx.Log;
+import io.github.camposmdev.foursouls.model.ui.Log;
 
 import static com.almasb.fxgl.dsl.FXGL.image;
 

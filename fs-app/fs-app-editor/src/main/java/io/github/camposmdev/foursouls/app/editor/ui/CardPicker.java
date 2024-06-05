@@ -23,7 +23,7 @@ import io.github.camposmdev.foursouls.app.editor.ui.workspace.monster.MonsterEdi
 import io.github.camposmdev.foursouls.app.editor.ui.workspace.room.RoomEditor;
 import io.github.camposmdev.foursouls.app.editor.ui.workspace.treasure.TreasureEditor;
 import io.github.camposmdev.foursouls.model.card.attribute.CardType;
-import io.github.camposmdev.foursouls.model.fx.Log;
+import io.github.camposmdev.foursouls.model.ui.Log;
 
 public class CardPicker {
     private final Workspace workspace;

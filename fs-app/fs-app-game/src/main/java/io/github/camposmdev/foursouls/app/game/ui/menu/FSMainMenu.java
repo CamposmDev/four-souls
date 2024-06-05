@@ -7,7 +7,7 @@ import io.github.camposmdev.foursouls.app.game.api.API;
 import javafx.application.Platform;
 import javafx.scene.layout.StackPane;
 import io.github.camposmdev.foursouls.app.game.ui.controllers.LoginController;
-import io.github.camposmdev.foursouls.model.fx.FXUtil;
+import io.github.camposmdev.foursouls.model.ui.FXUtil;
 
 
 public class FSMainMenu extends FXGLMenu {

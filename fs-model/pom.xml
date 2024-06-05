@@ -20,13 +20,13 @@
     </properties>
 
     <modules>
-        <module>fs-model-atlas</module>
-        <module>fs-model-card</module>
-        <module>fs-model-context</module>
-        <module>fs-model-fx</module>
-        <module>fs-model-game</module>
-        <module>fs-model-api</module>
-        <module>fs-model-util</module>
+        <module>fs-atlas</module>
+        <module>fs-card</module>
+        <module>fs-context</module>
+        <module>fs-ui-framework</module>
+        <module>fs-game</module>
+        <module>fs-api</module>
+        <module>fs-util</module>
     </modules>
 
     <dependencies>

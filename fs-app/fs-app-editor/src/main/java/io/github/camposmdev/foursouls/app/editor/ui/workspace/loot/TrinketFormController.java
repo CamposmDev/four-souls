@@ -5,7 +5,7 @@ import javafx.scene.control.ComboBox;
 import io.github.camposmdev.foursouls.model.card.attribute.CardSet;
 import io.github.camposmdev.foursouls.model.card.attribute.loot.TrinketType;
 import io.github.camposmdev.foursouls.model.card.loot.TrinketCard;
-import io.github.camposmdev.foursouls.model.fx.FormController;
+import io.github.camposmdev.foursouls.model.ui.FormController;
 
 public class TrinketFormController extends FormController<TrinketCard> {
     @FXML

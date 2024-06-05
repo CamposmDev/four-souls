@@ -11,7 +11,7 @@ import io.github.camposmdev.foursouls.model.card.treasure.TreasureCard;
 import io.github.camposmdev.foursouls.model.game.player.Attribute;
 import io.github.camposmdev.foursouls.model.game.player.Player;
 import io.github.camposmdev.foursouls.model.game.player.Souls;
-import io.github.camposmdev.foursouls.model.fx.Log;
+import io.github.camposmdev.foursouls.model.ui.Log;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.geto;
 
