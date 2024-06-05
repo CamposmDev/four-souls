@@ -1,6 +1,8 @@
 package io.github.camposmdev.foursouls.model.api.mom
 
 import io.github.camposmdev.foursouls.model.api.request.CreateUserReq
+import io.github.camposmdev.foursouls.model.api.request.FreeBasementReq
+import io.github.camposmdev.foursouls.model.api.request.FreeChestReq
 import io.github.camposmdev.foursouls.model.api.request.LoginUserReq
 import io.github.camposmdev.foursouls.model.card.BaseCard
 import io.vertx.core.Future
@@ -25,6 +27,7 @@ class MomAPI(v: Vertx, host: String, port: Int) : MomHttpClient {
             .setDefaultHost(host)
             .setDefaultPort(port)
             .setUserAgent(UA)
+            .setUserAgentEnabled(true)
         wc = WebClient.create(v, options)
     }
 
@@ -55,8 +58,7 @@ class MomAPI(v: Vertx, host: String, port: Int) : MomHttpClient {
     override fun logoutUser(): Future<HttpResponse<Buffer>> {
         val promise = Promise.promise<HttpResponse<Buffer>>()
         wc.post("/api/user/logout")
-            .putHeader(HttpHeaders.COOKIE.toString(), jwt)
-            .send().onComplete {
+            .putHeader(HttpHeaders.COOKIE.toString(), jwt).send().onComplete {
                 if (it.succeeded()) {
                     jwt = null
                     promise.complete(it.result())
@@ -76,56 +78,102 @@ class MomAPI(v: Vertx, host: String, port: Int) : MomHttpClient {
     }
 
     override fun hostBasement(): Future<HttpResponse<Buffer>> {
-        /* TODO - Implement end point */
         val promise = Promise.promise<HttpResponse<Buffer>>()
+        wc.post("/api/basement/host")
+            .putHeader(HttpHeaders.COOKIE.toString(), jwt).send().onComplete {
+                if (it.succeeded())
+                    promise.complete(it.result())
+                else promise.fail(it.cause())
+            }
         return promise.future()
     }
 
     override fun joinBasement(basementId: String): Future<HttpResponse<Buffer>> {
-        /* TODO - Implement end point */
         val promise = Promise.promise<HttpResponse<Buffer>>()
+        wc.get("/api/basement/$basementId/join")
+            .putHeader(HttpHeaders.COOKIE.toString(), jwt).send().onComplete {
+                if (it.succeeded())
+                    promise.complete(it.result())
+                else promise.fail(it.cause())
+            }
         return promise.future()
     }
 
     override fun freeBasement(basementId: String, basementKey: String): Future<HttpResponse<Buffer>> {
-        /* TODO - Implement end point */
         val promise = Promise.promise<HttpResponse<Buffer>>()
+        val payload = FreeBasementReq(basementId, basementKey)
+        wc.post("/api/basement/$basementId/free")
+            .putHeader(HttpHeaders.COOKIE.toString(), jwt).sendJson(payload).onComplete {
+                if (it.succeeded())
+                    promise.complete(it.result())
+                else promise.fail(it.cause())
+            }
         return promise.future()
     }
 
     override fun hostChest(): Future<HttpResponse<Buffer>> {
-        /* TODO - Implement end point */
         val promise = Promise.promise<HttpResponse<Buffer>>()
+        wc.post("/api/chest/host")
+            .putHeader(HttpHeaders.COOKIE.toString(), jwt).send().onComplete {
+                if (it.succeeded())
+                    promise.complete(it.result())
+                else promise.fail(it.cause())
+            }
         return promise.future()
     }
 
     override fun joinChest(chestId: String): Future<HttpResponse<Buffer>> {
-        /* TODO - Implement end point */
         val promise = Promise.promise<HttpResponse<Buffer>>()
+        wc.get("/api/chest/$chestId/join")
+            .putHeader(HttpHeaders.COOKIE.toString(), jwt).send().onComplete {
+                if (it.succeeded())
+                    promise.complete(it.result())
+                else promise.fail(it.cause())
+            }
         return promise.future()
     }
 
     override fun freeChest(chestId: String, chestKey: String): Future<HttpResponse<Buffer>> {
-        /* TODO - Implement end point */
         val promise = Promise.promise<HttpResponse<Buffer>>()
+        val payload = FreeChestReq(chestId, chestKey)
+        wc.post("/api/chest/$chestId/free")
+            .putHeader(HttpHeaders.COOKIE.toString(), jwt).sendJson(payload).onComplete {
+                if (it.succeeded())
+                    promise.complete(it.result())
+                else promise.fail(it.cause())
+            }
         return promise.future()
     }
 
     override fun getAllDecks(): Future<HttpResponse<Buffer>> {
-        /* TODO - Implement end point */
         val promise = Promise.promise<HttpResponse<Buffer>>()
+        wc.get("/api/deck/").send().onComplete {
+            if (it.succeeded())
+                promise.complete(it.result())
+            else promise.fail(it.cause())
+        }
         return promise.future()
     }
 
     override fun getDeckByName(name: String): Future<HttpResponse<Buffer>> {
-        /* TODO - Implement end point */
         val promise = Promise.promise<HttpResponse<Buffer>>()
+        wc.get("/api/deck/$name").send().onComplete {
+            if (it.succeeded())
+                promise.complete(it.result())
+            else promise.fail(it.cause())
+        }
         return promise.future()
     }
 
-    override fun appendCardToDeck(name: String, card: BaseCard): Future<HttpResponse<Buffer>> {
-        /* TODO - Implement end point */
+    override fun appendDeck(name: String, card: BaseCard): Future<HttpResponse<Buffer>> {
         val promise = Promise.promise<HttpResponse<Buffer>>()
+        val payload = card.toString()
+        wc.post("/api/deck/$name")
+            .putHeader(HttpHeaders.COOKIE.toString(), jwt).sendJson(payload).onComplete {
+                if (it.succeeded())
+                    promise.complete(it.result())
+                else promise.fail(it.cause())
+            }
         return promise.future()
     }
 
