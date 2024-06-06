@@ -8,13 +8,19 @@ import io.github.camposmdev.foursouls.core.util.Timex
 import io.vertx.core.Future
 import io.vertx.core.Promise
 import io.vertx.core.Vertx
+import io.vertx.core.eventbus.MessageConsumer
 
 class MomStore(v: Vertx, hostName: String, port: Int) : IStore<MomState> {
     private var api: MomAPI = MomAPI(v, hostName, port)
     private val state = MomState()
+    private val eb = v.eventBus()
 
     override fun state(): MomState {
         return state
+    }
+
+    override fun subscribe(): MessageConsumer<MomState> {
+        return eb.consumer(toString())
     }
 
     fun getJwt(): String? {

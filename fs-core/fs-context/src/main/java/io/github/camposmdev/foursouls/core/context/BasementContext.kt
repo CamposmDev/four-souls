@@ -1,15 +1,14 @@
 package io.github.camposmdev.foursouls.core.context
 
-import com.almasb.fxgl.dsl.getEventBus
-import com.almasb.fxgl.event.Subscriber
-import io.github.camposmdev.foursouls.core.context.event.BasementEvent
+import io.github.camposmdev.foursouls.core.api.ISubscribeMType
+import io.github.camposmdev.foursouls.core.api.message.MType
+import io.github.camposmdev.foursouls.core.api.message.payload.BasementPayload
 import io.github.camposmdev.foursouls.core.context.store.BasementStore
 import io.github.camposmdev.foursouls.core.context.store.state.BasementState
 import io.vertx.core.Vertx
-import javafx.event.EventHandler
-import javafx.event.EventType
+import io.vertx.core.eventbus.MessageConsumer
 
-class BasementContext(v: Vertx) : IContext<BasementState, BasementStore>, ISubscribeFXGL<BasementEvent> {
+class BasementContext(v: Vertx) : IContext<BasementState, BasementStore>, ISubscribeMType<BasementPayload> {
     private val store = BasementStore(v)
 
     override fun store(): BasementStore {
@@ -20,11 +19,7 @@ class BasementContext(v: Vertx) : IContext<BasementState, BasementStore>, ISubsc
         return store.state()
     }
 
-    override fun subscribeTo(eventType: EventType<BasementEvent>, eventHandler: EventHandler<BasementEvent>): Subscriber {
-        return getEventBus().addEventHandler(eventType, eventHandler)
-    }
-
-    override fun unsubscribeTo(eventType: EventType<BasementEvent>, eventHandler: EventHandler<BasementEvent>) {
-        return getEventBus().removeEventHandler(eventType, eventHandler)
+    override fun subscribeTo(mtype: MType): MessageConsumer<BasementPayload> {
+        return store.subscribeTo(mtype)
     }
 }

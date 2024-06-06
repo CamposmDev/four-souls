@@ -6,6 +6,6 @@ import javafx.event.EventHandler
 import javafx.event.EventType
 
 interface ISubscribeFXGL<T : Event> {
-    fun subscribeTo(eventType: EventType<T>, eventHandler: EventHandler<T>): Subscriber
-    fun unsubscribeTo(eventType: EventType<T>, eventHandler: EventHandler<T>)
+    fun subscribe(eventType: EventType<T>, eventHandler: EventHandler<T>): Subscriber
+    fun unsubscribe(eventType: EventType<T>, eventHandler: EventHandler<T>)
 }
