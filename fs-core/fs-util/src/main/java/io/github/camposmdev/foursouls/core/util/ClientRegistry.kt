@@ -3,13 +3,12 @@ package io.github.camposmdev.foursouls.core.util
 import java.util.*
 import java.util.function.Predicate
 
-open class ClientRegistry<T: ClientWS> {
+open class ClientRegistry<T: WSClient> {
     protected val clients: MutableList<T> by lazy {
         Collections.synchronizedList(LinkedList())
     }
 
     open fun add(client: T): Boolean {
-        println("Registered Client[${client.id()}]")
         return clients.add(client)
     }
 
