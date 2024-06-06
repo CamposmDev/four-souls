@@ -5,8 +5,8 @@ import com.almasb.fxgl.texture.Texture;
 import io.github.camposmdev.foursouls.app.game.entity.component.Playable;
 import io.github.camposmdev.foursouls.app.game.entity.component.card.CardRenderer;
 import io.github.camposmdev.foursouls.app.game.service.EntityService;
-import io.github.camposmdev.foursouls.model.card.eternal.*;
-import io.github.camposmdev.foursouls.model.ui.FXUtil;
+import io.github.camposmdev.foursouls.core.card.eternal.*;
+import io.github.camposmdev.foursouls.core.ui.FXUtil;
 
 public class EternalCardComponent extends Component implements CardRenderer<EternalCard>, Playable {
 	private PlayerComponent player; /* this component is injected automatically */

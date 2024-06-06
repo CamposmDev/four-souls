@@ -3,10 +3,10 @@ package io.github.camposmdev.foursouls.app.editor.ui.workspace.treasure;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
-import io.github.camposmdev.foursouls.model.card.attribute.CardSet;
-import io.github.camposmdev.foursouls.model.card.attribute.treasure.ActiveItem;
-import io.github.camposmdev.foursouls.model.card.treasure.ActiveTreasureCard;
-import io.github.camposmdev.foursouls.model.ui.FormController;
+import io.github.camposmdev.foursouls.core.card.attribute.CardSet;
+import io.github.camposmdev.foursouls.core.card.attribute.treasure.ActiveItem;
+import io.github.camposmdev.foursouls.core.card.treasure.ActiveTreasureCard;
+import io.github.camposmdev.foursouls.core.ui.FormController;
 
 public class ActiveTreasureFormController extends FormController<ActiveTreasureCard> {
     @FXML

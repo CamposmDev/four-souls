@@ -5,11 +5,11 @@ import com.almasb.fxgl.dsl.FXGLForKtKt;
 import io.github.camposmdev.foursouls.app.editor.ui.AppBar;
 import io.github.camposmdev.foursouls.app.editor.ui.factory.DialogFactory;
 import io.github.camposmdev.foursouls.app.editor.api.API;
-import io.github.camposmdev.foursouls.model.atlas.ImageAtlas;
-import io.github.camposmdev.foursouls.model.atlas.MasterCardAtlas;
-import io.github.camposmdev.foursouls.model.atlas.MasterImageAtlas;
-import io.github.camposmdev.foursouls.model.card.BaseCard;
-import io.github.camposmdev.foursouls.model.card.attribute.CardType;
+import io.github.camposmdev.foursouls.core.atlas.ImageAtlas;
+import io.github.camposmdev.foursouls.core.atlas.MasterCardAtlas;
+import io.github.camposmdev.foursouls.core.atlas.MasterImageAtlas;
+import io.github.camposmdev.foursouls.core.card.BaseCard;
+import io.github.camposmdev.foursouls.core.card.attribute.CardType;
 import javafx.application.Platform;
 
 import java.util.List;

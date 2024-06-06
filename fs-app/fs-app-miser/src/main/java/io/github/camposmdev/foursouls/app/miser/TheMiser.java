@@ -1,6 +1,6 @@
 package io.github.camposmdev.foursouls.app.miser;
 
-import io.github.camposmdev.foursouls.model.card.attribute.ImageInfo;
+import io.github.camposmdev.foursouls.core.card.attribute.ImageInfo;
 import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

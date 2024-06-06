@@ -10,10 +10,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import io.github.camposmdev.foursouls.model.card.attribute.CardSet;
-import io.github.camposmdev.foursouls.model.card.attribute.CardType;
-import io.github.camposmdev.foursouls.model.card.room.RoomCard;
-import io.github.camposmdev.foursouls.model.card.room.RoomType;
+import io.github.camposmdev.foursouls.core.card.attribute.CardSet;
+import io.github.camposmdev.foursouls.core.card.attribute.CardType;
+import io.github.camposmdev.foursouls.core.card.room.RoomCard;
+import io.github.camposmdev.foursouls.core.card.room.RoomType;
 
 public class RoomEditor extends BaseEditor {
     private final GridPane root;

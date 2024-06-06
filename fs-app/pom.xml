@@ -12,15 +12,49 @@
     <artifactId>fs-app</artifactId>
     <packaging>pom</packaging>
 
-    <properties>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
     <modules>
         <module>fs-app-editor</module>
         <module>fs-app-game</module>
         <module>fs-app-miser</module>
     </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.github.camposmdev</groupId>
+                <artifactId>fs-api</artifactId>
+                <version>${build.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.camposmdev</groupId>
+                <artifactId>fs-atlas</artifactId>
+                <version>${build.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.camposmdev</groupId>
+                <artifactId>fs-card</artifactId>
+                <version>${build.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.camposmdev</groupId>
+                <artifactId>fs-context</artifactId>
+                <version>${build.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.camposmdev</groupId>
+                <artifactId>fs-ui</artifactId>
+                <version>${build.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.camposmdev</groupId>
+                <artifactId>fs-game</artifactId>
+                <version>${build.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.camposmdev</groupId>
+                <artifactId>fs-util</artifactId>
+                <version>${build.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>

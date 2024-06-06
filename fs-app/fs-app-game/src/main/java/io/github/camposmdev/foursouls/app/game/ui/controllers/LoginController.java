@@ -10,8 +10,8 @@ import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 
 import javafx.util.Duration;
-import io.github.camposmdev.foursouls.model.ui.FXController;
-import io.github.camposmdev.foursouls.model.ui.FXUtil;
+import io.github.camposmdev.foursouls.core.ui.FXController;
+import io.github.camposmdev.foursouls.core.ui.FXUtil;
 
 import java.net.URL;
 import java.util.ResourceBundle;

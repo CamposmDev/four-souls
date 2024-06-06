@@ -1,7 +1,7 @@
 package io.github.camposmdev.foursouls.app.game.entity.component.card;
 
 import com.almasb.fxgl.texture.Texture;
-import io.github.camposmdev.foursouls.model.card.BaseCard;
+import io.github.camposmdev.foursouls.core.card.BaseCard;
 
 /**
  * A contract for components that allow viewing card information.

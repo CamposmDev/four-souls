@@ -4,11 +4,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import io.github.camposmdev.foursouls.model.card.attribute.CardSet;
-import io.github.camposmdev.foursouls.model.card.bsoul.BonusSoulCard;
-import io.github.camposmdev.foursouls.model.card.attribute.CounterType;
-import io.github.camposmdev.foursouls.model.ui.FXUtil;
-import io.github.camposmdev.foursouls.model.ui.FormController;
+import io.github.camposmdev.foursouls.core.card.attribute.CardSet;
+import io.github.camposmdev.foursouls.core.card.bsoul.BonusSoulCard;
+import io.github.camposmdev.foursouls.core.card.attribute.CounterType;
+import io.github.camposmdev.foursouls.core.ui.FXUtil;
+import io.github.camposmdev.foursouls.core.ui.FormController;
 
 public class BonusSoulFormController extends FormController<BonusSoulCard> {
     @FXML ComboBox<CardSet> cbCardSet;

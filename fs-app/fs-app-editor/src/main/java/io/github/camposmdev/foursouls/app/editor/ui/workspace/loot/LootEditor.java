@@ -9,10 +9,10 @@ import io.github.camposmdev.foursouls.app.editor.model.Model;
 import io.github.camposmdev.foursouls.app.editor.ui.NotificationBar;
 import io.github.camposmdev.foursouls.app.editor.ui.factory.DialogFactory;
 import io.github.camposmdev.foursouls.app.editor.ui.workspace.BaseEditor;
-import io.github.camposmdev.foursouls.model.card.attribute.CardType;
-import io.github.camposmdev.foursouls.model.card.loot.LootCard;
-import io.github.camposmdev.foursouls.model.ui.FXUtil;
-import io.github.camposmdev.foursouls.model.ui.FormController;
+import io.github.camposmdev.foursouls.core.card.attribute.CardType;
+import io.github.camposmdev.foursouls.core.card.loot.LootCard;
+import io.github.camposmdev.foursouls.core.ui.FXUtil;
+import io.github.camposmdev.foursouls.core.ui.FormController;
 
 public class LootEditor extends BaseEditor {
     private final VBox root;

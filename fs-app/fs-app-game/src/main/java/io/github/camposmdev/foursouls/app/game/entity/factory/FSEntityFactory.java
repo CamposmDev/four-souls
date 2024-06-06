@@ -15,11 +15,11 @@ import io.github.camposmdev.foursouls.app.game.entity.component.card.LootCardCom
 import io.github.camposmdev.foursouls.app.game.entity.component.card.MonsterCardComponent;
 import io.github.camposmdev.foursouls.app.game.entity.component.card.TreasureCardComponent;
 import io.github.camposmdev.foursouls.app.game.entity.component.player.*;
-import io.github.camposmdev.foursouls.model.card.BaseCard;
-import io.github.camposmdev.foursouls.model.card.loot.LootCard;
-import io.github.camposmdev.foursouls.model.card.monster.BaseMonsterCard;
-import io.github.camposmdev.foursouls.model.card.room.RoomCard;
-import io.github.camposmdev.foursouls.model.card.treasure.TreasureCard;
+import io.github.camposmdev.foursouls.core.card.BaseCard;
+import io.github.camposmdev.foursouls.core.card.loot.LootCard;
+import io.github.camposmdev.foursouls.core.card.monster.BaseMonsterCard;
+import io.github.camposmdev.foursouls.core.card.room.RoomCard;
+import io.github.camposmdev.foursouls.core.card.treasure.TreasureCard;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.entityBuilder;
 

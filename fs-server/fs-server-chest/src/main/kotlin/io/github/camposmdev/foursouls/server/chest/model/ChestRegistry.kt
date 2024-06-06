@@ -1,6 +1,6 @@
 package io.github.camposmdev.foursouls.server.chest.model
 
-import io.github.camposmdev.foursouls.model.api.ClientRegistry
+import io.github.camposmdev.foursouls.core.util.ClientRegistry
 
 object ChestRegistry : ClientRegistry<ChestClientWS>() {
     private const val SZ = 4

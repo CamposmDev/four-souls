@@ -1,6 +1,6 @@
 package io.github.camposmdev.foursouls.app.editor.ui.workspace;
 
-import io.github.camposmdev.foursouls.model.card.attribute.ImageInfo;
+import io.github.camposmdev.foursouls.core.card.attribute.ImageInfo;
 
 public abstract class BaseEditor implements CardEditor {
     private String id;

@@ -1,16 +1,13 @@
 package io.github.camposmdev.foursouls.server.chest
 
-import io.github.camposmdev.foursouls.model.api.message.MessageFactory
-import io.github.camposmdev.foursouls.server.chest.model.ChestRegistry
+import io.github.camposmdev.foursouls.core.api.message.MessageFactory
 import io.github.camposmdev.foursouls.server.chest.model.ChestClientWS
 import io.github.camposmdev.foursouls.server.chest.model.ChestOpts
-import io.vertx.core.AsyncResult
-import io.vertx.core.Future
+import io.github.camposmdev.foursouls.server.chest.model.ChestRegistry
 import io.vertx.core.Vertx
 import io.vertx.core.http.HttpMethod
 import io.vertx.core.http.HttpServerOptions
 import io.vertx.core.http.HttpServerRequest
-import io.vertx.core.http.ServerWebSocket
 
 object ChestServer {
     private lateinit var vertx: Vertx

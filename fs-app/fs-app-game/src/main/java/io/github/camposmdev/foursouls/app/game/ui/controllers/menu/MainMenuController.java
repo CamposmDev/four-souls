@@ -8,10 +8,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.layout.*;
 import io.github.camposmdev.foursouls.app.game.model.Model;
 import io.github.camposmdev.foursouls.app.game.api.API;
-import io.github.camposmdev.foursouls.model.ui.FXUtil;
-import io.github.camposmdev.foursouls.model.ui.FXController;
-import io.github.camposmdev.foursouls.model.api.BusEvent;
-import io.github.camposmdev.foursouls.model.ui.Log;
+import io.github.camposmdev.foursouls.core.ui.FXUtil;
+import io.github.camposmdev.foursouls.core.ui.FXController;
+import io.github.camposmdev.foursouls.core.api.BusEvent;
+import io.github.camposmdev.foursouls.core.ui.Log;
 
 import java.net.URL;
 import java.util.ResourceBundle;

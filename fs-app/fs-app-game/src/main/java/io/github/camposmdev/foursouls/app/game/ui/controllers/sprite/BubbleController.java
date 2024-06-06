@@ -8,8 +8,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.StackPane;
 import io.github.camposmdev.foursouls.app.game.entity.sprite.NightmareSpriteAtlas;
-import io.github.camposmdev.foursouls.model.ui.FXUtil;
-import io.github.camposmdev.foursouls.model.ui.FXController;
+import io.github.camposmdev.foursouls.core.ui.FXUtil;
+import io.github.camposmdev.foursouls.core.ui.FXController;
 
 import java.net.URL;
 import java.util.ResourceBundle;

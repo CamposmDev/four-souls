@@ -7,7 +7,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
-import io.github.camposmdev.foursouls.model.card.BaseCard;
+import io.github.camposmdev.foursouls.core.card.BaseCard;
 
 public class NotificationBar {
     private static NotificationBar singleton;

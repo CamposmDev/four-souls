@@ -3,10 +3,10 @@ package io.github.camposmdev.foursouls.app.editor.ui.workspace.loot;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import io.github.camposmdev.foursouls.model.card.attribute.CardSet;
-import io.github.camposmdev.foursouls.model.card.loot.SackCard;
-import io.github.camposmdev.foursouls.model.ui.FXUtil;
-import io.github.camposmdev.foursouls.model.ui.FormController;
+import io.github.camposmdev.foursouls.core.card.attribute.CardSet;
+import io.github.camposmdev.foursouls.core.card.loot.SackCard;
+import io.github.camposmdev.foursouls.core.ui.FXUtil;
+import io.github.camposmdev.foursouls.core.ui.FormController;
 
 public class SackFormController extends FormController<SackCard> {
     @FXML

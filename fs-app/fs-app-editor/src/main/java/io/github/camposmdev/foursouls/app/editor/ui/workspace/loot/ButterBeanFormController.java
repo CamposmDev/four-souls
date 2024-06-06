@@ -3,9 +3,9 @@ package io.github.camposmdev.foursouls.app.editor.ui.workspace.loot;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
-import io.github.camposmdev.foursouls.model.card.attribute.CardSet;
-import io.github.camposmdev.foursouls.model.card.loot.ButterBeanCard;
-import io.github.camposmdev.foursouls.model.ui.FormController;
+import io.github.camposmdev.foursouls.core.card.attribute.CardSet;
+import io.github.camposmdev.foursouls.core.card.loot.ButterBeanCard;
+import io.github.camposmdev.foursouls.core.ui.FormController;
 
 public class ButterBeanFormController extends FormController<ButterBeanCard> {
     @FXML

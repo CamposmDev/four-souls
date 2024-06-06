@@ -2,10 +2,10 @@ package io.github.camposmdev.foursouls.app.editor.ui.workspace.loot;
 
 import io.github.camposmdev.foursouls.app.editor.ui.RewardBox;
 import io.github.camposmdev.foursouls.app.editor.ui.factory.DialogFactory;
-import io.github.camposmdev.foursouls.model.card.attribute.EntityTarget;
-import io.github.camposmdev.foursouls.model.card.attribute.loot.LootOption;
-import io.github.camposmdev.foursouls.model.ui.FXUtil;
-import io.github.camposmdev.foursouls.model.ui.FormController;
+import io.github.camposmdev.foursouls.core.card.attribute.EntityTarget;
+import io.github.camposmdev.foursouls.core.card.attribute.loot.LootOption;
+import io.github.camposmdev.foursouls.core.ui.FXUtil;
+import io.github.camposmdev.foursouls.core.ui.FormController;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;

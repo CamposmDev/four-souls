@@ -1176,7 +1176,7 @@
     "butter" : { },
     "cards" : { },
     "dice" : { },
-    "key" : {
+    "keys" : {
       "r-key" : {
         "id" : "r-key",
         "image" : {

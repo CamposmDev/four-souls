@@ -7,9 +7,9 @@ import io.github.camposmdev.foursouls.app.game.entity.component.Playable;
 import javafx.util.Duration;
 import io.github.camposmdev.foursouls.app.game.entity.component.card.CardRenderer;
 import io.github.camposmdev.foursouls.app.game.service.EntityService;
-import io.github.camposmdev.foursouls.model.card.character.CharacterCard;
-import io.github.camposmdev.foursouls.model.game.Attackable;
-import io.github.camposmdev.foursouls.model.ui.FXUtil;
+import io.github.camposmdev.foursouls.core.card.character.CharacterCard;
+import io.github.camposmdev.foursouls.core.game.Attackable;
+import io.github.camposmdev.foursouls.core.ui.FXUtil;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 

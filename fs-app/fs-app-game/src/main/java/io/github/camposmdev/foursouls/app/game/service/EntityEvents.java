@@ -6,7 +6,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 import io.github.camposmdev.foursouls.app.game.entity.component.card.CardRenderer;
 import io.github.camposmdev.foursouls.app.game.ui.view.CardPreviewer;
-import io.github.camposmdev.foursouls.model.card.BaseCard;
+import io.github.camposmdev.foursouls.core.card.BaseCard;
 
 import java.util.concurrent.atomic.AtomicReference;
 

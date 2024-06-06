@@ -14,13 +14,13 @@
         <module name="fs-card" />
         <module name="fs-context" />
         <module name="fs-api" />
+        <module name="fs-ui" />
         <module name="fs-app-game" />
         <module name="fs-app-editor" />
         <module name="fs-util" />
         <module name="fs-app-miser" />
         <module name="fs-server-basement" />
         <module name="fs-server-chest" />
-        <module name="fs-ui-framework" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

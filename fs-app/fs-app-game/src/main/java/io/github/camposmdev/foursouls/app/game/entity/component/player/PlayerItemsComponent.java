@@ -7,7 +7,7 @@ import io.github.camposmdev.foursouls.app.game.entity.component.card.TreasureCar
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import io.github.camposmdev.foursouls.model.card.treasure.TreasureCard;
+import io.github.camposmdev.foursouls.core.card.treasure.TreasureCard;
 
 public class PlayerItemsComponent extends Component {
 	private ObservableList<TreasureCardComponent> inventory;

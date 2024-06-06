@@ -1,6 +1,6 @@
 package io.github.camposmdev.foursouls.app.game.api;
 
-import io.github.camposmdev.foursouls.model.api.BusEvent;
+import io.github.camposmdev.foursouls.core.api.BusEvent;
 import io.vertx.core.Future;
 import io.vertx.core.Vertx;
 import io.vertx.core.eventbus.MessageConsumer;

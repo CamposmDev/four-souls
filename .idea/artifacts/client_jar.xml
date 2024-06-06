@@ -3,7 +3,7 @@
     <output-path>$PROJECT_DIR$/out/artifacts/client_jar</output-path>
     <root id="archive" name="client.jar">
       <element id="module-output" name="fs-app-game" />
-      <element id="module-output" name="fs-model" />
+      <element id="module-output" name="fs-core" />
       <element id="module-output" name="fs-util" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/github/almasb/fxgl-io/21/fxgl-io-21.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/kotlin/kotlin-stdlib/1.8.10/kotlin-stdlib-1.8.10.jar" path-in-jar="/" />

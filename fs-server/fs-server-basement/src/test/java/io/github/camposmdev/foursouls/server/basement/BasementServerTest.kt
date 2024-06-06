@@ -1,6 +1,6 @@
 package io.github.camposmdev.foursouls.server.basement
 
-import io.github.camposmdev.foursouls.model.context.FourSoulsContext
+import io.github.camposmdev.foursouls.core.context.FourSoulsContext
 import io.vertx.core.Vertx
 import io.vertx.junit5.VertxExtension
 import io.vertx.junit5.VertxTestContext

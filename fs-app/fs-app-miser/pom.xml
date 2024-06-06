@@ -11,36 +11,26 @@
 
     <artifactId>fs-app-miser</artifactId>
 
-    <properties>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
-    </properties>
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
         <dependency>
             <groupId>org.jsoup</groupId>
             <artifactId>jsoup</artifactId>
-            <version>1.16.1</version>
         </dependency>
         <dependency>
             <groupId>io.vertx</groupId>
             <artifactId>vertx-core</artifactId>
-            <version>4.5.5</version>
         </dependency>
         <dependency>
             <groupId>io.github.camposmdev</groupId>
             <artifactId>fs-atlas</artifactId>
-            <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>io.github.camposmdev</groupId>
             <artifactId>fs-card</artifactId>
-            <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>io.github.camposmdev</groupId>
             <artifactId>fs-util</artifactId>
-            <version>1.0.0</version>
         </dependency>
     </dependencies>
 </project>

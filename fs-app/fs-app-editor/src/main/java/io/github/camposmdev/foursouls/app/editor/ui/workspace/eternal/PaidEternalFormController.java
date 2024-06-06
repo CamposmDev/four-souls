@@ -2,10 +2,10 @@ package io.github.camposmdev.foursouls.app.editor.ui.workspace.eternal;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
-import io.github.camposmdev.foursouls.model.card.attribute.CardSet;
-import io.github.camposmdev.foursouls.model.card.attribute.eternal.PaidItem;
-import io.github.camposmdev.foursouls.model.card.eternal.PaidEternalCard;
-import io.github.camposmdev.foursouls.model.ui.FormController;
+import io.github.camposmdev.foursouls.core.card.attribute.CardSet;
+import io.github.camposmdev.foursouls.core.card.attribute.eternal.PaidItem;
+import io.github.camposmdev.foursouls.core.card.eternal.PaidEternalCard;
+import io.github.camposmdev.foursouls.core.ui.FormController;
 
 public class PaidEternalFormController extends FormController<PaidEternalCard> {
     @FXML ComboBox<CardSet> cbCardSet;

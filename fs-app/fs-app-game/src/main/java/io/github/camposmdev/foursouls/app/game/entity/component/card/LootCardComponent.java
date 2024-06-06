@@ -7,9 +7,9 @@ import javafx.util.Duration;
 import io.github.camposmdev.foursouls.app.game.entity.component.Playable;
 import io.github.camposmdev.foursouls.app.game.entity.component.player.MoneyComponent;
 import io.github.camposmdev.foursouls.app.game.service.EntityService;
-import io.github.camposmdev.foursouls.model.card.loot.KeyCard;
-import io.github.camposmdev.foursouls.model.card.loot.LootCard;
-import io.github.camposmdev.foursouls.model.card.loot.MoneyCard;
+import io.github.camposmdev.foursouls.core.card.loot.KeyCard;
+import io.github.camposmdev.foursouls.core.card.loot.LootCard;
+import io.github.camposmdev.foursouls.core.card.loot.MoneyCard;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.getGameWorld;
 import static com.almasb.fxgl.dsl.FXGLForKtKt.getNotificationService;

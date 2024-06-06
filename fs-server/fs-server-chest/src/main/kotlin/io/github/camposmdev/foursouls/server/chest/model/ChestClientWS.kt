@@ -1,12 +1,11 @@
 package io.github.camposmdev.foursouls.server.chest.model
 
-import io.github.camposmdev.foursouls.model.api.ClientWS
+import io.github.camposmdev.foursouls.core.util.ClientWS
 import io.vertx.core.buffer.Buffer
 import io.vertx.core.http.ServerWebSocket
 import java.util.*
 
-class ChestClientWS(private val ws: ServerWebSocket) :
-    ClientWS {
+class ChestClientWS(private val ws: ServerWebSocket) : ClientWS {
     private val id: String = UUID.randomUUID().toString()
 
     init {

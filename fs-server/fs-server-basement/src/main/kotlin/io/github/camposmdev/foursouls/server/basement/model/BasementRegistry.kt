@@ -1,8 +1,8 @@
 package io.github.camposmdev.foursouls.server.basement.model
 
-import io.github.camposmdev.foursouls.model.api.ClientRegistry
-import io.github.camposmdev.foursouls.model.api.basement.BasementUser
-import io.github.camposmdev.foursouls.model.api.message.payload.BasementChat
+import io.github.camposmdev.foursouls.core.util.ClientRegistry
+import io.github.camposmdev.foursouls.core.api.basement.BasementUser
+import io.github.camposmdev.foursouls.core.api.message.payload.BasementChat
 
 object BasementRegistry : ClientRegistry<BasementClientWS>() {
     private const val SZ = 4

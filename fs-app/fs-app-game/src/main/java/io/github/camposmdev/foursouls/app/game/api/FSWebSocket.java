@@ -8,8 +8,8 @@ import io.vertx.core.http.WebSocketConnectOptions;
 import io.vertx.core.json.DecodeException;
 import io.vertx.core.json.JsonObject;
 import io.github.camposmdev.foursouls.app.game.model.Model;
-import io.github.camposmdev.foursouls.model.api.BusEvent;
-import io.github.camposmdev.foursouls.model.api.message.MType;
+import io.github.camposmdev.foursouls.core.api.BusEvent;
+import io.github.camposmdev.foursouls.core.api.message.MType;
 
 class FSWebSocket {
     private static final String WS_ROUTE = "/ws";

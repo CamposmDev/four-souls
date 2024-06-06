@@ -1,6 +1,6 @@
 package io.github.camposmdev.foursouls.server.basement.model
 
-import io.github.camposmdev.foursouls.model.context.store.MomStore
+import io.github.camposmdev.foursouls.core.context.store.MomStore
 import io.vertx.core.Future
 import io.vertx.core.Promise
 import io.vertx.core.Vertx

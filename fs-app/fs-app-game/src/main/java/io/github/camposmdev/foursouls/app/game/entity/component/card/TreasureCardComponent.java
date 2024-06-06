@@ -1,6 +1,6 @@
 package io.github.camposmdev.foursouls.app.game.entity.component.card;
 
-import io.github.camposmdev.foursouls.model.card.treasure.TreasureCard;
+import io.github.camposmdev.foursouls.core.card.treasure.TreasureCard;
 
 public class TreasureCardComponent extends CardComponent {
 	public TreasureCardComponent(TreasureCard card) {

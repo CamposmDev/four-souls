@@ -5,12 +5,12 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import io.github.camposmdev.foursouls.model.card.attribute.CardSet;
-import io.github.camposmdev.foursouls.model.card.attribute.monster.EndEvent;
-import io.github.camposmdev.foursouls.model.card.attribute.monster.StartEvent;
-import io.github.camposmdev.foursouls.model.card.monster.CurseCard;
-import io.github.camposmdev.foursouls.model.ui.FXUtil;
-import io.github.camposmdev.foursouls.model.ui.FormController;
+import io.github.camposmdev.foursouls.core.card.attribute.CardSet;
+import io.github.camposmdev.foursouls.core.card.attribute.monster.EndEvent;
+import io.github.camposmdev.foursouls.core.card.attribute.monster.StartEvent;
+import io.github.camposmdev.foursouls.core.card.monster.CurseCard;
+import io.github.camposmdev.foursouls.core.ui.FXUtil;
+import io.github.camposmdev.foursouls.core.ui.FormController;
 
 public class CurseFormController extends FormController<CurseCard> {
     @FXML private ComboBox<CardSet> cardSet;

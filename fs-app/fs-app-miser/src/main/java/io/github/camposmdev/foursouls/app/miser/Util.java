@@ -1,6 +1,6 @@
 package io.github.camposmdev.foursouls.app.miser;
 
-import io.github.camposmdev.foursouls.model.card.attribute.ImageInfo;
+import io.github.camposmdev.foursouls.core.card.attribute.ImageInfo;
 import io.vertx.core.json.JsonObject;
 import java.io.*;
 import java.nio.file.Files;

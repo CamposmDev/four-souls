@@ -6,11 +6,11 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import io.github.camposmdev.foursouls.model.card.attribute.*;
-import io.github.camposmdev.foursouls.model.card.attribute.monster.*;
-import io.github.camposmdev.foursouls.model.card.monster.MonsterCard;
-import io.github.camposmdev.foursouls.model.ui.FXUtil;
-import io.github.camposmdev.foursouls.model.ui.FormController;
+import io.github.camposmdev.foursouls.core.card.attribute.*;
+import io.github.camposmdev.foursouls.core.card.attribute.monster.*;
+import io.github.camposmdev.foursouls.core.card.monster.MonsterCard;
+import io.github.camposmdev.foursouls.core.ui.FXUtil;
+import io.github.camposmdev.foursouls.core.ui.FormController;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

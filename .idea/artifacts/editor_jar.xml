@@ -3,7 +3,7 @@
     <output-path>$PROJECT_DIR$/out/artifacts/editor_jar</output-path>
     <root id="archive" name="editor.jar">
       <element id="module-output" name="fs-app-editor" />
-      <element id="module-output" name="fs-model" />
+      <element id="module-output" name="fs-core" />
       <element id="module-output" name="fs-util" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/github/almasb/fxgl/21/fxgl-21.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/squareup/okio/okio/3.6.0/okio-3.6.0.jar" path-in-jar="/" />

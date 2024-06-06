@@ -5,7 +5,7 @@ import com.almasb.fxgl.texture.Texture;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.input.MouseEvent;
-import io.github.camposmdev.foursouls.model.ui.FXUtil;
+import io.github.camposmdev.foursouls.core.ui.FXUtil;
 import org.jetbrains.annotations.NotNull;
 
 public class TextureButtonEntity extends Entity {

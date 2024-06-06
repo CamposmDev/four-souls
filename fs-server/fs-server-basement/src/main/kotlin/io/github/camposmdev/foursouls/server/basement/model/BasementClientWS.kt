@@ -1,11 +1,11 @@
 package io.github.camposmdev.foursouls.server.basement.model
 
-import io.github.camposmdev.foursouls.model.api.ClientWS
-import io.github.camposmdev.foursouls.model.api.basement.BasementUser
-import io.github.camposmdev.foursouls.model.api.message.MType
-import io.github.camposmdev.foursouls.model.api.message.MessageFactory
-import io.github.camposmdev.foursouls.model.api.message.payload.BasementChat
-import io.github.camposmdev.foursouls.model.api.message.payload.PayloadFactory
+import io.github.camposmdev.foursouls.core.util.ClientWS
+import io.github.camposmdev.foursouls.core.api.basement.BasementUser
+import io.github.camposmdev.foursouls.core.api.message.MType
+import io.github.camposmdev.foursouls.core.api.message.MessageFactory
+import io.github.camposmdev.foursouls.core.api.message.payload.BasementChat
+import io.github.camposmdev.foursouls.core.api.message.payload.PayloadFactory
 import io.github.camposmdev.foursouls.server.basement.BasementServer
 import io.vertx.core.buffer.Buffer
 import io.vertx.core.http.ServerWebSocket

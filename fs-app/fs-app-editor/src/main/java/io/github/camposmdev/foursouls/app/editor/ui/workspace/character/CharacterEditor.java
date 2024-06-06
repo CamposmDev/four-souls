@@ -3,7 +3,7 @@ package io.github.camposmdev.foursouls.app.editor.ui.workspace.character;
 import com.almasb.fxgl.ui.UI;
 import io.github.camposmdev.foursouls.app.editor.ui.factory.DialogFactory;
 import io.github.camposmdev.foursouls.app.editor.ui.workspace.BaseEditor;
-import io.github.camposmdev.foursouls.model.ui.FXUtil;
+import io.github.camposmdev.foursouls.core.ui.FXUtil;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;

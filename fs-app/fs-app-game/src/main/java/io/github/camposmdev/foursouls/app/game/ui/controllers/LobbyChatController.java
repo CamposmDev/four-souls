@@ -7,8 +7,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import io.github.camposmdev.foursouls.model.api.BusEvent;
-import io.github.camposmdev.foursouls.model.ui.FXController;
+import io.github.camposmdev.foursouls.core.api.BusEvent;
+import io.github.camposmdev.foursouls.core.ui.FXController;
 
 import java.net.URL;
 import java.util.ResourceBundle;

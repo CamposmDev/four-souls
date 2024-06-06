@@ -8,10 +8,10 @@ import io.github.camposmdev.foursouls.app.editor.ui.workspace.BaseEditor;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
-import io.github.camposmdev.foursouls.model.card.attribute.CardType;
-import io.github.camposmdev.foursouls.model.card.treasure.TreasureCard;
-import io.github.camposmdev.foursouls.model.ui.FXUtil;
-import io.github.camposmdev.foursouls.model.ui.FormController;
+import io.github.camposmdev.foursouls.core.card.attribute.CardType;
+import io.github.camposmdev.foursouls.core.card.treasure.TreasureCard;
+import io.github.camposmdev.foursouls.core.ui.FXUtil;
+import io.github.camposmdev.foursouls.core.ui.FormController;
 
 public class TreasureEditor extends BaseEditor {
     private final VBox root;

@@ -4,9 +4,9 @@ import io.github.camposmdev.foursouls.app.editor.ui.factory.DialogFactory;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
-import io.github.camposmdev.foursouls.model.card.attribute.*;
-import io.github.camposmdev.foursouls.model.ui.FXUtil;
-import io.github.camposmdev.foursouls.model.ui.FormController;
+import io.github.camposmdev.foursouls.core.card.attribute.*;
+import io.github.camposmdev.foursouls.core.ui.FXUtil;
+import io.github.camposmdev.foursouls.core.ui.FormController;
 
 import java.util.LinkedList;
 import java.util.List;

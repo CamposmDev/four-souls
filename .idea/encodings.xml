@@ -13,45 +13,47 @@
     <file url="file://$PROJECT_DIR$/fs-app/fs-app-miser/src/main/kotlin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/fs-app/fs-app-miser/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/fs-app/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/fs-app/src/main/kotlin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/fs-app/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/fs-model/fs-api/four-souls-model-net-base/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/fs-model/fs-api/four-souls-model-net-base/src/main/kotlin" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/fs-model/fs-api/four-souls-model-net-base/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/fs-model/fs-api/four-souls-model-net-basement/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/fs-model/fs-api/four-souls-model-net-basement/src/main/kotlin" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/fs-model/fs-api/four-souls-model-net-basement/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/fs-model/fs-api/four-souls-model-net-chest/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/fs-model/fs-api/four-souls-model-net-chest/src/main/kotlin" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/fs-model/fs-api/four-souls-model-net-chest/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/fs-model/fs-api/four-souls-model-net-mom/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/fs-model/fs-api/four-souls-model-net-mom/src/main/kotlin" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/fs-model/fs-api/four-souls-model-net-mom/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/fs-model/fs-api/foursouls-model-net-base/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/fs-model/fs-api/foursouls-model-net-base/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/fs-model/fs-api/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/fs-model/fs-api/src/main/kotlin" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/fs-model/fs-api/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/fs-model/fs-atlas/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/fs-model/fs-atlas/src/main/kotlin" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/fs-model/fs-atlas/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/fs-model/fs-card/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/fs-model/fs-card/src/main/kotlin" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/fs-model/fs-card/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/fs-model/fs-context/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/fs-model/fs-context/src/main/kotlin" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/fs-model/fs-context/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/fs-model/fs-game/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/fs-model/fs-game/src/main/kotlin" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/fs-model/fs-game/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/fs-model/fs-ui-framework/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/fs-model/fs-ui-framework/src/main/kotlin" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/fs-model/fs-ui-framework/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/fs-model/fs-util/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/fs-model/fs-util/src/main/kotlin" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/fs-model/fs-util/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/fs-model/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/fs-model/src/main/kotlin" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/fs-model/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/fs-core/fs-api/four-souls-model-net-base/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/fs-core/fs-api/four-souls-model-net-base/src/main/kotlin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/fs-core/fs-api/four-souls-model-net-base/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/fs-core/fs-api/four-souls-model-net-basement/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/fs-core/fs-api/four-souls-model-net-basement/src/main/kotlin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/fs-core/fs-api/four-souls-model-net-basement/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/fs-core/fs-api/four-souls-model-net-chest/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/fs-core/fs-api/four-souls-model-net-chest/src/main/kotlin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/fs-core/fs-api/four-souls-model-net-chest/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/fs-core/fs-api/four-souls-model-net-mom/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/fs-core/fs-api/four-souls-model-net-mom/src/main/kotlin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/fs-core/fs-api/four-souls-model-net-mom/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/fs-core/fs-api/foursouls-model-net-base/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/fs-core/fs-api/foursouls-model-net-base/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/fs-core/fs-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/fs-core/fs-api/src/main/kotlin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/fs-core/fs-api/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/fs-core/fs-atlas/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/fs-core/fs-atlas/src/main/kotlin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/fs-core/fs-atlas/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/fs-core/fs-card/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/fs-core/fs-card/src/main/kotlin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/fs-core/fs-card/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/fs-core/fs-context/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/fs-core/fs-context/src/main/kotlin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/fs-core/fs-context/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/fs-core/fs-game/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/fs-core/fs-game/src/main/kotlin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/fs-core/fs-game/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/fs-core/fs-ui-framework/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/fs-core/fs-ui/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/fs-core/fs-ui/src/main/kotlin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/fs-core/fs-ui/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/fs-core/fs-util/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/fs-core/fs-util/src/main/kotlin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/fs-core/fs-util/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/fs-core/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/fs-core/src/main/kotlin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/fs-core/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/fs-server/fs-server-basement/src/main/kotlin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/fs-server/fs-server-basement/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/fs-server/fs-server-chest/src/main/java" charset="UTF-8" />

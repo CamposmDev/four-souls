@@ -8,11 +8,11 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import io.github.camposmdev.foursouls.model.card.attribute.CardSet;
-import io.github.camposmdev.foursouls.model.card.attribute.CardType;
-import io.github.camposmdev.foursouls.model.card.attribute.loot.MoneyEffect.MoneyEffect;
-import io.github.camposmdev.foursouls.model.card.loot.MoneyCard;
-import io.github.camposmdev.foursouls.model.ui.FXUtil;
+import io.github.camposmdev.foursouls.core.card.attribute.CardSet;
+import io.github.camposmdev.foursouls.core.card.attribute.CardType;
+import io.github.camposmdev.foursouls.core.card.attribute.loot.MoneyEffect.MoneyEffect;
+import io.github.camposmdev.foursouls.core.card.loot.MoneyCard;
+import io.github.camposmdev.foursouls.core.ui.FXUtil;
 
 public class MoneyEditor extends BaseEditor {
     private final GridPane root;

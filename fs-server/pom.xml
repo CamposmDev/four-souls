@@ -11,6 +11,7 @@
 
     <artifactId>fs-server</artifactId>
     <packaging>pom</packaging>
+
     <modules>
         <module>fs-server-chest</module>
         <module>fs-server-basement</module>
@@ -21,11 +22,47 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
     <dependencies>
+        <dependency>
+            <groupId>io.github.camposmdev</groupId>
+            <artifactId>fs-api</artifactId>
+            <version>${build.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.camposmdev</groupId>
+            <artifactId>fs-context</artifactId>
+            <version>${build.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.camposmdev</groupId>
+            <artifactId>fs-util</artifactId>
+            <version>${build.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-lang-kotlin</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-junit5</artifactId>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx-cli-jvm</artifactId>
-            <version>0.3.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-test-junit5</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
         </dependency>
     </dependencies>
 </project>

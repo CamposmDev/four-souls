@@ -5,7 +5,7 @@ import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 import io.github.camposmdev.foursouls.app.editor.ui.AppBar;
 import io.github.camposmdev.foursouls.app.editor.ui.NotificationBar;
-import io.github.camposmdev.foursouls.model.card.attribute.CardType;
+import io.github.camposmdev.foursouls.core.card.attribute.CardType;
 
 public class Workspace {
     private final CardPicker cardPicker;

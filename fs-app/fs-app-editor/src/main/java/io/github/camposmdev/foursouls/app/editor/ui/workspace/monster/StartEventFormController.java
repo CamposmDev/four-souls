@@ -4,10 +4,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import io.github.camposmdev.foursouls.model.card.attribute.EntityTarget;
-import io.github.camposmdev.foursouls.model.card.attribute.monster.StartEvent;
-import io.github.camposmdev.foursouls.model.ui.FXUtil;
-import io.github.camposmdev.foursouls.model.ui.FormController;
+import io.github.camposmdev.foursouls.core.card.attribute.EntityTarget;
+import io.github.camposmdev.foursouls.core.card.attribute.monster.StartEvent;
+import io.github.camposmdev.foursouls.core.ui.FXUtil;
+import io.github.camposmdev.foursouls.core.ui.FormController;
 
 public class StartEventFormController extends FormController<StartEvent> {
     /* Controls for Start Event */

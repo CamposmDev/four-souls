@@ -1,7 +1,7 @@
 package io.github.camposmdev.foursouls.app.editor.ui.workspace;
 
 import javafx.scene.Node;
-import io.github.camposmdev.foursouls.model.card.attribute.ImageInfo;
+import io.github.camposmdev.foursouls.core.card.attribute.ImageInfo;
 
 public interface CardEditor {
     String id();

@@ -9,10 +9,10 @@ import javafx.scene.layout.VBox;
 import io.github.camposmdev.foursouls.app.editor.model.Model;
 import io.github.camposmdev.foursouls.app.editor.ui.NotificationBar;
 import io.github.camposmdev.foursouls.app.editor.ui.workspace.BaseEditor;
-import io.github.camposmdev.foursouls.model.card.attribute.CardType;
-import io.github.camposmdev.foursouls.model.card.eternal.EternalCard;
-import io.github.camposmdev.foursouls.model.ui.FXUtil;
-import io.github.camposmdev.foursouls.model.ui.FormController;
+import io.github.camposmdev.foursouls.core.card.attribute.CardType;
+import io.github.camposmdev.foursouls.core.card.eternal.EternalCard;
+import io.github.camposmdev.foursouls.core.ui.FXUtil;
+import io.github.camposmdev.foursouls.core.ui.FormController;
 
 public class EternalEditor extends BaseEditor {
     private final VBox root;

@@ -3,15 +3,15 @@ package io.github.camposmdev.foursouls.app.game.entity.component.player;
 import com.almasb.fxgl.entity.component.Component;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.ObservableList;
-import io.github.camposmdev.foursouls.model.game.LocalGameManager;
-import io.github.camposmdev.foursouls.model.card.character.CharacterCard;
-import io.github.camposmdev.foursouls.model.card.eternal.EternalCard;
-import io.github.camposmdev.foursouls.model.card.loot.LootCard;
-import io.github.camposmdev.foursouls.model.card.treasure.TreasureCard;
-import io.github.camposmdev.foursouls.model.game.player.Attribute;
-import io.github.camposmdev.foursouls.model.game.player.Player;
-import io.github.camposmdev.foursouls.model.game.player.Souls;
-import io.github.camposmdev.foursouls.model.ui.Log;
+import io.github.camposmdev.foursouls.core.game.LocalGameManager;
+import io.github.camposmdev.foursouls.core.card.character.CharacterCard;
+import io.github.camposmdev.foursouls.core.card.eternal.EternalCard;
+import io.github.camposmdev.foursouls.core.card.loot.LootCard;
+import io.github.camposmdev.foursouls.core.card.treasure.TreasureCard;
+import io.github.camposmdev.foursouls.core.game.player.Attribute;
+import io.github.camposmdev.foursouls.core.game.player.Player;
+import io.github.camposmdev.foursouls.core.game.player.Souls;
+import io.github.camposmdev.foursouls.core.ui.Log;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.geto;
 

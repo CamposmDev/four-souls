@@ -9,9 +9,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import io.github.camposmdev.foursouls.model.card.attribute.CardSet;
-import io.github.camposmdev.foursouls.model.card.attribute.outside.OutsideType;
-import io.github.camposmdev.foursouls.model.card.outside.OutsideCard;
+import io.github.camposmdev.foursouls.core.card.attribute.CardSet;
+import io.github.camposmdev.foursouls.core.card.attribute.outside.OutsideType;
+import io.github.camposmdev.foursouls.core.card.outside.OutsideCard;
 
 public class OutsideEditor extends BaseEditor {
     private final GridPane root;

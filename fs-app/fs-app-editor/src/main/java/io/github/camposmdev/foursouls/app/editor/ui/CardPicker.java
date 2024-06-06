@@ -22,8 +22,8 @@ import io.github.camposmdev.foursouls.app.editor.ui.workspace.money.MoneyEditor;
 import io.github.camposmdev.foursouls.app.editor.ui.workspace.monster.MonsterEditor;
 import io.github.camposmdev.foursouls.app.editor.ui.workspace.room.RoomEditor;
 import io.github.camposmdev.foursouls.app.editor.ui.workspace.treasure.TreasureEditor;
-import io.github.camposmdev.foursouls.model.card.attribute.CardType;
-import io.github.camposmdev.foursouls.model.ui.Log;
+import io.github.camposmdev.foursouls.core.card.attribute.CardType;
+import io.github.camposmdev.foursouls.core.ui.Log;
 
 public class CardPicker {
     private final Workspace workspace;

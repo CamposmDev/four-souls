@@ -19,9 +19,9 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-import io.github.camposmdev.foursouls.model.api.BusEvent;
-import io.github.camposmdev.foursouls.model.ui.FXController;
-import io.github.camposmdev.foursouls.model.ui.FXUtil;
+import io.github.camposmdev.foursouls.core.api.BusEvent;
+import io.github.camposmdev.foursouls.core.ui.FXController;
+import io.github.camposmdev.foursouls.core.ui.FXUtil;
 
 import java.net.URL;
 import java.util.ResourceBundle;

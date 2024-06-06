@@ -11,7 +11,6 @@
     </parent>
 
     <artifactId>fs-app-editor</artifactId>
-    <version>1.0.0</version>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
@@ -21,50 +20,28 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-controls</artifactId>
-            <version>21.0.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-fxml</artifactId>
-            <version>21.0.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-media</artifactId>
-            <version>21.0.2</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.almasb</groupId>
-            <artifactId>fxgl</artifactId>
-            <version>21</version>
-        </dependency>
-        <dependency>
-            <groupId>io.github.camposmdev</groupId>
-            <artifactId>fs-context</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-        <dependency>
             <groupId>io.github.camposmdev</groupId>
             <artifactId>fs-atlas</artifactId>
-            <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>io.github.camposmdev</groupId>
             <artifactId>fs-card</artifactId>
-            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.camposmdev</groupId>
+            <artifactId>fs-context</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.github.camposmdev</groupId>
+            <artifactId>fs-ui</artifactId>
         </dependency>
         <dependency>
             <groupId>io.github.camposmdev</groupId>
             <artifactId>fs-util</artifactId>
-            <version>1.0.0</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>io.github.camposmdev</groupId>
-            <artifactId>fs-ui-framework</artifactId>
-            <version>1.0.0</version>
+            <groupId>com.github.almasb</groupId>
+            <artifactId>fxgl</artifactId>
         </dependency>
     </dependencies>
 

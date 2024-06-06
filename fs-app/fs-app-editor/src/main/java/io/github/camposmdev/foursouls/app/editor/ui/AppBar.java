@@ -15,8 +15,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import io.github.camposmdev.foursouls.app.editor.model.Model;
-import io.github.camposmdev.foursouls.model.card.BaseCard;
-import io.github.camposmdev.foursouls.model.card.attribute.CardType;
+import io.github.camposmdev.foursouls.core.card.BaseCard;
+import io.github.camposmdev.foursouls.core.card.attribute.CardType;
 
 import java.awt.*;
 import java.io.IOException;

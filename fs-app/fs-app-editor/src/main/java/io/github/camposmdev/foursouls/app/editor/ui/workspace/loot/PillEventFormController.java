@@ -6,11 +6,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
-import io.github.camposmdev.foursouls.model.card.attribute.EntityTarget;
-import io.github.camposmdev.foursouls.model.card.attribute.loot.PillEvent;
-import io.github.camposmdev.foursouls.model.card.attribute.loot.PillItem;
-import io.github.camposmdev.foursouls.model.ui.FXUtil;
-import io.github.camposmdev.foursouls.model.ui.FormController;
+import io.github.camposmdev.foursouls.core.card.attribute.EntityTarget;
+import io.github.camposmdev.foursouls.core.card.attribute.loot.PillEvent;
+import io.github.camposmdev.foursouls.core.card.attribute.loot.PillItem;
+import io.github.camposmdev.foursouls.core.ui.FXUtil;
+import io.github.camposmdev.foursouls.core.ui.FormController;
 
 import java.util.ArrayList;
 import java.util.List;
