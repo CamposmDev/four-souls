@@ -3,7 +3,6 @@
   <component name="AdditionalModuleElements">
     <content url="file://$MODULE_DIR$" dumb="true">
       <excludeFolder url="file://$MODULE_DIR$/logs" />
-      <excludeFolder url="file://$MODULE_DIR$/src/main/resources/assets/json/cards" />
       <excludeFolder url="file://$MODULE_DIR$/system" />
     </content>
   </component>
