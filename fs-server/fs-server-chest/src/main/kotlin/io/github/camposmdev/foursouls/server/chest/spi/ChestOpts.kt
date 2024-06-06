@@ -1,28 +1,29 @@
-package io.github.camposmdev.foursouls.server.basement.model
+package io.github.camposmdev.foursouls.server.chest.spi
 
 import kotlinx.cli.ArgParser
 import kotlinx.cli.ArgType
 import kotlinx.cli.default
 
-data class BasementOpts(
-    val basementPort: Int,
+data class ChestOpts(
+    val chestPort: Int,
     val momHost: String,
     val momPort: Int
 ) {
     companion object {
-        private const val PROG_NAME = "Basement"
-        private const val DEFAULT_BASEMENT_PORT = 7000
+        private const val PROG_NAME = "Chest"
+        private const val DEFAULT_CHEST_PORT = 6000
         private const val DEFAULT_MOM_HOST = "localhost"
         private const val DEFAULT_MOM_PORT = 8000
 
-        fun parse(args: Array<String>): BasementOpts {
+        @JvmStatic
+        fun parse(args: Array<String>): ChestOpts {
             val parser = ArgParser(PROG_NAME)
-            val basementPort by parser.option(
+            val chestPort by parser.option(
                 ArgType.Int,
                 "port",
                 "p",
-                "Port Number of Basement Server"
-            ).default(DEFAULT_BASEMENT_PORT)
+                "Port Number of Chest Server"
+            ).default(DEFAULT_CHEST_PORT)
             val momHost by parser.option(
                 ArgType.String,
                 fullName = "mom-host",
@@ -36,7 +37,7 @@ data class BasementOpts(
                 description = "Port Number of Mom Server"
             ).default(DEFAULT_MOM_PORT)
             parser.parse(args)
-            return BasementOpts(basementPort, momHost, momPort)
+            return ChestOpts(chestPort, momHost, momPort)
         }
     }
 }

@@ -1,14 +1,16 @@
 package io.github.camposmdev.foursouls.server.basement
 
+import io.github.camposmdev.foursouls.core.api.message.MType
+import io.github.camposmdev.foursouls.core.api.message.payload.BasementChat
+import io.github.camposmdev.foursouls.core.api.message.payload.BasementGreeting
 import io.github.camposmdev.foursouls.core.context.FourSoulsContext
 import io.vertx.core.Vertx
+import io.vertx.core.impl.future.CompositeFutureImpl
 import io.vertx.junit5.VertxExtension
 import io.vertx.junit5.VertxTestContext
-import org.junit.jupiter.api.AfterAll
-import org.junit.jupiter.api.BeforeAll
-import org.junit.jupiter.api.DisplayName
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.*
 import org.junit.jupiter.api.extension.ExtendWith
+import kotlin.test.assertEquals
 
 @ExtendWith(VertxExtension::class)
 @DisplayName("Basement Server Test")
@@ -41,16 +43,76 @@ class BasementServerTest {
     }
 
     @Test
-    @DisplayName("Test Join as Host: Correct Result")
+    @Order(1)
+    @DisplayName("Join (Host): Correct Result")
     fun testJoinAsHost(v: Vertx, ctx: VertxTestContext) {
         val fs = FourSoulsContext(v, TEST_MOM_HOST, TEST_MOM_PORT)
         /* login user */
         fs.mom().store().loginUser(TEST_USERNAME0, TEST_PASSWORD0).onSuccess {
             val userId = fs.mom().state().userId as String
-            fs.state().basement.store().connect(TEST_BASEMENT_HOST, TEST_BASEMENT_PORT, userId).onSuccess {
-                /* successfully joined basement */
-                ctx.completeNow()
+            fs.state().basement.store().connect(TEST_BASEMENT_HOST, TEST_BASEMENT_PORT, userId).onComplete {
+                if (it.succeeded())
+                    ctx.checkpoint()
+                else
+                    ctx.failNow(it.cause())
             }.onFailure { ctx.failNow(it.cause) }
         }.onFailure { ctx.failNow(it.cause) }
+
+        fs.basement().subscribeTo(MType.BASEMENT_GREETING).handler {
+            val payload = it.body() as BasementGreeting
+            assertEquals("Joined Basement", payload.message)
+            assertEquals(true, payload.host)
+            assertEquals(1, payload.users.size)
+            assertEquals(TEST_USERNAME0, payload.username)
+            ctx.completeNow()
+        }
+    }
+
+    @Test
+    @Order(2)
+    @DisplayName("Chat: Correct Result")
+    fun testChat(v: Vertx, ctx: VertxTestContext) {
+        val testMessage = "hello world"
+        val fs = FourSoulsContext(v, TEST_MOM_HOST, TEST_MOM_PORT)
+        /* login user */
+        fs.mom().store().loginUser(TEST_USERNAME0, TEST_PASSWORD0).onSuccess {
+            val userId = fs.mom().state().userId as String
+            fs.basement().store().connect(TEST_BASEMENT_HOST, TEST_BASEMENT_PORT, userId).onComplete {
+                if (it.succeeded())
+                    ctx.checkpoint()
+                else
+                    ctx.failNow(it.cause())
+            }.onFailure { ctx.failNow(it.cause) }
+        }.onFailure { ctx.failNow(it.cause) }
+
+        val sub1 = fs.basement().store().subscribe()
+        sub1.handler {
+            /* ensure the state updated */
+            val state = it.body()
+            assertEquals(true, state.connected)
+            assertEquals(true, state.host)
+            assertEquals(TEST_USERNAME0, state.username)
+            assertEquals(1, state.users.size)
+            assertEquals(true, state.subs.isNotEmpty())
+            fs.basement().store().chat(testMessage)
+            ctx.checkpoint(1)
+        }
+
+        val sub2 = fs.basement().subscribeTo(MType.BASEMENT_CHAT)
+        sub2.handler {
+            /* ensure the state updated */
+            val payload = it.body() as BasementChat
+            /* ensure the message came from same user */
+            assertEquals(TEST_USERNAME0, payload.username)
+            assertEquals(testMessage, payload.message)
+            ctx.checkpoint(2)
+            /* unregister subscriptions */
+            val future = CompositeFutureImpl.all(sub1.unregister(), sub2.unregister())
+            future.onComplete { ar ->
+                if (ar.succeeded()) {
+                    ctx.completeNow()
+                }
+            }
+        }
     }
 }

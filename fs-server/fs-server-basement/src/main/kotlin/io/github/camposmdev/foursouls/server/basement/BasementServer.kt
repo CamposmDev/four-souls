@@ -1,19 +1,22 @@
 package io.github.camposmdev.foursouls.server.basement
 
 import io.github.camposmdev.foursouls.core.api.message.MessageFactory
-import io.github.camposmdev.foursouls.server.basement.model.BasementAuth
-import io.github.camposmdev.foursouls.server.basement.model.BasementClientWS
-import io.github.camposmdev.foursouls.server.basement.model.BasementOpts
-import io.github.camposmdev.foursouls.server.basement.model.BasementRegistry
+import io.github.camposmdev.foursouls.core.util.logger.Logger
+import io.github.camposmdev.foursouls.server.basement.impl.BasementRegistry
+import io.github.camposmdev.foursouls.server.basement.impl.BasementWSClient
+import io.github.camposmdev.foursouls.server.basement.spi.BasementAuth
+import io.github.camposmdev.foursouls.server.basement.spi.BasementOpts
 import io.vertx.core.Vertx
 import io.vertx.core.http.HttpMethod
 import io.vertx.core.http.HttpServerOptions
 import io.vertx.core.http.HttpServerRequest
 
 object BasementServer {
+    const val NAME = "Basement"
     private const val USER_ID_COOKIE = "userId"
     private lateinit var vertx: Vertx
     lateinit var auth: BasementAuth
+    lateinit var log: Logger
 
     @JvmStatic
     fun main(args: Array<String>) {
@@ -22,15 +25,17 @@ object BasementServer {
         vertx = Vertx.vertx()
         /* initialize auth module */
         auth = BasementAuth(vertx, opts.momHost, opts.momPort)
+        /* initialize log */
+        log = Logger(BasementServer::class.java)
         /* initialize server */
         val options = HttpServerOptions()
         options.port = opts.basementPort
         val server = vertx.createHttpServer(options)
         server.requestHandler(BasementServer::reqHandler)
         server.listen().onSuccess {
-            println("Basement Server listening on port ${opts.basementPort}")
+            log.info("Server listening on port ${opts.basementPort}")
         }.onFailure {
-            println("Failed to bind Basement Server to port ${opts.basementPort}")
+            log.error(it)
         }
     }
 
@@ -51,7 +56,7 @@ object BasementServer {
             return
         }
         /* upgrade to web socket */
-        req.toWebSocket().onSuccess { ws -> BasementClientWS(ws, userId.value)
+        req.toWebSocket().onSuccess { ws -> BasementWSClient(ws, userId.value)
         }.onFailure { req.response().setStatusCode(500).send() }
     }
 

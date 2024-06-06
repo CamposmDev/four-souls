@@ -1,4 +1,4 @@
-package io.github.camposmdev.foursouls.server.basement.model
+package io.github.camposmdev.foursouls.server.basement.spi
 
 import io.github.camposmdev.foursouls.core.context.store.MomStore
 import io.vertx.core.Future

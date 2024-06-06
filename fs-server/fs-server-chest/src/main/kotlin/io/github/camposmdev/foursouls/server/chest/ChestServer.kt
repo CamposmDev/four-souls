@@ -1,9 +1,9 @@
 package io.github.camposmdev.foursouls.server.chest
 
 import io.github.camposmdev.foursouls.core.api.message.MessageFactory
-import io.github.camposmdev.foursouls.server.chest.model.ChestClientWS
-import io.github.camposmdev.foursouls.server.chest.model.ChestOpts
-import io.github.camposmdev.foursouls.server.chest.model.ChestRegistry
+import io.github.camposmdev.foursouls.server.chest.impl.ChestRegistry
+import io.github.camposmdev.foursouls.server.chest.impl.ChestWSClient
+import io.github.camposmdev.foursouls.server.chest.spi.ChestOpts
 import io.vertx.core.Vertx
 import io.vertx.core.http.HttpMethod
 import io.vertx.core.http.HttpServerOptions
@@ -24,7 +24,7 @@ object ChestServer {
             if (ChestRegistry.isFull()) {
                 it.reject()
             } else {
-                val client = ChestClientWS(it)
+                val client = ChestWSClient(it)
                 ChestRegistry.add(client)
             }
         }
@@ -46,7 +46,7 @@ object ChestServer {
             return
         }
         /* upgrade to web socket */
-        req.toWebSocket().onSuccess { ws -> ChestClientWS(ws)
+        req.toWebSocket().onSuccess { ws -> ChestWSClient(ws)
         }.onFailure {req.response().setStatusCode(500).send()}
     }
 

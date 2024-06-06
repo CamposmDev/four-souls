@@ -1,19 +1,23 @@
-package io.github.camposmdev.foursouls.server.basement.model
+package io.github.camposmdev.foursouls.server.basement.impl
 
-import io.github.camposmdev.foursouls.core.util.ClientWS
+import io.github.camposmdev.foursouls.core.api.logger.WSLogger
 import io.github.camposmdev.foursouls.core.api.basement.BasementUser
 import io.github.camposmdev.foursouls.core.api.message.MType
+import io.github.camposmdev.foursouls.core.api.message.MType.BASEMENT_CHAT
 import io.github.camposmdev.foursouls.core.api.message.MessageFactory
 import io.github.camposmdev.foursouls.core.api.message.payload.BasementChat
 import io.github.camposmdev.foursouls.core.api.message.payload.PayloadFactory
+import io.github.camposmdev.foursouls.core.util.WSClient
 import io.github.camposmdev.foursouls.server.basement.BasementServer
 import io.vertx.core.buffer.Buffer
 import io.vertx.core.http.ServerWebSocket
 import io.vertx.core.json.DecodeException
 import io.vertx.core.json.JsonObject
 
-class BasementClientWS(private val ws: ServerWebSocket, userId: String) : ClientWS {
+class BasementWSClient(private val ws: ServerWebSocket, userId: String) :
+    WSClient {
     val state = BasementUser(userId)
+    val log = WSLogger(BasementServer::class.java)
 
     init {
         /* verify userId */
@@ -23,7 +27,8 @@ class BasementClientWS(private val ws: ServerWebSocket, userId: String) : Client
             ws.textMessageHandler(::textMessageHandler)
             ws.closeHandler(::closeHandler)
             BasementRegistry.add(this)
-            sendBasementGreeting()
+            log.debug("${state.username} joined the basement")
+            greeting()
         }.onFailure {
             ws.close()
         }
@@ -34,49 +39,64 @@ class BasementClientWS(private val ws: ServerWebSocket, userId: String) : Client
     }
 
     override fun binaryMessageHandler(data: Buffer) {
-        println("Client[${state.id}]: Sends ${data.length()} bytes...")
+        println("Client[${state.username}]: Sends ${data.length()} bytes...")
     }
 
     override fun textMessageHandler(text: String) {
-        println("Client[${state.id}] says:\n$text")
         try {
             /* try to parse {text} as JsonObject */
             val obj = JsonObject(text)
             val mtype = MType.parse(obj)
             val payload = PayloadFactory.parse(obj)
+            log.read(BasementServer.NAME, state.username, text)
             decodeMessage(mtype, payload)
         } catch (err: DecodeException) {
-            ws.writeTextMessage(MessageFactory.err("Invalid JSON"))
+            log.error(err)
+            sendText(MessageFactory.basement().err(err.toString()))
         } catch (err: NullPointerException) {
-            ws.writeTextMessage(MessageFactory.err("Invalid MType"))
+            log.error(err)
+            sendText(MessageFactory.basement().err(err.toString()))
         } catch (err: IllegalArgumentException) {
-            ws.writeTextMessage(MessageFactory.err("Missing 'payload' field"))
+            log.error(err)
+            sendText(MessageFactory.basement().err(err.toString()))
         }
     }
 
     override fun closeHandler(arg0: Void?) {
         BasementRegistry.remove { x -> x.id() == state.id }
-        println("Client[${state.id}] disconnected")
+        log.debug("${state.username} left the basement")
     }
 
     private fun decodeMessage(mtype: MType, payload: JsonObject) {
         when (mtype) {
-            MType.BASEMENT_CHAT -> {
+            BASEMENT_CHAT -> {
                 /* relay chat message to all users */
                 val chat = payload.mapTo(BasementChat::class.java)
                 BasementRegistry.sendChatMessageToAll(chat)
             }
             else -> {
-                ws.writeTextMessage(MessageFactory.err("Invalid MType"))
+                sendText(MessageFactory.basement().err("Invalid MType: $mtype"))
             }
         }
     }
 
-    fun sendBasementChat(chat: BasementChat) {
-        ws.writeTextMessage(MessageFactory.basementChat(chat))
+    fun chat(chat: BasementChat) {
+        val msg = MessageFactory.basement().chat(chat)
+        sendText(msg)
     }
 
-    fun sendBasementGreeting() {
-        ws.writeTextMessage(MessageFactory.basementGreeting(state.host, BasementRegistry.users()))
+    fun greeting() {
+        val msg = MessageFactory.basement().greeting(state.host, state.username, BasementRegistry.users())
+        sendText(msg)
+    }
+
+    override fun sendText(text: String) {
+        ws.writeTextMessage(text).onComplete {
+            if (it.succeeded()) {
+                log.write(BasementServer.NAME, state.username, text)
+            } else {
+                log.error(it.cause())
+            }
+        }
     }
 }

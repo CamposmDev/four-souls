@@ -1,11 +1,12 @@
-package io.github.camposmdev.foursouls.server.chest.model
+package io.github.camposmdev.foursouls.server.chest.impl
 
-import io.github.camposmdev.foursouls.core.util.ClientWS
+import io.github.camposmdev.foursouls.core.util.WSClient
 import io.vertx.core.buffer.Buffer
 import io.vertx.core.http.ServerWebSocket
 import java.util.*
 
-class ChestClientWS(private val ws: ServerWebSocket) : ClientWS {
+class ChestWSClient(private val ws: ServerWebSocket) :
+    WSClient {
     private val id: String = UUID.randomUUID().toString()
 
     init {
@@ -29,5 +30,9 @@ class ChestClientWS(private val ws: ServerWebSocket) : ClientWS {
     override fun closeHandler(arg0: Void?) {
         ChestRegistry.remove { x -> x.id == this.id }
         println("Client[$id] disconnected")
+    }
+
+    override fun sendText(text: String?) {
+        ws.writeTextMessage(text)
     }
 }
