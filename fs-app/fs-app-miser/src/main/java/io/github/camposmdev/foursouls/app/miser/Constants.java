@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface Constants {
     /* TODO - Let the user decide where to save the data instead of using {TARGET_DIR} */
-    String TARGET_DIR = "./editor/src/main/resources/assets/textures/";
+    String TARGET_DIR = "./fs-app/fs-app-editor/src/main/resources/assets/textures/";
     String CARDS_DIR = TARGET_DIR + "cards/";
     String CHARACTER_DIR = CARDS_DIR + "character/";
     String ETERNAL_DIR = CARDS_DIR + "eternal/";

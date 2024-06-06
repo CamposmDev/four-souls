@@ -17,5 +17,10 @@
             <artifactId>fs-card</artifactId>
             <version>${build.version}</version>
         </dependency>
+        <dependency>
+            <groupId>io.github.camposmdev</groupId>
+            <artifactId>fs-util</artifactId>
+            <version>${build.version}</version>
+        </dependency>
     </dependencies>
 </project>

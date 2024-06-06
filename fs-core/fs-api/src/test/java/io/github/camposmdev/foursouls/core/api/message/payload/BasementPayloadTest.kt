@@ -12,8 +12,9 @@ class BasementPayloadTest {
     fun testBasementGreetingJSON() {
         val testUserId = "343"
         val testHost = true
+        val testUsername = "Guest"
         val testUsers = arrayListOf(BasementUser(testUserId))
-        val g1 = BasementGreeting(testHost, testUsers)
+        val g1 = BasementGreeting(testHost, testUsername, testUsers)
         /* map g1 object to JSON */
         val payload = JsonObject.mapFrom(g1)
         /* map it back to a g2 object */

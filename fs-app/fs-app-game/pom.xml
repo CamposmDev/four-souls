@@ -118,6 +118,10 @@
             <artifactId>fs-card</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-web</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.github.almasb</groupId>
             <artifactId>fxgl</artifactId>
         </dependency>
