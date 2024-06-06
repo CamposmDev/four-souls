@@ -1,6 +1,0 @@
-fs-app/* linguist-documentation=false
-fs-app/* linguist-vendored
-fs-core/* linguist-documentation=false
-fs-core/* linguist-vendored
-fs-server/* linguist-documentation=false
-fs-server/* linguist-vendored

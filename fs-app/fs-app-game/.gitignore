@@ -1,2 +1,5 @@
 # Assets (Import them from editor module)
 src/main/resources/assets/textures/cards/*
+
+# Videos
+src/main/resources/assets/videos/*
