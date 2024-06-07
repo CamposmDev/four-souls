@@ -9,16 +9,16 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="fs-atlas" />
-        <module name="fs-game" />
-        <module name="fs-card" />
         <module name="fs-context" />
         <module name="fs-api" />
         <module name="fs-ui" />
         <module name="fs-app-game" />
-        <module name="fs-app-editor" />
         <module name="fs-util" />
         <module name="fs-app-miser" />
+        <module name="fs-atlas" />
+        <module name="fs-game" />
+        <module name="fs-card" />
+        <module name="fs-app-editor" />
         <module name="fs-server-basement" />
         <module name="fs-server-chest" />
       </profile>
@@ -34,6 +34,7 @@
       <module name="four-souls-model-net-chest" target="21" />
       <module name="four-souls-model-net-mom" target="21" />
       <module name="foursouls-model-net-base" target="21" />
+      <module name="fs-app-cli" target="21" />
       <module name="fs-model-atlas" target="21" />
       <module name="fs-model-card" target="21" />
       <module name="fs-model-context" target="21" />

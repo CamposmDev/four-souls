@@ -1,7 +1,5 @@
 package io.github.camposmdev.foursouls.core.api
 
-import io.github.camposmdev.foursouls.core.api.message.MType
-
-interface ISignMType {
-    fun sign(mtype: MType): String
+interface ISignMType<T : Enum<T>> {
+    fun sign(mtype: T): String
 }

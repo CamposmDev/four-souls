@@ -6,7 +6,6 @@
       <module fileurl="file://$PROJECT_DIR$/fs-app/fs-app-editor/fs-app-editor.iml" filepath="$PROJECT_DIR$/fs-app/fs-app-editor/fs-app-editor.iml" />
       <module fileurl="file://$PROJECT_DIR$/fs-app/fs-app-game/fs-app-game.iml" filepath="$PROJECT_DIR$/fs-app/fs-app-game/fs-app-game.iml" />
       <module fileurl="file://$PROJECT_DIR$/fs-server/fs-server.iml" filepath="$PROJECT_DIR$/fs-server/fs-server.iml" />
-      <module fileurl="file://$PROJECT_DIR$/fs-server/fs-server-basement/fs-server-basement.iml" filepath="$PROJECT_DIR$/fs-server/fs-server-basement/fs-server-basement.iml" />
     </modules>
   </component>
 </project>

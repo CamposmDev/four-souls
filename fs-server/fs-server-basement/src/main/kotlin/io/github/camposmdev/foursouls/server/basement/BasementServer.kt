@@ -1,9 +1,9 @@
 package io.github.camposmdev.foursouls.server.basement
 
-import io.github.camposmdev.foursouls.core.api.message.MessageFactory
+import io.github.camposmdev.foursouls.core.api.message.WSPacketFactory
 import io.github.camposmdev.foursouls.core.util.logger.Logger
 import io.github.camposmdev.foursouls.server.basement.impl.BasementRegistry
-import io.github.camposmdev.foursouls.server.basement.impl.BasementWSClient
+import io.github.camposmdev.foursouls.server.basement.impl.BasementServerWSManager
 import io.github.camposmdev.foursouls.server.basement.spi.BasementAuth
 import io.github.camposmdev.foursouls.server.basement.spi.BasementOpts
 import io.vertx.core.Vertx
@@ -16,12 +16,12 @@ object BasementServer {
     private const val USER_ID_COOKIE = "userId"
     private lateinit var vertx: Vertx
     lateinit var auth: BasementAuth
-    lateinit var log: Logger
+    private lateinit var log: Logger
 
     @JvmStatic
     fun main(args: Array<String>) {
         /* parse arguments */
-        val opts = BasementOpts.parse(args);
+        val opts = BasementOpts.parse(args)
         vertx = Vertx.vertx()
         /* initialize auth module */
         auth = BasementAuth(vertx, opts.momHost, opts.momPort)
@@ -51,12 +51,12 @@ object BasementServer {
             return
         }
         if (BasementRegistry.isFull()) {
-            val payload = MessageFactory.err("Basement is Full")
+            val payload = WSPacketFactory.err("Basement is Full")
             req.response().setStatusCode(503).end(payload)
             return
         }
         /* upgrade to web socket */
-        req.toWebSocket().onSuccess { ws -> BasementWSClient(ws, userId.value)
+        req.toWebSocket().onSuccess { ws -> BasementServerWSManager(ws, userId.value)
         }.onFailure { req.response().setStatusCode(500).send() }
     }
 

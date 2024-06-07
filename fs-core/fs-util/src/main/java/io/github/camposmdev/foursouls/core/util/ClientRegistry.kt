@@ -3,7 +3,7 @@ package io.github.camposmdev.foursouls.core.util
 import java.util.*
 import java.util.function.Predicate
 
-open class ClientRegistry<T: WSClient> {
+open class ClientRegistry<T: IServerWSManager> {
     protected val clients: MutableList<T> by lazy {
         Collections.synchronizedList(LinkedList())
     }
@@ -13,7 +13,7 @@ open class ClientRegistry<T: WSClient> {
     }
 
     fun remove(filter: Predicate<T>): Boolean {
-        return clients.removeIf(filter);
+        return clients.removeIf(filter)
     }
 
     fun size(): Int {

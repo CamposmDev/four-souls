@@ -40,6 +40,7 @@ class MomAPI(v: Vertx, host: String, port: Int) : MomHttpClient {
     override fun loginUser(username: String, password: String): Future<HttpResponse<Buffer>> {
         val promise = Promise.promise<HttpResponse<Buffer>>()
         val payload = LoginUserReq(username, password)
+        val post = wc.post("/api/user/login")
         wc.post("/api/user/login").sendJson(payload).onComplete {
             if (it.succeeded()) {
                 jwt = it.result().cookies().find { x -> x.startsWith(TOKEN_FIELD) }

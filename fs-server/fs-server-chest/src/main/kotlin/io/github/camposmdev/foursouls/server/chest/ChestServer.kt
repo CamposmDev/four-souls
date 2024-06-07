@@ -1,8 +1,8 @@
 package io.github.camposmdev.foursouls.server.chest
 
-import io.github.camposmdev.foursouls.core.api.message.MessageFactory
+import io.github.camposmdev.foursouls.core.api.message.WSPacketFactory
 import io.github.camposmdev.foursouls.server.chest.impl.ChestRegistry
-import io.github.camposmdev.foursouls.server.chest.impl.ChestWSClient
+import io.github.camposmdev.foursouls.server.chest.impl.ChestIServerWSManager
 import io.github.camposmdev.foursouls.server.chest.spi.ChestOpts
 import io.vertx.core.Vertx
 import io.vertx.core.http.HttpMethod
@@ -24,7 +24,7 @@ object ChestServer {
             if (ChestRegistry.isFull()) {
                 it.reject()
             } else {
-                val client = ChestWSClient(it)
+                val client = ChestIServerWSManager(it)
                 ChestRegistry.add(client)
             }
         }
@@ -41,12 +41,12 @@ object ChestServer {
             return
         }
         if (ChestRegistry.isFull()) {
-            val payload = MessageFactory.err("Chest is Full")
+            val payload = WSPacketFactory.err("Chest is Full")
             req.response().setStatusCode(503).end(payload)
             return
         }
         /* upgrade to web socket */
-        req.toWebSocket().onSuccess { ws -> ChestWSClient(ws)
+        req.toWebSocket().onSuccess { ws -> ChestIServerWSManager(ws)
         }.onFailure {req.response().setStatusCode(500).send()}
     }
 

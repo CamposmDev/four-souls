@@ -1,26 +1,15 @@
 package io.github.camposmdev.foursouls.core.api.message.payload
 
 import io.github.camposmdev.foursouls.core.api.basement.BasementUser
-import io.github.camposmdev.foursouls.core.api.message.MessageFactory
 import io.vertx.core.json.JsonObject
 
 interface Payload
 
 /**
- * Builds message payloads
+ * Builds payloads for WSPackets
  */
 object PayloadFactory {
     private const val MSG_FIELD = "message"
-
-    /**
-     * Returns JsonObject value in 'payload' field
-     */
-    fun parse(obj: JsonObject): JsonObject {
-        val field = MessageFactory.PAYLOAD_FIELD
-        if (!obj.containsKey(field))
-            throw IllegalArgumentException("Missing '$field' field")
-        return obj.getJsonObject(field)
-    }
 
     fun message(message: String): JsonObject {
         return JsonObject.of(MSG_FIELD, message)

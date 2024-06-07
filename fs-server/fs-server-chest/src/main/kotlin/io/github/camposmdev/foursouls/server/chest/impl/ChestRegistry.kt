@@ -2,7 +2,7 @@ package io.github.camposmdev.foursouls.server.chest.impl
 
 import io.github.camposmdev.foursouls.core.util.ClientRegistry
 
-object ChestRegistry : ClientRegistry<ChestWSClient>() {
+object ChestRegistry : ClientRegistry<ChestIServerWSManager>() {
     private const val SZ = 4
     private var hostId: String? = null
 
@@ -10,7 +10,7 @@ object ChestRegistry : ClientRegistry<ChestWSClient>() {
         return clients.size >= SZ
     }
 
-    override fun add(client: ChestWSClient): Boolean {
+    override fun add(client: ChestIServerWSManager): Boolean {
         if (isEmpty()) {
             hostId = client.id()
 //            client.state.host = true

@@ -1,6 +1,6 @@
 package io.github.camposmdev.foursouls.server.basement
 
-import io.github.camposmdev.foursouls.core.api.message.MType
+import io.github.camposmdev.foursouls.core.api.message.BasementMType
 import io.github.camposmdev.foursouls.core.api.message.payload.BasementChat
 import io.github.camposmdev.foursouls.core.api.message.payload.BasementGreeting
 import io.github.camposmdev.foursouls.core.context.FourSoulsContext
@@ -58,7 +58,7 @@ class BasementServerTest {
             }.onFailure { ctx.failNow(it.cause) }
         }.onFailure { ctx.failNow(it.cause) }
 
-        fs.basement().subscribeTo(MType.BASEMENT_GREETING).handler {
+        fs.basement().subscribeTo(BasementMType.GREETING).handler {
             val payload = it.body() as BasementGreeting
             assertEquals("Joined Basement", payload.message)
             assertEquals(true, payload.host)
@@ -98,7 +98,7 @@ class BasementServerTest {
             ctx.checkpoint(1)
         }
 
-        val sub2 = fs.basement().subscribeTo(MType.BASEMENT_CHAT)
+        val sub2 = fs.basement().subscribeTo(BasementMType.CHAT)
         sub2.handler {
             /* ensure the state updated */
             val payload = it.body() as BasementChat
