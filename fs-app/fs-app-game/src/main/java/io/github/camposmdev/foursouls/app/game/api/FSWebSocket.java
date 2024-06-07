@@ -71,20 +71,20 @@ class FSWebSocket {
 //            var msg = arg.getJsonObject(MType.BASEMENT_JOIN.name());
 //            this.notifySubscribers(BusEvent.SHOW_LOBBY, msg);
 //        }
-        else if (arg.containsKey(MType.BASEMENT_USERS.name())) {
-            var msg = arg.getJsonObject(MType.BASEMENT_USERS.name());
-            this.notifySubscribers(BusEvent.UPDATE_LOBBY, msg);
-        }
-        else if (arg.containsKey(MType.BASEMENT_LEAVE.name())) {
-            var msg = arg.getJsonObject(MType.BASEMENT_LEAVE.name());
-            this.notifySubscribers(BusEvent.REMOVE_LOBBY, msg);
-        }
-        else if (arg.containsKey(MType.BASEMENT_CLOSED.name())) {
-            var msg = arg.getJsonObject(MType.BASEMENT_CLOSED.name());
-            this.notifySubscribers(BusEvent.REMOVE_LOBBY, msg);
-        } else {
-            System.out.println(arg);
-        }
+//        else if (arg.containsKey(MType.BASEMENT_USERS.name())) {
+//            var msg = arg.getJsonObject(MType.BASEMENT_USERS.name());
+//            this.notifySubscribers(BusEvent.UPDATE_LOBBY, msg);
+//        }
+//        else if (arg.containsKey(MType.BASEMENT_LEAVE.name())) {
+//            var msg = arg.getJsonObject(MType.BASEMENT_LEAVE.name());
+//            this.notifySubscribers(BusEvent.REMOVE_LOBBY, msg);
+//        }
+//        else if (arg.containsKey(MType.BASEMENT_CLOSED.name())) {
+//            var msg = arg.getJsonObject(MType.BASEMENT_CLOSED.name());
+//            this.notifySubscribers(BusEvent.REMOVE_LOBBY, msg);
+//        } else {
+//            System.out.println(arg);
+//        }
     }
 
     public void sendGlobalMessage(String message) {
@@ -125,8 +125,8 @@ class FSWebSocket {
         var payload = JsonObject.of(
                 "gameId", gameId,
                 "userId", userId);
-        var msg = JsonObject.of(MType.BASEMENT_LEAVE.name(), payload);
-        ws.writeTextMessage(msg.toString());
+//        var msg = JsonObject.of(MType.BASEMENT_LEAVE.name(), payload);
+//        ws.writeTextMessage(msg.toString());
     }
 
     protected void close() {
