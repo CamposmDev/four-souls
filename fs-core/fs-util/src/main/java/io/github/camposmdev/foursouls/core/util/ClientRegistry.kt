@@ -3,8 +3,8 @@ package io.github.camposmdev.foursouls.core.util
 import java.util.*
 import java.util.function.Predicate
 
-open class ClientRegistry<T: IServerWSManager> {
-    protected val clients: MutableList<T> by lazy {
+abstract class ClientRegistry<T: AbstractServerWSClient<U>, U> {
+    val clients: MutableList<T> by lazy {
         Collections.synchronizedList(LinkedList())
     }
 

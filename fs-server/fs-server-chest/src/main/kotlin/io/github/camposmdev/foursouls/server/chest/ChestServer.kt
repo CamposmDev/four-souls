@@ -1,8 +1,9 @@
 package io.github.camposmdev.foursouls.server.chest
 
 import io.github.camposmdev.foursouls.core.api.message.WSPacketFactory
+import io.github.camposmdev.foursouls.core.util.logger.Logger
 import io.github.camposmdev.foursouls.server.chest.impl.ChestRegistry
-import io.github.camposmdev.foursouls.server.chest.impl.ChestIServerWSManager
+import io.github.camposmdev.foursouls.server.chest.impl.ChestServerWSClient
 import io.github.camposmdev.foursouls.server.chest.spi.ChestOpts
 import io.vertx.core.Vertx
 import io.vertx.core.http.HttpMethod
@@ -10,28 +11,26 @@ import io.vertx.core.http.HttpServerOptions
 import io.vertx.core.http.HttpServerRequest
 
 object ChestServer {
+    const val NAME = "Basement"
+    private const val USER_ID_COOKIE = "userId"
     private lateinit var vertx: Vertx
+    private lateinit var log: Logger
+
 
     @JvmStatic
     fun main(args: Array<String>) {
+        /* parse arguments */
         val opts = ChestOpts.parse(args)
         val vertx = Vertx.vertx()
+        /* initialize server */
         val options = HttpServerOptions()
         options.port = opts.chestPort
         val server = vertx.createHttpServer(options)
         server.requestHandler(::reqHandler)
-        server.webSocketHandler {
-            if (ChestRegistry.isFull()) {
-                it.reject()
-            } else {
-                val client = ChestIServerWSManager(it)
-                ChestRegistry.add(client)
-            }
-        }
         server.listen().onSuccess {
-            println("Chest Server listening on port ${opts.chestPort}")
+            log.info("Server listening on port ${opts.chestPort}")
         }.onFailure {
-            println("Failed to bind Chest Server to port ${opts.chestPort}")
+            log.error(it)
         }
     }
 
@@ -45,8 +44,14 @@ object ChestServer {
             req.response().setStatusCode(503).end(payload)
             return
         }
+        /* extract the userId cookie, reject ws request if null */
+        val userId = req.getCookie(USER_ID_COOKIE)
+        if (userId == null) {
+            req.response().setStatusCode(400).end("Missing '$USER_ID_COOKIE' cookie")
+            return
+        }
         /* upgrade to web socket */
-        req.toWebSocket().onSuccess { ws -> ChestIServerWSManager(ws)
+        req.toWebSocket().onSuccess { ws -> ChestServerWSClient(ws, userId.value)
         }.onFailure {req.response().setStatusCode(500).send()}
     }
 

@@ -3,7 +3,7 @@ package io.github.camposmdev.foursouls.server.basement
 import io.github.camposmdev.foursouls.core.api.message.WSPacketFactory
 import io.github.camposmdev.foursouls.core.util.logger.Logger
 import io.github.camposmdev.foursouls.server.basement.impl.BasementRegistry
-import io.github.camposmdev.foursouls.server.basement.impl.BasementServerWSManager
+import io.github.camposmdev.foursouls.server.basement.impl.BasementServerWSClient
 import io.github.camposmdev.foursouls.server.basement.spi.BasementAuth
 import io.github.camposmdev.foursouls.server.basement.spi.BasementOpts
 import io.vertx.core.Vertx
@@ -31,7 +31,7 @@ object BasementServer {
         val options = HttpServerOptions()
         options.port = opts.basementPort
         val server = vertx.createHttpServer(options)
-        server.requestHandler(BasementServer::reqHandler)
+        server.requestHandler(::reqHandler)
         server.listen().onSuccess {
             log.info("Server listening on port ${opts.basementPort}")
         }.onFailure {
@@ -44,19 +44,19 @@ object BasementServer {
             req.response().setStatusCode(405).end()
             return
         }
+        if (BasementRegistry.isFull()) {
+            val payload = WSPacketFactory.err("Basement is Full")
+            req.response().setStatusCode(503).end(payload)
+            return
+        }
         /* extract the userId cookie, reject ws request if null */
         val userId = req.getCookie(USER_ID_COOKIE)
         if (userId == null) {
             req.response().setStatusCode(400).end("Missing '$USER_ID_COOKIE' cookie")
             return
         }
-        if (BasementRegistry.isFull()) {
-            val payload = WSPacketFactory.err("Basement is Full")
-            req.response().setStatusCode(503).end(payload)
-            return
-        }
         /* upgrade to web socket */
-        req.toWebSocket().onSuccess { ws -> BasementServerWSManager(ws, userId.value)
+        req.toWebSocket().onSuccess { ws -> BasementServerWSClient(ws, userId.value)
         }.onFailure { req.response().setStatusCode(500).send() }
     }
 

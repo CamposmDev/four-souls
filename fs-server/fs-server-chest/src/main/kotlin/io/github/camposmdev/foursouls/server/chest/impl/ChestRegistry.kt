@@ -1,8 +1,9 @@
 package io.github.camposmdev.foursouls.server.chest.impl
 
+import io.github.camposmdev.foursouls.core.api.message.ChestMType
 import io.github.camposmdev.foursouls.core.util.ClientRegistry
 
-object ChestRegistry : ClientRegistry<ChestIServerWSManager>() {
+object ChestRegistry : ClientRegistry<ChestServerWSClient, ChestMType>() {
     private const val SZ = 4
     private var hostId: String? = null
 
@@ -10,9 +11,10 @@ object ChestRegistry : ClientRegistry<ChestIServerWSManager>() {
         return clients.size >= SZ
     }
 
-    override fun add(client: ChestIServerWSManager): Boolean {
+    override fun add(client: ChestServerWSClient): Boolean {
         if (isEmpty()) {
-            hostId = client.id()
+            hostId = client.id
+            TODO("Not yet implemented")
 //            client.state.host = true
         }
         return super.add(client)

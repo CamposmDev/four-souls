@@ -1,10 +1,11 @@
 package io.github.camposmdev.foursouls.server.basement.impl
 
 import io.github.camposmdev.foursouls.core.api.basement.BasementUser
+import io.github.camposmdev.foursouls.core.api.message.BasementMType
 import io.github.camposmdev.foursouls.core.api.message.payload.BasementChat
 import io.github.camposmdev.foursouls.core.util.ClientRegistry
 
-object BasementRegistry : ClientRegistry<BasementServerWSManager>() {
+object BasementRegistry : ClientRegistry<BasementServerWSClient, BasementMType>() {
     private const val SZ = 4
     private var hostId: String? = null
 
@@ -26,7 +27,7 @@ object BasementRegistry : ClientRegistry<BasementServerWSManager>() {
         return lst
     }
 
-    override fun add(client: BasementServerWSManager): Boolean {
+    override fun add(client: BasementServerWSClient): Boolean {
         if (isEmpty()) {
             hostId = client.state.id
             client.state.host = true
