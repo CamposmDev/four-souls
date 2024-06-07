@@ -72,6 +72,7 @@ abstract class AbstractWSManager<T : Enum<T>, U : Payload>(
         }
     }
 
+    @Suppress("UNUSED_PARAMETER")
     private fun closeHandler(arg0: Void?) {
         ws.close().onSuccess {
             log.debug("Disconnected")

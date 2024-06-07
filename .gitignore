@@ -52,8 +52,11 @@ cmake-build-*/
 # File-based project format
 *.iws
 
-# IntelliJ
+# IntelliJ IDEA
+.idea/
+.run/
 out/
+*.iml
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/
@@ -101,18 +104,23 @@ build/
 ### Mac OS ###
 .DS_Store
 
-### Output Files ###
-out/
+### Output ###
 target/
-logs/
+
+### FXGL ###
+saves/
+profiles/
 system/
+editor_json/
+*.json
 
-### DAT Files ###
+### Log ###
+logs/
+*.log
+*.lck
+
+### DAT ###
 *.dat
-
-#### Node Modules ###
-old-server/src/main/js/node_modules
-old-server/src/main/js/cards.json
 
 ### VS Code ###
 .vscode/
