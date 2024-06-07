@@ -20,7 +20,7 @@ export default class PrismaBasementORM implements BasementORM {
         return basement
     }
 
-    public async exists(basementId: string): Promise<Boolean> {
+    public async exists(basementId: string): Promise<boolean> {
         const basement: Basement | null = await this.prisma.basement.findUnique({
             where: {
                 id: basementId
@@ -29,7 +29,7 @@ export default class PrismaBasementORM implements BasementORM {
         return Boolean(basement)
     }
 
-    public async free(basementId: string, key: string): Promise<Boolean> {
+    public async free(basementId: string, key: string): Promise<boolean> {
         /* throws exception if record not found */
         try {
             await this.prisma.basement.update({
@@ -42,7 +42,7 @@ export default class PrismaBasementORM implements BasementORM {
                 }
             })
             return true
-        } catch (err: any) {
+        } catch (err: unknown) {
             return false
         }
     }

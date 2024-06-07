@@ -9,7 +9,7 @@ export default class BcryptUtil {
         return hash
     }
 
-    public async compare(key: string, hash: string): Promise<Boolean> {
+    public async compare(key: string, hash: string): Promise<boolean> {
         return await bcrypt.compare(key, hash)
     }
 }

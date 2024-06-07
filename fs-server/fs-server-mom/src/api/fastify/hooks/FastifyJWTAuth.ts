@@ -8,12 +8,12 @@ const JWT_SECRET: string = process.env.JWT_SECRET ? process.env.JWT_SECRET : "su
 export default class FastifyJWTAuth {
     public async verifyJWT(req: FastifyRequest, res: FastifyReply, done: (err?: Error | undefined) => void) {
         try {
-            let cookie: string | null | undefined = req.cookies.token
+            const cookie: string | null | undefined = req.cookies.token
             if (!cookie) throw Error()
             jwt.verify(cookie, JWT_SECRET) as { userId: string }
             /* token is valid */
             done()
-        } catch (err: any) {
+        } catch (err: unknown) {
             res.status(401).send({message: "Unauthorized"})
         }
         return res
@@ -28,12 +28,12 @@ export default class FastifyJWTAuth {
             if (!user || user.role !== $Enums.Role.ADMIN) throw Error()
             done()
             return res
-        } catch (err: any) {
+        } catch (err: unknown) {
             return res.status(401).send({message: "Unauthorized"})
         }
     }
 
-    public signJWT<T extends Object | string | Buffer>(data: T): string {
+    public signJWT<T extends object | string | Buffer>(data: T): string {
         return jwt.sign(data, JWT_SECRET)
     }
 }

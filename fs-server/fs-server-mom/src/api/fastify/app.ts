@@ -23,7 +23,7 @@ export default function build(level: string): FastifyInstance {
         caseSensitive: true
     })
     app.register(ApiPlugin, {prefix: "/api"})
-    app.addHook("onClose", async(it) => {
+    app.addHook("onClose", async() => {
         db.disconnect()
     })
     return app

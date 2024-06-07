@@ -20,6 +20,7 @@ export default class ChestRequestChecker {
             return res.status(400).send({message: "Missing 'id' param"})
         if (!ObjectId.isValid(params.id))
             return res.status(400).send({message: "Invalid 'id' param"})
+        done()
         return res
     }
 

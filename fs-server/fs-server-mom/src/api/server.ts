@@ -11,7 +11,7 @@ const PORT: number = process.env.API_PORT ? Number(process.env.API_PORT) : DEFAU
 /* initialize server */
 const LEVEL = "debug"
 const server = build(LEVEL)
-server.listen({port: PORT}, (err: Error | null, addr: string) => {
+server.listen({port: PORT}, (err: Error | null) => {
     if (err) {
         server.log.error(err)
         process.exit(1)

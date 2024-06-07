@@ -12,7 +12,7 @@ export default class PrismaDeckORM implements DeckORM {
     }
 
     public async create(name: keyof DeckType): Promise<Deck> {
-        let cards = DeckType[name] as JsonObject
+        const cards = DeckType[name] as JsonObject
         const deck = await this.prisma.deck.create({
             data: {
                 name: name,
@@ -45,30 +45,34 @@ export default class PrismaDeckORM implements DeckORM {
     public async append(name: string, card: BaseCard): Promise<Deck> {
         const deck = await this.getByName(name)
         if (!deck) throw Error(`Deck '${name}' does not exist`)
-        const cards: any = deck.cards
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const cards = deck.cards as any
         const cardType = card.cardType
         switch (cardType) {
             case CardType.BSOUL:
             case CardType.CHARACTER:
             case CardType.ROOM:
-            case CardType.OUTSIDE:
-                cards[card.id] = card
+            case CardType.OUTSIDE: {
+                cards[card.id] = card;
                 break;
+            }
             case CardType.AETERNAL:
             case CardType.PAIDETERNAL:
             case CardType.PETERNAL:
-            case CardType.SETERNAL:
+            case CardType.SETERNAL: {
                 const ekey = cardType.toLowerCase()
                 cards[ekey][card.id] = card;
                 break;
+            }
             case CardType.ATREASURE:
             case CardType.OTREASURE:
             case CardType.PAIDTREASURE:
             case CardType.PTREASURE:
-            case CardType.STREASURE:
+            case CardType.STREASURE: {
                 const tkey = cardType.toLowerCase()
                 cards[tkey][card.id] = card;
                 break;
+            }
             case CardType.BMONSTER:
             case CardType.CMONSTER:
             case CardType.HMONSTER:
@@ -77,10 +81,11 @@ export default class PrismaDeckORM implements DeckORM {
             case CardType.BEVENT:
             case CardType.CURSE:
             case CardType.BOSS:
-            case CardType.EPIC:
+            case CardType.EPIC: {
                 const mkey = cardType.toLowerCase()
                 cards[mkey][card.id] = card
                 break;
+            }
             case CardType.CARDS:
             case CardType.TRINKETS:
             case CardType.PILLS:
@@ -94,19 +99,21 @@ export default class PrismaDeckORM implements DeckORM {
             case CardType.BHEART:
             case CardType.SACK:
             case CardType.LSOUL:
-            case CardType.WILDCARD:
+            case CardType.WILDCARD: {
                 const lkey = cardType.toLowerCase()
                 cards[lkey][card.id] = card
-                break
+                break;
+            }
             case CardType.MONEY1C:
             case CardType.MONEY2C:
             case CardType.MONEY3C:
             case CardType.MONEY4C:
             case CardType.MONEY5C:
-            case CardType.MONEY10C:
+            case CardType.MONEY10C: {
                 const $key = cardType.toLowerCase()
                 cards.money[$key][card.id] = card
-                break
+                break;
+            }
             default: throw Error("Invalid CardType")
         }
         const updatedDeck = await this.prisma.deck.update({

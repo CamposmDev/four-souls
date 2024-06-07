@@ -31,7 +31,7 @@ export default class PrismaUserORM implements UserORM {
         return user
     }
 
-    public async isEmailTaken(email: string): Promise<Boolean> {
+    public async isEmailTaken(email: string): Promise<boolean> {
         const user = await this.prisma.user.findFirst({
             where: {
                 email: email
@@ -40,7 +40,7 @@ export default class PrismaUserORM implements UserORM {
         return Boolean(user)
     }
 
-    public async isUsernameTaken(username: string): Promise<Boolean> {
+    public async isUsernameTaken(username: string): Promise<boolean> {
         const user = await this.prisma.user.findFirst({
             where: {
                 username: username

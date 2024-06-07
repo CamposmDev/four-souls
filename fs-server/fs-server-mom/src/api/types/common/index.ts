@@ -1,68 +1,68 @@
 // Define type aliases for deeply nested structures
 export type EternalDeck = {
-    aeternal: {};
-    paideternal: {};
-    peternal: {};
-    seternal: {};
+    aeternal: object;
+    paideternal: object;
+    peternal: object;
+    seternal: object;
 };
 
 export type TreasureDeck = {
-    atreasure: {};
-    otreasure: {};
-    paidtreasure: {};
-    ptreasure: {};
-    streasure: {};
+    atreasure: object;
+    otreasure: object;
+    paidtreasure: object;
+    ptreasure: object;
+    streasure: object;
 };
 
 export type MonsterDeck = {
-    bmonster: {};
-    cmonster: {};
-    hmonster: {};
-    chamonster: {};
-    gevent: {};
-    bevent: {};
-    curse: {};
-    boss: {};
-    epic: {};
+    bmonster: object;
+    cmonster: object;
+    hmonster: object;
+    chamonster: object;
+    gevent: object;
+    bevent: object;
+    curse: object;
+    boss: object;
+    epic: object;
 };
 
 export type LootDeck = {
-    batteries: {};
-    bheart: {};
-    bomb: {};
-    butter: {};
-    cards: {};
-    dice: {};
-    keys: {};
-    lsoul: {};
-    pill: {};
-    rune: {};
-    sack: {};
-    sheart: {};
-    trinket: {};
-    wild: {};
+    batteries: object;
+    bheart: object;
+    bomb: object;
+    butter: object;
+    cards: object;
+    dice: object;
+    keys: object;
+    lsoul: object;
+    pill: object;
+    rune: object;
+    sack: object;
+    sheart: object;
+    trinket: object;
+    wild: object;
     money: MoneyDeck;
 };
 
 export type MoneyDeck = {
-    money1c: {};
-    money2c: {};
-    money3c: {};
-    money4c: {};
-    money5c: {};
-    money10c: {};
+    money1c: object;
+    money2c: object;
+    money3c: object;
+    money4c: object;
+    money5c: object;
+    money10c: object;
 };
 
 // Define the DeckType using the type aliases
 export type DeckType = {
-    bsoul: {};
-    character: {};
+    bsoul: object;
+    character: object;
     eternal: EternalDeck;
     treasure: TreasureDeck;
     monster: MonsterDeck;
     loot: LootDeck;
-    room: {};
-    outside: {};
+    room: object;
+    outside: object;
 };
 
 export type BaseCard = {

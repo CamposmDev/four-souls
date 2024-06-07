@@ -20,7 +20,7 @@ export default class PrismaChestORM implements ChestORM {
         return chest
     }
 
-    public async exists(chestId: string): Promise<Boolean> {
+    public async exists(chestId: string): Promise<boolean> {
         const chest: Chest | null = await this.prisma.chest.findUnique({
             where: {
                 id: chestId
@@ -29,7 +29,7 @@ export default class PrismaChestORM implements ChestORM {
         return Boolean(chest)
     }
 
-    public async unlock(chestId: string, key: string): Promise<Boolean> {
+    public async unlock(chestId: string, key: string): Promise<boolean> {
         /* throws exception if record not found */
         try {
             await this.prisma.chest.update({
@@ -42,7 +42,7 @@ export default class PrismaChestORM implements ChestORM {
                 }
             })
             return true
-        } catch (err: any) {
+        } catch (err: unknown) {
             return false
         }
     }

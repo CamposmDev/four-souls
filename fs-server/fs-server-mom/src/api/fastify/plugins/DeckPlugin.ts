@@ -1,7 +1,6 @@
 import { FastifyInstance, FastifyPluginAsync } from "fastify";
 import { DeckController } from "../controllers";
 import { auth, checker } from "../hooks";
-import { db } from "../../db/prisma";
 
 const DeckPlugin: FastifyPluginAsync = async (app: FastifyInstance) => {
     app.get("/", DeckController.getAll)

@@ -1,6 +1,6 @@
-import { FastifyInstance, LightMyRequestResponse } from "fastify"
+import { LightMyRequestResponse } from "fastify"
 import build from "../fastify/app"
-import { $Enums, PrismaClient, User } from "@prisma/client"
+import { PrismaClient } from "@prisma/client"
 import { CreateUserBodyRes, HostBasementBodyRes, JoinBasementBodyRes, LoginUserBodyRes } from "types/response"
 import AppDecorator from "./util/AppDecorator"
 import PrismaDecorator from "./util/PrismaDecorator"

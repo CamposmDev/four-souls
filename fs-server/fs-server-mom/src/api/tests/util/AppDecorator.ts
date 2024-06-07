@@ -1,4 +1,4 @@
-import { FastifyInstance, LightMyRequestResponse } from "fastify";
+import { FastifyInstance } from "fastify";
 
 export default class AppUtil {
     private _api: FastifyInstance

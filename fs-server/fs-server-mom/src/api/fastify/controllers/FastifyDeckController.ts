@@ -2,7 +2,7 @@ import { Deck } from "@prisma/client";
 import { db } from "../../db/prisma";
 import { FastifyReply, FastifyRequest } from "fastify";
 import { JsonValue } from "@prisma/client/runtime/library";
-import { CardType, DeckType } from "../../util";
+import { DeckType } from "../../util";
 import { DeckAppendParams, DeckGetAllQuery, DeckGetByNameParams } from "types/requests";
 import { BaseCard } from "types/common";
 
@@ -14,15 +14,15 @@ export default class FastifyDeckController {
             cards: JsonValue
         }[] = await db.deck.getAll()
         if (query.pretty) {
-            /* reformat array to an object */
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             const cards: any = {}
             Object.keys(DeckType).forEach(key => {
                 const deck = decks.find(x => x.name === key)
                 cards[key] = deck ? deck.cards : DeckType[key as keyof DeckType]
             })
-            return cards
+            return res.send(cards)
         } else {
-            return decks
+            return res.send(decks)
         }
     }
 
@@ -38,6 +38,6 @@ export default class FastifyDeckController {
         const params = req.params as DeckAppendParams
         const card = req.body as BaseCard
         await db.deck.append(params.name, card)
-        return {message: `Created ${params.name} card`}
+        return res.send({message: `Created ${params.name} card`})
     }
 }

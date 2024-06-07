@@ -4,7 +4,6 @@ import fastifyCookie from "@fastify/cookie";
 import UserPlugin from "./UserPlugin";
 import BasementPlugin from "./BasementPlugin";
 import ChestPlugin from "./ChestPlugin";
-import { auth } from "../hooks";
 import DeckPlugin from "./DeckPlugin";
 import PingPlugin from "./PingPlugin";
 
@@ -16,7 +15,6 @@ const ApiPlugin: FastifyPluginAsync = async (app) => {
     app.register(ChestPlugin, {prefix: "/chest"})
     app.register(DeckPlugin, {prefix: "/deck"})
     app.register(PingPlugin, {prefix: "/ping"})
-    
 }
 
 export default ApiPlugin
