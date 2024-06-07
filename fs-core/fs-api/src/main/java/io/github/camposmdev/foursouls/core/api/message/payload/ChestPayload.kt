@@ -31,7 +31,9 @@ data class ChestDone(
 
 data class ChestUsers(
     @JsonProperty("users")
-    val users: List<ChestUser>
+    val users: List<ChestUser>,
+    @JsonProperty("message")
+    val message: String /* who joined/left the chest */
 ) : ChestPayload
 
 data class ChestClosed(
