@@ -4,7 +4,7 @@ import io.github.camposmdev.foursouls.core.api.ISubscribeMType
 import io.github.camposmdev.foursouls.core.api.basement.BasementAPI
 import io.github.camposmdev.foursouls.core.api.message.BasementMType
 import io.github.camposmdev.foursouls.core.api.message.payload.*
-import io.github.camposmdev.foursouls.core.context.impl.StateCodec
+import io.github.camposmdev.foursouls.core.context.impl.BasementStateCodec
 import io.github.camposmdev.foursouls.core.context.store.state.BasementState
 import io.github.camposmdev.foursouls.core.util.logger.Logger
 import io.vertx.core.Future
@@ -24,10 +24,10 @@ class BasementStore(val vertx: Vertx) : IStore<BasementState>, ISubscribeMType<B
 
     init {
         try {
-            eb.registerDefaultCodec(BasementState::class.java, StateCodec.Basement())
-            log.info("Registered message codec: ${StateCodec.Basement::class.java}")
+            eb.registerDefaultCodec(BasementState::class.java, BasementStateCodec())
+            log.debug("Registered MessageCodec<${BasementState::class.java.simpleName}>")
         } catch (err: Exception) {
-            log.error(err)
+            log.warn("MessageCodec<${BasementState::class.java.simpleName}> is already registered")
         }
     }
 
