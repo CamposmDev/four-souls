@@ -1,59 +1,45 @@
 package io.github.camposmdev.foursouls.core.api.message
 
-import io.github.camposmdev.foursouls.core.api.message.payload.BasementChat
-import io.github.camposmdev.foursouls.core.api.message.payload.BasementGreeting
-import io.vertx.core.buffer.Buffer
-import io.vertx.core.eventbus.MessageCodec
-import io.vertx.core.json.Json
+import io.github.camposmdev.foursouls.core.api.message.payload.*
 
-class BasementGreetingCodec : MessageCodec<BasementGreeting, BasementGreeting> {
-    override fun encodeToWire(buffer: Buffer, payload: BasementGreeting?) {
-        val jsonStr = Json.encode(payload)
-        buffer.appendInt(jsonStr.length)
-        buffer.appendString(jsonStr)
-    }
-
-    override fun decodeFromWire(pos: Int, buffer: Buffer): BasementGreeting {
-        val length = buffer.getInt(pos)
-        val jsonStr = buffer.getString(pos + 4, pos + 4 + length)
-        return Json.decodeValue(jsonStr, BasementGreeting::class.java)
-    }
-
-    override fun name(): String {
-        return javaClass.simpleName
-    }
-
-    override fun systemCodecID(): Byte {
-        return -1
-    }
-
-    override fun transform(payload: BasementGreeting): BasementGreeting {
-        return payload
+class BasementGreetingCodec : JsonMessageCodec<BasementGreeting>() {
+    override fun clazz(): Class<BasementGreeting> {
+        return BasementGreeting::class.java
     }
 }
 
-class BasementChatCodec : MessageCodec<BasementChat, BasementChat> {
-    override fun encodeToWire(buffer: Buffer, payload: BasementChat?) {
-        val jsonStr = Json.encode(payload)
-        buffer.appendInt(jsonStr.length)
-        buffer.appendString(jsonStr)
+class BasementChatCodec : JsonMessageCodec<BasementChat>() {
+    override fun clazz(): Class<BasementChat> {
+        return BasementChat::class.java
     }
+}
 
-    override fun decodeFromWire(pos: Int, buffer: Buffer): BasementChat {
-        val length = buffer.getInt(pos)
-        val jsonStr = buffer.getString(pos + 4, pos + 4 + length)
-        return Json.decodeValue(jsonStr, BasementChat::class.java)
+class BasementDoneCodec : JsonMessageCodec<BasementDone>() {
+    override fun clazz(): Class<BasementDone> {
+        return BasementDone::class.java
     }
+}
 
-    override fun name(): String {
-        return javaClass.simpleName
+class BasementUsersCodec : JsonMessageCodec<BasementUsers>() {
+    override fun clazz(): Class<BasementUsers> {
+        return BasementUsers::class.java
     }
+}
 
-    override fun systemCodecID(): Byte {
-        return -1
+class BasementClosedCodec : JsonMessageCodec<BasementClosed>() {
+    override fun clazz(): Class<BasementClosed> {
+        return BasementClosed::class.java
     }
+}
 
-    override fun transform(payload: BasementChat): BasementChat {
-        return payload
+class BasementErrorCodec : JsonMessageCodec<BasementError>() {
+    override fun clazz(): Class<BasementError> {
+        return BasementError::class.java
+    }
+}
+
+class BasementLeaveCodec : JsonMessageCodec<BasementLeave>() {
+    override fun clazz(): Class<BasementLeave> {
+        return BasementLeave::class.java
     }
 }

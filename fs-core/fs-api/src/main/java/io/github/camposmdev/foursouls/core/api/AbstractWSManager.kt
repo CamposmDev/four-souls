@@ -39,9 +39,9 @@ abstract class AbstractWSManager<T : Enum<T>, U : Payload>(
     protected fun <T> registerDefaultCodec(clazz: Class<T>, codec: MessageCodec<T, *>) {
         try {
             vertx.eventBus().registerDefaultCodec(clazz, codec)
-            log.info("Registered message codec: ${codec::class.java}")
+            log.debug("Registered MessageCodec<${codec.name()}>")
         } catch (ex: Exception) {
-            log.warn("Codec ${codec::class} is already registered")
+            log.warn("MessageCodec<${clazz.simpleName}> is already registered")
         }
     }
 

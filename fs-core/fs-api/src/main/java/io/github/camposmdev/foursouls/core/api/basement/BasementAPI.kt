@@ -1,10 +1,7 @@
 package io.github.camposmdev.foursouls.core.api.basement
 
 import io.github.camposmdev.foursouls.core.api.AbstractWSManager
-import io.github.camposmdev.foursouls.core.api.message.BasementChatCodec
-import io.github.camposmdev.foursouls.core.api.message.BasementGreetingCodec
-import io.github.camposmdev.foursouls.core.api.message.BasementMType
-import io.github.camposmdev.foursouls.core.api.message.WSPacketFactory
+import io.github.camposmdev.foursouls.core.api.message.*
 import io.github.camposmdev.foursouls.core.api.message.payload.*
 import io.vertx.core.Future
 import io.vertx.core.Vertx
@@ -18,6 +15,11 @@ class BasementAPI(vertx: Vertx)
     init {
         registerDefaultCodec(BasementGreeting::class.java, BasementGreetingCodec())
         registerDefaultCodec(BasementChat::class.java, BasementChatCodec())
+        registerDefaultCodec(BasementDone::class.java, BasementDoneCodec())
+        registerDefaultCodec(BasementUsers::class.java, BasementUsersCodec())
+        registerDefaultCodec(BasementClosed::class.java, BasementClosedCodec())
+        registerDefaultCodec(BasementError::class.java, BasementErrorCodec())
+        registerDefaultCodec(BasementLeave::class.java, BasementLeaveCodec())
     }
 
     override fun decodeMessage(mtype: BasementMType, payload: JsonObject) {
