@@ -18,5 +18,6 @@ public enum PassiveItem {
     LOLLY_POP,
     HUNKY_BOYS,
     FOCUS,
-    RING_OF_THE_SNAKE
+    RING_OF_THE_SNAKE,
+    UNSTABLE_DNA
 }

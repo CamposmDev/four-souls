@@ -1,10 +1,9 @@
 package io.github.camposmdev.foursouls.core.card.bsoul;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.camposmdev.foursouls.core.card.BaseCard;
 import io.github.camposmdev.foursouls.core.card.attribute.CardType;
 import io.github.camposmdev.foursouls.core.card.attribute.CounterType;
+import io.vertx.core.json.JsonObject;
 
 public class BonusSoulCard extends BaseCard {
     private byte loot, money, guppyItems;
@@ -102,10 +101,6 @@ public class BonusSoulCard extends BaseCard {
 
     @Override
     public String toString() {
-        try {
-            return new ObjectMapper().writeValueAsString(this);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
+        return JsonObject.mapFrom(this).toString();
     }
 }

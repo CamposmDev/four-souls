@@ -38,5 +38,6 @@ public enum ActiveItem {
     RUSTY_SPOONS,
     POP_POP,
     PINK_PROGLOTTID,
+    CLUB,
     UNDEFINED
 }
