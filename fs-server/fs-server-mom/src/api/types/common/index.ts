@@ -29,18 +29,18 @@ export type MonsterDeck = {
 export type LootDeck = {
     batteries: object;
     bheart: object;
-    bomb: object;
+    bombs: object;
     butter: object;
     cards: object;
     dice: object;
     keys: object;
     lsoul: object;
-    pill: object;
-    rune: object;
+    pills: object;
+    runes: object;
     sack: object;
     sheart: object;
-    trinket: object;
-    wild: object;
+    trinkets: object;
+    wildcard: object;
     money: MoneyDeck;
 };
 
