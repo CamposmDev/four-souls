@@ -3,6 +3,7 @@ package io.github.camposmdev.foursouls.core.card.attribute;
 import java.util.List;
 
 public enum CardType{
+    BSOUL("bsoul", "Bonus Soul"),
     CHARACTER("character", "Character"),
     ETERNAL("eternal", "Eternal Treasure"),
     AETERNAL("aeternal", "Active Eternal Treasure"),
@@ -48,9 +49,9 @@ public enum CardType{
     MONEY4C("4c", "4 Cents"),
     MONEY5C("5c", "Nickel"),
     MONEY10C("10c", "Dime"),
-    BSOUL("bsoul", "Bonus Soul"),
     ROOM("room", "Room"),
-    OUTSIDE("outside", "Outside");
+    OUTSIDE("outside", "Outside"),
+    VERSO("verso", "Verso");
 
     private final String key;
     private final String pretty;
