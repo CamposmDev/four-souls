@@ -25,6 +25,5 @@ public enum PaidItem {
     SUCCUSBUS,
     THE_CROWDFUNDER,
     THE_JAR,
-    THE_POOP_V1,
-    THE_POOP_V2
+    THE_POOP,
 }

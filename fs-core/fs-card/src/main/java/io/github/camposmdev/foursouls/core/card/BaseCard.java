@@ -2,13 +2,11 @@ package io.github.camposmdev.foursouls.core.card;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.github.camposmdev.foursouls.core.card.attribute.ImageInfo;
 import io.github.camposmdev.foursouls.core.card.attribute.CardSet;
 import io.github.camposmdev.foursouls.core.card.attribute.CardType;
 
 public abstract class BaseCard implements Comparable<BaseCard> {
     private String id;
-    private ImageInfo image;
     private CardType cardType;
     private CardSet cardSet;
 
@@ -18,15 +16,6 @@ public abstract class BaseCard implements Comparable<BaseCard> {
 
     public BaseCard setId(String id) {
         this.id = id;
-        return this;
-    }
-
-    public ImageInfo getImage() {
-        return image;
-    }
-
-    public BaseCard setImage(ImageInfo image) {
-        this.image = image;
         return this;
     }
 
