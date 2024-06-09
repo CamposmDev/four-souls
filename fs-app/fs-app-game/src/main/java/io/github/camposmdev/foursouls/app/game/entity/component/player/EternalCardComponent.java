@@ -5,8 +5,7 @@ import com.almasb.fxgl.texture.Texture;
 import io.github.camposmdev.foursouls.app.game.entity.component.Playable;
 import io.github.camposmdev.foursouls.app.game.entity.component.card.CardRenderer;
 import io.github.camposmdev.foursouls.app.game.service.EntityService;
-import io.github.camposmdev.foursouls.core.card.eternal.*;
-import io.github.camposmdev.foursouls.core.ui.FXUtil;
+import io.github.camposmdev.foursouls.core.card.eternal.EternalCard;
 
 public class EternalCardComponent extends Component implements CardRenderer<EternalCard>, Playable {
 	private PlayerComponent player; /* this component is injected automatically */
@@ -14,7 +13,8 @@ public class EternalCardComponent extends Component implements CardRenderer<Eter
 
 	@Override
 	public void onAdded() {
-		texture = FXUtil.loadCard(player.eternal().getImage().loResSrc());
+		/* TODO - refactor */
+//		texture = FXUtil.loadCard(player.eternal().getImage().loResSrc());
 		/* TODO - Add necessary components based on the type of eternal card */
 		texture().setOnMouseClicked(event -> {
 			texture().setRotate(texture().getRotate() + 90);
@@ -49,12 +49,14 @@ public class EternalCardComponent extends Component implements CardRenderer<Eter
 
 	@Override
 	public Texture hiResTexture() {
-		return FXUtil.loadCard(player.eternal().getImage().hiResSrc());
+//		return FXUtil.loadCard(player.eternal().getImage().hiResSrc());
+		return null;
 	}
 
 	@Override
 	public Texture loResTexture() {
-		return FXUtil.loadCard(player.eternal().getImage().loResSrc());
+//		return FXUtil.loadCard(player.eternal().getImage().loResSrc());
+		return null;
 	}
 
 	@Override

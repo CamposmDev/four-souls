@@ -4,12 +4,11 @@ import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.texture.Texture;
 import io.github.camposmdev.foursouls.app.game.entity.component.Playable;
-import javafx.util.Duration;
 import io.github.camposmdev.foursouls.app.game.entity.component.card.CardRenderer;
 import io.github.camposmdev.foursouls.app.game.service.EntityService;
 import io.github.camposmdev.foursouls.core.card.character.CharacterCard;
 import io.github.camposmdev.foursouls.core.game.Attackable;
-import io.github.camposmdev.foursouls.core.ui.FXUtil;
+import javafx.util.Duration;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 
@@ -19,7 +18,8 @@ public class CharacterCardComponent extends Component implements CardRenderer<Ch
 
 	@Override
 	public void onAdded() {
-		texture = FXUtil.loadCard(player.character().getImage().loResSrc());
+		/* TODO - refactor */
+//		texture = FXUtil.loadCard(player.character().getImage().loResSrc());
 		player.hp().current().addListener((o, arg0, arg1) -> {
 			if (arg1 <= 0) {
 				/* play death sound */
@@ -88,11 +88,15 @@ public class CharacterCardComponent extends Component implements CardRenderer<Ch
 
 	@Override
 	public Texture hiResTexture() {
-		return FXUtil.loadCard(player.character().getImage().hiResSrc());
+		/* TODO - refactor */
+//		return FXUtil.loadCard(player.character().getImage().hiResSrc());
+		return null;
 	}
 
 	@Override
 	public Texture loResTexture() {
-		return FXUtil.loadCard(player.character().getImage().loResSrc());
+		/* TODO - refactor */
+//		return FXUtil.loadCard(player.character().getImage().loResSrc());
+		return null;
 	}
 }
