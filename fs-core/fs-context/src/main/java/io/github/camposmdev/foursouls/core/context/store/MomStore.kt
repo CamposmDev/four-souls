@@ -27,12 +27,17 @@ class MomStore(v: Vertx, hostName: String, port: Int) : IStore<MomState> {
         return api.jwt
     }
 
+    fun isLoggedIn(): Boolean {
+        return state.isLoggedIn
+    }
+
     fun registerUser(email: String, username: String, password: String): Future<CreateUserRes> {
         val promise = Promise.promise<CreateUserRes>()
         api.registerUser(email, username, password).onSuccess { res ->
             val job = res.body().toJsonObject()
             if (res.statusCode() == 201) {
                 val body = job.mapTo(CreateUserRes::class.java)
+                state.isLoggedIn = true
                 state.userId = body.id
                 state.userId = body.username
                 promise.complete(body)
@@ -50,6 +55,7 @@ class MomStore(v: Vertx, hostName: String, port: Int) : IStore<MomState> {
             val job = res.body().toJsonObject()
             if (res.statusCode() == 200) {
                 val body = job.mapTo(LoginUserRes::class.java)
+                state.isLoggedIn = true
                 state.userId = body.id
                 state.username = body.username
                 promise.complete(body)
@@ -66,6 +72,9 @@ class MomStore(v: Vertx, hostName: String, port: Int) : IStore<MomState> {
         api.logoutUser().onSuccess { res ->
             val body = res.body().toJsonObject().mapTo(MessageRes::class.java)
             if (res.statusCode() == 200) {
+                state.isLoggedIn = false
+                state.userId = null
+                state.username = null
                 promise.complete(body.message)
             } else promise.fail(body.message)
         }

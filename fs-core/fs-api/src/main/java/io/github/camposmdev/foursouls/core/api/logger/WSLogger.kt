@@ -5,7 +5,7 @@ import io.github.camposmdev.foursouls.core.util.logger.Logger
 import io.vertx.core.buffer.Buffer
 import java.util.concurrent.atomic.AtomicInteger
 
-class WSLogger(clazz: Class<*>? = null) : Logger(clazz) {
+class WSLogger(clazz: Class<*>) : Logger(clazz) {
     private var seq = AtomicInteger(0)
 
     fun read(sender: String?, recipient: String?, text: String) {

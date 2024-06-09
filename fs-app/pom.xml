@@ -6,7 +6,7 @@
     <parent>
         <groupId>io.github.camposmdev</groupId>
         <artifactId>four-souls</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>fs-app</artifactId>
@@ -23,37 +23,37 @@
             <dependency>
                 <groupId>io.github.camposmdev</groupId>
                 <artifactId>fs-api</artifactId>
-                <version>${build.version}</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.github.camposmdev</groupId>
                 <artifactId>fs-atlas</artifactId>
-                <version>${build.version}</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.github.camposmdev</groupId>
                 <artifactId>fs-card</artifactId>
-                <version>${build.version}</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.github.camposmdev</groupId>
                 <artifactId>fs-context</artifactId>
-                <version>${build.version}</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.github.camposmdev</groupId>
                 <artifactId>fs-ui</artifactId>
-                <version>${build.version}</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.github.camposmdev</groupId>
                 <artifactId>fs-game</artifactId>
-                <version>${build.version}</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.github.camposmdev</groupId>
                 <artifactId>fs-util</artifactId>
-                <version>${build.version}</version>
+                <version>${project.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
