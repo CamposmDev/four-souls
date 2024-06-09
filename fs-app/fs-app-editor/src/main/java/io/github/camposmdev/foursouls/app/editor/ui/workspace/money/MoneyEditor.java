@@ -54,9 +54,9 @@ public class MoneyEditor extends BaseEditor {
             var cardSet = cbCardSet.getValue();
             var value = Byte.parseByte(tfValue.getText());
             var card = new MoneyCard();
-            card.setId(id()).setImage(image()).setCardSet(cardSet).setCardType(cardType);
+            card.setId(id()).setCardSet(cardSet).setCardType(cardType);
             card.setValue(value).setEffect(effect.getValue());
-            Model.instance().addCard(card);
+            Model.instance().appendCard(card);
             NotificationBar.instance().push(card.toString());
         } catch (Exception ex) {
             DialogFactory.instance().showErrorBox(ex);

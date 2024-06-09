@@ -1,10 +1,10 @@
 package io.github.camposmdev.foursouls.app.editor.ui.workspace;
 
-import io.github.camposmdev.foursouls.core.card.attribute.ImageInfo;
+import io.github.camposmdev.foursouls.core.util.assets.CardAsset;
 
 public abstract class BaseEditor implements CardEditor {
     private String id;
-    private ImageInfo image;
+    private CardAsset image;
 
     @Override
     public String id() {
@@ -17,12 +17,12 @@ public abstract class BaseEditor implements CardEditor {
     }
 
     @Override
-    public ImageInfo image() {
+    public CardAsset image() {
         return image;
     }
 
     @Override
-    public void setImage(ImageInfo image) {
+    public void setImage(CardAsset image) {
         this.image = image;
     }
 }

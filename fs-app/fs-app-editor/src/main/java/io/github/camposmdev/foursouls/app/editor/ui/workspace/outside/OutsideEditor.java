@@ -44,9 +44,8 @@ public class OutsideEditor extends BaseEditor {
             OutsideCard card = (OutsideCard) new OutsideCard()
                     .setOutsideType(outsideType.getValue())
                     .setId(super.id())
-                    .setImage(super.image())
                     .setCardSet(cardSet.getValue());
-            Model.instance().addCard(card);
+            Model.instance().appendCard(card);
             NotificationBar.instance().push(card);
         } catch (Exception ex) {
             DialogFactory.instance().showErrorBox(ex);

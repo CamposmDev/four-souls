@@ -42,9 +42,9 @@ public class MonsterEditor extends BaseEditor {
     public void commit() {
         try {
             var card = (BaseMonsterCard) ((FormController<?>) form.getController()).submit();
-            card.setId(super.id()).setImage(super.image());
+            card.setId(super.id());
             card.setCardType(cardType);
-            Model.instance().addCard(card);
+            Model.instance().appendCard(card);
             NotificationBar.instance().push(card);
         } catch (Exception ex) {
             DialogFactory.instance().showErrorBox(ex);

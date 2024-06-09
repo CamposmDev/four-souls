@@ -18,7 +18,7 @@ public class API {
     private static API api;
     private static String host = "localhost";
     private static Integer port = 8000;
-    public static String base_url = String.format("http://%s:%d/deck", host, port);
+    public static String base_url = String.format("http://%s:%d/api/deck", host, port);
 
     private static MomStore mom;
 
@@ -29,9 +29,6 @@ public class API {
 
     private API() {
         mom = new MomStore(Vertx.vertx(), host, port);
-//        client = new OkHttpClient.Builder()
-//                .connectTimeout(5, TimeUnit.SECONDS)
-//                .build();
     }
 
     public Future<Void> login(String username, String password) {

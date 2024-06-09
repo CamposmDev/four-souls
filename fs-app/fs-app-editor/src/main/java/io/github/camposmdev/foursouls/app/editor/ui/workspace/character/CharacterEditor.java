@@ -26,9 +26,9 @@ public class CharacterEditor extends BaseEditor {
         try {
             /* build CharacterCard object */
             var card = ((CharacterFormController) form.getController()).submit();
-            card.setId(super.id()).setImage(super.image());
+            card.setId(super.id());
             /* add the character card to our card atlas */
-            Model.instance().addCard(card);
+            Model.instance().appendCard(card);
             NotificationBar.instance().push(card);
         } catch (Exception ex) {
             DialogFactory.instance().showErrorBox(ex);

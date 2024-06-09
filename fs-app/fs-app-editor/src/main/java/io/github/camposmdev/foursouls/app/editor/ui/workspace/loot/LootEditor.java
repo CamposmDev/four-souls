@@ -53,8 +53,8 @@ public class LootEditor extends BaseEditor {
     public void commit() {
         try {
             var card = (LootCard) ((FormController<?>) form.getController()).submit();
-            card.setId(super.id()).setImage(super.image());
-            Model.instance().addCard(card);
+            card.setId(super.id());
+            Model.instance().appendCard(card);
             NotificationBar.instance().push(card);
         } catch (Exception ex) {
             DialogFactory.instance().showErrorBox(ex);

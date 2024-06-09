@@ -3,7 +3,7 @@ package io.github.camposmdev.foursouls.app.editor.ui.workspace;
 import io.github.camposmdev.foursouls.app.editor.ui.CardPicker;
 import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
-import io.github.camposmdev.foursouls.app.editor.ui.AppBar;
+import io.github.camposmdev.foursouls.app.editor.ui.EditorAppBar;
 import io.github.camposmdev.foursouls.app.editor.ui.NotificationBar;
 import io.github.camposmdev.foursouls.core.card.attribute.CardType;
 
@@ -13,7 +13,7 @@ public class Workspace {
     private final BorderPane centerPane;
     public Workspace(int width, int height) {
         cardPicker = new CardPicker(this);
-        var appBar = AppBar.instance(this).getContent();
+        var appBar = EditorAppBar.instance(this).getContent();
         var notifyBox = NotificationBar.instance().getContent();
         centerPane = new BorderPane();
         centerPane.setBottom(notifyBox);

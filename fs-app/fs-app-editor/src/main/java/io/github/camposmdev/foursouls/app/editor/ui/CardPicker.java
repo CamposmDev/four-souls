@@ -27,9 +27,9 @@ import io.github.camposmdev.foursouls.core.ui.Log;
 
 public class CardPicker {
     private final Workspace workspace;
-    private final ObservableList<String> theList;
+    private final ObservableList<String> observableList;
     private final VBox root;
-    private final ListView<String> lv;
+    private final ListView<String> assetIdListView;
     private final CardViewer cv;
     private CardEditor editor;
 
@@ -38,11 +38,11 @@ public class CardPicker {
 
     public CardPicker(Workspace workspace) {
         this.workspace = workspace;
-        theList = FXCollections.observableArrayList();
+        observableList = FXCollections.observableArrayList();
         root = new VBox();
         cv = new CardViewer();
-        lv = new ListView<>(theList);
-        lv.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        assetIdListView = new ListView<>(observableList);
+        assetIdListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         ChangeListener<String> itemSelectedListener = (ov, prevKey, key) -> {
             /*
                 When an item is selected, fetch its image info and update the editors
@@ -50,18 +50,19 @@ public class CardPicker {
             */
             if (key == null) return;
             if (root.getChildren().isEmpty()) {
-                root.getChildren().addAll(cv.getContent(), lv);
-                VBox.setVgrow(lv, Priority.ALWAYS);
+                root.getChildren().addAll(cv.getContent(), assetIdListView);
+                VBox.setVgrow(assetIdListView, Priority.ALWAYS);
             }
-            var data = Model.instance().getImages().getInfo(selectedCardType, key);
-            editor.setId(data.id());
+            var data = Model.instance().assets().getAssetById(selectedCardType, key);
+			assert data != null;
+			editor.setId(data.id());
             editor.setImage(data);
 
-            currentImage = FXGL.image(data.loResSrc());
+            currentImage = FXGL.image(data.hiResSrc());
             cv.setImage(currentImage);
         };
         /* add listener for when an item is selected from the list view */
-        lv.getSelectionModel().selectedItemProperty().addListener(itemSelectedListener);
+        assetIdListView.getSelectionModel().selectedItemProperty().addListener(itemSelectedListener);
         /* set the cell factory to add a hover listener to preview cards */
         Callback<ListView<String>, ListCell<String>> cellFactory = (lv -> {
             var cell = new ListCell<String>() {
@@ -78,9 +79,9 @@ public class CardPicker {
             cell.hoverProperty().addListener((ov, wasHovered, isHovered) -> {
                 if (isHovered && !cell.isEmpty()) {
                     try {
-                        var src = Model.instance().getImages().source2(selectedCardType, cell.getItem());
+                        var src = Model.instance().assets().getAssetById(selectedCardType, cell.getItem());
                         assert src != null;
-                        var img = FXGL.image(src);
+                        var img = FXGL.image(src.hiResSrc());
                         cv.setImage(img);
                     } catch (NullPointerException ex) {
                         Log.warnf("Failed to load [%s]: %s", selectedCardType, cell.getItem());
@@ -95,14 +96,14 @@ public class CardPicker {
             });
             return cell;
         });
-        lv.setCellFactory(cellFactory);
+        assetIdListView.setCellFactory(cellFactory);
     }
 
     public void edit(CardType cardType) {
         cv.clear();
         selectedCardType = cardType;
-        var lst = Model.instance().getImageAtlas(selectedCardType);
-        theList.setAll(lst);
+        var map = Model.instance().getAssetsByType(selectedCardType);
+        observableList.setAll(map.keySet());
         /* display the appropriate workspace */
         switch (selectedCardType) {
             case CHARACTER -> editor = new CharacterEditor();
@@ -124,7 +125,7 @@ public class CardPicker {
                     editor = new OutsideEditor();
         }
         workspace.set(editor);
-        lv.getSelectionModel().selectFirst();
+        assetIdListView.getSelectionModel().selectFirst();
     }
 
     public Node getContent() {

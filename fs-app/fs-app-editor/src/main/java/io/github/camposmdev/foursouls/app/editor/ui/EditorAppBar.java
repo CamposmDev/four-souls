@@ -24,15 +24,15 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 
-public class AppBar {
-    private static AppBar singleton;
+public class EditorAppBar {
+    private static EditorAppBar singleton;
 
-    public static AppBar instance(Workspace workspace) {
-        if (singleton == null) singleton = new AppBar(workspace);
+    public static EditorAppBar instance(Workspace workspace) {
+        if (singleton == null) singleton = new EditorAppBar(workspace);
         return singleton;
     }
 
-    public static AppBar instance() {
+    public static EditorAppBar instance() {
         return singleton;
     }
 
@@ -40,7 +40,7 @@ public class AppBar {
     private final Workspace workspace;
     private final Menu mCommits;
 
-    public AppBar(Workspace workspace) {
+    public EditorAppBar(Workspace workspace) {
         this.workspace = workspace;
         this.mCommits = new Menu("Recent Commits");
         this.setRecentCommits(List.of());
@@ -55,7 +55,7 @@ public class AppBar {
         var miClearMenu = new MenuItem("Clear Menu");
         miClearMenu.setOnAction(e -> Model.instance().clearRecentCommits());
         if (lst.isEmpty()) {
-            mCommits.getItems().add(miClearMenu);
+            mCommits.getItems().setAll(miClearMenu);
         } else {
             mCommits.getItems().clear();
             for (var x : lst) {
@@ -72,10 +72,10 @@ public class AppBar {
     private Menu buildFileMenu() {
         var miOpen = new MenuItem("Load...");
         miOpen.setAccelerator(new KeyCodeCombination(KeyCode.O, KeyCombination.SHORTCUT_DOWN));
-        miOpen.setOnAction(e -> Model.instance().loadMasterCardAtlas());
-        var miSave = new MenuItem("Save");
+        miOpen.setOnAction(e -> Model.instance().load());
+        var miSave = new MenuItem("Export");
         miSave.setAccelerator(new KeyCodeCombination(KeyCode.S, KeyCodeCombination.SHORTCUT_DOWN));
-        miSave.setOnAction(e -> Model.instance().saveMasterCardAtlas());
+        miSave.setOnAction(e -> Model.instance().export());
         var miPreview = new MenuItem("Preview");
         miPreview.setAccelerator(new KeyCodeCombination(KeyCode.P, KeyCodeCombination.SHORTCUT_DOWN));
         miPreview.setOnAction(e -> {
@@ -154,7 +154,9 @@ public class AppBar {
     }
     static final double ICON_SIZE = 16;
     private MenuItem buildBSoulMenu() {
-        var iv = new ImageView(FXGL.image("cards/BonusSoulCardBack-110x150.png"));
+        var asset = Model.instance().assets().getAssetById(CardType.VERSO, "BonusSoulCardBack");
+		assert asset != null;
+		var iv = new ImageView(FXGL.image(asset.hiResSrc()));
         iv.setPreserveRatio(true);
         iv.setFitWidth(ICON_SIZE);
         var mi_bsoul = new MenuItem(CardType.BSOUL.pretty());
@@ -165,7 +167,9 @@ public class AppBar {
     }
 
     private MenuItem buildCharacterMenu() {
-        var iv = new ImageView(FXGL.image("cards/CharacterCardBack-110x150.png"));
+        var asset = Model.instance().assets().getAssetById(CardType.VERSO, "CharacterCardBack");
+		assert asset != null;
+		var iv = new ImageView(FXGL.image(asset.hiResSrc()));
         iv.setPreserveRatio(true);
         iv.setFitWidth(ICON_SIZE);
         var mi_character = new MenuItem(CardType.CHARACTER.pretty());
@@ -176,7 +180,9 @@ public class AppBar {
     }
 
     private Menu buildEternalMenu() {
-        var iv = new ImageView(FXGL.image("cards/EternalCardBack-110x150.png"));
+        var asset = Model.instance().assets().getAssetById(CardType.VERSO, "EternalCardBack");
+        assert asset != null;
+        var iv = new ImageView(FXGL.image(asset.hiResSrc()));
         iv.setPreserveRatio(true);
         iv.setFitWidth(ICON_SIZE);
         var mEternal = new Menu(CardType.ETERNAL.pretty());
@@ -190,7 +196,9 @@ public class AppBar {
     }
 
     private Menu buildLootMenu() {
-        var iv = new ImageView(FXGL.image("cards/LootCardBack-110x150.png"));
+        var asset = Model.instance().assets().getAssetById(CardType.VERSO, "LootCardBack");
+        assert asset != null;
+        var iv = new ImageView(FXGL.image(asset.hiResSrc()));
         iv.setPreserveRatio(true);
         iv.setFitWidth(ICON_SIZE);
         var mLoot = new Menu(CardType.LOOT.pretty());
@@ -214,7 +222,9 @@ public class AppBar {
     }
 
     private Menu buildMonsterMenu() {
-        var iv = new ImageView(FXGL.image("cards/MonsterCardBack-110x150.png"));
+        var asset = Model.instance().assets().getAssetById(CardType.VERSO, "MonsterCardBack");
+        assert asset != null;
+        var iv = new ImageView(FXGL.image(asset.hiResSrc()));
         iv.setPreserveRatio(true);
         iv.setFitWidth(ICON_SIZE);
         var mMonster = new Menu(CardType.MONSTER.pretty());
@@ -228,7 +238,9 @@ public class AppBar {
     }
 
     private MenuItem buildRoomMenu() {
-        var iv = new ImageView(FXGL.image("cards/RoomCardBack-150x110.png"));
+        var asset = Model.instance().assets().getAssetById(CardType.VERSO, "RoomCardBack");
+        assert asset != null;
+        var iv = new ImageView(FXGL.image(asset.hiResSrc()));
         iv.setPreserveRatio(true);
         iv.setFitHeight(ICON_SIZE);
         var mi_room = new MenuItem(CardType.ROOM.pretty());
@@ -239,7 +251,9 @@ public class AppBar {
     }
 
     private Menu buildTreasureMenu() {
-        var iv = new ImageView(FXGL.image("cards/TreasureCardBack-110x150.png"));
+        var asset = Model.instance().assets().getAssetById(CardType.VERSO, "TreasureCardBack");
+        assert asset != null;
+        var iv = new ImageView(FXGL.image(asset.hiResSrc()));
         iv.setPreserveRatio(true);
         iv.setFitWidth(ICON_SIZE);
         var mTreasure = new Menu(CardType.TREASURE.pretty());
@@ -253,7 +267,9 @@ public class AppBar {
     }
 
     private MenuItem buildOutsideMenu() {
-        var iv = new ImageView(FXGL.image("cards/OutsideCardBack-110x150.png"));
+        var asset = Model.instance().assets().getAssetById(CardType.VERSO, "OutsideCardBack");
+        assert asset != null;
+        var iv = new ImageView(FXGL.image(asset.hiResSrc()));
         iv.setPreserveRatio(true);
         iv.setFitWidth(ICON_SIZE);
         var mi_outside = new MenuItem(CardType.OUTSIDE.pretty());
