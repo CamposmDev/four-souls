@@ -1,6 +1,6 @@
 package io.github.camposmdev.foursouls.app.miser;
 
-import io.github.camposmdev.foursouls.core.card.attribute.ImageInfo;
+import io.github.camposmdev.foursouls.core.util.assets.CardAsset;
 import io.vertx.core.json.JsonObject;
 import java.io.*;
 import java.nio.file.Files;
@@ -10,6 +10,7 @@ import java.util.List;
 
 import static io.github.camposmdev.foursouls.app.miser.Constants.JSON_DIR;
 
+@Deprecated
 public class Util {
     /**
      * Stores the locations of other json files
@@ -38,7 +39,7 @@ public class Util {
      * @param des Where to save the JSON
      * @param list Object to parse to JSON
      */
-    public static void saveToJSON(String des, List<ImageInfo> list) {
+    public static void saveToJSON(String des, List<CardAsset> list) {
         try {
             File file = new File(des);
             Path path = Paths.get(file.getParent());
@@ -46,7 +47,7 @@ public class Util {
             /* write the json file */
             var map = new JsonObject();
             var obj = JsonObject.of("images", map);
-            for (ImageInfo x : list) {
+            for (CardAsset x : list) {
                 var name = x.id();
                 var value = JsonObject.of("url", x.url(),
                         "hiResUrl", x.hiResUrl(),

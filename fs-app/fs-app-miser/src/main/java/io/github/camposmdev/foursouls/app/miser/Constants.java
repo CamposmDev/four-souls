@@ -2,6 +2,7 @@ package io.github.camposmdev.foursouls.app.miser;
 
 import java.util.List;
 
+@Deprecated
 public interface Constants {
     /* TODO - Let the user decide where to save the data instead of using {TARGET_DIR} */
     String TARGET_DIR = "./fs-app/fs-app-editor/src/main/resources/assets/textures/";

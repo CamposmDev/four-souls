@@ -1,6 +1,6 @@
 package io.github.camposmdev.foursouls.app.miser;
 
-import io.github.camposmdev.foursouls.core.card.attribute.ImageInfo;
+import io.github.camposmdev.foursouls.core.util.assets.CardAsset;
 import io.github.camposmdev.foursouls.core.util.Timex;
 import org.jsoup.Jsoup;
 
@@ -10,6 +10,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
+@Deprecated
 public class MiserApp implements Constants {
     static final int N_THREADS = (int) (Runtime.getRuntime().availableProcessors() * 0.75d);
 
@@ -69,8 +70,8 @@ public class MiserApp implements Constants {
                         var pattern = Pattern.compile(REGEX);
                         var lowResURL = url.substring(0, url.indexOf("/cards/")) + src;
                         var highResURL = url.substring(0, url.indexOf("/cards/")) + pattern.matcher(src).replaceAll("");
-                        var info = new ImageInfo(url, highResURL, lowResURL, des.substring(des.indexOf("cards/")));
-                        new ImagePillagerRunnable(des, info).run();
+//                        var info = new CardAsset(url, highResURL, lowResURL, des.substring(des.indexOf("cards/")));
+//                        new ImagePillagerRunnable(des, info).run();
                     }
                 }
             }
@@ -115,7 +116,7 @@ public class MiserApp implements Constants {
         }
     }
 
-    public static void downloadImages(String dir_img, List<ImageInfo> list) {
+    public static void downloadImages(String dir_img, List<CardAsset> list) {
         var exe = Executors.newFixedThreadPool(N_THREADS);
         for (var x : list) {
             var r = new ImagePillagerRunnable(dir_img, x);

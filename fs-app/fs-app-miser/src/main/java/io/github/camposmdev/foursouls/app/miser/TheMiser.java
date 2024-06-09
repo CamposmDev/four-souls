@@ -1,6 +1,6 @@
 package io.github.camposmdev.foursouls.app.miser;
 
-import io.github.camposmdev.foursouls.core.card.attribute.ImageInfo;
+import io.github.camposmdev.foursouls.core.util.assets.CardAsset;
 import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -12,12 +12,13 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Pattern;
 
+@Deprecated
 public class TheMiser {
     static final String UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36";
     private static final int MAX_RETRIES = 10;
     private static final String REGEX = "-308x420|-420x308|-420x300";
     private final String des;
-    private final List<ImageInfo> theList;
+    private final List<CardAsset> theList;
 
     /**
      * Fetch all the images of cards available in the given src parameter
@@ -31,7 +32,7 @@ public class TheMiser {
         raid(src, true);
     }
 
-    public List<ImageInfo> getTheList() {
+    public List<CardAsset> getTheList() {
         return theList;
     }
 
@@ -84,8 +85,8 @@ public class TheMiser {
                 var matcher = pattern.matcher(imgURL);
                 if (matcher.find()) {
                     var highResImgURL = matcher.replaceAll("");
-                    var record = new ImageInfo(originURL, highResImgURL, imgURL, des);
-                    theList.add(record);
+//                    var record = new CardAsset(originURL, highResImgURL, imgURL, des);
+//                    theList.add(record);
                 } else if (imgURL.contains("FlipCornerNote.png")) {
                     System.out.println("Skipping: " + imgURL);
                 } else {

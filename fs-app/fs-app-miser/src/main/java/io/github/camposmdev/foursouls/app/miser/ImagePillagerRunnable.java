@@ -1,6 +1,6 @@
 package io.github.camposmdev.foursouls.app.miser;
 
-import io.github.camposmdev.foursouls.core.card.attribute.ImageInfo;
+import io.github.camposmdev.foursouls.core.util.assets.CardAsset;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -14,22 +14,22 @@ import java.net.URL;
  */
 public class ImagePillagerRunnable implements Runnable {
     private final String des;
-    private final ImageInfo info;
+    private final CardAsset info;
 
     /**
      * Creates an ImagePillagerRunnable object
      * @param des Destination directory to save the image file in
      * @param info Information about the image
      */
-    public ImagePillagerRunnable(String des, ImageInfo info) {
+    public ImagePillagerRunnable(String des, CardAsset info) {
         this.des = des;
         this.info = info;
     }
 
     @Override
     public void run() {
-        start(info.loResUrl(), info.loResImgName());
-        start(info.hiResUrl(), info.hiResImgName());
+        start(info.loResUrl(), info.loResName());
+        start(info.hiResUrl(), info.hiResName());
     }
 
     private void start(String imgURL, String imgName) {
