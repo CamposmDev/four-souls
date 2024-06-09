@@ -8,7 +8,6 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 import io.github.camposmdev.foursouls.core.card.attribute.CardSet;
 import io.github.camposmdev.foursouls.core.card.attribute.CardType;
 import io.github.camposmdev.foursouls.core.card.attribute.CounterType;
-import io.github.camposmdev.foursouls.core.card.attribute.ImageInfo;
 import io.github.camposmdev.foursouls.core.card.bsoul.BonusSoulCard;
 import io.github.camposmdev.foursouls.core.card.eternal.ActiveEternalCard;
 import io.github.camposmdev.foursouls.core.card.eternal.SoulEternalCard;
@@ -47,7 +46,6 @@ public class AtlasDeserializerTest {
         /* serialize BonusSoulCard */
         var bsoulCard = new BonusSoulCard();
         bsoulCard.setId("b-card");
-        bsoulCard.setImage(null);
         bsoulCard.setCardSet(CardSet.BASE_V1);
         bsoulCard.setEnvy(true).setCounter(true).setCounterType(CounterType.PLAYER_DIED);
         bsoul_json = mapper.writeValueAsString(bsoulCard);
@@ -79,7 +77,6 @@ public class AtlasDeserializerTest {
     void testBonusSoulCard() throws JsonProcessingException {
         var card = mapper.readValue(bsoul_json, BonusSoulCard.class);
         assertEquals("b-card", card.getId());
-        assertNull(card.getImage());
         assertEquals(CardSet.BASE_V1, card.getCardSet());
         assertTrue(card.isEnvy());
         assertEquals(CounterType.PLAYER_DIED, card.getCounterType());
@@ -89,7 +86,6 @@ public class AtlasDeserializerTest {
     void testActiveEternalCard() throws JsonProcessingException {
         var card = new ActiveEternalCard();
         card.setId("aeternal-card");
-        card.setImage(new ImageInfo("originURL", "url1", "url2", "path/to/dir"));
         var expected = mapper.writeValueAsString(card);
         var actual = mapper.writeValueAsString(mapper.readValue(expected, ActiveEternalCard.class));
         assertEquals(expected, actual);

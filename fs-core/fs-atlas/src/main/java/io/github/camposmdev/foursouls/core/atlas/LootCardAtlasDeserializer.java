@@ -21,26 +21,26 @@ public class LootCardAtlasDeserializer extends CardAtlasDeserializer<LootCardAtl
         JsonNode node = codec.readTree(p);
         var batteries = node.get("batteries");
         var bheart = node.get("bheart");
-        var bomb = node.get("bomb");
+        var bombs = node.get("bombs");
         var butter = node.get("butter");
         var cards = node.get("cards");
         var dice = node.get("dice");
         var keys = node.get("keys");
         var lsoul = node.get("lsoul");
-        var pill = node.get("pill");
-        var rune = node.get("rune");
+        var pills = node.get("pills");
+        var runes = node.get("runes");
         var sack = node.get("sack");
         var sheart = node.get("sheart");
-        var trinket = node.get("trinket");
-        var wild = node.get("wild");
+        var trinkets = node.get("trinkets");
+        var wildcard = node.get("wildcard");
         var money = node.get("money");
         var obj = new LootCardAtlas();
         if (!isEmptyMap(batteries))
             obj.batteries = deserializeMap(batteries, mapper, BatteryCard.class);
         if (!isEmptyMap(bheart))
             obj.bheart = deserializeMap(bheart, mapper, BlackHeartCard.class);
-        if (!isEmptyMap(bomb))
-            obj.bomb = deserializeMap(bomb, mapper, BombCard.class);
+        if (!isEmptyMap(bombs))
+            obj.bombs = deserializeMap(bombs, mapper, BombCard.class);
         if (!isEmptyMap(butter))
             obj.butter = deserializeMap(butter, mapper, ButterBeanCard.class);
         if (!isEmptyMap(cards))
@@ -51,18 +51,18 @@ public class LootCardAtlasDeserializer extends CardAtlasDeserializer<LootCardAtl
             obj.keys = deserializeMap(keys, mapper, KeyCard.class);
         if (!isEmptyMap(lsoul))
             obj.lsoul = deserializeMap(lsoul, mapper, LostSoulCard.class);
-        if (!isEmptyMap(pill))
-            obj.pill = deserializeMap(pill, mapper, PillCard.class);
-        if (!isEmptyMap(rune))
-            obj.rune = deserializeMap(rune, mapper, RuneCard.class);
+        if (!isEmptyMap(pills))
+            obj.pills = deserializeMap(pills, mapper, PillCard.class);
+        if (!isEmptyMap(runes))
+            obj.runes = deserializeMap(runes, mapper, RuneCard.class);
         if (!isEmptyMap(sack))
             obj.sack = deserializeMap(sack, mapper, SackCard.class);
         if (!isEmptyMap(sheart))
             obj.sheart = deserializeMap(sheart, mapper, SoulHeartCard.class);
-        if (!isEmptyMap(trinket))
-            obj.trinket = deserializeMap(trinket, mapper, TrinketCard.class);
-        if (!isEmptyMap(wild))
-            obj.wild = deserializeMap(wild, mapper, WildCard.class);
+        if (!isEmptyMap(trinkets))
+            obj.trinket = deserializeMap(trinkets, mapper, TrinketCard.class);
+        if (!isEmptyMap(wildcard))
+            obj.wildcard = deserializeMap(wildcard, mapper, WildCard.class);
         if (!isEmptyMap(money))
             obj.money = mapper.treeToValue(money, MoneyCardAtlas.class);
         return obj;

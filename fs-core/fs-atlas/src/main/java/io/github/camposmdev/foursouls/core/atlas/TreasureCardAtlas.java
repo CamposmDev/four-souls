@@ -8,7 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class TreasureCardAtlas implements CardAtlas<TreasureCard> {
+public class TreasureCardAtlas implements ICardAtlas<TreasureCard> {
     protected final Map<String, ActiveTreasureCard> atreasure;
     protected final Map<String, OneUseTreasureCard> otreasure;
     protected final Map<String, PaidTreasureCard> paidtreasure;

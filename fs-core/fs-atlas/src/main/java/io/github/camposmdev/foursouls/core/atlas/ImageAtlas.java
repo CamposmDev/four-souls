@@ -1,11 +1,12 @@
 package io.github.camposmdev.foursouls.core.atlas;
 
-import io.github.camposmdev.foursouls.core.card.attribute.ImageInfo;
+import io.github.camposmdev.foursouls.core.util.assets.CardAsset;
 
 import java.util.Map;
 
+@Deprecated
 public record ImageAtlas(
-        Map<String, ImageInfo> images
+        Map<String, CardAsset> images
 ) {
     public String source1(String key) {
         return images.get(key).hiResSrc();
@@ -19,7 +20,7 @@ public record ImageAtlas(
         return images.containsKey(key);
     }
 
-    public ImageInfo get(String key) {
+    public CardAsset get(String key) {
         return images.get(key);
     }
 

@@ -8,7 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class EternalCardAtlas implements CardAtlas<EternalCard> {
+public class EternalCardAtlas implements ICardAtlas<EternalCard> {
     protected Map<String, ActiveEternalCard> aeternal;
     protected Map<String, PaidEternalCard> paideternal;
     protected Map<String, PassiveEternalCard> peternal;

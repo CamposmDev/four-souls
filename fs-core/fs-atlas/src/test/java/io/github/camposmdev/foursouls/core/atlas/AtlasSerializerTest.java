@@ -35,10 +35,9 @@ public class AtlasSerializerTest {
     void testBonusSoulCard() throws JsonProcessingException {
         var card = new BonusSoulCard();
         card.setId("b-card");
-        card.setImage(null);
         card.setCardSet(CardSet.BASE_V1);
         card.setCounterType(CounterType.UNDEFINED);
-        String expected = "{\"id\":\"b-card\",\"image\":null,\"cardType\":\"BSOUL\",\"cardSet\":\"BASE_V1\",\"loot\":0,\"money\":0,\"guppyItems\":0,\"counter\":false,\"counterLimit\":0,\"counterType\":\"UNDEFINED\",\"envy\":false,\"sloth\":false,\"strawberry\":false}";
+        String expected = "{\"id\":\"b-card\",\"cardType\":\"BSOUL\",\"cardSet\":\"BASE_V1\",\"loot\":0,\"money\":0,\"guppyItems\":0,\"counter\":false,\"counterLimit\":0,\"counterType\":\"UNDEFINED\",\"envy\":false,\"sloth\":false,\"strawberry\":false}";
         String actual = mapper.writeValueAsString(card);
         assertEquals(expected, actual);
         JsonNode jsonNode = mapper.readTree(actual);
@@ -54,7 +53,6 @@ public class AtlasSerializerTest {
         var card = new ActiveEternalCard();
         card.setId("aeternal-card");
         card.setCardSet(CardSet.BASE_V1);
-        card.setImage(null);
         String actual = mapper.writeValueAsString(card);
         JsonNode jsonNode = mapper.readTree(actual);
         Field[] fields = ActiveEternalCard.class.getFields();

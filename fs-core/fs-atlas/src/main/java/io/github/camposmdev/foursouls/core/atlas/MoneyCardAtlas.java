@@ -8,7 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class MoneyCardAtlas implements CardAtlas<MoneyCard> {
+public class MoneyCardAtlas implements ICardAtlas<MoneyCard> {
     protected Map<String, MoneyCard> money1c;
     protected Map<String, MoneyCard> money2c;
     protected Map<String, MoneyCard> money3c;

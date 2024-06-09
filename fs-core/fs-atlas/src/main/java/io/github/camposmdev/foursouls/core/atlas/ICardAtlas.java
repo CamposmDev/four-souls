@@ -5,13 +5,13 @@ import io.github.camposmdev.foursouls.core.card.attribute.CardType;
 
 import java.util.List;
 
-public interface CardAtlas<T extends BaseCard> {
+public interface ICardAtlas<T extends BaseCard> {
     void add(T card);
 
     boolean contains(CardType cardType, String id);
 
     /**
-     * @return List of {@link T} cards contained in {@link CardAtlas}
+     * @return List of {@link T} cards contained in {@link ICardAtlas}
      */
     List<T> cards();
 }

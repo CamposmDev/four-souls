@@ -21,7 +21,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-public class MasterCardAtlas implements CardAtlas<BaseCard> {
+
+public class MasterCardAtlas implements ICardAtlas<BaseCard> {
     protected Map<String, BonusSoulCard> bsoul;
     protected Map<String, CharacterCard> character;
     protected EternalCardAtlas eternal;

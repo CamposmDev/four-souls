@@ -1,12 +1,13 @@
 package io.github.camposmdev.foursouls.core.atlas;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.github.camposmdev.foursouls.core.card.attribute.ImageInfo;
 import io.github.camposmdev.foursouls.core.card.attribute.CardType;
+import io.github.camposmdev.foursouls.core.util.assets.CardAsset;
 
 import java.io.IOException;
 import java.util.*;
 
+@Deprecated
 public record MasterImageAtlas(
         String character,
         Map<String, String> eternal,
@@ -383,10 +384,10 @@ public record MasterImageAtlas(
                 if (table.contains(key)) return table.source2(key);
                 table = loadSeternalJSON();
                 if (table.contains(key)) return table.source2(key);
-            case PETERNAL:
-                return loadPeternalJSON().source2(key);
             case AETERNAL:
                 return loadAeternalJSON().source2(key);
+            case PETERNAL:
+                return loadPeternalJSON().source2(key);
             case PAIDETERNAL:
                 return loadPaideternalJSON().source2(key);
             case OETERNAL:
@@ -471,8 +472,8 @@ public record MasterImageAtlas(
         }
     }
     
-    public ImageInfo getInfo(CardType type, String key) {
-        ImageInfo info;
+    public CardAsset getInfo(CardType type, String key) {
+        CardAsset info;
         switch (type) {
             case CHARACTER -> info = loadCharacterJSON().get(key);
             case PETERNAL -> info = loadPeternalJSON().get(key);
