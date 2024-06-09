@@ -31,7 +31,8 @@ data class BasementDone(
 
 data class BasementUsers(
     @JsonProperty("users")
-    val users: List<BasementUser>
+    val users: List<BasementUser>,
+    val message: String
 ) : BasementPayload
 
 data class BasementClosed(
