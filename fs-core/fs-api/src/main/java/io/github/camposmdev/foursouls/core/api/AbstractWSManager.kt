@@ -27,7 +27,7 @@ abstract class AbstractWSManager<T : Enum<T>, U : Payload>(
     protected fun writeText(text: String): Future<Void> {
         val promise = Promise.promise<Void>()
         ws.writeTextMessage(text).onSuccess {
-            log.write(text)
+            log.sendText(text)
             promise.complete()
         }.onFailure {
             log.error("Failed to write $text")
@@ -65,7 +65,7 @@ abstract class AbstractWSManager<T : Enum<T>, U : Payload>(
             val obj = WSPacket.decode(text)
             val mtype = decodeMType(obj.mtype)
             val payload = obj.payload
-            log.read(text)
+            log.receiveText(text)
             decodeMessage(mtype, payload)
         } catch (ex: Exception) {
             ex.printStackTrace()

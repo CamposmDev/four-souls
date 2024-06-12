@@ -48,14 +48,14 @@ class BasementAPI(vertx: Vertx)
 
     override fun chat(username: String?, message: String): Future<Void> {
         val chat = PayloadFactory.basement().chat(username, message)
-        return writeText(WSPacketFactory.basement().chat(chat))
+        return writeText(PacketFactory.basement().chat(chat))
     }
 
     override fun done(chestId: String): Future<Void> {
-        return writeText(WSPacketFactory.basement().done(chestId))
+        return writeText(PacketFactory.basement().done(chestId))
     }
 
     override fun leave(): Future<Void> {
-        return writeText(WSPacketFactory.basement().leave())
+        return writeText(PacketFactory.basement().leave())
     }
 }

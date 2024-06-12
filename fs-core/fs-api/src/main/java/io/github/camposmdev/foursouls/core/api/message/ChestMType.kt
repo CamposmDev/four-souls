@@ -17,6 +17,6 @@ enum class ChestMType {
     END_TURN, /* Sent to server when the user ends their turn. Message is processed if the user has drawn a loot at the start of their turn and is not dead. If the user is in the combat phase, they cannot end their turn, unless they have an item/loot card that allows them to. */
     CHARACTER_DRAW, /* Sent to server when user wants to pick their character to play as in the game. Processed only if the game hasn't started yet. */
     CHARACTERS, /* Sent to user as response to CHARACTER_DRAW message. */
-    CHARACTER_CHOICE, /* Sent to server when the user has decided the character they want to play as. The rest of the characters the player does not choose are discarded into the character discard pile. */
+    CHARACTER_SELECTION, /* Sent to server when the user has decided the character they want to play as. The rest of the characters the player does not choose are discarded into the character discard pile. */
 
 }

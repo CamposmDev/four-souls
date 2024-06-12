@@ -1,6 +1,7 @@
 package io.github.camposmdev.foursouls.core.api.message.payload
 
 import io.github.camposmdev.foursouls.core.api.basement.BasementUser
+import io.github.camposmdev.foursouls.core.api.chest.ChestUser
 import io.vertx.core.json.JsonObject
 
 interface Payload
@@ -19,25 +20,35 @@ object PayloadFactory {
         return BasementPayloadFactory
     }
 
-    object BasementPayloadFactory {
-        fun greeting(host: Boolean, username: String?, users: List<BasementUser>): BasementGreeting {
-            return BasementGreeting(host, username, users)
-        }
+    fun chest(): ChestPayloadFactory {
+        return ChestPayloadFactory
+    }
+}
 
-        fun chat(username: String?, message: String): BasementChat {
-            return BasementChat(username, message)
-        }
+object BasementPayloadFactory {
+    fun greeting(host: Boolean, username: String?, users: List<BasementUser>): BasementGreeting {
+        return BasementGreeting(host, username, users)
+    }
 
-        fun done(chestId: String): BasementDone {
-            return BasementDone(chestId)
-        }
+    fun chat(username: String?, message: String): BasementChat {
+        return BasementChat(username, message)
+    }
 
-        fun leave(): BasementLeave {
-            return BasementLeave()
-        }
+    fun done(chestId: String): BasementDone {
+        return BasementDone(chestId)
+    }
 
-        fun leave(message: String): BasementLeave {
-            return BasementLeave(message)
-        }
+    fun leave(): BasementLeave {
+        return BasementLeave()
+    }
+
+    fun leave(message: String): BasementLeave {
+        return BasementLeave(message)
+    }
+}
+
+object ChestPayloadFactory {
+    fun greeting(host: Boolean, username: String?, users: List<ChestUser>): ChestGreeting {
+        return ChestGreeting(host, username, users)
     }
 }

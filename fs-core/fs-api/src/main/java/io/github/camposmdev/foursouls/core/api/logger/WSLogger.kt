@@ -5,35 +5,38 @@ import io.github.camposmdev.foursouls.core.util.logger.Logger
 import io.vertx.core.buffer.Buffer
 import java.util.concurrent.atomic.AtomicInteger
 
-class WSLogger(clazz: Class<*>) : Logger(clazz) {
+open class WSLogger : Logger {
     private var seq = AtomicInteger(0)
 
-    fun read(sender: String?, recipient: String?, text: String) {
+    constructor(clazz: Class<*>) : super(clazz)
+    constructor(name: String) : super(name)
+
+    fun readText(sender: String?, recipient: String?, text: String) {
         val obj = WSPacket.decode(text)
         val mtype = obj.mtype
         val payload = obj.payload
         message("$sender < ($GREEN$mtype$RESET) < $recipient: $GRAY$payload$RESET")
     }
 
-    fun write(sender: String?, recipient: String?, text: String) {
+    fun writeText(sender: String?, recipient: String?, text: String) {
         val obj = WSPacket.decode(text)
         val mtype = obj.mtype
         val payload = obj.payload
         message("$sender > ($GREEN$mtype$RESET) > $recipient: $GRAY$payload$RESET")
     }
 
-    fun read(sender: String?, recipient: String?, buffer: Buffer) {
+    fun readBinary(sender: String?, recipient: String?, buffer: Buffer) {
         message("$sender > ($GREEN${buffer.length()}-length bytes$RESET) > $recipient")
     }
 
-    fun read(text: String) {
+    fun receiveText(text: String) {
         val obj = WSPacket.decode(text)
         val mtype = obj.mtype
         val payload = obj.payload
         message("Received ($GREEN$mtype$RESET): $GRAY$payload$RESET")
     }
 
-    fun write(text: String) {
+    fun sendText(text: String) {
         val obj = WSPacket.decode(text)
         val mtype = obj.mtype
         val payload = obj.payload

@@ -10,4 +10,5 @@ class ChestUser(
 ) {
     var username: String? = null        /* name of the user */
     var host: Boolean = false           /* flag for host permissions */
+    var playerId: String? = null        /* player id of the user */
 }
