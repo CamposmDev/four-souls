@@ -1,6 +1,6 @@
 package io.github.camposmdev.foursouls.server.basement
 
-import io.github.camposmdev.foursouls.core.api.message.WSPacketFactory
+import io.github.camposmdev.foursouls.core.api.message.PacketFactory
 import io.github.camposmdev.foursouls.core.util.logger.Logger
 import io.github.camposmdev.foursouls.server.basement.impl.BasementRegistry
 import io.github.camposmdev.foursouls.server.basement.impl.BasementServerWSClient
@@ -15,7 +15,7 @@ object BasementServer {
     const val NAME = "Basement"
     private const val USER_ID_COOKIE = "userId"
     private lateinit var vertx: Vertx
-    lateinit var auth: BasementAuth
+    lateinit var Auth: BasementAuth
     private lateinit var log: Logger
 
     @JvmStatic
@@ -24,7 +24,7 @@ object BasementServer {
         val opts = BasementOpts.parse(args)
         vertx = Vertx.vertx()
         /* initialize auth module */
-        auth = BasementAuth(vertx, opts.momHost, opts.momPort)
+        Auth = BasementAuth(vertx, opts.momHost, opts.momPort)
         /* initialize log */
         log = Logger(BasementServer::class.java)
         /* initialize server */
@@ -45,7 +45,7 @@ object BasementServer {
             return
         }
         if (BasementRegistry.isFull()) {
-            val payload = WSPacketFactory.err("Basement is Full")
+            val payload = PacketFactory.err("Basement is Full")
             req.response().setStatusCode(503).end(payload)
             return
         }

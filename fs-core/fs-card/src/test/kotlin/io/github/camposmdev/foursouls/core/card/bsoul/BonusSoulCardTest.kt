@@ -31,9 +31,14 @@ class BonusSoulCardTest {
         }
         val job = JsonObject.mapFrom(testCard)
         assertEquals(testId, job.getString("id"))
+        assertEquals(testCardSet.name, job.getString("cardSet"))
+        assertEquals(testCardType.name, job.getString("cardType"))
         assertEquals(testLoot, job.getInteger("loot").toByte())
         assertEquals(testMoney, job.getInteger("money").toByte())
+        assertEquals(testGuppyItems, job.getInteger("guppyItems").toByte())
         assertEquals(testEnvy, job.getBoolean("envy"))
+        assertEquals(testSloth, job.getBoolean("sloth"))
+        assertEquals(testStrawberry, job.getBoolean("strawberry"))
     }
 
     @Test
@@ -60,10 +65,6 @@ class BonusSoulCardTest {
         }
         val job = JsonObject.mapFrom(testCard)
         val parsedTestCard = job.mapTo(BonusSoulCard::class.java)
-        assertEquals(testMoney, parsedTestCard.money)
-        assertEquals(testLoot, parsedTestCard.loot)
-        assertEquals(testEnvy, parsedTestCard.isEnvy)
-        assertEquals(testId, parsedTestCard.id)
         val job1 = JsonObject.mapFrom(parsedTestCard)
         assertEquals(job, job1)
     }

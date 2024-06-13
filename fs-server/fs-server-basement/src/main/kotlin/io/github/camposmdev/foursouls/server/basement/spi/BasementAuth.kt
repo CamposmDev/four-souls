@@ -11,7 +11,7 @@ import io.vertx.core.Vertx
 class BasementAuth(v: Vertx, host: String, port: Int) {
     private val store: MomStore = MomStore(v, host, port)
 
-    fun verify(userId: String): Future<String> {
+    fun verifyId(userId: String): Future<String> {
         val promise = Promise.promise<String>()
         store.getUserById(userId).onSuccess {
             promise.complete(it.username)

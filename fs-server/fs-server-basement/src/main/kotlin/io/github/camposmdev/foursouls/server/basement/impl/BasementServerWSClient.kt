@@ -3,39 +3,45 @@ package io.github.camposmdev.foursouls.server.basement.impl
 import io.github.camposmdev.foursouls.core.api.basement.BasementUser
 import io.github.camposmdev.foursouls.core.api.logger.WSLogger
 import io.github.camposmdev.foursouls.core.api.message.BasementMType
+import io.github.camposmdev.foursouls.core.api.message.PacketFactory
 import io.github.camposmdev.foursouls.core.api.message.WSPacket
-import io.github.camposmdev.foursouls.core.api.message.WSPacketFactory
 import io.github.camposmdev.foursouls.core.api.message.payload.BasementChat
 import io.github.camposmdev.foursouls.core.util.AbstractServerWSClient
 import io.github.camposmdev.foursouls.server.basement.BasementServer
+import io.vertx.core.Future
+import io.vertx.core.Promise
 import io.vertx.core.buffer.Buffer
 import io.vertx.core.http.ServerWebSocket
 import io.vertx.core.json.JsonObject
 
 class BasementServerWSClient(
-    private val ws: ServerWebSocket,
+    ws: ServerWebSocket,
     userId: String
-) : AbstractServerWSClient<BasementMType>() {
+) : AbstractServerWSClient<BasementMType>(ws) {
+    private lateinit var log: WSLogger
     val state = BasementUser(id, userId)
-    private val log = WSLogger(BasementServer::class.java)
 
     init {
         /* verify userId */
-        BasementServer.auth.verify(userId).onSuccess { username ->
-            state.username = username
+        BasementServer.Auth.verifyId(userId).onSuccess {
+            state.username = it
             ws.binaryMessageHandler(::binaryMessageHandler)
             ws.textMessageHandler(::textMessageHandler)
             ws.closeHandler(::closeHandler)
             BasementRegistry.add(this)
+            log = WSLogger(BasementServer::class.java).apply {
+                debug = true
+            }
             log.debug("${state.username} joined the basement")
             greeting()
         }.onFailure {
+            log.error(it)
             ws.close()
         }
     }
 
     override fun binaryMessageHandler(buffer: Buffer) {
-        log.read(BasementServer.NAME, state.username, buffer)
+        log.readBinary(BasementServer.NAME, state.username, buffer)
     }
 
     override fun textMessageHandler(text: String) {
@@ -43,11 +49,11 @@ class BasementServerWSClient(
             val obj = WSPacket.decode(text)
             val mtype = BasementMType.valueOf(obj.mtype)
             val payload = obj.payload
-            log.read(BasementServer.NAME, state.username, text)
+            log.readText(BasementServer.NAME, state.username, text)
             decodeMessage(mtype, payload)
         } catch (ex: Exception) {
             ex.printStackTrace()
-            writeText(WSPacketFactory.basement().err(ex.toString()))
+            sendText(PacketFactory.basement().err(ex.toString()))
         }
     }
 
@@ -64,26 +70,30 @@ class BasementServerWSClient(
                 BasementRegistry.sendChatMessageToAll(chat)
             }
             else -> {
-                writeText(WSPacketFactory.basement().err("Invalid MType: $mtype"))
+                sendText(PacketFactory.basement().err("Invalid MType: $mtype"))
             }
         }
     }
 
     fun chat(chat: BasementChat) {
-        val msg = WSPacketFactory.basement().chat(chat)
-        writeText(msg)
+        val msg = PacketFactory.basement().chat(chat)
+        sendText(msg)
     }
 
     fun greeting() {
-        val msg = WSPacketFactory.basement().greeting(state.host, state.username, BasementRegistry.users())
-        writeText(msg)
+        val msg = PacketFactory.basement().greeting(state.host, state.username, BasementRegistry.users())
+        sendText(msg)
     }
 
-    override fun writeText(text: String) {
+    override fun sendText(text: String): Future<Void> {
+        val promise = Promise.promise<Void>()
         ws.writeTextMessage(text).onSuccess {
-            log.write(BasementServer.NAME, state.username, text)
+            log.writeText(BasementServer.NAME, state.username, text)
+            promise.complete()
         }.onFailure {
             it.printStackTrace()
+            promise.fail(it)
         }
+        return promise.future()
     }
 }

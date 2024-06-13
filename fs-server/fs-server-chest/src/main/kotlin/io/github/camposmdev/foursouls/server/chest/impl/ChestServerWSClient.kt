@@ -1,64 +1,104 @@
 package io.github.camposmdev.foursouls.server.chest.impl
 
-import io.github.camposmdev.foursouls.core.api.logger.WSLogger
+import io.github.camposmdev.foursouls.core.api.chest.ChestUser
+import io.github.camposmdev.foursouls.core.api.logger.ChestLogger
 import io.github.camposmdev.foursouls.core.api.message.ChestMType
+import io.github.camposmdev.foursouls.core.api.message.ChestMType.*
+import io.github.camposmdev.foursouls.core.api.message.PacketFactory
 import io.github.camposmdev.foursouls.core.api.message.WSPacket
-import io.github.camposmdev.foursouls.core.api.message.WSPacketFactory
+import io.github.camposmdev.foursouls.core.api.message.payload.ChestCharacterSelection
+import io.github.camposmdev.foursouls.core.api.message.payload.ChestChat
+import io.github.camposmdev.foursouls.core.api.message.payload.ChestDrawCharacter
+import io.github.camposmdev.foursouls.core.api.message.payload.ChestDrawLoot
 import io.github.camposmdev.foursouls.core.util.AbstractServerWSClient
+import io.github.camposmdev.foursouls.server.chest.ChestServer
+import io.vertx.core.Future
+import io.vertx.core.Promise
 import io.vertx.core.buffer.Buffer
 import io.vertx.core.http.ServerWebSocket
 import io.vertx.core.json.JsonObject
 
 class ChestServerWSClient(
-    private val ws: ServerWebSocket,
+    ws: ServerWebSocket,
     userId: String
-) : AbstractServerWSClient<ChestMType>() {
-    private val log = WSLogger(ChestServerWSClient::class.java)
+) : AbstractServerWSClient<ChestMType>(ws) {
+    private lateinit var log: ChestLogger
+    val state = ChestUser(id, userId)
 
     init {
-        TODO("Verify userId")
-        this.ws.binaryMessageHandler(this::binaryMessageHandler)
-        this.ws.textMessageHandler(this::textMessageHandler)
-        this.ws.closeHandler(this::closeHandler)
-        log.debug("${TODO("state.username")} joined the chest")
+        /* verify userId */
+        ChestServer.Auth.verifyId(userId).onSuccess {
+            state.username = it
+            ws.binaryMessageHandler(::binaryMessageHandler)
+            ws.textMessageHandler(::textMessageHandler)
+            ws.closeHandler(::closeHandler)
+            log = ChestLogger(state.username).apply {
+                debug = true
+            }
+            log.debug("${state.username} joined the chest")
+        }.onFailure {
+            log.error(it)
+            ws.close()
+        }
     }
 
-    override fun binaryMessageHandler(data: Buffer) {
-        TODO("Not yet implemented")
+    override fun binaryMessageHandler(buffer: Buffer) {
+        log.readBinary(buffer)
     }
 
     override fun textMessageHandler(text: String) {
-        TODO("Not yet implemented")
         try {
             val body = WSPacket.decode(text)
             val mtype = ChestMType.valueOf(body.mtype)
             val payload = body.payload
-            TODO("Not yet implemented")
-//            log.read(ChestServer.NAME, state.username, text)
+            log.readText(text)
             decodeMessage(mtype, payload)
         } catch (ex: Exception) {
             ex.printStackTrace()
-            writeText(WSPacketFactory.basement().err(ex.toString()))
+            sendText(PacketFactory.basement().err(ex.toString()))
         }
     }
 
     override fun closeHandler(arg0: Void?) {
-        ChestRegistry.remove { x -> x.id == this.id }
-        log.debug("${TODO("state.username")} left the chest")
+        val removed = ChestRegistry.remove { x -> x.id == this.id }
+        if (removed)
+            log.debug("${state.username} left the chest")
+        else
+            log.error("Failed to remove ${state.username}?")
     }
 
-    override fun decodeMessage(mtype: ChestMType, payload: JsonObject) {
-        TODO("Not yet implemented")
+    override fun decodeMessage(mtype: ChestMType, job: JsonObject) {
         when (mtype) {
-            else -> writeText(WSPacketFactory.basement().err("Invalid MType: $mtype"))
+            CHAT -> {
+                val chat = job.mapTo(ChestChat::class.java)
+                /* relay chat message to all users */
+                ChestRegistry.emit(mtype, job)
+            }
+            DRAW_LOOT-> {
+                /* user wants to draw x loot cards */
+                val payload = job.mapTo(ChestDrawLoot::class.java)
+            }
+            DRAW_CHARACTER -> {
+                /* user wants to draw x character cards */
+                val payload = job.mapTo(ChestDrawCharacter::class.java)
+            }
+            CHARACTER_SELECTION -> {
+                /* user wants to choose their character */
+                val payload = job.mapTo(ChestCharacterSelection::class.java)
+            }
+            else -> sendText(PacketFactory.basement().err("Invalid MType: $mtype"))
         }
     }
 
-    override fun writeText(text: String?) {
+    override fun sendText(text: String): Future<Void> {
+        val promise = Promise.promise<Void>()
         ws.writeTextMessage(text).onSuccess {
-            TODO("Log sent text message")
+            log.writeText(text)
+            promise.complete()
         }.onFailure {
             it.printStackTrace()
+            promise.fail(it)
         }
+        return promise.future()
     }
 }

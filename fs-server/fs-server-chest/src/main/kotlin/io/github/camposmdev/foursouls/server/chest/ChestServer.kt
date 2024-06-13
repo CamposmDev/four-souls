@@ -1,9 +1,10 @@
 package io.github.camposmdev.foursouls.server.chest
 
-import io.github.camposmdev.foursouls.core.api.message.WSPacketFactory
+import io.github.camposmdev.foursouls.core.api.message.PacketFactory
 import io.github.camposmdev.foursouls.core.util.logger.Logger
 import io.github.camposmdev.foursouls.server.chest.impl.ChestRegistry
 import io.github.camposmdev.foursouls.server.chest.impl.ChestServerWSClient
+import io.github.camposmdev.foursouls.server.chest.spi.ChestAuth
 import io.github.camposmdev.foursouls.server.chest.spi.ChestOpts
 import io.vertx.core.Vertx
 import io.vertx.core.http.HttpMethod
@@ -11,17 +12,19 @@ import io.vertx.core.http.HttpServerOptions
 import io.vertx.core.http.HttpServerRequest
 
 object ChestServer {
-    const val NAME = "Basement"
+    const val NAME = "Chest"
     private const val USER_ID_COOKIE = "userId"
     private lateinit var vertx: Vertx
     private lateinit var log: Logger
-
+    lateinit var Auth: ChestAuth
 
     @JvmStatic
     fun main(args: Array<String>) {
         /* parse arguments */
         val opts = ChestOpts.parse(args)
         val vertx = Vertx.vertx()
+        /* initialize auth module */
+        Auth = ChestAuth(vertx, opts.momHost, opts.momPort)
         /* initialize server */
         val options = HttpServerOptions()
         options.port = opts.chestPort
@@ -40,7 +43,7 @@ object ChestServer {
             return
         }
         if (ChestRegistry.isFull()) {
-            val payload = WSPacketFactory.err("Chest is Full")
+            val payload = PacketFactory.err("Chest is Full")
             req.response().setStatusCode(503).end(payload)
             return
         }
