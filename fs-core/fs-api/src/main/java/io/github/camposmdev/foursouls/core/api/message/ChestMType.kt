@@ -15,8 +15,10 @@ enum class ChestMType {
     DRAW_LOOT, /* Sent to server when user wants to draw loot card(s). Processed only if the game hasn't started yet, or it is the user's turn and, they haven't drawn a card yet. */
     LOOT, /* Sent to user as response to LOOT_DRAW message. */
     END_TURN, /* Sent to server when the user ends their turn. Message is processed if the user has drawn a loot at the start of their turn and is not dead. If the user is in the combat phase, they cannot end their turn, unless they have an item/loot card that allows them to. */
-    CHARACTER_DRAW, /* Sent to server when user wants to pick their character to play as in the game. Processed only if the game hasn't started yet. */
+    DRAW_CHARACTER, /* Sent to server when user wants to pick their character to play as in the game. Processed only if the game hasn't started yet. */
     CHARACTERS, /* Sent to user as response to CHARACTER_DRAW message. */
     CHARACTER_SELECTION, /* Sent to server when the user has decided the character they want to play as. The rest of the characters the player does not choose are discarded into the character discard pile. */
-
+    BUY_SHOP_ITEM, /* Sent to server when the user wants to buy an item from the shop. Processed only if the itemId does indeed exist in the shop and user has enough money to pay for the item which may be 10 cents or more/less depending on teh curses or items they have. */
+    ATTACK_MONSTER_SELECTION,
+    ATTACK_MONSTER
 }

@@ -64,7 +64,7 @@ data class ChestLoot(
     val lootIds: Map<String, CardType>
 )
 
-data class ChestCharacterDraw(
+data class ChestDrawCharacter(
     @JsonProperty("amount")
     val amount: Int
 )
@@ -86,6 +86,11 @@ data class ChestCharacters(
 data class ChestCharacterSelection(
     @JsonProperty("size")
     val size: Int,
-    @JsonProperty("lootIds")
+    @JsonProperty("characterId")
     val characterId: String
+)
+
+data class ChestBuyShopItem(
+    @JsonProperty("itemId")
+    val itemId: String
 )
