@@ -2,6 +2,7 @@ package io.github.camposmdev.foursouls.core.api.message.payload
 
 import io.github.camposmdev.foursouls.core.api.basement.BasementUser
 import io.github.camposmdev.foursouls.core.api.chest.ChestUser
+import io.github.camposmdev.foursouls.core.card.attribute.CardType
 import io.vertx.core.json.JsonObject
 
 interface Payload
@@ -50,5 +51,49 @@ object BasementPayloadFactory {
 object ChestPayloadFactory {
     fun greeting(host: Boolean, username: String?, users: List<ChestUser>): ChestGreeting {
         return ChestGreeting(host, username, users)
+    }
+    
+    fun chat(username: String?, message: String): ChestChat {
+        return ChestChat(username, message)
+    }
+    
+    fun done(chestId: String): ChestDone {
+        return ChestDone(chestId)
+    }
+    
+    fun users(users: List<ChestUser>, message: String): ChestUsers {
+        return ChestUsers(users, message)
+    }
+    
+    fun close(message: String): ChestClosed {
+        return ChestClosed(message)
+    }
+    
+    fun err(message: String): ChestError {
+        return ChestError(message)
+    }
+    
+    fun leave(): ChestLeave {
+        return ChestLeave()
+    }
+    
+    fun drawLoot(n: Int): ChestDrawLoot {
+        return ChestDrawLoot(n)
+    }
+    
+    fun drawLootResult(size: Int, loot: Map<String, CardType>): ChestDrawLootResult {
+        return ChestDrawLootResult(size, loot)
+    }
+    
+    fun drawCharacters(n: Int): ChestDrawCharacters {
+        return ChestDrawCharacters(n)
+    }
+    
+    fun drawCharactersResult(size: Int, characterIds: Map<String, Pair<String, CardType>>): ChestDrawCharactersResult {
+        return ChestDrawCharactersResult(size, characterIds)
+    }
+    
+    fun selectedCharacter(characterId: String): ChestSelectedCharacter {
+        return ChestSelectedCharacter(characterId)
     }
 }

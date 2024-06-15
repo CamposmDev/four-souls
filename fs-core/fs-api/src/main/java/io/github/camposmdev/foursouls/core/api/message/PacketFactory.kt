@@ -3,6 +3,7 @@ package io.github.camposmdev.foursouls.core.api.message
 import io.github.camposmdev.foursouls.core.api.basement.BasementUser
 import io.github.camposmdev.foursouls.core.api.chest.ChestUser
 import io.github.camposmdev.foursouls.core.api.message.payload.BasementChat
+import io.github.camposmdev.foursouls.core.api.message.payload.ChestChat
 import io.github.camposmdev.foursouls.core.api.message.payload.ChestPayloadFactory
 import io.github.camposmdev.foursouls.core.api.message.payload.PayloadFactory
 
@@ -53,6 +54,10 @@ object ChestPacketFactory {
     fun greeting(host: Boolean, username: String?, users: List<ChestUser>): String {
         val payload = ChestPayloadFactory.greeting(host, username, users)
         return WSPacket.encode(ChestMType.GREETING, payload)
+    }
+
+    fun chat(chat: ChestChat): String {
+        return WSPacket.encode(ChestMType.CHAT, chat)
     }
 
     fun err(message: String): String {

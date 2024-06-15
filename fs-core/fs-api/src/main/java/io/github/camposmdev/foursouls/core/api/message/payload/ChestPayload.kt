@@ -57,7 +57,7 @@ data class ChestDrawLoot(
     val amount: Int
 )
 
-data class ChestLoot(
+data class ChestDrawLootResult(
     @JsonProperty("size")
     val size: Int,
     @JsonProperty("lootIds")
@@ -67,12 +67,12 @@ data class ChestLoot(
 /* default character card draw is 2 */
 private const val DEFAULT_CHARACTER_DRAW = 2
 
-data class ChestDrawCharacter(
+data class ChestDrawCharacters(
     @JsonProperty("amount")
     val amount: Int = DEFAULT_CHARACTER_DRAW
 )
 
-data class ChestCharacters(
+data class ChestDrawCharactersResult(
     @JsonProperty("size")
     val size: Int,
     @JsonProperty("characterIds")
@@ -81,9 +81,7 @@ data class ChestCharacters(
     *  value=pair(eternalId, eternalCardType)*/
 )
 
-data class ChestCharacterSelection(
-    @JsonProperty("size")
-    val size: Int,
+data class ChestSelectedCharacter(
     @JsonProperty("characterId")
     val characterId: String
 )
