@@ -9,6 +9,7 @@ import { BaseCard } from "types/common";
 export default class FastifyDeckController {
     public async getAll(req: FastifyRequest, res: FastifyReply) {
         const query = req.query as DeckGetAllQuery
+        query.pretty = query.pretty === 'true'
         const decks: {
             name: string, 
             cards: JsonValue

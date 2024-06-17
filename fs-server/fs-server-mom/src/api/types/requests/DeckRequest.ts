@@ -1,5 +1,5 @@
 export type DeckGetAllQuery = {
-    pretty: boolean
+    pretty: string | boolean
 }
 
 export type DeckGetByNameParams = {
