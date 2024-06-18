@@ -80,7 +80,7 @@ object ChestPayloadFactory {
     fun drawLoot(n: Int): ChestDrawLoot {
         return ChestDrawLoot(n)
     }
-    
+
     fun drawLootResult(size: Int, loot: Map<String, CardType>): ChestDrawLootResult {
         return ChestDrawLootResult(size, loot)
     }

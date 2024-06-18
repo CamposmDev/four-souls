@@ -22,5 +22,10 @@
             <artifactId>fs-util</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>io.github.camposmdev</groupId>
+            <artifactId>fs-atlas</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 </project>
