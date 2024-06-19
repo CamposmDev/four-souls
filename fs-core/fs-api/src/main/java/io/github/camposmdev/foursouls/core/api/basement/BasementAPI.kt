@@ -1,6 +1,6 @@
 package io.github.camposmdev.foursouls.core.api.basement
 
-import io.github.camposmdev.foursouls.core.api.AbstractWSManager
+import io.github.camposmdev.foursouls.core.api.VertxAPI
 import io.github.camposmdev.foursouls.core.api.message.*
 import io.github.camposmdev.foursouls.core.api.message.payload.*
 import io.vertx.core.Future
@@ -9,7 +9,8 @@ import io.vertx.core.json.JsonObject
 import java.util.*
 
 class BasementAPI(vertx: Vertx)
-    : AbstractWSManager<BasementMType, BasementPayload>(vertx, "basement.api.${UUID.randomUUID()}", BasementAPI::class.java), IBasementAPI {
+    : VertxAPI<BasementMType, BasementPayload>(vertx, "basement.api.${UUID.randomUUID()}", BasementAPI::class.java),
+    IBasementAPI {
     private val eb = vertx.eventBus()
 
     init {

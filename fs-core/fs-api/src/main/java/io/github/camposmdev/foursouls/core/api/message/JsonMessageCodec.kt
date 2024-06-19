@@ -4,7 +4,7 @@ import io.vertx.core.buffer.Buffer
 import io.vertx.core.eventbus.MessageCodec
 import io.vertx.core.json.Json
 
-open class JsonMessageCodec<T> : MessageCodec<T, T> {
+abstract class JsonMessageCodec<T> : MessageCodec<T, T> {
     open fun clazz(): Class<T> {
         throw NotImplementedError("Subclasses must implement clazz() method")
     }

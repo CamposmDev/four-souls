@@ -52,12 +52,12 @@ data class ChestLeave(
     val message: String = "Goodbye Cruel World"
 ) : ChestPayload
 
-data class ChestDrawLoot(
+data class ChestDrawLootCards(
     @JsonProperty("amount")
     val amount: Int
 )
 
-data class ChestDrawLootResult(
+data class ChestDrawLootCardsResult(
     @JsonProperty("size")
     val size: Int,
     @JsonProperty("lootIds")
@@ -67,12 +67,12 @@ data class ChestDrawLootResult(
 /* default character card draw is 2 */
 private const val DEFAULT_CHARACTER_DRAW = 2
 
-data class ChestDrawCharacters(
+data class ChestDrawCharacterCards(
     @JsonProperty("amount")
     val amount: Int = DEFAULT_CHARACTER_DRAW
 )
 
-data class ChestDrawCharactersResult(
+data class ChestDrawCharacterCardsResult(
     @JsonProperty("size")
     val size: Int,
     @JsonProperty("characterIds")
@@ -81,7 +81,7 @@ data class ChestDrawCharactersResult(
     *  value=pair(eternalId, eternalCardType)*/
 )
 
-data class ChestSelectedCharacter(
+data class ChestSelectedCharacterCard(
     @JsonProperty("characterId")
     val characterId: String
 )

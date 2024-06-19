@@ -77,23 +77,23 @@ object ChestPayloadFactory {
         return ChestLeave()
     }
     
-    fun drawLoot(n: Int): ChestDrawLoot {
-        return ChestDrawLoot(n)
+    fun drawLoot(n: Int): ChestDrawLootCards {
+        return ChestDrawLootCards(n)
     }
 
-    fun drawLootResult(size: Int, loot: Map<String, CardType>): ChestDrawLootResult {
-        return ChestDrawLootResult(size, loot)
+    fun drawLootResult(size: Int, loot: Map<String, CardType>): ChestDrawLootCardsResult {
+        return ChestDrawLootCardsResult(size, loot)
     }
     
-    fun drawCharacters(n: Int): ChestDrawCharacters {
-        return ChestDrawCharacters(n)
+    fun drawCharacters(n: Int): ChestDrawCharacterCards {
+        return ChestDrawCharacterCards(n)
     }
     
-    fun drawCharactersResult(size: Int, characterIds: Map<String, Pair<String, CardType>>): ChestDrawCharactersResult {
-        return ChestDrawCharactersResult(size, characterIds)
+    fun drawCharactersResult(size: Int, characterIds: Map<String, Pair<String, CardType>>): ChestDrawCharacterCardsResult {
+        return ChestDrawCharacterCardsResult(size, characterIds)
     }
     
-    fun selectedCharacter(characterId: String): ChestSelectedCharacter {
-        return ChestSelectedCharacter(characterId)
+    fun selectedCharacter(characterId: String): ChestSelectedCharacterCard {
+        return ChestSelectedCharacterCard(characterId)
     }
 }

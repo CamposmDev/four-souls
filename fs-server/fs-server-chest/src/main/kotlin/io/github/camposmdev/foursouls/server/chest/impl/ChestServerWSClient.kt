@@ -7,9 +7,9 @@ import io.github.camposmdev.foursouls.core.api.message.ChestMType.*
 import io.github.camposmdev.foursouls.core.api.message.PacketFactory
 import io.github.camposmdev.foursouls.core.api.message.WSPacket
 import io.github.camposmdev.foursouls.core.api.message.payload.ChestChat
-import io.github.camposmdev.foursouls.core.api.message.payload.ChestDrawCharacters
-import io.github.camposmdev.foursouls.core.api.message.payload.ChestDrawLoot
-import io.github.camposmdev.foursouls.core.api.message.payload.ChestSelectedCharacter
+import io.github.camposmdev.foursouls.core.api.message.payload.ChestDrawCharacterCards
+import io.github.camposmdev.foursouls.core.api.message.payload.ChestDrawLootCards
+import io.github.camposmdev.foursouls.core.api.message.payload.ChestSelectedCharacterCard
 import io.github.camposmdev.foursouls.core.util.AbstractServerWSClient
 import io.github.camposmdev.foursouls.server.chest.ChestServer
 import io.vertx.core.Future
@@ -76,15 +76,15 @@ class ChestServerWSClient(
             }
             DRAW_LOOT-> {
                 /* user wants to draw x loot cards */
-                val payload = job.mapTo(ChestDrawLoot::class.java)
+                val payload = job.mapTo(ChestDrawLootCards::class.java)
             }
             DRAW_CHARACTER -> {
                 /* user wants to draw x character cards */
-                val payload = job.mapTo(ChestDrawCharacters::class.java)
+                val payload = job.mapTo(ChestDrawCharacterCards::class.java)
             }
             CHARACTER_SELECTION -> {
                 /* user wants to choose their character */
-                val payload = job.mapTo(ChestSelectedCharacter::class.java)
+                val payload = job.mapTo(ChestSelectedCharacterCard::class.java)
             }
             else -> sendText(PacketFactory.basement().err("Invalid MType: $mtype"))
         }
