@@ -41,7 +41,7 @@ class ChestAPI(vertx: Vertx)
         TODO("Not yet implemented")
     }
 
-    override fun endTurn(): Future<Void> {
+    override fun endTurn(message: String): Future<Void> {
         TODO("Not yet implemented")
     }
 
